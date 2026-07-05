@@ -543,7 +543,7 @@
   <div class="header-sub">Standard for the Installation of Sprinkler Systems｜條文重點中文整理（依原文條款編號對照）</div>
   <div class="header-meta">
     <div class="meta-item">📄 <strong>原文版本</strong>：2022 Edition，共 32 章 + 附錄 A–F</div>
-    <div class="meta-item">📌 <strong>整理進度</strong>：Ch.1–21、27–32 完成，其餘章節陸續更新中</div>
+    <div class="meta-item">📌 <strong>整理進度</strong>：Ch.1–24、26–32 完成；Ch.25（貨架內撒水頭）與附錄建置中</div>
     <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-05</div>
     <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
     <div class="meta-item">🔗 <a href="index.html" style="color:var(--accent);text-decoration:none;">同系列：FM Global DS 7-7 半導體廠整理 →</a></div>
@@ -568,6 +568,9 @@
   <a href="#ch19">19 設計方法</a>
   <a href="#ch20">20 儲存一般要求</a>
   <a href="#ch21">21 CMDA儲存</a>
+  <a href="#ch22">22 CMSA儲存</a>
+  <a href="#ch23">23 ESFR儲存</a>
+  <a href="#ch26">26 特殊設計</a>
   <a href="#ch27">27 特殊場所</a>
   <a href="#ch28">28 圖說計算</a>
   <a href="#ch29">29 系統驗收</a>
@@ -599,6 +602,11 @@
     <a href="#ch19">Ch.19 設計方法</a>
     <a href="#ch20">Ch.20 儲存一般要求</a>
     <a href="#ch21">Ch.21 CMDA高架儲存</a>
+    <a href="#ch22" class="sub">Ch.22 CMSA儲存</a>
+    <a href="#ch23" class="sub">Ch.23 ESFR儲存</a>
+    <a href="#ch24" class="sub">Ch.24 替代設計</a>
+    <a href="#ch25" class="sub pending">Ch.25 貨架內撒水頭（建置中）</a>
+    <a href="#ch26" class="sub">Ch.26 特殊儲存設計</a>
     <a href="#ch27">Ch.27 特殊用途場所</a>
     <a href="#ch28">Ch.28 圖說與計算</a>
     <a href="#ch29">Ch.29 系統驗收</a>
@@ -2118,6 +2126,127 @@
 
       <h3><span class="clause-ref">21.5–21.8</span>塑膠貨架儲存、橡膠輪胎與捲筒紙</h3>
       <p>Group A 塑膠之單/雙/多排貨架儲存（堆高 ≤25 ft 見 21.5；&gt;25 ft 見 21.6）、橡膠輪胎儲存（21.7）與捲筒紙儲存（21.8）之 CMDA 設計基準，均另立專章查表，其密度普遍高於同高度之 Class I–IV 一般商品，且高度分界點與貨架內撒水頭搭配規則亦各自不同，設計時應逐章對照，不可互相援用。</p>
+    </div>
+
+    <div class="section" id="ch22">
+      <div class="section-header">
+        <div class="section-num danger">22</div>
+        <h2>CMSA 儲存應用要求（CMSA Requirements for Storage Applications）</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div><span class="clause-ref">22.1</span> CMSA 與 CMDA 的核心差異：CMDA 是「密度／面積」查表計算式設計，CMSA 則是<b>依特定貨架儲存或用途之大型實尺寸火災測試結果，直接核發「撒水頭型式＋最小工作壓力＋設計撒水頭數」之固定配方式核准</b>，不需另行以密度／面積公式計算。<span class="clause-ref">22.1.6</span> 本章單/雙/多排貨架之天花板設計基準以<b>開放式貨架（Open Rack）</b>配置為前提。</div>
+      </div>
+
+      <h3><span class="clause-ref">22.1.5</span>開放式木格柵構造下之 CMSA</h3>
+      <p>CMSA 裝設於開放式木格柵構造下方時，須符合下列之一：<b>K-11.2(160) 撒水頭最小壓力 50 psi (3.4 bar)</b>；<b>K-16.8(240) 撒水頭最小壓力 22 psi (1.5 bar)</b>；或依 Table 22.4 查得之 K-19.6(280)／K-11.2/16.8（格柵每 20 ft 以同材料做滿深度分隔者）壓力值。</p>
+
+      <h3><span class="clause-ref">22.2–22.7</span>各儲存配置設計基準（節錄 Table 22.2）</h3>
+      <p>Table 22.2（棧板／密實堆疊 Class I–IV，含封裝與非封裝）依<b>商品類別 × 最大儲存高度 × 最大天花板高度 × K 值／方向 × 濕式或乾式系統</b>決定最小工作壓力，代表性數據如下：</p>
+      <table>
+        <thead><tr><th>商品</th><th>儲存高度</th><th>天花板高度</th><th>K值/方向</th><th>系統</th><th>最小壓力</th></tr></thead>
+        <tbody>
+          <tr><td>Class I/II 棧板</td><td>25 ft</td><td>30 ft</td><td>K-11.2 直立式</td><td>濕式</td><td>25 psi (1.7 bar)</td></tr>
+          <tr><td>Class I/II 棧板</td><td>25 ft</td><td>30 ft</td><td>K-25.2 懸吊式</td><td>濕式</td><td>10 psi (0.7 bar)</td></tr>
+          <tr><td>Class IV 棧板</td><td>20 ft</td><td>30 ft</td><td>K-11.2 直立式</td><td>濕式</td><td>50 psi (3.4 bar)</td></tr>
+          <tr><td>Class IV 棧板</td><td>20 ft</td><td>30 ft</td><td>K-25.2 懸吊式</td><td>濕式</td><td>10 psi (0.7 bar)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>Table 22.2 完整版另涵蓋乾式系統（壓力普遍較濕式高）、35/40 ft 天花板高度組合、密實堆疊（Solid Piled）獨立數據列，以及 <b>Table 22.3（塑膠棧板）／22.4（貨架儲存 Class I–IV）／22.5（貨架 A 類塑膠）／22.6（橡膠輪胎）／22.7（捲筒紙）</b>各自獨立查表，數據量遠超本頁摘要範圍，正式設計請查核原文完整表格。</div>
+      </div>
+    </div>
+
+    <div class="section" id="ch23">
+      <div class="section-header">
+        <div class="section-num danger">23</div>
+        <h2>ESFR 儲存應用要求（ESFR Requirements for Storage Applications）</h2>
+      </div>
+
+      <ul class="steps">
+        <li><span class="clause-ref">23.1.2</span> ESFR 系統與標準反應型撒水頭系統相鄰時，須設<b>不燃、深度 ≥2 ft (600mm) 之擋煙垂壁</b>，垂壁下方維持 <b>≥4 ft (1.2m) 淨寬走道</b>分隔（與 Ch.14.2.5 呼應）</li>
+        <li><span class="clause-ref">23.1.3.1–.2</span> ESFR <b>不得</b>用於防護實心層架貨架（除非層架另設貨架內撒水頭依 Ch.25），亦<b>不得</b>用於防護開放頂容器（Open-Top Container）儲存</li>
+        <li><span class="clause-ref">23.2.2</span> 設計面積原則為<b>最不利之 12 顆撒水頭</b>（3 條支管，每管 4 顆）</li>
+      </ul>
+
+      <h3><span class="clause-ref">23.3</span>Class I–IV 與 A 類塑膠棧板/密實堆疊/貨架儲存</h3>
+      <p>依 <b>Table 23.3.1</b>，依商品類別（Class I-IV 紙箱非發泡／發泡塑膠、外露非發泡／發泡塑膠）× 天花板高度 × K 值 × 方向查最小工作壓力，代表性數據：</p>
+      <table class="clause-table">
+        <thead><tr><th>商品／天花板高度</th><th>K-14.0懸吊</th><th>K-16.8懸吊</th><th>K-25.2懸吊</th></tr></thead>
+        <tbody>
+          <tr><td>Class I-IV／25-30ft</td><td>50 psi</td><td>35 psi</td><td>15 psi</td></tr>
+          <tr><td>Class I-IV／35ft</td><td>75 psi</td><td>52 psi</td><td>20 psi</td></tr>
+          <tr><td>外露非發泡塑膠／25-30ft</td><td>50 psi</td><td>35 psi</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--muted);margin-top:-6px;">外露發泡 A 類塑膠堆高 45ft 時，Table 23.3.1 註記「須設貨架內撒水頭，見 Ch.25」——這是 ESFR 天花板單獨防護<b>失效邊界</b>的明確標示。</p>
+
+      <h3><span class="clause-ref">23.4</span>外露發泡 A 類塑膠貨架特殊設計</h3>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value">35 ft</div><div class="stat-label">(10.7 m) 最大儲存高度</div></div>
+        <div class="stat-card">40 ft<div class="stat-label">(12.2 m) 最大天花板高度</div></div>
+        <div class="stat-card yellow">8 ft<div class="stat-label">(2.4 m) 最小走道寬度</div></div>
+      </div>
+      <p>須採 K-25.2 (360) 中溫懸吊式 ESFR，撒水盤距天花板 ≤14 in. (350mm)；最小工作壓力：儲存 ≤25ft／天花板≤30ft 為 <b>30 psi (2.0 bar)</b>，儲存 ≤35ft／天花板≤40ft 為 <b>60 psi (4.1 bar)</b>。貨架須設貫穿走道面之全高實心垂直隔板（間隔 ≤16.5 ft/5.0 m），隔板間儲存平面面積 ≤124 ft² (12 m²)。</p>
+
+      <h3><span class="clause-ref">23.5–23.6</span>橡膠輪胎與捲筒紙</h3>
+      <p>依 <b>Table 23.5</b>（輪胎，僅限濕式系統，設計區域依 23.2.2 決定形狀）與 <b>Table 23.6</b>（捲筒紙，依重量分級 Heavyweight/Mediumweight/Tissue 及 Closed/Standard/Open 排列方式），分別依 K 值、方向、壓力決定最大允許儲存／天花板高度。代表性數據：輪胎堆高 ≤25ft、天花板 30ft、K-14.0 懸吊/直立需 <b>50 psi</b>；捲筒紙 Heavyweight 天花板 30ft、K-14.0 需 <b>50 psi</b>，可防護儲存高達 25 ft。</p>
+    </div>
+
+    <div class="section" id="ch24">
+      <div class="section-header">
+        <div class="section-num purple">24</div>
+        <h2>Ch.20–25 替代撒水系統設計（Alternative Sprinkler System Designs）</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本章提供一條<b>以大型實尺寸火災測試為基礎、經專門列名核准</b>之替代設計途徑：撒水頭製造商依 <span class="clause-ref">24.1.6–24.1.9</span> 進行涵蓋各種變數之挑戰性火災測試，測試結果經<b>最不利情境撒水頭動作數 × 1.5 倍安全係數</b>後訂為系統設計基準，此基準得<b>不同於 Ch.20–23／25 標準查表方式</b>——本質上是「以實測結果核准之客製化配方」，設計撒水頭數最低要求：標準涵蓋型 12 顆／延伸涵蓋型（12×12ft 間距）8 顆／延伸涵蓋型（14×14ft 間距）6 顆，且最小操作面積不得低於 <b>768 ft² (71 m²)</b>。<span class="clause-ref">24.1.5</span> 本章不得用於減少貨架內撒水頭之水源需求。</div>
+      </div>
+
+      <h3><span class="clause-ref">24.2–24.3</span>棧板/密實堆疊與無底板貨架設計基準（節錄）</h3>
+      <p>Table 24.2.1／24.3.1（CMSA、K-25.2，Class I-IV 及紙箱非發泡塑膠）依儲存/天花板高度組合決定所需撒水頭數與最小壓力及對應之保護面積（12×12ft/144ft² 或 14×14ft/196ft²）：儲存 20ft／天花板 30ft 需 <b>6 顆撒水頭、30 psi</b>；儲存 25–30ft／天花板 35ft 需 <b>8 顆撒水頭、40 psi</b>。Table 24.3.2(a)/(b)（CMSA K-25.2，貨架儲存無底板）另訂儲存 25ft／天花板 30ft、直立式 <b>20 psi</b>／懸吊式 <b>15 psi</b>，設計 12 顆撒水頭、線間距 8–12 ft、面積 80–100 ft²。Table 24.3.3（乾式系統標準反應直立式撒水頭，Class I–III 開放式貨架）依儲存高度 35–50 ft 對應天花板 40–55 ft，設計撒水頭數 12–24 顆，最小壓力 15–50 psi（依 15 psi 選項須滿足<b>25 秒</b>最大送水時間，50 psi 選項須滿足<b>20 秒</b>）。</p>
+
+      <h3><span class="clause-ref">24.4–24.5</span>消防栓水量餘裕與最小障礙物準則</h3>
+      <p>用水量＝本章撒水頭需求＋ Table 20.15.2.6 消防栓水量餘裕，供水延時亦依該表決定。障礙物準則依設計撒水頭數量援引 Ch.13.2.8／Ch.14.2.11／Ch.11.2.5.1 等對應章節之障礙物規則（標準涵蓋 ≤20 顆援引 14.2.11；CMDA/CMSA 標準涵蓋 &gt;20 顆援引 13.2.8；延伸涵蓋 ≤10 顆援引 11.2.5.1／14.2.11.2-.3）；直立式 CMSA/CMDA/ESFR 撒水頭下方 <b>≤4 in. (100mm)</b> 連續障礙物得忽略不計。</p>
+    </div>
+
+    <div class="section" id="ch26">
+      <div class="section-header">
+        <div class="section-num yellow">26</div>
+        <h2>特殊儲存防護設計（Special Designs of Storage Protection）</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本章彙整多種<b>特定情境下的固定配方式設計基準</b>（性質類似 Ch.24），涵蓋塑膠汽車零件、零售賣場展示貨架（gondola racks）、20 ft 以下貨架特殊設計、棉花打包儲存、附走道紙箱檔案儲存、緊密文件儲存、高架檔案儲存等，每種情境皆有各自一組「密度／面積＋4 顆最不利撒水頭壓力＋消防栓水量」雙設計點基準與嚴格的<b>貨架尺寸、走道寬度、通道空間限制條件</b>——條件不符即不適用該設計基準，須回歸 Ch.20–25 一般規則。</div>
+      </div>
+
+      <h3><span class="clause-ref">26.3</span>零售賣場展示貨架範例（節錄）</h3>
+      <p>零售賣場單/雙排條板層架（26.3.1）：延伸涵蓋 K-25.2 撒水頭，雙設計點 <b>0.6 gpm/ft² over 2000 ft²</b> 與 <b>0.7 gpm/ft² 於最不利 4 顆撒水頭</b>，另加 500 gpm 消防栓水量餘裕（2 小時延時）；限制條件包含層架 12 ft 以上僅得用鋼絲網、走道寬 ≥5 ft、單層實心層架限高 5 ft 等。Gondola 展示貨架（26.3.2）另有一組較低密度基準（0.425/0.50 gpm/ft²），限制儲存高度 ≤12 ft、天花板 ≤22 ft、走道 ≥5 ft。</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value">500</div><div class="stat-label">gpm (1900 L/min) — 本章多數雙設計點基準之共通消防栓水量餘裕</div></div>
+        <div class="stat-card green"><div class="stat-value green">2 小時</div><div class="stat-label">共通供水延時</div></div>
+      </div>
+
+      <h3><span class="clause-ref">26.4</span>20 ft 以下貨架特殊設計（節錄）</h3>
+      <p>條板層架（Slatted Shelves）於特定條件下視同實心層架（26.4.1）；符合密度 <b>0.6 gpm/ft² over 2000 ft²</b> 且限制商品類別（Class I-IV、B/C 類塑膠、紙箱包裝 A 類塑膠等）、走道 ≥7.5 ft、天花板 ≤27 ft、儲存 ≤20 ft 等條件者（26.4.1.2），得以濕式系統防護單/雙排條板層架貨架而<b>免用貨架內撒水頭</b>；亦提供以 ESFR（K-14.0/16.8/25.2，最小壓力 34–50 psi）取代之替代方案（26.4.1.3）。</p>
+
+      <h3><span class="clause-ref">26.6</span>附走道紙箱檔案儲存（Cartoned Records Storage with Catwalk Access）</h3>
+      <ul class="steps">
+        <li>層架至少 <b>50% 開放</b>（自通道空間至通道空間）</li>
+        <li>橫向通道空間 6 in. (150 mm)，設於每一貨架立柱處；立柱間距 ≤10 ft 6 in. (3.2 m)</li>
+        <li>單排貨架深度 ≤72 in. (1.8 m)；雙排貨架走道到走道總深 ≤102 in. (2.6 m)</li>
+        <li>貨架間走道寬 30–36 in. (750–900 mm)；進出用走道經實心鋪面者得達 44 in. (1.1 m)</li>
+        <li>走道間人行棧板（catwalk）採 ≥50% 開放金屬格柵；垂直間距 ≤12 ft (3.7 m)</li>
+      </ul>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>本章每一情境皆各自成套，數值不得跨情境援引（例如 26.3 系列各小節之密度、走道寬、貨架深度限制彼此互不相同）；完整版另含 26.5（棉花打包）、26.7（緊密文件儲存）、26.8（高架檔案儲存）、26.9（棧板/密實堆疊/箱式/層架特殊設計）等節，正式設計請逐節查核原文完整條件與數據。</div>
+      </div>
     </div>
 
 
