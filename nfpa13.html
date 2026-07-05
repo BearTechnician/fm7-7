@@ -543,7 +543,7 @@
   <div class="header-sub">Standard for the Installation of Sprinkler Systems｜條文重點中文整理（依原文條款編號對照）</div>
   <div class="header-meta">
     <div class="meta-item">📄 <strong>原文版本</strong>：2022 Edition，共 32 章 + 附錄 A–F</div>
-    <div class="meta-item">📌 <strong>整理進度</strong>：Ch.1–6 完成，其餘章節陸續更新中</div>
+    <div class="meta-item">📌 <strong>整理進度</strong>：Ch.1–9 完成，其餘章節陸續更新中</div>
     <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-05</div>
     <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
     <div class="meta-item">🔗 <a href="index.html" style="color:var(--accent);text-decoration:none;">同系列：FM Global DS 7-7 半導體廠整理 →</a></div>
@@ -557,6 +557,9 @@
   <a href="#ch4">4 一般要求</a>
   <a href="#ch5">5 水源</a>
   <a href="#ch6">6 地下配管</a>
+  <a href="#ch7">7 系統元件</a>
+  <a href="#ch8">8 系統類型</a>
+  <a href="#ch9">9 撒水頭位置</a>
 </nav>
 
 <div class="layout">
@@ -570,6 +573,9 @@
     <a href="#ch4">Ch.4 一般要求</a>
     <a href="#ch5">Ch.5 水源</a>
     <a href="#ch6">Ch.6 地下配管安裝</a>
+    <a href="#ch7">Ch.7 系統元件與硬體</a>
+    <a href="#ch8">Ch.8 系統類型與要求</a>
+    <a href="#ch9">Ch.9 撒水頭位置要求</a>
   </nav>
 
   <!-- Main -->
@@ -1109,6 +1115,163 @@
         <div class="callout-icon">✅</div>
         <div>Ch.6 驗收流程重點：<b>沖洗（清除雜物）→ 水壓試驗（200 psi/2 hr）→ 操作測試（消防栓、控制閥、消防泵浦）→ 逆流裝置正向流量測試 → 簽署 Contractor's Material and Test Certificate</b>，四項缺一不可，且均須由業主代表見證。</div>
       </div>
+    </div>
+
+    <div class="section" id="ch7">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <h2>系統元件與硬體要求（System Components and Hardware）</h2>
+      </div>
+
+      <h3><span class="clause-ref">7.1</span>總則與列名（Listing）</h3>
+      <p>本標準未特別指定之材料或裝置，須完全依其列名（Listing）之條件、要求與限制使用（<span class="clause-ref">7.1.1.1</span>）。除少數例外（如閥類內部零件、Table 7.3.1.1／7.4.1 允許之設備、不影響系統效能之元件），凡攸關系統正常運作之材料與裝置<b>均須為列名品</b>（<span class="clause-ref">7.1.1.2–7.1.1.5</span>）。系統元件之額定壓力須能承受最大系統工作壓力，且<b>地上元件不得低於 175 psi (12 bar)、地下元件不得低於 150 psi (10 bar)</b>（<span class="clause-ref">7.1.2</span>）。</p>
+
+      <h3><span class="clause-ref">7.2</span>撒水頭</h3>
+      <p><span class="clause-ref">7.2.1</span> 所有撒水頭應永久標示 1–2 位英文大寫字母（廠牌代碼）及 3–4 位數字，以識別 K 值、撒水盤特性、壓力額定與熱感應特性。</p>
+      <table class="clause-table">
+        <thead><tr><th>公稱 K 值 gpm/(psi)½</th><th>公稱 K 值 L/min/(bar)½</th><th>相對放水量（K5.6=100%）</th><th>螺紋規格</th></tr></thead>
+        <tbody>
+          <tr><td>5.6</td><td>80</td><td>100%</td><td>½ in. NPT</td></tr>
+          <tr><td>8.0</td><td>115</td><td>140%</td><td>½–¾ in. NPT</td></tr>
+          <tr><td>11.2</td><td>160</td><td>200%</td><td>½–¾ in. NPT</td></tr>
+          <tr><td>14.0</td><td>200</td><td>250%</td><td>¾ in. NPT</td></tr>
+          <tr><td>16.8</td><td>240</td><td>300%</td><td>¾ in. NPT</td></tr>
+          <tr><td>22.4</td><td>320</td><td>400%</td><td>1 in. NPT</td></tr>
+          <tr><td>28.0</td><td>400</td><td>500%</td><td>1 in. NPT</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>Table 7.2.2.1 完整版另含 1.4/1.9/2.8/4.2/19.6/25.2/33.6 等 K 值級距，本表僅列常用者，正式選用請查核原文完整表格。<span class="clause-ref">7.2.2.5</span> <b>CMSA 與 ESFR 撒水頭之最小公稱 K 值須為 K-11.2 (160)</b>。</div>
+      </div>
+
+      <h4>溫度等級與顏色識別（<span class="clause-ref">7.2.4</span>）</h4>
+      <table>
+        <thead><tr><th>溫度分類</th><th>動作溫度範圍</th><th>玻璃球顏色</th><th>易熔合金顏色</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag green">Ordinary 一般</span></td><td>135–170°F (57–77°C)</td><td>橙／紅</td><td>無色／黑</td></tr>
+          <tr><td><span class="tag yellow">Intermediate 中溫</span></td><td>175–225°F (79–107°C)</td><td>黃／綠</td><td>白</td></tr>
+          <tr><td><span class="tag yellow">High 高溫</span></td><td>250–300°F (121–149°C)</td><td>藍</td><td>藍</td></tr>
+          <tr><td><span class="tag red">Extra High 特高溫</span></td><td>325–375°F (163–191°C)</td><td>紫</td><td>紅</td></tr>
+          <tr><td><span class="tag red">Very Extra High 極高溫</span></td><td>400–475°F (204–246°C)</td><td>黑</td><td>綠</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">7.2.5</span> 撒水頭僅得由<b>原廠</b>進行防蝕塗裝或裝飾塗裝，現場不得自行噴漆。<span class="clause-ref">7.2.6</span> 隱藏式／平頂式／崁頂式撒水頭之蓋板與化妝環須為該撒水頭列名總成之一部分，不得混用他牌。</p>
+
+      <h3><span class="clause-ref">7.3–7.5</span>配管、管件與接合方式</h3>
+      <p>地上配管與管件須符合 <b>Table 7.3.1.1</b>／<b>Table 7.4.1</b> 所列 ASTM／ASME 標準（涵蓋鋼、銅、CPVC、不鏽鋼、黃銅等材質），或為經列名可用於本用途之其他材質（依其列名限制安裝）。非金屬管件不得用於僅防護部分用途分類之場所（<span class="clause-ref">7.3.5.2／7.4.3</span>）。</p>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>螺紋／溝槽／銅管接合</h4>
+          <ul class="steps">
+            <li>螺紋依 ASME B1.20.1；管壁厚度低於 Schedule 30（≥8 in.）或 40（&lt;8 in.）者，須採經列名之螺紋接合總成</li>
+            <li>溝槽式接頭之溝槽尺寸須與接頭相容（切削／輥軋／鑄造溝槽皆可）；乾式／預動式／開放式系統所用溝槽墊圈須列名適用於乾式服務</li>
+            <li>銅管接頭原則採硬銲（brazed）；輕危險場所之外露濕式系統，若撒水頭為一般／中溫等級，允許軟銲（solder）</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>銲接（<span class="clause-ref">7.5.2</span>）</h4>
+          <ul class="steps">
+            <li>撒水配管原則應於工廠銲接完成；現場銲接須依 NFPA 51B 施作，並具備合格之銲接程序與人員資格（依 AWS B2.1/B2.1M 或 ASME 鍋爐與壓力容器規範第IX章）</li>
+            <li><b>禁止</b>以火焰切割與銲接方式修改或修復既有撒水系統</li>
+            <li>管件不得以銲接方式現場改造；螺帽、夾具等緊固件不得銲接於配管或管件（耐震斜撐用之銲接墊片除外）</li>
+            <li>承包商／製造商應保存銲工資格與銲接紀錄，供 AHJ 查閱</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3><span class="clause-ref">7.6</span>閥類</h3>
+      <p><span class="clause-ref">7.6.1</span> 列名指示型控制閥（indicating control valve）以最快速度操作時，關閉時間<b>不得少於 5 秒</b>，以避免水鎚（water hammer）。<span class="clause-ref">7.6.2</span> 允許使用具自動控制且可同時手動操作、並將閥位訊號傳送至遠端監控站之列名自動水控制閥。</p>
+
+      <h3><span class="clause-ref">7.7</span>水流警報裝置</h3>
+      <p>機械式水流警報裝置應於流量達系統中最小 K 值撒水頭之流量時，<b>5 分鐘內</b>觸發現場可聞警報；電子式水流警報裝置則須於<b>100 秒內</b>觸發，且警報須持續至水流停止為止（<span class="clause-ref">7.7.1–7.7.2</span>）。</p>
+
+      <h3><span class="clause-ref">7.8–7.9</span>添加劑塗層與自動化檢測設備</h3>
+      <p>用於控制微生物或其他腐蝕之水源添加劑與內部塗層（鍍鋅除外），須列名適用於消防撒水系統。自動化檢測／測試裝置之效果須等同人工檢查／測試；裝置故障不得影響系統運作，並須依 NFPA 72 觸發可聞可視監督訊號與故障訊號。</p>
+    </div>
+
+    <div class="section" id="ch8">
+      <div class="section-header">
+        <div class="section-num danger">8</div>
+        <h2>系統類型與要求（System Types and Requirements）</h2>
+      </div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4><span class="clause-ref">8.1</span>濕式系統 Wet Pipe</h4>
+          <p>配管內全程充滿加壓水，撒水頭動作即立即出水。每一系統立管應裝設壓力表，警報逆止閥／系統逆止閥上下方亦應各裝設壓力表（<span class="clause-ref">8.1.1</span>）。</p>
+        </div>
+        <div class="col-card">
+          <h4><span class="clause-ref">8.2</span>乾式系統 Dry Pipe</h4>
+          <p>配管內充填加壓空氣或氮氣，撒水頭動作後排氣、乾式閥開啟才進水，適用於可能凍結之場所。<b>系統容量（8.2.3）</b>受限：容量越大，出水延遲時間越長，故對容量訂有上限，並可透過加裝<b>加速器（accelerator）／排氣器（exhauster）</b>縮短動作時間。</p>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-card">
+          <h4><span class="clause-ref">8.3</span>預動式與開放式系統 Preaction / Deluge</h4>
+          <p><b>預動式</b>：配管平時無壓（或低壓監控空氣），須經獨立火警偵測系統動作後，預動閥開啟進水至系統配管，仍由個別撒水頭動作出水（多一道安全機制，適用於怕誤動作損失之場所，如電子廠房）。<b>開放式（放水）系統</b>：所有噴頭均為開放式，經偵測系統動作後全區同時放水（適用於需快速全區覆蓋之特殊危害，如變壓器、舞台）。</p>
+        </div>
+        <div class="col-card">
+          <h4><span class="clause-ref">8.4–8.5</span>複合式與多循環系統</h4>
+          <p><b>複合式乾式／預動式系統</b>：專用於碼頭、棧橋等場所。<b>多循環系統（Multi-Cycle）</b>：偵測到火警後放水，溫度降至一定程度後可自動關閉，再偵測到復燃時重新放水，屬循環動作型設計。</p>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-icon">🔥</div>
+        <div><b><span class="clause-ref">8.6</span> 防凍液系統（Antifreeze Systems）</b>——2022 版延續近年重大修訂精神：<span class="clause-ref">8.6.2.1</span> 除 8.6.2.2 允許之預混丙二醇（propylene glycol）ESFR 專用液外，<b>防凍液須為列名可用於撒水系統之產品</b>，<b>禁止自行調配（如甘油、非列名丙二醇溶液）</b>——此為業界歷經多起防凍液助燃相關事故後之修訂重點。<span class="clause-ref">8.6.1.2</span> ESFR 系統原則不得使用防凍液，除非該 ESFR 撒水頭經列名適用於該防凍液。<span class="clause-ref">8.6.1.5</span> 系統主閥應設置標示牌，註明防凍液廠牌、最低使用溫度與系統內溶液體積。</div>
+      </div>
+      <p><span class="clause-ref">8.6.3</span> 防凍液系統與供水配管間應設置逆流防止裝置（backflow preventer），並依系統容量（≤40 gal 或 &gt;40 gal）選用膨脹室（expansion chamber）或洩壓閥（relief valve）以吸收溫升造成之熱膨脹；容量超過 150 gal 者，每增加 150 gal 應增設一組測試接頭。</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4><span class="clause-ref">8.7</span>暴露防護撒水系統</h4>
+          <p>用於保護建築外牆、開口或屋頂免受<b>外部曝露火災</b>波及，無論建物內部是否設有撒水系統皆可設置；每組暴露防護系統應有獨立控制閥；位於可能凍結區域之自動撒水頭應採乾式、防凍液系統或連接至暖房區濕式系統之乾式撒水頭。</p>
+        </div>
+        <div class="col-card">
+          <h4><span class="clause-ref">8.8–8.10</span>特殊場所系統</h4>
+          <p>冷凍庫（8.8）、商用廚房設備與排油煙罩（8.9，通常搭配濕化學滅火系統）、導引式偵煙器（Pilot Line Detectors, 8.10）等場所訂有專屬系統配置要求。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="ch9">
+      <div class="section-header">
+        <div class="section-num">9</div>
+        <h2>撒水頭位置要求（Sprinkler Location Requirements）</h2>
+      </div>
+
+      <h3><span class="clause-ref">9.1</span>基本原則</h3>
+      <ul class="steps">
+        <li>撒水頭應遍布全場所裝設</li>
+        <li>撒水頭間距不得超過其最大保護面積</li>
+        <li>撒水頭之定位與位置須確保<b>動作時間</b>與<b>配水分布</b>符合預期效能</li>
+        <li>僅得於本標準明確允許之區域省略撒水頭</li>
+        <li>如經專門測試證實偏離淨空要求不影響滅火／控制能力，允許依測試結果安裝</li>
+      </ul>
+
+      <h3><span class="clause-ref">9.2</span>允許省略撒水頭之位置</h3>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div><span class="clause-ref">9.2.1</span> 條列約 20 種「密閉空間（Concealed Spaces）」得免設撒水頭之具體構造情境，核心判斷原則為：<b>不燃／限燃構造＋無法進入使用＋可燃負載極低（或以不燃隔熱材完全填滿空間）</b>。常見情境包括：木格柵／工字格柵間距 &lt;6 in. 之夾層、以不燃隔熱材完全填滿之屋頂/樓板夾層、面積 &lt;10 ft² 之管道間、面積 &lt;55 ft² 之獨立小夾層、以耐燃處理木材構築之空間、外部簷篷／簷口（寬度 ≤4 ft 且以不燃材料與室內區隔）等。</div>
+      </div>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>其他允許省略情境</h4>
+          <ul class="steps">
+            <li><span class="clause-ref">9.2.2</span> 地面層下方空間、室外碼頭與平台：無法作儲存用途、無輸送機等設備、樓板構造緊密、上方樓層無可燃／易燃液體處理儲存</li>
+            <li><span class="clause-ref">9.2.3</span> 外部突出物（簷篷、屋頂、門廊、陽台）：以不燃、限燃或耐燃處理木材構築者，或突出物下方僅為灑水區或符合特定條件之非灑水密閉空間</li>
+            <li><span class="clause-ref">9.2.4</span> 住宅單元衛浴：面積 ≤55 ft²、牆頂具 15 分鐘防火時效及不燃/限燃材質者，得免設撒水頭（限定照護機構與護理之家除外）</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>天花板開口與雲狀天花板</h4>
+          <p><span class="clause-ref">9.2.7</span> 具開口之天花板（雲狀天花板等）可否於開口上方省略撒水頭，須依 <b>Table 9.2.7.1</b>（依天花板雲層寬度與開口寬度決定最大保護面積）判定，開口寬度相對天花板高度比例越大，可省略之保護面積越受限，甚至不允許省略（NP）。</p>
+        </div>
+      </div>
+
+      <h3><span class="clause-ref">9.3–9.5</span>特殊情況與位置／間距／使用原則</h3>
+      <p>本節（連同 Ch.10–15 各類撒水頭安裝要求）進一步規範撒水頭於天花板障礙物（樑、風管、燈具）周邊之允許偏移與遮蔽限制、撒水盤與天花板／屋頂間之淨空範圍、牆邊撒水頭與牆面之距離、以及撒水頭朝向與偏轉方向要求；<b>連續性障礙物（Continuous Obstruction）</b>與<b>非連續性障礙物（Noncontinuous Obstruction）</b>之區分（見 Ch.3 定義）決定其對相鄰撒水頭配水型態之影響範圍與對應之補償設計原則，實務設計請對照 Ch.10–15 各類撒水頭專屬之間距／障礙物規則表。</p>
     </div>
 
   </main>
