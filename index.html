@@ -540,7 +540,7 @@
   <div class="header-sub">Semiconductor Fabrication Facilities｜條文重點中文整理（依原文條款編號對照）</div>
   <div class="header-meta">
     <div class="meta-item">📄 <strong>原文版本</strong>：2025 年 4 月，共 76 頁</div>
-    <div class="meta-item">📌 <strong>本次整理進度</strong>：第 1–19 頁（1.0 Scope ～ 2.5.7）</div>
+    <div class="meta-item">📌 <strong>整理進度</strong>：全 76 頁（1.0 Scope ～ Appendix G）</div>
     <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-05</div>
     <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
   </div>
@@ -552,7 +552,14 @@
   <a href="#s23">2.1-2.3</a>
   <a href="#s24">2.4 建築</a>
   <a href="#s25">2.5 設施</a>
-  <a href="#pending">待補章節</a>
+  <a href="#s26">2.6 工具</a>
+  <a href="#s27">2.7 AMHS</a>
+  <a href="#s28">2.8 氣體</a>
+  <a href="#s29">2.9 液體</a>
+  <a href="#s210">2.10 人員</a>
+  <a href="#s3">3.0 支持依據</a>
+  <a href="#s4">4.0 參考文獻</a>
+  <a href="#appA">附錄A-G</a>
 </nav>
 
 <div class="layout">
@@ -568,9 +575,21 @@
     <a href="#s24" class="sub">2.4.1–2.4.3 構造與選址</a>
     <a href="#s24" class="sub">2.4.4–2.4.8 廠房與儲存保護</a>
     <a href="#s25">2.5 公用設施與支援系統</a>
-    <a href="#s25" class="sub">2.5.1–2.5.2 總則／電力</a>
-    <a href="#s25" class="sub">2.5.3–2.5.7 空調／水系統／氣體</a>
-    <a href="#pending">尚待整理章節（需第20–76頁）</a>
+    <a href="#s25" class="sub">2.5.1–2.5.7 總則／電力／空調／水／氮氣</a>
+    <a href="#s25" class="sub">2.5.8 廢棄物處理</a>
+    <a href="#s26">2.6 生產工具</a>
+    <a href="#s27">2.7 AMHS 與 Stocker</a>
+    <a href="#s28">2.8 製程氣體儲存與處理</a>
+    <a href="#s29">2.9 製程液體儲存與處理</a>
+    <a href="#s210">2.10 人員要素</a>
+    <a href="#s3">3.0 建議支持依據</a>
+    <a href="#s4">4.0 參考文獻</a>
+    <a href="#appA" class="sub">附錄A 名詞解釋</a>
+    <a href="#appC" class="sub">附錄C 偵測抑制設計</a>
+    <a href="#appD" class="sub">附錄D 製程安全應用</a>
+    <a href="#appE" class="sub">附錄E EUV微影</a>
+    <a href="#appF" class="sub">附錄F LCD／OLED</a>
+    <a href="#appG" class="sub">附錄G 組裝與測試</a>
   </nav>
 
   <!-- Main -->
@@ -919,44 +938,865 @@
         <li>依 <b>DS 10-8</b>《操作人員》訓練操作人員，聚焦於警報管理與緊急操作程序（含氮氣純化設備）；訓練應著重應變人員的緊急應變程序及與遠端操作人員的溝通</li>
         <li>氮氣純化設備若有過熱風險（即氧氣污染），須提供高溫連鎖，能自動關閉並隔離受影響的純化設備；控制系統應將通知傳送至控制室、其他常駐人員位置或指定的操作人員</li>
         <li>至少每年（或依設備製造商建議更頻繁地）測試安全控制功能，包含自動切換至備援供應、警報通知、緊急應變程序；並依情況與氮氣供應承包商協調測試時程</li>
+        <li>建立氮氣純度感測器的控制旁通（bypass）準則，確保品質參數偏移不影響下游設備</li>
+        <li>於氮氣供應源下游立即安裝並維護氣體分析設備，持續監控氮氣供應品質：
+          <ul class="steps" style="margin-top:4px;">
+            <li>氣體分析設備提供 N+1 備援或多組獨立感測器並具偏移警報</li>
+            <li>氣體分析設備提供 UPS 及緊急電力</li>
+            <li>控制系統於控制室及另一常駐位置或指定人員發出品質參數偏移通知</li>
+          </ul>
+        </li>
+        <li>主供應純度偏離規格時，提供<strong>硬體連鎖</strong>自動切換至備援氮氣供應；並為備援氮氣系統提供緊急電力，確保停電時仍可持續運作</li>
+        <li>依表 2.5.7.11-1 對壓縮機潤滑油危害提供撒水防護，並對潤滑油槽等潛在噴霧/液池火源加強局部防護</li>
+      </ul>
+      <table class="clause-table">
+        <thead><tr><th>反應等級/溫度/方向</th><th>K 因子</th><th>密度</th><th>需求面積</th><th>消防栓水量</th><th>持續時間</th></tr></thead>
+        <tbody>
+          <tr><td>標準反應/高溫/任向</td><td>≥8.0(K115)</td><td>0.3 gpm/ft²(12mm/min)</td><td>4000 ft²(370m²)</td><td>500 gpm(1900L/min)</td><td>60 分鐘</td></tr>
+          <tr><td>標準反應/一般溫/任向</td><td>—</td><td>—</td><td>6000 ft²(560m²)</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="clause-ref">2.5.8</span>廢棄物處理（Waste Treatment）</h3>
+      <h4>2.5.8.1 排氣風管系統</h4>
+      <ul class="steps">
+        <li>僅使用不燃（無襯裡鐵金屬）風管，或通過 FM 4922 認證、列名於「潔淨室用排氣/排煙風管系統」類別下的風管；Approval Guide 中其他風管類別不適用於潔淨室</li>
+        <li>避免使用鋁製風管，因其於火場中容易提早塌陷</li>
+        <li>不得將可燃性軟風管接至可燃工具或使用自燃性液體的工具</li>
+        <li>FM 4922 認證的排氣風管中，凝結水可能積聚處須設置低點凝結水排放</li>
+      </ul>
+      <h4>2.5.8.2 氣體處理系統</h4>
+      <ul class="steps">
+        <li>氣瓶清淨盤排氣管、製程設備清淨管路或真空泵排氣中，易燃氣體濃度可能超過 LEL 25% 時，須提供點源式（POU）氣體處理系統，並視情況達成：
+          <ul class="steps" style="margin-top:4px;">
+            <li>排出物同時含腐蝕性與易燃氣體成分時，優先處理易燃氣體</li>
+            <li>以稀釋（非燃燒）方式處理氫氣或其他易燃氣體時，須監控濃度使其維持在 LEL 25% 以下</li>
+          </ul>
+        </li>
+        <li>火焰氧化系統出口至集合管道連接點，使用不燃或 FM 4922 認證風管</li>
+        <li>固定床吸附器依 <b>DS 7-2</b>《廢溶劑回收》防護</li>
+        <li>煙氣焚化爐（如再生式熱氧化爐 RTO）依 <b>DS 6-11</b>《熱及再生催化氧化爐》防護</li>
+      </ul>
+      <h4>2.5.8.3 液體處理系統</h4>
+      <ul class="steps">
+        <li>不得在 Fab 內工具下方收集液體廢棄物</li>
+        <li>泵送（加壓）液體廢棄物系統採同軸（雙套管）配管</li>
+        <li>不相容廢液系統提供各自獨立的排放系統；自燃性液體廢棄物採金屬配管；排放系統標示其內容物</li>
+        <li>Sub-fab 收集容器防護：
+          <ul class="steps" style="margin-top:4px;">
+            <li>收集桶/儲槽提供高液位感測器，於常駐位置發出警報</li>
+            <li>提供二次圍堵</li>
+            <li>位於櫃體或其他封閉空間內的自燃性液體廢棄物容器，提供撒水防護或 FM 認證氣體抑制系統</li>
+            <li>提供洩漏偵測，於工具端及常駐位置發出警報</li>
+          </ul>
+        </li>
+        <li>使用碳床吸附器等廢溶劑回收系統的廠房，依 DS 7-2 防護</li>
+      </ul>
+      <h4>2.5.8.4 廠務（中央）洗滌塔</h4>
+      <ul class="steps">
+        <li>不得將洗滌塔設置於潔淨室氣密圍封內或潔淨室樓上</li>
+        <li>洗滌塔排放煙囪遠離潔淨室空調系統進氣口；若實際分離距離有疑慮，執行煙霧擴散計算確認安全距離</li>
+        <li>洗滌塔依 <b>DS 7-78</b>《工業排氣系統》防護</li>
       </ul>
     </div>
 
-    <!-- Pending -->
-    <div class="section" id="pending">
+    <!-- 2.6 生產工具 -->
+    <div class="section" id="s26">
       <div class="section-header">
-        <div class="section-num muted">…</div>
-        <h2>尚待整理章節（需原文第 20–76 頁）</h2>
+        <div class="section-num">2.6</div>
+        <h2>生產工具（Production Tools）</h2>
       </div>
 
-      <div class="callout warn">
-        <div class="callout-icon">📥</div>
-        <div>目前收到的檔案僅涵蓋原文 76 頁中的<b>前 19 頁</b>（1.0 Scope 至 2.5.7）。以下依原文目錄列出尚未整理的章節架構，供你確認範圍；補上後續頁面 PDF 後，我可以接續用同樣方式（條款編號 + 中文重點）整理進來。</div>
+      <h3><span class="clause-ref">2.6.1</span>總則</h3>
+      <ul class="steps">
+        <li>生產工具主要以不燃（如金屬）材料或 FM 4910 認證塑膠構造；非 FM 4910 認證塑膠（旋鈕、按鈕、電氣接點、端子台等）限制在工具佔地面積 <code>1 lb/ft²（5 kg/m²）</code>或塑膠總重 <code>1%</code>以下，並避免集中於單一區域</li>
+        <li>工具內可燃材料超過 <code>1 lb/ft²（5 kg/m）</code>時，依優先順序擇一降低火災危害：A. 將可燃塑膠元件替換為 FM 4910 認證塑膠；B. 提供適當消防偵測與抑制，保護工具及相關製程危害（見 2.6.4.3）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.2</span>微影（Photolithography）</h3>
+      <h4>2.6.2.1 步進機與掃描機</h4>
+      <ul class="steps">
+        <li>步進機/掃描機專用空調機組（通常位於 Sub-fab）使用 FM 4920 認證 HEPA/ULPA 濾網</li>
+        <li>空調風管構造材料依 2.5.3.4 辦理；風管外部泡棉隔熱材依 2.4.3.5 辦理</li>
+      </ul>
+      <h4>2.6.2.2 極紫外光（EUV）</h4>
+      <ul class="steps">
+        <li>EUV 電力供應依 2.5.2 相關規定配置</li>
+        <li>氫氣儲存與輸送系統依 <b>DS 7-91</b>《氫氣》及 <b>NFPA 2</b>《氫氣技術規範》辦理防護</li>
+        <li>廢氣處理削減系統依 2.5.8.2 辦理防護，並提供連鎖確保削減系統於預吹掃步驟前已運作</li>
+        <li>提供極早期預警火警偵測（VEWFD），於本地及常駐位置發出警報</li>
+        <li>於可能洩漏點（如排氣封閉空間）提供氫氣偵測，於本地及常駐位置發出警報</li>
+        <li>冷卻水系統提供洩漏偵測，於本地及常駐位置發出警報</li>
+        <li>空調供氣/回風風管採不燃材料；外部泡棉隔熱材，軟性風管採不燃材料或 FM 4924 認證塑膠，硬性風管採 FM 4910 認證塑膠</li>
+        <li>使用吊車移除/復位 EUV 元件時，建立並維護詳細的安全吊掛標準作業程序，僅限訓練合格人員操作；相關吊車依 <b>DS 1-62</b>《吊車》及當地法規操作、維護與檢查</li>
+      </ul>
+      <h4>2.6.2.3 微影設備防護</h4>
+      <ul class="steps">
+        <li>依 2.4.4.1 安裝濕式管路撒水系統</li>
+        <li>水洩漏會造成重大工具停機損失的區域，若符合以下條件，可採用由 2.4.4.8 節極早期預警火警偵測系統啟動的預作動系統：A. 採腐蝕緩解措施（如管路氮氣充填或真空撒水管路）；B. 測試頻率依 DS 2-81 辦理；C. 設置專用的 FM 認證高感度煙霧偵測系統；D. 最遠端撒水頭出水時間不超過 60 秒；E. 加裝額外接頭以利啟動後排水</li>
+      </ul>
+      <h4>2.6.2.4 晶圓軌道（Wafer Tracks）</h4>
+      <ul class="steps">
+        <li>塗佈/顯影用晶圓軌道的 HPM 液體，置於工具內部或 Fab/Sub-fab 層級獨立不燃分配櫃內；晶圓軌道設計應將製程中化學品儲存量降到最低</li>
+        <li>製程排氣岐管風管採不燃材料或 FM 4922 認證的潔淨室排氣/排煙風管系統；空調風管構造依 2.5.3.4，外部泡棉隔熱材依 2.4.3.5</li>
+        <li>自燃性液體分注容器採不鏽鋼材質，液體輸送使用氮氣或其他惰性氣體；無不鏽鋼容器可用時，塑膠/玻璃容器分注須提供能容納全部液體的二次圍堵</li>
+        <li>提供液體洩漏或蒸氣偵測，連鎖關閉液體流動並於常駐位置發出警報</li>
+        <li>危險環境用電氣設備：通風充足能將蒸氣濃度維持在 LFL 25% 以下者，採 Class I, Division 2（Zone 2）等級；通風不足者，採 Class I, Division 1（Zone 1）等級；濃度超過 LFL 25% 時連鎖切斷晶圓軌道電源</li>
+        <li>自燃性液體自分注罐輸送至使用點，採金屬配管/軟管，或外覆金屬套管的同軸配管；自 Sub-fab 分配櫃輸送至 Fab 層級工具，自燃性液體用金屬配管，非自燃性液體用同軸（雙套管）塑膠配管</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.3</span>電子束曝光系統（E-Beam）</h3>
+      <ul class="steps">
+        <li>設置於斷路室或專用封閉空間，牆面採不燃材料並配置獨立空調系統；多套系統各自設置獨立斷路室或封閉空間</li>
+        <li>提供冷卻水洩漏偵測系統，連接本地及監視警報系統</li>
+        <li>工具或 E-Beam 腔體連接的排氣風管內提供極早期預警火警偵測（VEWFD），連接常駐位置，並連鎖安全關閉工具電源</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.4</span>濕製程工具（Wet Processing Tools）</h3>
+      <h4>2.6.4.1 製程液體加熱</h4>
+      <ul class="steps">
+        <li>自燃性液體加熱使用不燃（金屬）工作台或工具；不得使用電氣浸入式加熱器</li>
+        <li>依製造商建議的維護排程維護，尤其注意密封件、槽體、加熱元件等更換頻率</li>
+        <li>基本安全防護：A. 低液位安全連鎖（獨立於製程液位控制之外）；B. 獨立於製程溫度控制的備援高溫限制開關，連鎖切斷電源並發出警報</li>
+        <li>黏合式（bonded）加熱器附加防護：A. 外殼採不燃材料或 FM 4910 認證塑膠；B. 若鄰近其他可燃材料，設置不燃屏障</li>
+        <li>預防性維護：A. 每季測試低液位與高溫連鎖功能；B. 每半年目視檢查加熱系統及其控制的所有電氣接點</li>
+        <li>製程液體加熱系統使用非自燃性液體或 FM 認證熱傳介質；若無法避免使用自燃性傳熱液體，於工具外部以妥善設計的熱交換器遠端加熱</li>
+      </ul>
+      <h4>2.6.4.2 加熱板（Hot Plates）</h4>
+      <ul class="steps">
+        <li>潔淨室氣密圍封內不得使用加熱板；若無法避免，須納入以下防護：</li>
+        <li>盡量限制使用於不燃工具；既有可燃工具上必須使用時，加裝不鏽鋼內襯</li>
+        <li>採本質安全設計，可長時間滿載運作而不變形或外表過熱</li>
+        <li>提供獨立於製程溫度控制的備援高溫限制開關，超限時切斷電源並發出警報</li>
+        <li>採非數位式加熱板，具「電源開啟」指示燈及可停在明確標示「OFF」位置的溫控旋鈕</li>
+        <li>非工作時間不得保持「ON」位置；加裝計時器，無人看管時自動關閉</li>
+        <li>不得將可燃物或自燃性液體存放於加熱板附近，避免溢漏接觸機台</li>
+      </ul>
+      <h4>2.6.4.3 濕製程工具防護</h4>
+      <ul class="steps">
+        <li>內含自燃性液體的濕製程工具，須提供 FM 認證消防抑制系統（如 CO₂ 或水霧），依附錄 C 為特定應用設計；是否需要主動抑制可透過依 2.2 節執行的 PHA 評估（考量工程控制、構造與區劃）</li>
+        <li>不符合 2.6.1.1 條件（非以 FM 4910 認證塑膠或其他不燃材料構造）的濕製程工具，依附錄 C 提供固定式消防偵測與抑制</li>
+        <li>處理自燃性液體的不燃濕製程工具，其地板下方區域須提供防護，除非同時符合：A. 地板下方無塑膠槽/配管或其他可燃材料；B. 既有排氣岐管風管為不燃 FM 4922 認證風管，或於工具過渡段/距管道連接點 2ft（0.6m）內裝有自動撒水防護</li>
+        <li>使用自燃性液體的工具，製程排氣須將自燃性蒸氣濃度降至 LFL 25% 以下</li>
+        <li>使用穿孔式高架地板及/或開放式華夫板潔淨室內的濕製程工具，提供尺寸足以容納工具全部液體內容物或移除溢漏液體的圍堵設計</li>
+        <li>不得在濕製程工具內存放化學品或自燃性液體；Fab 內儲存須使用 FM 認證安全櫃</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.5</span>IPA 蒸氣乾燥機</h3>
+      <ul class="steps">
+        <li>分注 IPA 的容器依 2.6.2.4 防護</li>
+        <li>各控制櫃及排氣夾層設置蒸氣偵測器：A. 濃度達爆炸下限 25% 時連鎖警報；B. 偵測器故障時連鎖警報</li>
+        <li>加熱器系統提供過電流保護、過溫保護及高/低液位感測器，異常時連鎖切斷電源</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.6</span>離子植入機</h3>
+      <ul class="steps">
+        <li>製程相容性允許時，優先採用非充油式變壓器（如樹脂澆封乾式）或馬達發電機組供電</li>
+        <li>礦物油充填變壓器防護：A. 確定隔離變壓器端子的三相短路電流；B. 確認主斷路器上游是否設有限流保險絲；C. 若已裝設，確認其可將三相端子短路故障的釋放能量限制在 <code>250,000 A²s</code> 以下（電氣接線示意見圖 2.6.6.2-1）；D. 未裝設或不足者，建議加裝限流保險絲，即使斷路器可將故障能量限制在 <code>500,000 A²s</code> 以下，仍應加裝</li>
+        <li>提供溫度監控裝置，偵測電源供應過溫時連鎖安全關閉植入機電源</li>
+        <li>提供光學式或空氣採樣式煙霧偵測系統，連鎖使高壓電源斷電、切斷「gas box」氣體供應，並於工具端及常駐位置發出警報</li>
+        <li>離子植入機摻雜氣體來源依 2.8.9 辦理</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.7</span>快速熱退火工具</h3>
+      <p>快速熱退火工具使用的充油電容器，依 <b>DS 5-30</b>《功率因數校正及靜態無功補償系統》防護。</p>
+
+      <h3><span class="clause-ref">2.6.8</span>爐管（Furnaces）</h3>
+      <ul class="steps">
+        <li>所有爐管與反應器（擴散、CVD、LPCVD、PECVD 等）的製程控制迴路（通常 120V）提供 UPS</li>
+        <li>防止石英舟/管暴露高溫損及濾網組，擇一：A. 製程控制與通風連鎖，確保氣流未建立前石英舟/管不會離開爐管；B. 為通風風機提供 UPS</li>
+        <li>立式爐管石英管依 2.4.3.8.5(E) 提供耐震約束</li>
+        <li>製程相容性允許時，優先使用乾式真空泵；使用油潤滑真空泵時，採無燃點或閃火點的惰性真空泵油</li>
+        <li>無法避免使用碳氫油品時，加裝除霧器或聚結式油過濾器，避免油霧在排氣管道內累積；爐管與真空泵之間安裝管路存油槽，防止油進入爐管</li>
+        <li>處理易燃廢氣濃度超過 LEL 25% 的真空泵，配置廢氣處理系統（見 2.5.8.2）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.9</span>磊晶反應爐</h3>
+      <ul class="steps">
+        <li>可能洩漏點（如排氣封閉空間）提供氫氣偵測，本地及常駐位置發出警報</li>
+        <li>提供點源式削減系統處理廢氣（依 2.5.8.2），並提供連鎖確保削減系統於預吹掃步驟前已運作</li>
+        <li>使用不燃風管或 FM 4922 認證的潔淨室排氣/排煙風管系統</li>
+      </ul>
+    </div>
+
+    <!-- 2.7 AMHS -->
+    <div class="section" id="s27">
+      <div class="section-header">
+        <div class="section-num">2.7</div>
+        <h2>自動化物料搬運系統（AMHS）與 Stocker</h2>
       </div>
 
-      <div class="pending-grid">
-        <div class="pending-item"><strong>2.6</strong> 生產工具（總則、微影、電子束曝光、濕製程、IPA蒸氣乾燥機、離子植入、快速熱退火、爐管、磊晶反應爐）</div>
-        <div class="pending-item"><strong>2.7</strong> 自動化物料搬運系統（AMHS）與 Stocker</div>
-        <div class="pending-item"><strong>2.8</strong> 製程氣體儲存與處理（氣瓶、Gas Cabinet、VMB、矽烷、氫氣、三氟化氯、摻雜氣體等）</div>
-        <div class="pending-item"><strong>2.9</strong> 製程液體儲存與處理（HPM 液體、批量分配、VMB、自燃性/反應性液體）</div>
-        <div class="pending-item"><strong>2.10</strong> 人員要素（ERT、災害復原、營運持續、緊急應變、服務中斷規劃、清潔管理）</div>
-        <div class="pending-item"><strong>3.0</strong> 建議支持依據（構造/選址、公用設施、防護、設備製程、氣液體儲存、損失歷史）</div>
-        <div class="pending-item"><strong>4.0</strong> 參考文獻</div>
-        <div class="pending-item"><strong>Appendix A</strong> 名詞解釋</div>
-        <div class="pending-item"><strong>Appendix B</strong> 文件修訂歷史</div>
-        <div class="pending-item"><strong>Appendix C</strong> 濕製程工作台等設備的消防偵測與抑制設計</div>
-        <div class="pending-item"><strong>Appendix D</strong> 半導體廠製程安全應用</div>
-        <div class="pending-item"><strong>Appendix E</strong> 極紫外光（EUV）微影</div>
-        <div class="pending-item"><strong>Appendix F</strong> LCD／OLED 製程概述</div>
-        <div class="pending-item"><strong>Appendix G</strong> 組裝與測試</div>
+      <h3><span class="clause-ref">2.7.1</span>AMHS 與 Stocker 構造</h3>
+      <ul class="steps">
+        <li>AMHS 軌道系統元件（如電纜夾持器、FOUP 巢座）採不燃材料或 FM 4910 認證塑膠</li>
+        <li>AMHS 軌道貫穿防火牆處使用 FM 認證防火門/百葉</li>
+        <li>Stocker 外殼牆板採不燃材料或 FM 4910 認證材料</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.7.2</span>AMHS 與 Stocker 防護</h3>
+      <ul class="steps">
+        <li>高度 ≤18ft（4.3m）的 Stocker，位置須使潔淨室天花板撒水頭涵蓋其佔地範圍；上方安裝 K8（K115）撒水頭，最大間距 <code>8ft（2.4m）</code>（見 2.4.4 撒水設計準則）；頂部封閉的 Stocker 須於內部提供自動撒水防護；高度超過 18ft（4.3m）者，需洽詢 FM 客戶服務團隊個案評估</li>
+        <li>空調濾網依 2.5.3.4 辦理</li>
+        <li>Stocker 封閉空間內安裝極早期預警火警偵測（VEWFD），三級警報狀態時連鎖切斷 Stocker 電源；警報同時傳送至本地及常駐位置</li>
+        <li>多層 Stocker 各樓層貫穿處安裝 2 小時防火時效的 FM 認證水平滑動式防火門</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.7.3</span>AMHS 控制</h3>
+      <p>AMHS 運作所需的伺服器，若位於不同製程控制室或通訊室，提供備援伺服器。</p>
+
+      <h3><span class="clause-ref">2.7.4</span>光罩/Reticle Stocker 煙霧偵測</h3>
+      <p>存放高價值或關鍵光罩/Reticle 的 Stocker，安裝極早期預警火警偵測系統（VEWFD）。</p>
+
+      <h3><span class="clause-ref">2.7.5</span>零佔地儲存（Zero-Footprint Storage）</h3>
+      <p>零佔地儲存及軌道配置，不得遮擋可燃物上方的撒水頭。</p>
+    </div>
+
+    <!-- 2.8 製程氣體 -->
+    <div class="section" id="s28">
+      <div class="section-header">
+        <div class="section-num danger">2.8</div>
+        <h2>製程氣體：儲存與處理</h2>
       </div>
+
+      <h3><span class="clause-ref">2.8.1</span>氣瓶儲存</h3>
+      <p>氣瓶儲存與防護依 <b>DS 7-50</b>《可攜式氣瓶及大宗儲存之壓縮氣體》辦理。</p>
+
+      <h3><span class="clause-ref">2.8.2</span>分注 HPM 氣體的氣瓶位置</h3>
+      <ul class="steps">
+        <li>矽烷氣瓶位置依 <b>DS 7-108</b>《矽烷》辦理</li>
+        <li>分注 HPM 氣體的氣瓶，設置於室外平台或獨立不燃建築內（見圖 2.8.2.2-1：建議位置——氣體距主要建築 <code>50ft(15m)</code> 以上／室外地面層斷路室具損害限制構造(DLC)／屋頂設置室或櫃具地板及/或房間 DLC／建築外側鄰接櫃體具 DLC／地面層或二樓斷路室具 DLC）</li>
+        <li>含易燃、高反應性或自燃性物質（矽烷除外）的氣瓶位於圖中第 3 至 6 項位置時，該室/建築須依 <b>DS 1-44</b>《損害限制構造》具備 DLC 特性</li>
+        <li>室外分注位置須遠離外部變壓器、自燃性液體儲存、強氧化劑及其他戶外儲存區；暴露於外部危害時，依 <b>DS 1-20</b>《防止外部火災暴露》提供分離距離、防火牆或固定式抑制系統</li>
+        <li>服役中製程氣瓶數量限制在有效運作所需的最少數量</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.3</span>斷路室構造</h3>
+      <p>氣體儲存與分注斷路室依 DS 7-50 構造。</p>
+
+      <h3><span class="clause-ref">2.8.4</span>氣體櫃（Gas Cabinets）</h3>
+      <ul class="steps">
+        <li>存放易燃氣瓶的氣體櫃，安裝額定 <code>165°F（74°C）</code>快速反應撒水頭，設計流量至少 <code>30gpm（114L/min）</code></li>
+        <li>存放易燃、腐蝕性、毒性氣瓶的氣體櫃及其他封閉空間，提供連續內部通風，尺寸須使潛在洩漏點內部通風流速達到至少 <code>100 linear ft/min（0.51 linear m/s）</code>（櫃門及檢視窗關閉狀態下，僅由櫃體百葉進氣計算）</li>
+        <li>櫃體或封閉空間通風系統提供連續通風監控，連接常駐位置</li>
+        <li>提供氣體監控連接常駐位置；監控系統啟動時，自動關閉氣瓶氣體流動，並向緊急控制系統發出警報：A. 易燃、毒性、劇毒、反應性及腐蝕性氣體，透過常閉、氣動保持開啟的自動氣瓶閥（ACV）自動切斷；B. 其他氣體，於每個氣瓶 CGA 接頭盡量就近設置緊急關斷閥（ESOV）；C. 所有氣體，於氣體分配室外及 Fab 區出口提供 ACV 與 ESOV 的遠端手動操作</li>
+        <li>氣體櫃標示內含氣體種類及濃度；櫃內管路與閥件標示其功能（製程/清淨/排放）</li>
+        <li>單一氣體櫃內氣瓶數量限制最多兩支（不含清淨氣瓶）</li>
+        <li>櫃內電氣設備依 <b>DS 5-1</b>《危險（分類）場所電氣設備》採用適用 Class I, Division 2（Zone 2）等級</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.5</span>HPM 氣體連鎖與行政管理</h3>
+      <ul class="steps">
+        <li>下列任一情況發生時，連鎖自動關閉 HPM 氣瓶的緊急關斷閥或自動氣瓶閥：A. 氣體監控系統啟動；B. 櫃體通風喪失；C. 易燃或自燃性氣瓶櫃火災偵測器啟動；D. 超流開關啟動；E. 連接氣體盤 ESOV 的地震感測器啟動</li>
+        <li>所有氣瓶提供超流閥或連接 ACV/緊急關斷閥的超流開關</li>
+        <li>可行時於氣瓶閥本體內設置限流孔（RFO），孔徑 <code>0.010in（0.25mm）</code>，除非製程需求需要更大孔徑（氨、二氯矽烷、三氟化氯、三氯化硼等氣體因腐蝕或低蒸氣壓可能不適用）</li>
+        <li>任何時候僅連接一支氣瓶至製程管路；可用自動切換系統加速兩支製程氣瓶的切換</li>
+        <li>同一室或氣體平台的相容氣體與氣瓶，限制使用共用清淨氣體供應；清淨氣體（氮氣、氬氣、氦氣）應由氣瓶供應而非中央供應（中央供應易受製程氣體逆流影響）</li>
+        <li>不得僅以逆止閥作為清淨與製程氣體間唯一的隔離裝置</li>
+        <li>氣瓶清淨盤排氣管、製程設備清淨管路或真空泵排氣中易燃氣體濃度可能超過 LEL 25% 時，依 2.5.8.2 提供廢氣處理系統</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.6</span>HPM 氣體用閥門集合箱（VMB）</h3>
+      <ul class="steps">
+        <li>處理易燃氣體的 VMB 採金屬構造；位於潔淨室或 Sub-fab 內處理腐蝕性氣體者，採不燃或 FM 4910 認證材料</li>
+        <li>提供氣體偵測，於常駐位置發出警報，並透過氣動控制關斷閥切斷氣體流動</li>
+        <li>提供連續通風，於常駐位置監控；通風喪失時自動關閉以下位置最近的隔離閥：A. 工具旁本地氣體櫃或工具氣體集合區；B. VMB 各支管；C. 氣體來源處；D. 大宗來源處</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.7</span>低蒸氣壓氣體</h3>
+      <p>除 2.8.1 至 2.8.5 規定外，必要時對管路伴熱或為氣瓶加裝加熱夾套（搭配適當高溫斷路開關），以達到工具所需的流量與壓力。</p>
+
+      <h3><span class="clause-ref">2.8.8</span>三氟化氯（ClF₃）</h3>
+      <ul class="steps">
+        <li>分注 ClF₃ 的氣瓶置於氣體櫃內，設置於潔淨室氣密圍封外</li>
+        <li>氣瓶與配管採供應商建議適用 ClF₃ 服務的材料構造</li>
+        <li>提供伴熱確保低蒸氣壓 ClF₃ 氣體不會凝結為液體；加熱容量上限 <code>125°F（52°C）</code>，並提供高溫斷路開關</li>
+        <li>配管由工具向來源氣瓶櫃方向傾斜排布，消除所有「死角」</li>
+        <li>採同軸（雙套管）配管或軟管，以壓力或真空監測夾層空間洩漏</li>
+        <li>氣體櫃及排氣風管內提供氣體偵測，偵測到氟化氫或二氧化氯時連鎖切斷 ClF₃ 供應</li>
+        <li>氣體櫃內提供熱或煙霧偵測器，啟動時連鎖切斷供應</li>
+        <li>ClF₃ 氣體櫃內<strong>不得</strong>安裝撒水防護，因其遇水會劇烈反應</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.9</span>摻雜氣體來源</h3>
+      <ul class="steps">
+        <li>製程相容性允許時，優先採用亞大氣壓氣體來源系統（SAGS）取代高壓氣瓶</li>
+        <li>亞大氣壓氣瓶與封閉空間配置：氣體櫃依 2.8.4；通風依 2.8.4.3 及 2.8.6.4；通風監控依 2.8.4.4；氣體監控依 2.8.4.5；連鎖依 2.8.5；標示依 2.8.4.6；電氣設備依 2.8.4.8</li>
+        <li>亞大氣壓氣瓶提供壓力感測器，壓力超過 <code>14psi（1bar）</code>時關閉氣瓶</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.10</span>氫氣</h3>
+      <ul class="steps">
+        <li>依當地法規、<b>DS 7-91</b>《氫氣》及產業標準設計安裝儲存與輸送系統</li>
+        <li>盡量靠近供應源設置超流閥；供應源設置緊急關斷閥（ESOV）</li>
+        <li>安裝 EUV 設備區域提供獨立氣體監控，啟動時關閉氣體供應並於常駐位置發出警報</li>
+        <li>氫氣純化設備設置於室外或獨立輕型建築內，並提供：A. 氫氣偵測及 FM 認證光學氫焰偵測；B. 於可及位置設置緊急斷電開關（EPO）</li>
+        <li>成形氣（H₂與N₂）混合作業防護：A. 依 <b>DS 5-49</b>《氣體與蒸氣偵測及分析系統》測試氣體分析儀與防護系統；B. 提供連鎖至主歧管的超流開關，自動切斷氫氣供應；C. 於公用設施豎井明確標示手動關斷閥；D. 訓練廠務人員於火災時操作豎井手動關斷閥</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.8.11</span>矽烷</h3>
+      <p>矽烷儲存與輸送系統依 <b>DS 7-108</b>《矽烷》防護。</p>
+    </div>
+
+    <!-- 2.9 製程液體 -->
+    <div class="section" id="s29">
+      <div class="section-header">
+        <div class="section-num danger">2.9</div>
+        <h2>製程液體：儲存與處理</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.9.1</span>儲存</h3>
+      <ul class="steps">
+        <li>自燃性液體依 <b>DS 7-29</b>《可攜式容器自燃性液體儲存》儲存</li>
+        <li>不得將 HPM 液體存放於潔淨室氣密圍封內；若必須設置，須：A. 存量限制在每日用量以內；B. 自燃性液體存放於具自動關門功能的 FM 認證安全櫃；C. 腐蝕性液體存放於 FM 認證金屬安全櫃或 FM 4910 認證塑膠製櫃；D. 不得將酸類與氧化劑與自燃性液體存放於同一櫃；E. 每個櫃體須能容納最大容器體積至少 <code>110%</code>的圍堵設計</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.9.2</span>HPM 液體分注作業位置</h3>
+      <ul class="steps">
+        <li>涉及自燃性液體（含液態摻雜劑容器及起泡器）的分注作業，依 <b>DS 7-32</b>《自燃性液體作業》辦理位置</li>
+        <li>自燃性液體儲存與分注作業設置於各自獨立的斷路室，以 1 小時防火牆隔開</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.9.3</span>HPM 液體處理</h3>
+      <ul class="steps">
+        <li>自燃性液體處理：A. 於 Fab 作業區以外的房間內，將自燃性液體填裝至加壓不鏽鋼罐、安全罐、擠壓瓶等小型容器；B. Fab 作業區使用的分注容量不得超過 <code>1 加侖（3.8L）</code>不鏽鋼罐；C. 提供設計用以防止運送過程溢漏的搬運車</li>
+        <li>不得以同一台推車運送腐蝕性物質、氧化劑與自燃性液體；推車設計須將容器封閉於箱體內，並能容納單一最大容器的溢漏量</li>
+        <li>推車運送容器尺寸限制 <code>1 加侖（3.8L）</code>；運送製程化學品的推車總容量不得超過 <code>25 加侖（95L）</code></li>
+        <li>塑膠濕製程工具內不得儲存自燃性或可燃性化學品</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.9.4</span>大宗 HPM 液體分配</h3>
+      <ul class="steps">
+        <li>自燃性液體輸送採焊接不鏽鋼管；腐蝕性液體採不鏽鋼管或同軸（雙套管）塑膠配管；自燃性兼腐蝕性液體採同軸配管（塑膠內管、鋼製外管）</li>
+        <li>配管位置須避免物理損傷；大宗化學品分配單元採金屬構造</li>
+        <li>泵送腐蝕性液體的同軸配管，配置為可回流排放至大宗化學品系統；分配單元提供雙套管及排放至大宗廢液槽/處置區/處理廠的設計</li>
+        <li>分配管路網路提供洩漏偵測，連鎖切斷流動、本地發出警報並向常駐位置發送訊號（詳見 DS 7-32）</li>
+        <li>每個受供工具及大宗化學品分配區域，設置手動緊急關斷開關；工具端開關連鎖同時關閉供應該工具的所有化學系統</li>
+        <li>使用大宗化學品儲槽時，各化學品設置專屬填充接頭，供應商軟管接頭僅能對應特定儲槽接頭，避免誤接</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.9.5</span>HPM 液體用閥門集合箱（VMB）</h3>
+      <ul class="steps">
+        <li>處理自燃性液體的 VMB 採金屬構造；位於潔淨室或 Sub-fab 支援區處理腐蝕性液體者，採 FM 4910 認證塑膠</li>
+        <li>提供液體洩漏或蒸氣偵測，連鎖關閉供應管路上的氣動閥，並向常駐位置發出警報</li>
+        <li>處理自燃性液體的 VMB 提供連續通風，於常駐位置監控；通風失效時於本地及常駐位置發出警報</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.9.6</span>自燃性與反應性液體</h3>
+      <div class="callout danger">
+        <div class="callout-icon">☠️</div>
+        <div>適用對象：極易點燃、依 <b>NFPA 704</b> 歸類為不穩定物質的自燃性與反應性（energetic）液體，如三甲基鋁（TMA）等。</div>
+      </div>
+      <ul class="steps">
+        <li>分注櫃與大宗容器設置於潔淨室氣密圍封外的斷路室；最佳配置為於「髒」Sub-fab設大宗供應，連接安瓿瓶或工具上的「日用槽」，限制潔淨室內存量並避免安瓿瓶穿越潔淨室氣密圍封搬運</li>
+        <li>每個大宗櫃內存量限制 <code>5 加侖（19L）</code>；工具端安瓿瓶最大容量限制 <code>0.5 加侖（2L）</code></li>
+        <li>氣瓶進出口連接方式須不同，避免誤接</li>
+        <li>大宗分配櫃須提供：A. 最小 12 號規（0.097in[2.5mm]）鋼構造，具自動關門功能；B. 能容納最大單一容器體積的儲液槽；C. 排氣系統移除燃燒副產物並直接導至排氣路徑；D. FM 認證光學火焰偵測器或 VEWFD，並連鎖自動關閉關斷閥；E. 門開啟時連鎖阻止分注；F. 緊急或連續氮氣惰化系統（依 <b>DS 7-59</b> 設計）；G. 連鎖確保惰化系統經驗證且可用前不得分配</li>
+        <li>分配櫃與容器提供接地</li>
+        <li>每個容器提供常閉、氣動保持開啟的自動關斷閥，於下列任一情況連鎖關閉並切斷/排放容器氮氣供應：A. 櫃內消防偵測系統啟動；B. 櫃體及/或工具電力喪失；C. 地震感測器啟動（如適用）；D. 任何導致受供工具關閉的動作</li>
+        <li>分配系統控制依 <b>DS 7-45</b>《安全控制、警報與連鎖（SCAI）》設計為安全儀表系統</li>
+        <li>關斷閥關閉時，於 Fab 作業區內啟動本地聲光警報，並向常駐位置發送訊號</li>
+        <li>工具端及分配櫃提供手動緊急關斷開關，設置於容易取用位置</li>
+        <li>建立並維護容器與安瓿瓶更換程序，僅限受訓合格人員執行；建立自燃性/反應性物質洩漏的緊急應變程序</li>
+        <li>容器移至分配櫃前保留原廠包裝內，使用具故障保護自動煞車的穩定推車搬運</li>
+        <li>待用氣瓶存放於專用斷路室、至少 1 小時防火牆區域，或 HPM 斷路室內的 FM 認證易燃液體櫃中</li>
+        <li>分配系統採不鏽鋼配管</li>
+        <li>MOCVD 製程使用液浴控溫自燃性與反應性液體時，每月徹底檢查液浴及容器氣密性，防止液體與反應物質接觸</li>
+      </ul>
+    </div>
+
+    <!-- 2.10 人員要素 -->
+    <div class="section" id="s210">
+      <div class="section-header">
+        <div class="section-num green">2.10</div>
+        <h2>人員要素（Human Element）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.10.1</span>緊急應變小組（ERT）</h3>
+      <ul class="steps">
+        <li>建立書面緊急操作程序，涵蓋：發出警報、迅速開放建築通道、關閉所有製程氣體、維持排氣運作，以及非自動系統的手動排煙控制啟動</li>
+        <li>依 <b>DS 10-1</b>《事故預防規劃》為所有輪班建立 ERT；訓練人員應變液體或氣體事故、執行初期滅火、處理洩漏並執行搶救；將 ERT 納入當地機關事故指揮體系</li>
+        <li>每季為 ERT 提供書面化訓練，適時納入消防單位及其他應變機關；確保 ERT 熟悉各類氣體/液體緊急關斷位置、緊急排氣系統、電源隔斷及關鍵製程/設備防護；視廠址情況準備因應地震、洪水、風暴等其他緊急狀況</li>
+        <li>依 DS 10-1 建立並維護事故預先規劃；與消防單位及其他應變機關協調此計畫；每年至少與通常會應變的機關進行一次聯合演練</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.10.2</span>災害復原規劃</h3>
+      <ul class="steps">
+        <li>為 Fab 制定詳細的災害復原計畫（參考 <b>DS 10-5</b>《災害復原規劃》）</li>
+        <li>每年審查並測試災害復原計畫，確保時效性與可行性</li>
+        <li>與具半導體產業經驗、能保證快速（24 小時）應變的合格復原廠商建立預先簽約關係</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.10.3</span>營運持續規劃</h3>
+      <ul class="steps">
+        <li>為 Fab 制定詳細的書面營運持續計畫，至少涵蓋：高層管理支援、人員運用/調度、廠房與設備、資訊科技/電信、供應商、客戶、計畫執行與測試</li>
+        <li>每年執行企業/廠區審查與計畫測試，確保時效性與可行性</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.10.4</span>應急規劃（Contingency Planning）</h3>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div>備援（可運作的 N+1）是緩解設備故障損失風險的最佳方式；然而所有系統皆需檢查、測試與維護，會產生備援暫時不可用的期間，因此制定設備應急計畫緩解此期間在役故障風險是審慎做法；應急計畫可包含關鍵設備備品、臨時裝設或租賃設備。</div>
+      </div>
+      <h4>2.10.4.1 設備應急規劃</h4>
+      <ul class="steps">
+        <li>當公用設施/支援系統設備故障造成非計畫性停機，且該系統攸關營運持續性時，依 <b>DS 9-0</b>《資產完整性》制定並維護書面化、可行的設備應急計畫（ECP）</li>
+        <li>對 Fab 公用設施與支援系統設備執行系統性、策略性評估，考量製程瓶頸、單點故障與長交期設備，評估設備完整性、可靠度、剩餘使用壽命、堪用狀態與運作趨勢</li>
+        <li>ECP 涵蓋復原選項/緩解策略——含維修/更換/租賃前置時間選項、二手及/或剩餘設備、備援與備品</li>
+        <li>至少評估以下要素：A. 電力系統設備（主配電設備含變壓器/斷路器、緊急電力與UPS）；B. 空調設備（補氣/循環氣風機及各類排氣系統、風機馬達組選項）；C. 蒸汽/熱水/冰水設備（鍋爐除氣器、冰水主機冷卻水塔、泵浦壓縮機、配管、租賃設備連接考量）；D. 超純水設備（泵送與製程設備）；E. 空壓機（租賃設備連接考量）；F. 氮氣系統（軟啟動變壓器選項含備品）；G. 廢棄物處理系統（排氣、氣液處理、酸中和、關鍵元件控制系統與緊急暫存槽、洗滌塔）</li>
+        <li>每年及廠內發生重大變更時，審查並驗證 ECP</li>
+      </ul>
+      <h4>2.10.4.2 備品（Sparing）</h4>
+      <p>備品可作為緩解設備故障造成停機的策略，視類型、相容性、可取得性、適用性與有效性而定；一般指引參見 DS 9-0。</p>
+      <h4>2.10.4.3 設備故障備品</h4>
+      <ul class="steps">
+        <li>設備故障備品用於非計畫性故障時縮短停機時間；為攸關營運持續性的 Fab HV/MV 電氣公用設施設備斷路器提供故障備品</li>
+        <li>依 DS 9-0 維護設備故障備品的堪用性</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.10.5</span>服務中斷規劃</h3>
+      <ul class="steps">
+        <li>當公用設施/支援系統服務喪失，造成非計畫性停機且攸關廠區營運持續性時，制定並維護書面化、可行的服務中斷計畫（SIP）</li>
+        <li>對公用設施與支援系統服務執行系統性評估，預先辨識服務喪失的影響與應對；考量在製品損害復原、儲存/製程設備報廢，及對製程/設備運作條件與環境的影響；依書面緊急操作程序考量有序關機與隔離時程，評估設備狀態後依標準作業程序重啟</li>
+        <li>電力服務至少評估：系統設計/備援（單點故障、關鍵負載彈性/持續性、卸載）；緊急電力系統能力（UPS、由正常電力有序切換、廠內燃料供應運作持續時間、燃料補充）</li>
+        <li>氮氣服務至少評估：儲槽依運作天數妥善定size；汽化器定size與運作（含緊急操作程序）；備援氮氣供應容量足以維持短期停機廠務運作（見 2.5.7.3）；ASU 故障/功能異常長期停機時的備援氮氣補充計畫；廠內供應耗盡前提供足量氮氣支援生產；長期停機（如主要子系統故障）期間提供足量主氮氣供應；卡車運送應急方案（卸載容量、接頭間距、流量能力）；「軟啟動」驅動器的備品更換程序或直接線上啟動能力</li>
+        <li>建立因應氮氣喪失的卸載與停機流程/程序，涵蓋製程/設備控制及運作條件/環境考量</li>
+        <li>每年及廠內發生重大變更時，審查並驗證 SIP</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.10.6</span>清潔管理（Housekeeping）</h3>
+      <ul class="steps">
+        <li>於潔淨室氣密圍封（氣流）空間內建立並維護良好清潔實務；落實定期檢查制度，書面記錄檢查情形、缺失及改善時間點；施工專案或工具安裝期間提高檢查頻率，確保可燃物負載降到最低</li>
+        <li>將潔淨室氣密圍封內可燃材料存放降到絕對最低；必要備品、手冊等存放於常閉金屬櫃內</li>
+        <li>不得在製程設備內部或後方存放非製程用自燃性液體（維護用液體）或一般可燃物</li>
+      </ul>
+    </div>
+
+    <!-- 3.0 建議支持依據 -->
+    <div class="section" id="s3">
+      <div class="section-header">
+        <div class="section-num purple">3.0</div>
+        <h2>建議支持依據（Support for Recommendations）</h2>
+      </div>
+
+      <h3><span class="clause-ref">3.1</span>構造與位置</h3>
+      <h4>3.1.1 貫穿孔</h4>
+      <p>具防火時效的貫穿孔封堵材料，須待封堵材遇熱膨脹後才能阻擋煙霧通過；具洩漏率等級的封堵，能在封堵材暴露高溫前先行限制煙霧通過。實驗室洩漏測試於常溫及 <code>400°F（204°C）</code>下進行。</p>
+      <h4>3.1.2 空調濾網與風管</h4>
+      <p>活性碳濾網（ACF）用於降低空氣中分子污染（AMC）——泛指會與晶圓表面及晶片電路產生不良反應的分子；潔淨室內 AMC 主要來源包含室外空氣、人員、建材逸散氣體及製程化學品。ACF 常見於風機濾網單元（FFU）、製程工具（晶圓軌道、步進機/掃描機空調系統）及潔淨室補氣/循環空調機組進氣口。</p>
+
+      <h3><span class="clause-ref">3.2</span>公用設施</h3>
+      <h4>3.2.1 一般電力類型</h4>
+      <table class="clause-table">
+        <thead><tr><th>類型</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>主電力</strong></td><td>正常供應晶圓廠運作的電力，通常由電力公司供應</td></tr>
+          <tr><td><strong>不斷電電力（UPS）</strong></td><td>主電力品質異常（電壓驟降、突波、瞬間中斷等）時啟動；供電時間短，僅設計維持關鍵工具/製程運作至緊急電力上線；通常由電池備援的靜態UPS供應，供電時間以分鐘計</td></tr>
+          <tr><td><strong>緊急/備用電力系統</strong></td><td>主電力長時間中斷時啟動；通常設計維持潔淨室條件並運轉關鍵製程，使主電力恢復後能快速重啟；無法讓晶圓廠全產能運作；通常由緊急柴油發電機供應，供電時間以小時或天計</td></tr>
+        </tbody>
+      </table>
+      <h4>3.2.2 廢棄物處理</h4>
+      <p>氣體處理系統分為廠務（中央）與點源式（POU）兩類：廠務酸性排氣系統氣流量通常最大（可達數十萬立方英尺/分鐘），搭配廠務酸洗滌塔於排放前處理；其他常見廠務排氣包含氨氣、VOC、一般、自燃性排氣等。POU 系統於製程廢氣進入廠務排氣系統前先行處理，避免排氣阻塞、火災爆炸、腐蝕等問題，型式包含濕式洗滌塔、氧化、冷床、熱床等；氧化系統又分被動加氣式、火焰氧化式、熱腔氧化式、非火焰氧化式與觸媒氧化式。火焰氧化系統以天然氣（低於 <code>10psi[0.69bar]</code>）或氫氣建立火焰簾，伴隨顯著損失經驗，應依 2.5.8.1 降低火災風險。</p>
+
+      <h3><span class="clause-ref">3.3</span>防護</h3>
+      <h4>3.3.1 第三方審查</h4>
+      <p>SEMI（半導體設備材料國際協會）出版安全與設施相關標準，最具代表性的是 <b>SEMI S2</b>《半導體製造設備環境、健康與安全指引》，常搭配 <b>SEMI S14</b>《消防風險評估與緩解安全指引》共同使用評估半導體製程工具。審查時逐項評估判定「符合」「不符合」或「不適用」，不符合項目依 <b>SEMI S10</b>《風險評估流程安全指引》採可能性 vs 後果的風險矩陣分級。</p>
+      <h4>3.3.2 濕製程及其他工具消防偵測與抑制</h4>
+      <p>開放式工具的建議應用，通常限於排氣流速不超過 <code>150 cfm/linear ft（0.24 m³/sec/linear m）</code>的工具，除非抑制系統經特別設計因應更高流速。FM 對潔淨室工具氣體抑制系統（CO₂）測試建立的最大門檻值即為此流速；超出此範圍者並非表示設計不合格，僅代表尚未被測試涵蓋，此時抑制系統承包商應依 <b>NFPA 12</b> 進行系統設計。</p>
+      <h4>3.3.3 工具構造材料</h4>
+      <p>FM 4910 認證塑膠材料主要為片材（如 <code>4ft×8ft[1.2m×2.4m]</code>），涵蓋 CPVC、ECTFE、FRP、Halar、PVC、PVDF、PP 等多種材質群組，用於構造工具外殼、內部隔間、觀察窗等。工具構造還使用印刷電路板、旋鈕、鉸鏈、把手、低電壓電纜、配管、製程槽、閥件泵浦等元件，未必都有 FM 4910 認證版本。評估非認證塑膠時應考量：</p>
+      <ul class="steps">
+        <li>非認證的 PP、PE、PVC、PC 及壓克力材質應盡量避免，優先選用 Halar、PVDF 及 Teflon</li>
+        <li>若使用前述材質，應盡量分散於工具各處，限制集中度</li>
+        <li>因製程需求，濕表面元件（槽體、泵浦、閥件、配管）常見材質為 PVDF、Halar、Teflon，但往往非認證版本或認證狀態無法確認</li>
+      </ul>
+      <p>應考量非認證塑膠與點火源的相對位置：例如加熱槽外殼採用聚丙烯，其危害遠高於觀察窗採用 Lexan 材質。</p>
+
+      <h4>3.3.4 Stocker 消防防護</h4>
+      <div class="callout info">
+        <div class="callout-icon">🔬</div>
+        <div>FM Research 於 2023 年執行研究計畫，為 Stocker 消防防護建議建立科學依據，內容包含 FOUP 樣本消防測試、輸水測試，以及代表性 Stocker 設計的全尺寸消防測試；研究重點並非探討起火源本身，而是探討一旦 Stocker 內發生火災，如何緩解其後果。</div>
+      </div>
+      <ul class="steps">
+        <li><strong>FOUP 測試</strong>：測試以聚碳酸酯為基材的 FOUP 樣本，測定火焰傳播指數（FPI）、熱反應參數（TRP）及臨界熱通量（CHF）等可燃性特性，據以選定用於全尺寸測試的特定型式 FOUP</li>
+        <li><strong>輸水測試</strong>：了解撒水頭出水到達 Stocker 各層所需時間及各層水量分佈，測試涵蓋 2.7.2.1 節建議的 K8（K115）撒水頭，配置依 8ft×8ft（2.4m×2.4m）間距；建立的過渡時間用以支援後續全尺寸消防測試規劃</li>
+        <li><strong>全尺寸消防測試</strong>：於 FM Research Campus 20MW 消防產物收集器（FPC）下執行兩次測試，皆使用額定壓力 <code>50psi（3.45bar）</code>運作的 K8（K115）撒水頭；模擬 Stocker 結構高 <code>18ft（5.5m）</code>、寬 6.9ft（2.1m）、長 22ft（6.7m），可容納 120 個 FOUP（每層每側 5 個，共 12 層）</li>
+      </ul>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>中心撒水頭測試</h4>
+          <ul class="steps">
+            <li>撒水頭裝於 Stocker 正上方中心，預壓水壓 60psi（4.14bar）</li>
+            <li>起火後 5 分 26 秒啟動，火勢<strong>完全撲滅</strong>，測試於起火後 25 分鐘結束</li>
+            <li>熱損傷僅限點火區正上方至第 7 層，火勢未在點火位置以外水平延燒</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>偏移撒水頭測試</h4>
+          <ul class="steps">
+            <li>撒水頭偏移中心位置 2ft（0.61m）</li>
+            <li>起火後 6 分 7 秒啟動，火勢<strong>受控</strong>但須人工介入才完全撲滅，測試於 30 分鐘結束</li>
+            <li>火勢未從點火側跳躍延燒至目標陣列，惟目標陣列部分 FOUP 出現熱劣化；外牆最高溫 <code>212°F（100°C）</code>，撒水頭啟動後立即下降</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div><b>測試結論</b>：兩次測試中火勢垂直方向成長速度遠快於水平方向，撒水頭啟動皆早於火勢延燒至同層鄰近 FOUP；外牆溫度均低於 <code>212°F（100°C）</code>，證實延燒至鄰近 Stocker 的可能性低；結果支持在撒水頭位於 Stocker 氣密圍封內的前提下，採用 50psi（3.45bar）壓力、8ft（2.4m）間距的 K8（K115）撒水頭進行消防防護。偏移情境因撒水頭啟動較晚，估計煙量產生較多（約 7oz/200g，中心情境約 3oz/90g）。</div>
+      </div>
+
+      <h3><span class="clause-ref">3.4</span>設備與製程</h3>
+      <h4>3.4.1 製程液體加熱</h4>
+      <p>製程液體加熱的產業標準為 <b>SEMI S3</b>《製程液體加熱系統安全指引》，內容詳盡，常被第三方審查者用於評估製程化學品加熱系統風險。</p>
+      <h4>3.4.2 IPA 蒸氣乾燥機</h4>
+      <p>IPA 蒸氣乾燥機因其 Marangoni 乾燥法在潤洗後效果優異（晶圓潔淨無水痕），較舊式技術更受青睞；少量 IPA 以氮氣起泡方式產生乾燥劑，載氣中 IPA 濃度盡量維持最低；容器通常為不鏽鋼材質，置於工具外殼外部的不鏽鋼櫃內，並提供通風與液體圍堵。</p>
+      <h4>3.4.3 真空泵</h4>
+      <p>常見四種真空泵：機械式、擴散式、低溫式、渦輪分子式；機械式可能採油潤滑，擴散式以加熱油品汽化方式運作；使用可燃油品的真空泵，皆存在異常狀況導致爆炸的可能性。</p>
+
+      <h3><span class="clause-ref">3.5</span>製程氣體：儲存與處理</h3>
+      <h4>3.5.1 氣體摻雜劑來源</h4>
+      <p>亞大氣壓氣體系統（SAGS）可降低氣體釋放的風險、速率與規模，須先誘發真空狀態才能使氣體流出；消防法規依氣體內部儲存壓力區分 Type 1（藉吸附於固體去除壓力）與 Type 2（壓力範圍 <code>200至1500psig[14至100barg]</code>，透過常閉、需真空條件才能開啟的內部調節系統機械控制）。毒性與腐蝕性摻雜劑使用的較大型氣瓶含 <code>2至6lb（0.9至2.7kg）</code>有害物質，每台工具配置 4 至 6 支氣瓶；因安全特性改良，製程相容性允許時應優先採用 SAGS。</p>
+      <h4>3.5.2 液體摻雜劑來源</h4>
+      <p>液體來源通常搭配起泡器（可加熱的石英瓶）使用，藉惰性載氣（如N₂）流經加熱液體摻雜劑，將其轉換為蒸氣攜入擴散爐或磊晶反應器；起泡器溫度決定蒸氣壓進而決定摻雜劑濃度，透過啟停氣流即可簡易控制。</p>
+      <h4>3.5.3 成形氣</h4>
+      <p>成形氣系統由混合站、氫氣儲存與輸送管路組成；氮氣由液態氮儲槽經汽化器汽化，混合器產生成形氣；供應壓力範圍約 <code>87psi（6bar）</code>；氫含量低於 <code>10%</code>（依體積計）的混合物屬非易燃；亦可採用預混拖車或壓縮氣瓶取代廠內混合。</p>
+      <h4>3.5.4 自燃性與反應性液體</h4>
+      <p>用於 CVD 金屬化及 MOCVD 製程；使用三甲基鋁（TMA）進行原子層沉積（ALD）是沉積超薄膜的理想方式，LED 製造高度依賴 MOCVD；TMA 為透明液體，接觸空氣即自燃、遇水劇烈反應，操作需極度謹慎並僅限合格人員執行；以安瓿瓶/起泡器（0.1至2kg）、氣瓶（1至10kg）、罐體（1至20kg）及大宗供應槽（10至100kg）等金屬容器分裝供應。</p>
+
+      <h3><span class="clause-ref">3.6</span>損失歷史</h3>
+      <h4>3.6.1 FM 損失經驗（2012年1月—2022年1月）</h4>
+      <p>下表將時間因素損失金額與財產損害金額分開列示，說明次要損失來源常是設施復原期間（清理、重新調試）的停機損失；電力中斷持續是常見事故，多起重大停電曾造成相當程度的製程中斷與在製品（WIP）損害。</p>
+      <table class="clause-table">
+        <thead><tr><th>危害類別</th><th>損失金額佔比</th><th>財產損害平均佔比</th><th>時間因素平均佔比</th><th>損失中位數</th></tr></thead>
+        <tbody>
+          <tr><td>服務中斷－公用設施</td><td>69%</td><td>8.2%</td><td>91.8%</td><td>$5M</td></tr>
+          <tr><td>火災</td><td>17%</td><td>35.4%</td><td>64.6%</td><td>$13M</td></tr>
+          <tr><td>液體逸散損害</td><td>7%</td><td>14.3%</td><td>85.7%</td><td>$1M</td></tr>
+          <tr><td>電氣故障</td><td>5%</td><td>89.8%</td><td>10.2%</td><td>$1M</td></tr>
+          <tr><td>撒水系統洩漏</td><td>1.9%</td><td>75.1%</td><td>24.9%</td><td>$1M</td></tr>
+          <tr><td>壓力設備故障</td><td>0.1%</td><td>9.1%</td><td>90.9%</td><td>$1M</td></tr>
+        </tbody>
+      </table>
+      <ul class="steps">
+        <li><strong>服務中斷－公用設施</strong>：與被保險廠房外部的公用設施設備故障有關（電力、水/污水、氮氣廠），不含廠內個別電氣設備故障</li>
+        <li><strong>火災</strong>：多數發生在潔淨室氣密圍封之外，但損及難以及時更換的關鍵設備，導致長期停產；產業火災損失經驗過去 25 年顯著改善，主因：A. 廣泛採用 FM 4910 認證塑膠構造；B. 廣泛採用 FM 4922 認證排氣風管；C. 改良的製程液體加熱方法；D. 第三方審查（SEMI S2、S14 及 FM 7701）。惟矽烷相關事故仍是持續關注領域</li>
+        <li><strong>液體逸散損害</strong>：冷卻迴路與洗滌塔的水是最常見來源；也有因人為疏失導致製程液體於潔淨室內釋出的重大損失；清理所需時間是主要損失驅動因子</li>
+        <li><strong>電氣故障</strong>：與個別設備（開關設備、斷路器、匯流排）故障有關，通常造成小範圍斷電，停機時間可降到最低</li>
+        <li><strong>撒水系統洩漏</strong>：同等歸因於維修/試運轉承包商失誤及系統故障意外放水，造成顯著清理與生產停擺</li>
+      </ul>
+      <h4>3.6.2 天然災害損失（2012—2022）</h4>
+      <table class="clause-table">
+        <thead><tr><th>危害類別</th><th>損失金額佔比</th><th>財產損害平均佔比</th><th>時間因素平均佔比</th><th>損失中位數</th></tr></thead>
+        <tbody>
+          <tr><td>服務中斷－天災</td><td>92%</td><td>32.0%</td><td>68.0%</td><td>$83M</td></tr>
+          <tr><td>水－液體損害</td><td>4%</td><td>70.4%</td><td>29.6%</td><td>$4M</td></tr>
+          <tr><td>地震</td><td>3.5%</td><td>0.0%</td><td>100.0%</td><td>$21M</td></tr>
+          <tr><td>風災與冰雹</td><td>0.3%</td><td>100.0%</td><td>0.0%</td><td>$0.3M</td></tr>
+          <tr><td>倒塌</td><td>0.1%</td><td>0.0%</td><td>100.0%</td><td>$0.6M</td></tr>
+          <tr><td>洪水</td><td>0.1%</td><td>87.7%</td><td>12.3%</td><td>$0.2M</td></tr>
+        </tbody>
+      </table>
+      <p>天然災害損失相較過去年度已顯著改善，但仍是半導體廠重大風險：服務中斷－天災指直接因降雪、風災、凍結或洪水造成的公用設施中斷（不含同一事件對被保險廠房的直接損害）；水損指屋頂損壞導致的雨水滲入；地震損失與建物輕微損壞或設備未妥善固定有關；風災冰雹損失多與施工期間臨時結構/屏障有關；倒塌損失與屋頂積雪重載有關。</p>
+    </div>
+
+    <!-- 4.0 參考文獻 -->
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div class="section-num">4.0</div>
+        <h2>參考文獻</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">📚</div>
+        <div>以下為 FM 7-7 全文引用之 FM Data Sheet、FM Approval Standard 及外部標準清單，供交叉查閱使用。</div>
+      </div>
+
+      <h3>4.1 FM Data Sheets（節錄常用項目）</h3>
+      <div class="standards-grid">
+        <div class="std-card"><div class="std-id">DS 1-2</div><div class="std-desc">地震（Earthquakes）</div></div>
+        <div class="std-card"><div class="std-id">DS 1-11</div><div class="std-desc">震後火災</div></div>
+        <div class="std-card"><div class="std-id">DS 1-20</div><div class="std-desc">防止外部火災暴露</div></div>
+        <div class="std-card"><div class="std-id">DS 1-22</div><div class="std-desc">最大可預見損失（MFL）</div></div>
+        <div class="std-card"><div class="std-id">DS 1-28/1-29</div><div class="std-desc">風力設計／屋頂板固定</div></div>
+        <div class="std-card"><div class="std-id">DS 1-40</div><div class="std-desc">洪水</div></div>
+        <div class="std-card"><div class="std-id">DS 1-44</div><div class="std-desc">損害限制構造（DLC）</div></div>
+        <div class="std-card"><div class="std-id">DS 1-56/1-57</div><div class="std-desc">潔淨室／建築中的塑膠</div></div>
+        <div class="std-card"><div class="std-id">DS 1-62</div><div class="std-desc">吊車</div></div>
+        <div class="std-card"><div class="std-id">DS 2-0/2-1/2-8/2-81</div><div class="std-desc">撒水安裝／腐蝕／耐震／檢測維護</div></div>
+        <div class="std-card"><div class="std-id">DS 3-26</div><div class="std-desc">非儲存作業消防防護</div></div>
+        <div class="std-card"><div class="std-id">DS 4-0/4-2/4-11N</div><div class="std-desc">特殊防護系統／水霧／CO₂滅火</div></div>
+        <div class="std-card"><div class="std-id">DS 5-1/5-4/5-11/5-12</div><div class="std-desc">危險場所電氣／變壓器／雷擊突波／發電機</div></div>
+        <div class="std-card"><div class="std-id">DS 5-17/5-19/5-20/5-23</div><div class="std-desc">馬達驅動／開關設備／電氣測試／緊急電力</div></div>
+        <div class="std-card"><div class="std-id">DS 5-28/5-30/5-32/5-33</div><div class="std-desc">直流電池／功因校正／資料中心／鋰電池儲能</div></div>
+        <div class="std-card"><div class="std-id">DS 5-48/5-49</div><div class="std-desc">自動火警偵測／氣體蒸氣偵測分析</div></div>
+        <div class="std-card"><div class="std-id">DS 6-11</div><div class="std-desc">熱及再生催化氧化爐</div></div>
+        <div class="std-card"><div class="std-id">DS 7-2/7-6/7-9</div><div class="std-desc">廢溶劑回收／塑膠儲槽／浸漬槽塗佈機</div></div>
+        <div class="std-card"><div class="std-id">DS 7-29/7-31/7-32</div><div class="std-desc">自燃性液體儲存／噴霧產品／自燃性液體作業</div></div>
+        <div class="std-card"><div class="std-id">DS 7-35/7-43/7-45</div><div class="std-desc">空氣分離／製程安全／安全控制連鎖SCAI</div></div>
+        <div class="std-card"><div class="std-id">DS 7-50/7-59/7-72</div><div class="std-desc">壓縮氣體儲存／惰化清淨／重組裂解爐</div></div>
+        <div class="std-card"><div class="std-id">DS 7-76/7-78/7-88</div><div class="std-desc">可燃粉塵／工業排氣／室外易燃液體儲槽</div></div>
+        <div class="std-card"><div class="std-id">DS 7-91/7-95/7-98</div><div class="std-desc">氫氣／壓縮機／液壓油</div></div>
+        <div class="std-card"><div class="std-id">DS 7-108/7-110</div><div class="std-desc">矽烷／工業控制系統資安</div></div>
+        <div class="std-card"><div class="std-id">DS 8-9/8-33/8-34</div><div class="std-desc">商品儲存／旋轉貨架／自動倉儲防護</div></div>
+        <div class="std-card"><div class="std-id">DS 9-0/9-16/9-18</div><div class="std-desc">資產完整性／防盜／防凍結</div></div>
+        <div class="std-card"><div class="std-id">DS 10-1/10-5/10-8</div><div class="std-desc">事故預防規劃／災害復原／操作人員</div></div>
+      </div>
+
+      <h3>4.2 FM Approval Standards</h3>
+      <div class="standards-grid">
+        <div class="std-card"><div class="std-id">4882</div><div class="std-desc">感煙敏感場所用Class1室內牆/天花板材料或系統</div></div>
+        <div class="std-card"><div class="std-id">4910</div><div class="std-desc">潔淨室材料可燃性測試協議</div></div>
+        <div class="std-card"><div class="std-id">4911</div><div class="std-desc">潔淨室用晶圓載具</div></div>
+        <div class="std-card"><div class="std-id">4920</div><div class="std-desc">潔淨室設施用濾網</div></div>
+        <div class="std-card"><div class="std-id">4922</div><div class="std-desc">排氣風管或排氣/排煙風管</div></div>
+        <div class="std-card"><div class="std-id">4924</div><div class="std-desc">管路及風管隔熱材</div></div>
+        <div class="std-card"><div class="std-id">6933</div><div class="std-desc">變壓器油</div></div>
+        <div class="std-card"><div class="std-id">7701</div><div class="std-desc">半導體產業用工具</div></div>
+      </div>
+
+      <h3>4.3 其他標準（節錄）</h3>
+      <p>ASCE 7《建築物及其他結構最小設計荷載》、ASME 31.3《製程配管》、ASME《鍋爐及壓力容器規範》、ICC 國際消防規範第27章《半導體製造廠》、IEEE C57.12.10、NFPA 12/55/262/318/704、SEMI S2/S3/S10/S14/F47-0706、UL 94/586/900/910/2360。</p>
+    </div>
+
+    <!-- Appendix A -->
+    <div class="section" id="appA">
+      <div class="section-header">
+        <div class="section-num muted">App. A</div>
+        <h2>名詞解釋（節錄）</h2>
+      </div>
+      <table class="clause-table">
+        <tbody>
+          <tr><td><strong>Backend／後段</strong></td><td>又稱組裝與測試，指邁向最終成品的步驟，含晶圓測試、切割分離、黏晶、打線、封裝及最終測試，通常在亞洲以委外代工方式進行</td></tr>
+          <tr><td><strong>Cleanroom envelope／潔淨室氣密圍封</strong></td><td>Fab 內潔淨/調節空氣循環流通的區域（含潔淨 Sub-fab 及夾層區域，不含骯髒 Sub-fab）</td></tr>
+          <tr><td><strong>Clean／Dirty subfab</strong></td><td>Fab 樓板下方容納支援設備的區域；「潔淨」指潔淨/調節空氣會循環流通，「骯髒」則不會</td></tr>
+          <tr><td><strong>Equipment contingency plan (ECP)</strong></td><td>營運持續計畫的一部分，記載關鍵設備非計畫性故障造成重大營運中斷時的因應對策</td></tr>
+          <tr><td><strong>FOUP</strong></td><td>前開式晶圓傳送盒，一種專用塑膠封閉容器，用於在受控環境中安全固定矽晶圓</td></tr>
+          <tr><td><strong>Hazardous production material (HPM)</strong></td><td>依 NFPA 704 歸類具第 3 或 4 級健康、易燃性或不穩定性危害等級，且直接用於研發/實驗室/生產製程的固液氣物質</td></tr>
+          <tr><td><strong>Interstitial／夾層</strong></td><td>又稱回風夾層（RAP），位於潔淨室天花板格柵正上方、用於潔淨室空氣回風的空間</td></tr>
+          <tr><td><strong>Pyrophoric liquid／自燃性液體</strong></td><td>於 130°F（54.4°C）或以下溫度接觸空氣即自發起火的液體</td></tr>
+          <tr><td><strong>Stacked fab／堆疊式晶圓廠</strong></td><td>由多層前段製程潔淨室組成，各層以 Sub-fab 樓層隔開</td></tr>
+          <tr><td><strong>SAGS Type 1 / Type 2</strong></td><td>亞大氣壓氣體儲存與輸送來源；Type 1 以低於標準溫壓 14.7psia（1bara）儲存並輸送；Type 2 以高於此壓力儲存壓縮氣體，但輸送壓力仍低於此值</td></tr>
+          <tr><td><strong>Voltage 分級</strong></td><td>本文件定義：低壓 &lt;1,000V；中壓 &gt;1,000V 且 &lt;100,000V；高壓 &gt;100,000V（與 ANSI/NETA MTS-2015 定義一致）</td></tr>
+          <tr><td><strong>Unstable materials／不穩定物質</strong></td><td>依 NFPA 704 定義，在震動、壓力或溫度條件下可能分解、凝結、自我反應或發生劇烈化學變化的物質</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px;">（原文附錄尚含 Cycle time、Epitaxial process、Fab、Fabless、Flame oxidation、Foundry、Front end、Integrated device manufacturer、Life safety system、Low pressure gas、Mask、Reticle、Third party、Tool、UPW、Wafer、Wafer starts、Yield 等一般性半導體業界術語定義，此處僅節錄與消防/損防較直接相關者。）</p>
+    </div>
+
+    <!-- Appendix C -->
+    <div class="section" id="appC">
+      <div class="section-header">
+        <div class="section-num yellow">App. C</div>
+        <h2>濕製程工作台等設備之消防偵測與抑制設計</h2>
+      </div>
+
+      <h3>C.1 總則</h3>
+      <ul class="steps">
+        <li>提供經專為半導體工具應用評估的 FM 認證固定式消防抑制系統；可依決策樹（可燃構造區劃 → 惰化N₂或FWS/CO₂/FM-200防護；不燃構造區劃 → 免偵測防護，惟完全以22號規鋼板內襯且無塑膠壁面外露的可燃構造區劃可視為不燃）決定應安裝的系統類型</li>
+        <li>抑制系統設計為與通風排氣系統連續運作搭配放洩；供應迷你環境濾網單元的空氣，於火警偵測器啟動時連鎖關閉，同時維持工具排氣運作</li>
+        <li>工具電源與抑制系統放洩連鎖關閉（維持排氣運作所需電力除外）；系統放洩時隔離外部自燃性液體供應</li>
+        <li>抑制劑供應量以整個製程設備單次放洩為基準；每台工具配置獨立系統，惟供應量依最大危害設計並提供等量連接備用供應時，單一 CO₂ 系統可防護一組製程設備</li>
+        <li>使用 CO₂ 且工具於供應恢復前不運作時，個別滅火系統不需連接備用供應</li>
+        <li>為分別供應不同區域（如工作面與地板下方）抑制劑的系統，工具長度可超過 8ft（2.4m），各區各自配置獨立供應與備用或依整台工具設計，並須提供實體隔板區隔多區</li>
+        <li>開放式工作面允許消防偵測後最長 30 秒的抑制系統放洩延遲，讓工作面完成放洩前準備；工具其他區域在單一防護區系統中亦可採用此延遲</li>
+        <li>以可燃材料構造的個別工具封閉空間，若依 <b>DS 7-59</b> 以氮氣惰化至最大氧氣濃度 5%，不需自動消防偵測/抑制系統，惟仍須：A. 含電氣設備的封閉空間提供消防偵測；B. 提供低壓警報，於工具端及常駐位置通知；C. 低壓偵測連鎖切斷處理設備電源</li>
+        <li>處理腐蝕性化學品的工具，固定消防抑制系統採不鏽鋼配管及耐蝕噴嘴</li>
+        <li>每套系統提供明確標示且易於操作的手動啟動方式，搭配自動消防偵測運作</li>
+      </ul>
+
+      <h3>C.2 火警偵測與警報系統</h3>
+      <ul class="steps">
+        <li>使用 FM 認證火警偵測器，於工具端及常駐位置發出警報；可接受型式包含光學火焰偵測器、煙霧偵測器及線型熱偵測（LHD），依 <b>DS 5-48</b>《自動火警偵測》配置</li>
+        <li>光學火焰偵測器須經 FM 認證適用於工具內燃料/可燃物的火焰特徵，位置能於 5 秒內對火災做出反應</li>
+        <li>偵測器位置須避免視野受阻，不得透過會過濾電磁輻射的透明材料（如 Plexiglas、Lexan）觀測危害；須直視危害，不採用間接反射輻射作為光學火焰偵測器動作依據</li>
+        <li>依製造商書面說明安裝，涵蓋間距、與危害距離、燃料型別、視野範圍及直視/斜視偵測能力</li>
+        <li><strong>偵測器型式與位置</strong>：工具工作面配置光學火焰偵測器（涵蓋全工作面）；地板下方（夾層）區域同樣配置光學火焰偵測器；其他封閉空間（頭部空間、輔助電氣隔間等）可用光學火焰偵測、線型熱偵測，或空氣採樣式/可定址點式極早期預警偵測（VEWFD）——腐蝕性煙霧遷移易致誤報的區域，改用線型熱偵測或光學火焰偵測</li>
+        <li><strong>線型熱偵測（LHD）</strong>：採數位（雙線）纜線，警報溫度額定值為 <code>155°F（68°C）</code>或環境溫度加 <code>20°F（11°C）</code>取較高者；封閉空間排氣速率不超過每分鐘一次換氣時，可作為光學火焰偵測的替代方案，沿排氣開口中心線及封閉空間頂部周邊佈設</li>
+        <li>消防偵測系統試運轉時，須確認正確運作，包含在正式連接抑制劑供應前的試運轉期間，將啟動狀況本地警報並記錄，以利排除誤報/未動作等異常</li>
+      </ul>
+
+      <h3>C.3 二氧化碳（CO₂）抑制系統</h3>
+      <ul class="steps">
+        <li>提供專為此類應用經 FM 認證並列於 Approval Guide 的高/低壓 CO₂ 滅火系統；完全封閉於迷你環境或全密閉危害的製程設備，若符合以下條件，可採用未專門列名適用半導體設備的 FM 認證 CO₂ 系統：A. 提供全區淹沒設計並補償通風/洩漏；B. 噴嘴與排氣開口及製程槽保持足夠距離，避免直接排出或造成液槽噴濺；C. 於全運轉狀態下執行完整放洩測試，驗證全程達到所需最低氣體濃度</li>
+        <li>除本資料表要求外，CO₂ 系統設計、安裝與維護依 <b>DS 4-0</b>《特殊防護系統》、<b>DS 4-11N</b>《二氧化碳滅火系統》及 <b>DS 2-81</b>辦理</li>
+        <li><strong>工作面防護</strong>：非全密閉危害採 RBV（局部應用）法設計，最短放洩時間 30 秒，基本放洩率 <code>1lb/min/ft³（16kg/min/m³）</code>，可依側板/背板/頭部空間比例折減（依 NFPA 12 辦理）；火警偵測器啟動時關閉供應設備的空氣；全密閉危害以全區淹沒為基準，一分鐘內達最低 <code>50%</code>濃度，須補償排氣與無法封閉開口；噴嘴置於工作面正上方並垂直朝向工作面，避免濺起暴露液體</li>
+        <li><strong>其他封閉空間（地板下方/頭部空間）防護</strong>：同樣以全區淹沒基準一分鐘內達最低 50% 濃度，並補償排氣與開口；同時防護工作面與夾層時，依 NFPA 12 提供夾層所需放洩率；噴嘴盡量置於側牆中央並縱向朝夾層中心放洩</li>
+      </ul>
+
+      <h3>C.4 水霧系統</h3>
+      <ul class="steps">
+        <li>提供水及空氣或氮氣，來源可靠度須與消防抑制系統相當；不得使用非消防專用來源的水，除非該連接不受一般家用管路停水影響且依 <b>DS 2-81</b> 上鎖、監視並檢查</li>
+        <li>水源與空氣/氣體來源可為：專用獨立來源；廠務消防（或DI/家用水）系統搭配廠務空氣（或氮氣）系統；兩者組合；或（若持續運作且喪失壓力/流量會觸發火警異常訊號）廠務超純水（UPW）及廠務氮氣</li>
+        <li>依 <b>DS 4-2</b>《水霧系統》提供 FM 認證水霧系統防護濕製程工作台</li>
+        <li><strong>工作面防護</strong>：噴嘴置於工作面正上方中央，垂直朝向工作面，提供無遮蔽噴灑</li>
+        <li><strong>其他封閉空間防護</strong>：於地板下方（夾層）區域配置噴嘴，涵蓋整個內部容積（含壁面）；提供偵測與控制，於火警偵測器啟動時自動啟動抑制系統，最短放洩時間 <code>120 秒</code>，系統需求量以工具內所有噴嘴同時運作為基準</li>
+      </ul>
+    </div>
+
+    <!-- Appendix D -->
+    <div class="section" id="appD">
+      <div class="section-header">
+        <div class="section-num yellow">App. D</div>
+        <h2>半導體製造廠製程安全應用</h2>
+      </div>
+      <p>本附錄為 2.2 節製程安全六大要素的延伸實務指引。</p>
+
+      <h3>D.1 管理承諾</h3>
+      <p>制定聲明，說明製程安全各面向如何融入公司文化；此聲明通常納入公司環境健康安全政策內。</p>
+
+      <h3>D.2 製程知識</h3>
+      <p>彙整了解危害並確保安全可靠運作所需的全部資訊，含完成 PHA 所需資訊，並持續更新維護。關鍵要素：管路與儀表圖（P&ID）；生產/支援設備設計施工規格；危害物質資訊（SDS 及最大預期存量）；電氣分類；關鍵公用設施與支援系統（含用電趨勢）；安全系統設計基礎與能力（製程氣液洩漏偵測、UV火焰偵測、純化器連鎖、大宗氣體純度監控、緊急切換連鎖、碳氫化合物監控、鍋爐/削減設備燃燒安全防護等）；釋壓系統設計依據；反應性化學品危害。</p>
+
+      <h3>D.3 製程危害分析（PHA）</h3>
+      <ul class="steps">
+        <li>源自化學產業，是系統化辨識、評估與控制製程相關危害的方法；目的在判定事件（火災、爆炸、危害化學品釋放）的潛在起因與後果</li>
+        <li>對半導體廠所有系統執行 PHA 並不切實際、價值有限；應建立風險矩陣篩選流程，辨識具重大危害或風險的製程</li>
+        <li>許多業者依 <b>SEMI S2</b> 執行分析，其評估已納入製程危害分析；可用方法包含檢核表、What-If、HAZOP、FMEA 等，PHA 中應處理：啟動與停機、製程偏差、公用設施/廠務故障、控制故障、安全旁通、程序變更</li>
+        <li>正式 PHA 審查應由工程、生產、操作、安全、環境等關鍵部門參與，主持人應接受製程安全專業訓練</li>
+        <li>應建立制度優先處理並追蹤 PHA 發現事項至結案；半導體廠因製程鮮少維持靜態，每五年重新驗證的作法未必適用</li>
+      </ul>
+
+      <h3>D.4 變更管理（MOC）</h3>
+      <p>MOC 流程目的是防止變更過程中引入未被辨識的危害；任何偏離原始設計意圖的變更皆視為偏差，若影響未被充分理解，即使微小變更也可能導致重大事故。MOC 計畫應涵蓋：</p>
+      <ul class="steps">
+        <li>正式書面化程序管理製程/設備/技術/防護/人員變更</li>
+        <li>由具能力的主管/管理階層審查核准所有系統變更；簡單變更可單一審查者核准，複雜變更需更完整流程</li>
+        <li>建立識別與追蹤受 MOC 規範之變更的方法</li>
+        <li>對提議變更的製程與機械設計依據進行文件化</li>
+        <li>審查變更相關潛在危害，含對上下游廠房/製程/設備的影響</li>
+        <li>決定臨時或緊急變更的最長允許持續時間，並提供追蹤方式；超過期限須依正常 MOC 流程重新驗證</li>
+        <li>建立相關行政程序，向受影響人員清楚傳達變更內容及其影響</li>
+      </ul>
+      <p>修改後的操作程序、P&ID、資產完整性計畫、人員訓練等應於變更後視需要完成定案。重大修改應執行啟用前安全審查（PSSR），確保 MOC 流程建議事項皆已處理：MOC 要求的更新應於試運轉前完成；PSSR 應於引入化學品/能量前完成；最終文件化可於試運轉後完成。</p>
+
+      <h3>D.5 資產完整性（AI）</h3>
+      <p>完善的檢查、測試與維護（ITM）計畫是確保設備依設計運作、避免生產中斷的必要條件，至少應包含：</p>
+      <ul class="steps">
+        <li><strong>維護計畫</strong>：確保 PHA 中考量的防護納入 ITM 計畫；維護待辦事項設定具體目標門檻；定期比對執行成效與門檻；逾期/被取代的關鍵設備維護項目應審查並採取行動；維護作業有書面指引與量測參數可接受範圍，並保留過去測試紀錄</li>
+        <li><strong>儀表與控制（I&C）</strong>：書面化計畫對重要指示器與連鎖進行校正與功能測試；至少涵蓋大宗氣體純度監控、緊急切換連鎖、液態氧空氣分離廠再沸器碳氫化合物監控、鍋爐/削減設備燃燒安全防護</li>
+        <li><strong>電氣</strong>：主要變壓器、主要斷路器、自動切換開關、緊急發電機、UPS、開關設備電池等依 FM 資料表及製造商建議維護</li>
+        <li><strong>機械</strong>：鍋爐/壓力容器/蒸汽降壓站超壓保護裝置納入正式檢查測試計畫；鍋爐納入書面檢查計畫（強制合規地區通常由主管機關委任檢查員審查）；對可能影響 Fab 運作的旋轉設備（排氣風機、補氣風機、洗滌風機、削減風機、製程冷卻水泵浦等）執行振動監控</li>
+      </ul>
+
+      <h3>D.6 事故調查</h3>
+      <p>製程安全計畫失效常導致事故與未遂事件，須建立完善的事故調查計畫，至少包含：</p>
+      <ul class="steps">
+        <li>正式化的事故/未遂事件調查流程，涵蓋物質洩漏、火災、公用設施中斷、非意圖釋放、安全裝置啟動及生產品質異常等所有偏離正常流程情形</li>
+        <li>由具適當專業（操作、維護、工程）的調查小組主導，由受訓練的事故調查人員領導</li>
+        <li>以正式方法論（如根因分析 RCA）指導調查流程，建立基準時程確保任務及時完成</li>
+        <li>所有建議事項文件化，並建立確保完成的流程；調查發現應與組織內相關成員分享</li>
+        <li>運用事故趨勢分析辨識並改正重複發生的事故，含於 PHA 中一併檢視</li>
+      </ul>
+      <p>應鼓勵人員通報所有異常事件，以判定是否確實發生事故；建立簡易的即時通報流程並訓練員工應通報事項。</p>
+    </div>
+
+    <!-- Appendix E -->
+    <div class="section" id="appE">
+      <div class="section-header">
+        <div class="section-num danger">App. E</div>
+        <h2>極紫外光（EUV）微影</h2>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value red">$2–3億</div><div class="stat-label">EUV 工具造價（美元，不含晶圓軌道）</div></div>
+        <div class="stat-card"><div class="stat-value yellow">$3–4億</div><div class="stat-label">含初期基礎設施變更的安裝總成本</div></div>
+        <div class="stat-card"><div class="stat-value">2 MW</div><div class="stat-label">單台工具用電量</div></div>
+        <div class="stat-card"><div class="stat-value">9–12ft</div><div class="stat-label">工具高度（3–4m）</div></div>
+      </div>
+
+      <h3>E.1 背景</h3>
+      <p>EUV 工具價值遠高於潔淨室其他工具；線寬低於 10 微米時，傳統光學微影技術已難以達成，EUV 技術可縮小線寬、製造更小更快更省電的元件，並減少製程步驟。工具僅掃描機部分佔地約 <code>25×12ft（8×4m）</code>，約四分之一位於 Fab 層，其餘（控制系統、電力系統、CO₂雷射、光束傳輸系統等）位於 Sub-fab，每台工具約需 <code>4300–5400ft²（400–500m²）</code>Sub-fab 支援空間（未必需潔淨室環境）。因重量及振動敏感性，安裝前需大量結構補強；例行維護需吊車吊起源頭容器與橢球面鏡。</p>
+
+      <h3>E.2 製程概述</h3>
+      <p>EUV 使用波長約 13.5μm 的光（傳統微影約193μm），是電磁波譜中最易被吸收的成分，無法像UV光般透過透鏡傳輸或聚焦，須以高精度反射鏡聚焦，技術與UV微影截然不同。EUV設備可分四大部分：</p>
+      <ul class="steps">
+        <li><strong>雷射與光源產生器</strong>：於 Sub-fab 產生高功率脈衝 CO₂ 雷射，經真空光束傳輸管（BTT）導入源頭容器，用於蒸發錫液滴形成電漿並發射光子，經橢球面收集鏡反射聚焦後導入掃描機容積</li>
+        <li><strong>源頭容器</strong>：內含橢球面收集鏡（高度拋光凹面鏡，直徑約3ft[1m]）、雷射液滴產生器等，以真空高溫運作，並以廠務製程冷卻水系統冷卻；超純氫氣用於冷卻電漿附近區域、阻止快速錫離子並蝕刻收集面上的錫</li>
+        <li><strong>掃描機容積</strong>：含聚焦與反射光學元件，將圖案自光罩經投影光學投射到晶圓台上使光阻曝光；同樣於極高真空下運作，並以氫氣冷卻清潔鏡片</li>
+        <li><strong>晶圓台</strong>：晶圓定位曝光的區域</li>
+      </ul>
+
+      <h3>E.3 危害</h3>
+      <ul class="steps">
+        <li><strong>氫氣</strong>：源頭容器與掃描機容積大量使用氫氣，皆於高真空下運作以降低洩漏風險；因所需氣體純度極高，EUV 通常由獨立系統供應；每週需液態氫運送，運送車輛與固定儲槽間轉移的相關危害須充分了解</li>
+        <li><strong>可燃負載</strong>：複雜線束佈線帶來可觀可燃負載，電氣故障可能造成大量煙霧甚至火災；電纜多為低煙無鹵素（LSHF）材質，惟過熱仍可能造成外皮熔化冒煙；多層堆疊電纜架可能遮擋頭頂撒水頭</li>
+        <li><strong>溫度臨界性</strong>：溫度調控（尤其變化）對持續運作至關重要，條件喪失會導致關鍵元件失效，需受控關機並重新認證；迷你環境可爭取緩衝時間</li>
+        <li><strong>撞擊敏感性</strong>：眾多元件（尤其含橢球面鏡的源頭容器）對撞擊震動敏感，維護吊起時微小失誤即可能損壞極昂貴元件</li>
+        <li><strong>高耗能</strong>：每台工具耗電約 2MW，多台同時使用時電力基礎設施強化需求可觀，須審慎考量供電可靠度與 N+1 備援；用電及配線量增加，也提高 Sub-fab 區域可燃負載</li>
+        <li><strong>吊車</strong>：EUV 機台上方設有吊車/軌道供初期安裝及大修使用（預期罕見），存在設備墜落至 Fab 樓板或 EUV 設備上的風險；各元件的專用吊掛設備作為維護配套提供</li>
+        <li><strong>人員要素</strong>：EUV 工具需要更高頻率且更複雜的維護（尤其大型元件拆裝），增加人為疏失造成損失的風險</li>
+      </ul>
+    </div>
+
+    <!-- Appendix F -->
+    <div class="section" id="appF">
+      <div class="section-header">
+        <div class="section-num purple">App. F</div>
+        <h2>液晶顯示器（LCD）與 OLED 製程概述</h2>
+      </div>
+
+      <h3>F.1 薄膜電晶體液晶顯示器（TFT LCD）</h3>
+      <p>TFT LCD 採薄膜電晶體技術改善影像品質（可定址性與對比度），為主動矩陣式 LCD，廣泛應用於電視、電腦螢幕、行動裝置等。面板結構如三明治，前玻璃基板（彩色濾光片CF玻璃）與後玻璃基板（TFT玻璃）於不同產線生產，業界最大基板為 <code>2,940mm×3,370mm</code>（第10.5代）。Fab 包含三大製程區域：TFT、CF、Cell（液晶），最終貼附偏光片與印刷電路板封裝成模組。</p>
+      <ul class="steps">
+        <li><strong>TFT 製程</strong>：與半導體製程相似，含清洗、光製程（光阻塗佈/曝光/顯影）、蝕刻（乾濕式）、光阻剝除、檢查及沉積（濺鍍與CVD）；光/剝除/塗佈製程使用光阻、稀釋劑、剝離劑等自燃性液體，CVD使用矽烷、氫氣、磷化氫等自燃性/易燃氣體</li>
+        <li><strong>彩色濾光片</strong>：前玻璃板由紅綠藍黑矩陣構成，製程含清洗、光製程、蝕刻、剝除、檢查、ITO沉積及覆膜疊層</li>
+        <li><strong>Cell（液晶）</strong>：始於TFT玻璃與CF玻璃的聚醯亞胺印刷，接續間隔柱點膠、組裝及液晶注入</li>
+      </ul>
+
+      <h3>F.2 玻璃 OLED 與塑膠 OLED</h3>
+      <p>OLED 是快速普及的新興顯示技術，發光元件可完全關閉，具深邃黑色與優異對比度，並可製成可撓曲/透明面板。如同 LCD，玻璃 OLED 亦為三明治結構，業界最大基板可達 <code>2,200mm×2,500mm</code>。塑膠 OLED（POLED）先於玻璃基板塗佈聚醯亞胺，形成 TFT 後沉積有機層與封裝層，最後移除玻璃基板使面板可撓，必要時加裝「背板」增加強度。Fab 包含三大製程區域：低溫多晶矽（LTPS）、蒸鍍與封裝（EVEN）、Cell。</p>
+      <ul class="steps">
+        <li><strong>LTPS</strong>：與 LCD 的 TFT 製程類似但層次更多更薄，另有使用離子植入機的摻雜製程及額外危害氣體（如磷化氫）；製程含濕蝕刻、聚醯亞胺（PI）、準分子雷射退火（ELA）、濺鍍、CVD、乾蝕刻及摻雜</li>
+        <li><strong>蒸鍍與封裝（EVEN）</strong>：以精細金屬遮罩（FMM）將有機材料蒸鍍於玻璃基板；遮罩以自燃性液體（乙醇、NMP，閃點約190–210°F[90–100°C]）清洗；封裝以CVD提供防氧氣/濕氣保護層</li>
+        <li><strong>Cell</strong>：老化、切割、測試、疊層等，不使用化學品或氣體；AMHS 與 Stocker 以塑膠盒儲放 Cell</li>
+      </ul>
+
+      <h3>F.3 危害（與典型 300mm 半導體廠的主要差異）</h3>
+      <table class="clause-table">
+        <thead><tr><th>差異</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A. 潔淨室內撒水頭遮蔽</strong></td><td>玻璃基板以寬度至少3m的輸送機於工具間上方傳輸；輸送機與工具塑膠封閉空間可能嚴重遮蔽天花板撒水頭；改用懸吊式輸送系統（OHT）可消除此類阻礙</td></tr>
+          <tr><td><strong>B. 使用浸入式加熱器</strong></td><td>因化學槽體積大（約500公升），浸入式加熱器廣泛用於濕蝕刻機與塗佈/顯影機；替換不切實際，若已具備低液位連鎖、獨立高溫斷路開關等安全特性，起火可能性甚低，惟塑膠槽體/面板起火將造成重大火災</td></tr>
+          <tr><td><strong>C. 潔淨室內較大量自燃性液體</strong></td><td>半導體廠濕製程工作台液槽存量約13加侖（50L），LCD/OLED 濕製程工作台可達約530加侖（2,000L）；光阻容器半導體廠為1加侖（3.8L），LCD/OLED為53加侖（200L）桶裝</td></tr>
+          <tr><td><strong>D. 較多一般塑膠面板</strong></td><td>廣泛用於工具、機械手臂區域、Stocker等，顯著增加火災負載並可能助長蔓延；應考量撒水設計是否因塑膠含量顯著而改採危害類別3為基準</td></tr>
+          <tr><td><strong>E. 新玻璃基板用發泡塑膠箱</strong></td><td>部分情況基板儲存於發泡塑膠箱內；使用金屬料架已逐漸成為常見作法，因具更大儲存容量且佔地更小</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Appendix G -->
+    <div class="section" id="appG">
+      <div class="section-header">
+        <div class="section-num green">App. G</div>
+        <h2>組裝與測試（Assembly and Test）</h2>
+      </div>
+      <p>以下為組裝與測試（後段）半導體廠分析參考的配套規範對照：</p>
+      <table class="clause-table">
+        <tbody>
+          <tr><td>G.1</td><td>潔淨室依 <b>DS 1-56</b> 及本資料表 2.4.3 節構造</td></tr>
+          <tr><td>G.2</td><td>晶圓凸塊（bump）及類鑽碳製程處理方式與前段製程相似，依本資料表防護</td></tr>
+          <tr><td>G.3</td><td>資料中心依 <b>DS 5-32</b>《資料中心及相關設施》配置防護</td></tr>
+          <tr><td>G.4</td><td>實驗室（工作台、加熱板、自燃性液體處理儲存）依 <b>DS 7-29</b>、<b>DS 7-32</b> 及本資料表 2.6.4／2.9 節辦理</td></tr>
+          <tr><td>G.5</td><td>電鍍用濕製程工具依本資料表 2.7 節及 <b>DS 7-6</b>《塑膠及塑膠內襯儲槽》配置防護</td></tr>
+          <tr><td>G.6</td><td>使用液壓油的設備依 <b>DS 7-98</b>《液壓油》配置防護</td></tr>
+          <tr><td>G.7</td><td>排氣風管使用防護依本資料表 2.5.3.4 及 2.5.8.1 節辦理</td></tr>
+          <tr><td>G.8</td><td>粉塵危害評估防護依 <b>DS 7-76</b>《可燃性粉塵爆炸與火災防止緩解》辦理</td></tr>
+          <tr><td>G.9</td><td>氨裂解評估依 <b>DS 7-72</b>《重組爐及裂解爐》辦理</td></tr>
+          <tr><td>G.10–G.12</td><td>氫氣使用危害、成形氣混合儲存輸送、低溫氣體配置防護依 <b>DS 7-91</b>《氫氣》及本資料表 2.8.10 節辦理</td></tr>
+          <tr><td>G.13</td><td>波焊機依 <b>DS 7-9</b>《浸漬槽、流動塗佈機及滾塗機》防護</td></tr>
+          <tr><td>G.14</td><td>錫膏機及相關螢幕清洗設備依 <b>DS 7-32</b>《自燃性液體作業》防護</td></tr>
+          <tr><td>G.15</td><td>溶劑回收系統依 <b>DS 7-2</b>《廢溶劑回收》配置防護</td></tr>
+          <tr><td>G.16</td><td>成品晶圓、WIP 及成品儲存依本資料表 2.7 節及 <b>DS 8-9</b> 防護</td></tr>
+          <tr><td>G.17</td><td>黃金及貴金屬處理、成品儲存依 <b>DS 9-16</b>《防盜與防竊》配置防護</td></tr>
+          <tr><td>G.18</td><td>消音室依 <b>DS 1-53</b>《消音室》防護</td></tr>
+        </tbody>
+      </table>
     </div>
 
   </main>
 </div>
 
 <footer>
-  內容整理自 FM Global Data Sheet 7-7 — Semiconductor Fabrication Facilities（2025 年 4 月版，使用者提供之原文 PDF 第 1–19 頁）。
+  內容整理自 FM Global Data Sheet 7-7 — Semiconductor Fabrication Facilities（2025 年 4 月版，使用者提供之完整原文 PDF，共 76 頁）。
   本頁為條文重點之中文摘要與整理，依原文條款編號對照，非官方逐字翻譯；正式合規判斷請以 FM Global 官方原文及授權文件為準。
   ｜© 2025 Factory Mutual Insurance Company，原文版權所有。
 </footer>
