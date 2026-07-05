@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職業安全衛生管理員 安全衛生教育訓練 重點整理</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3350;
+      --accent: #4f8ef7;
+      --accent2: #7c5cbf;
+      --accent3: #e05c5c;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --text: #e4e6f0;
+      --muted: #8b92b3;
+      --tag-bg: #1e3a5f;
+      --tag-text: #70b3ff;
+      --warn-bg: #3a2010;
+      --warn-text: #f0a060;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Helvetica Neue', '蘋方-繁', 'PingFang TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0d1b3e 0%, #1a2a5e 50%, #0d1b3e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(79,142,247,0.12) 0%, transparent 70%);
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(79,142,247,0.15);
+      border: 1px solid rgba(79,142,247,0.4);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+      position: relative;
+    }
+    .header h1 span { color: var(--accent); }
+    .header-sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+      position: relative;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+    .meta-item strong { color: var(--text); }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    /* ── TOC Sidebar ── */
+    .toc {
+      width: 250px;
+      flex-shrink: 0;
+      padding: 28px 0 28px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .toc-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .toc a {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 8px;
+      border-left: 2px solid transparent;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toc a:hover { color: var(--accent); border-left-color: var(--accent); background: rgba(79,142,247,0.06); }
+    .toc a.sub { padding-left: 18px; font-size: 12px; }
+    .toc a.pending { opacity: 0.45; font-style: italic; }
+
+    /* ── Main Content ── */
+    main {
+      flex: 1;
+      min-width: 0;
+      padding: 28px 32px 60px;
+    }
+
+    /* ── Section ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      padding: 0 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .section-num.danger { background: var(--accent3); }
+    .section-num.purple { background: var(--accent2); }
+    .section-num.green  { background: var(--green); }
+    .section-num.yellow { background: var(--yellow); }
+    .section-num.muted  { background: var(--muted); }
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 22px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3.warn { color: var(--accent3); }
+    h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 14px 0 6px;
+    }
+    p { color: var(--muted); margin-bottom: 8px; }
+    .clause-ref {
+      font-family: 'SF Mono', monospace;
+      font-size: 10.5px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 12px 0;
+    }
+    th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(46,51,80,0.5);
+      vertical-align: top;
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td strong { color: #fff; }
+    td code {
+      background: rgba(79,142,247,0.12);
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .clause-table td:first-child:nth-last-child(2) { width: 92px; }
+
+    /* ── Highlight Boxes ── */
+    .callout {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .callout-icon { flex-shrink: 0; font-size: 18px; line-height: 1.6; }
+    .callout.info  { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.25); }
+    .callout.warn  { background: var(--warn-bg); border: 1px solid rgba(240,160,96,0.35); color: var(--warn-text); }
+    .callout.danger{ background: rgba(224,92,92,0.08); border: 1px solid rgba(224,92,92,0.3); }
+    .callout.green { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.3); }
+    .callout b { color: #fff; }
+
+    /* ── Stat Cards ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .stat-value.red { color: var(--accent3); }
+    .stat-value.green { color: var(--green); }
+    .stat-value.yellow { color: var(--yellow); }
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+    }
+    .tag.green { background: rgba(63,185,80,0.15); color: var(--green); }
+    .tag.red   { background: rgba(224,92,92,0.15); color: var(--accent3); }
+    .tag.yellow{ background: rgba(210,153,34,0.15); color: var(--yellow); }
+
+    /* ── Priority Box ── */
+    .priority-list {
+      counter-reset: priority;
+      list-style: none;
+    }
+    .priority-list li {
+      counter-increment: priority;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(46,51,80,0.4);
+    }
+    .priority-list li:last-child { border-bottom: none; }
+    .priority-list li::before {
+      content: counter(priority);
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .priority-list li .p-title { font-weight: 700; color: #fff; font-size: 14px; }
+    .priority-list li .p-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Step List ── */
+    .steps {
+      list-style: none;
+    }
+    .steps li {
+      position: relative;
+      padding: 8px 0 8px 22px;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .steps li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: var(--accent);
+    }
+    .steps li > ul {
+      margin-top: 6px;
+    }
+    .steps.alpha { counter-reset: alpha; }
+    .steps.alpha li::before {
+      content: counter(alpha, upper-alpha) '.';
+      counter-increment: alpha;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Two columns ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .col-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .col-card h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+
+    /* ── Related Standards ── */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .std-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .std-id {
+      background: rgba(79,142,247,0.15);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .std-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    /* ── Pending outline ── */
+    .pending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pending-item {
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .pending-item strong { color: var(--text); font-size: 13px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* ── Mobile Nav (hidden on desktop) ── */
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav a {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 11px 12px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .mobile-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Mobile Responsive ── */
+    @media (max-width: 768px) {
+      .toc { display: none; }
+      .mobile-nav { display: block; }
+      .layout { display: block; }
+      .section { scroll-margin-top: 56px; }
+
+      .header { padding: 24px 16px 20px; }
+      .header h1 { font-size: 19px; }
+      .header-sub { font-size: 12px; }
+      .header-meta { gap: 8px; }
+      .meta-item { font-size: 11px; padding: 4px 8px; }
+
+      main { padding: 14px 12px 48px; }
+
+      .section { padding: 18px 14px; border-radius: 10px; margin-bottom: 14px; }
+      h2 { font-size: 15px; }
+      h3 { font-size: 13px; margin: 16px 0 6px; }
+
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      th, td { padding: 8px 10px; font-size: 12.5px; white-space: normal; word-break: break-word; }
+      .clause-table td:first-child:nth-last-child(2) { width: 72px; }
+
+      .callout { padding: 12px 14px; font-size: 13px; gap: 10px; }
+      .callout-icon { font-size: 16px; }
+
+      .stat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-value { font-size: 22px; }
+      .stat-label { font-size: 10.5px; }
+      .stat-card { padding: 12px; }
+
+      .two-col { grid-template-columns: 1fr; gap: 10px; }
+
+      .standards-grid, .pending-grid { grid-template-columns: 1fr; gap: 8px; }
+
+      .priority-list li { gap: 10px; padding: 10px 0; }
+      .priority-list li .p-title { font-size: 13px; }
+      .priority-list li .p-desc { font-size: 12px; }
+
+      .steps li { font-size: 13px; }
+
+      footer { font-size: 11px; padding: 16px 12px; }
+    }
+
+    @media (max-width: 380px) {
+      .header h1 { font-size: 16px; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .toc { display: none; }
+      .mobile-nav { display: none; }
+      main { padding: 0; }
+      .section { break-inside: avoid; }
+      body { background: #fff; color: #111; }
+    }
+  </style>
+<body>
+
+<div class="header">
+  <div class="header-badge">職業安全衛生教育訓練</div>
+  <h1>職業安全衛生管理員<span> 安全衛生教育訓練</span></h1>
+  <div class="header-sub">依「職業安全衛生管理辦法」訓練課程大綱整理｜依課程主題分類重點中文摘要</div>
+  <div class="header-meta">
+    <div class="meta-item">📚 <strong>課程來源</strong>：財團法人中國生產力中心台南服務處，職業安全衛生管理員安全衛生教育訓練班課程表</div>
+    <div class="meta-item">📌 <strong>整理進度</strong>：建置中</div>
+    <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-05</div>
+    <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
+    <div class="meta-item">🔗 <a href="index.html" style="color:var(--accent);text-decoration:none;">同系列：FM Global DS 7-7 →</a></div>
+    <div class="meta-item">🔗 <a href="nfpa13.html" style="color:var(--accent);text-decoration:none;">同系列：NFPA 13 →</a></div>
+  </div>
+</div>
+
+<!-- 手機版頂部導覽（桌機隱藏） -->
+<nav class="mobile-nav">
+  <a href="#g1">法規總論</a>
+  <a href="#g2">機械設備</a>
+  <a href="#g3">化學品</a>
+  <a href="#g4">作業環境</a>
+  <a href="#g5">營造安全</a>
+  <a href="#g6">火災/電氣</a>
+  <a href="#g7">健康管理</a>
+  <a href="#g8">風險評估</a>
+  <a href="#g9">設施規則</a>
+</nav>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">目錄（依課程主題分類）</div>
+    <a href="#g1">A. 法規總論與管理制度</a>
+    <a href="#g2">B. 機械與危險性設備安全</a>
+    <a href="#g3">C. 化學品與有害物質管理</a>
+    <a href="#g4">D. 物理性危害與作業環境</a>
+    <a href="#g5">E. 營造安全與墜落防止</a>
+    <a href="#g6">F. 火災爆炸/電氣/特殊作業</a>
+    <a href="#g7">G. 健康管理與職業病預防</a>
+    <a href="#g8">H. 風險評估與職災處理</a>
+    <a href="#g9">I. 職業安全衛生設施規則</a>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <div class="callout danger">
+      <div class="callout-icon">🔥</div>
+      <div>本頁為<b>依課程主題分類之法規重點整理</b>，內容由 AI 依一般法規知識整理而成，<b>並未逐條對照官方最新法規全文</b>，可能存在條文編號、修正日期、細部數值與現行法規不符之處。職業安全衛生相關法規<b>修正頻繁</b>，正式教材、考試準備或實務合規判斷，請務必至<a href="https://law.moj.gov.tw" style="color:var(--warn-text);text-decoration:underline;" target="_blank" rel="noopener">全國法規資料庫</a>查核最新條文，不得僅憑本頁內容作為依據。</div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  內容依「職業安全衛生管理員安全衛生教育訓練班」課程大綱（財團法人中國生產力中心台南服務處）之課程名稱分類整理，具體法規內容為 AI 依一般知識整理撰寫，非官方教材、非逐條法規原文。
+  正式學習、考試或合規判斷請以勞動部職業安全衛生署公告之最新法規與官方教材為準。
+</footer>
+
+</body>
+</html>
