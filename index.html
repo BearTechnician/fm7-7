@@ -487,11 +487,11 @@
 <div class="header">
   <div class="header-badge">FM Global Property Loss Prevention</div>
   <h1>Data Sheet <span>7-7</span> — 半導體製造廠損失預防</h1>
-  <div class="header-sub">Semiconductor Fabrication Facilities｜消防 / 損防工程師重點整理</div>
+  <div class="header-sub">Semiconductor Fabrication Facilities｜消防 / 損防工程師重點整理（含延伸實務筆記）</div>
   <div class="header-meta">
     <div class="meta-item">📄 <strong>最新版本</strong>：2025 年 4 月（2024 年 10 月中期修訂）</div>
     <div class="meta-item">📑 <strong>頁數</strong>：76 頁</div>
-    <div class="meta-item">🗓 <strong>整理日期</strong>：2026-06-30</div>
+    <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-05</div>
     <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
   </div>
 </div>
@@ -502,13 +502,17 @@
   <a href="#s1">火災危害</a>
   <a href="#s2">建築材料</a>
   <a href="#s3">撒水系統</a>
-  <a href="#s4">矽烷防護</a>
-  <a href="#s5">製程安全</a>
-  <a href="#s6">設備評估</a>
-  <a href="#s7">資安</a>
-  <a href="#s8">公用設施</a>
-  <a href="#s9">相關規範</a>
-  <a href="#s10">核心重點</a>
+  <a href="#s4">探測監測</a>
+  <a href="#s5">矽烷防護</a>
+  <a href="#s6">液體儲存</a>
+  <a href="#s7">製程安全</a>
+  <a href="#s8">緊急應變</a>
+  <a href="#s9">設備評估</a>
+  <a href="#s10">資安</a>
+  <a href="#s11">公用設施</a>
+  <a href="#s12">營運持續</a>
+  <a href="#s13">相關規範</a>
+  <a href="#s14">核心重點</a>
 </nav>
 
 <div class="layout">
@@ -520,13 +524,17 @@
     <a href="#s1">主要火災危害</a>
     <a href="#s2">建築與材料要求</a>
     <a href="#s3">自動撒水系統</a>
-    <a href="#s4">矽烷特殊防護</a>
-    <a href="#s5">製程安全管理</a>
-    <a href="#s6">FM 7701 設備評估</a>
-    <a href="#s7">資安新增要求</a>
-    <a href="#s8">公用設施與其他</a>
-    <a href="#s9">相關配套規範</a>
-    <a href="#s10">工程師核心重點</a>
+    <a href="#s4">火警探測與氣體監測</a>
+    <a href="#s5">矽烷特殊防護</a>
+    <a href="#s6">易燃液體儲存管理</a>
+    <a href="#s7">製程安全管理</a>
+    <a href="#s8">緊急應變與消防組織</a>
+    <a href="#s9">FM 7701 設備評估</a>
+    <a href="#s10">資安新增要求</a>
+    <a href="#s11">公用設施與其他</a>
+    <a href="#s12">營運持續與財務影響</a>
+    <a href="#s13">相關配套規範</a>
+    <a href="#s14">工程師核心重點</a>
   </nav>
 
   <!-- Main -->
@@ -561,6 +569,11 @@
           <tr><td><code>5.0</code></td><td>其他適用規範（NFPA 318 等）</td></tr>
         </tbody>
       </table>
+
+      <div class="callout warn">
+        <div class="callout-icon">📝</div>
+        <div><b>本次補充說明</b>：本整理在原有 11 節基礎上，新增「火警探測與氣體監測」「易燃液體儲存管理」「緊急應變與消防組織」「營運持續與財務影響評估」四節，內容綜合 FM 7-7 條文精神、相關配套 Data Sheet（如 DS 5-48、DS 7-29）與半導體廠實務作法整理而成，作為工程師現場稽核 / 設計審查的延伸筆記，非 FM Global 官方章節編號，實際條文請以原文為準。</div>
+      </div>
     </div>
 
     <!-- 主要火災危害 -->
@@ -610,7 +623,7 @@
       <ul class="steps">
         <li>自燃性 + 高爆炸危險，接觸空氣即自燃</li>
         <li>LCD / OLED 廠大量使用，單一 ISO 模組可達 6,000 公升</li>
-        <li>詳見第四章矽烷特殊防護</li>
+        <li>詳見第五節矽烷特殊防護</li>
       </ul>
 
       <h3>🧪 危害四：其他製程危害</h3>
@@ -674,6 +687,13 @@
         <div class="callout-icon">✅</div>
         <div>合格管道選項：<b>不燃金屬管（無內襯鐵管）</b>，或通過 <b>FM 4922 認證</b>的排氣管道。廢氣處理系統（Scrubber）亦須使用不燃材料或 FM 4910 認證材料。</div>
       </div>
+
+      <h3>D. 防火區劃與構造細節</h3>
+      <ul class="steps">
+        <li>潔淨室與 Sub-fab、機房、辦公區之間需以列名防火牆 / 防火樓板區劃，開口部（門、貫穿孔）須維持同等防火時效</li>
+        <li>屋頂構造避免使用可燃隔熱材，或加裝不燃保護層，降低屋頂火災延燒風險</li>
+        <li>防火區劃邊界的空調風管貫穿處應設置防火閘門（Fire/Smoke Damper）</li>
+      </ul>
     </div>
 
     <!-- 自動撒水系統 -->
@@ -722,12 +742,56 @@
         <div class="callout-icon">⚠️</div>
         <div><b>注意</b>：潔淨室環境中，擴展覆蓋型噴頭的認可範圍受限。若設計選用非標準型式，需有額外的工程評估依據。</div>
       </div>
+
+      <h3>高架地板下（Sub-fab / Raised Floor）撒水設計</h3>
+      <ul class="steps">
+        <li>地板下管線密集區域仍屬可燃物累積空間，需視同一般樓層評估撒水覆蓋</li>
+        <li>地板高度 ≥ 建議門檻時，通常需於地板下加設撒水頭</li>
+        <li>撒水管路支撐須考量地震拉力設計（Seismic Bracing），半導體廠多位於地震帶</li>
+      </ul>
+    </div>
+
+    <!-- 火警探測與氣體監測 -->
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div class="section-num yellow">4</div>
+        <h2>火警探測與氣體監測系統</h2>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">🚨</div>
+        <div>潔淨室<b>高換氣次數（通常 300–600 ACH）</b>會將煙霧迅速稀釋，一般點式偵煙器往往在濃度達到動作閾值前，火勢已擴大。因此火警探測需採用<b>空氣採樣式極早期煙霧偵測（ASD / VESDA 類系統）</b>作為關鍵防護層，搭配獨立的氣體洩漏監測。</div>
+      </div>
+
+      <h3>A. 空氣採樣式偵煙（Aspirating Smoke Detection）</h3>
+      <table>
+        <thead><tr><th>安裝位置</th><th>偵測目的</th></tr></thead>
+        <tbody>
+          <tr><td>製程工具內部 / 排氣岐管</td><td>設備級早期起火偵測，先於外部警報動作</td></tr>
+          <tr><td>空調 AHU 回風 / 送風管路</td><td>偵測循環氣流中被高度稀釋的低濃度煙霧</td></tr>
+          <tr><td>高架地板下（Sub-fab）</td><td>隱蔽空間管線起火，人員不易目視發現</td></tr>
+          <tr><td>天花板夾層（Interstitial Space）</td><td>電纜與管路密集區域</td></tr>
+        </tbody>
+      </table>
+
+      <h3>B. 毒性氣體監測系統（TGM, Toxic Gas Monitoring）</h3>
+      <ul class="steps">
+        <li>Gas Cabinet、VMB（Valve Manifold Box）、氣體管道間須設置連續式氣體偵測</li>
+        <li>依氣體特性分類監測：可燃性、毒性、腐蝕性、自燃性（如矽烷）氣體各自對應偵測器種類</li>
+        <li>雙段警報邏輯：<code>低警報</code>（通知巡檢）與<code>高警報</code>（自動連鎖跳停、關閉供應閥、啟動局部排氣）</li>
+        <li>偵測器須定期校正與功能測試，校正紀錄留存供 FM 稽核查閱</li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div>ASD 與 TGM 屬於<b>互補防護層</b>：ASD 負責「起火早期偵測」，TGM 負責「洩漏早期偵測」，兩者搭配硬體連鎖，才能在自動撒水動作前先行處置，降低生產中斷與晶圓污染損失。</div>
+      </div>
     </div>
 
     <!-- 矽烷防護 -->
-    <div class="section" id="s4">
+    <div class="section" id="s5">
       <div class="section-header">
-        <div class="section-num danger">4</div>
+        <div class="section-num danger">5</div>
         <h2>矽烷（Silane, SiH₄）特殊防護</h2>
       </div>
 
@@ -749,12 +813,54 @@
         <li>ISO 模組需加強通風與偵測密度</li>
         <li>基本四要素：偵測 → 通風 → 自動截止閥 → 洩漏警報</li>
       </ul>
+
+      <h3>滅火應變注意事項</h3>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>矽烷洩漏起火時，<b>不建議直接以水柱撲滅氣體火焰</b>——氣體火焰撲滅後若持續洩漏，未燃氣體累積反而提高爆炸風險。正確原則為優先<b>關閉氣源</b>，讓火焰在控制下自然燃盡，同時以水霧冷卻鄰近設備與鋼構，防止二次延燒。此原則須列入應變小隊教育訓練與消防單位聯合演練情境。</div>
+      </div>
+    </div>
+
+    <!-- 易燃/可燃液體儲存管理 -->
+    <div class="section" id="s6">
+      <div class="section-header">
+        <div class="section-num purple">6</div>
+        <h2>易燃 / 可燃液體儲存管理</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">🧴</div>
+        <div>光阻劑、顯影液、清洗溶劑（IPA、Acetone、NMP 等）多屬第 IB / IC 類易燃液體，潔淨室內存量與供應方式須明確管制，避免單一區域累積過量可燃液體。</div>
+      </div>
+
+      <h3>A. 潔淨室內存量限制</h3>
+      <table>
+        <thead><tr><th>供應方式</th><th>典型作法</th></tr></thead>
+        <tbody>
+          <tr><td>製程工具旁日用桶（Day Tank / Point-of-Use）</td><td>單一防火區劃內總量依類別分級管制，超量須加裝防火櫃或加強撒水區</td></tr>
+          <tr><td>批量化學品分配（Bulk Chemical Distribution, BCD）</td><td>集中設置於潔淨室外之獨立化學品廠房，經管路輸送進潔淨室，降低室內存量</td></tr>
+          <tr><td>易燃液體儲存櫃</td><td>採用列名認可之防火儲存櫃，並限制單櫃存放量</td></tr>
+        </tbody>
+      </table>
+
+      <h3>B. 二次圍堵與洩漏防護</h3>
+      <ul class="steps">
+        <li>化學品供應管路採雙套管（Double-Containment Piping）並具洩漏偵測夾層</li>
+        <li>BCD 廠房設置防液堤（Containment Berm），容量須大於最大單一容器體積</li>
+        <li>不相容化學品（如氧化劑與可燃品）分區存放，禁止共用防液堤</li>
+        <li>地下 / 半地下化學品儲存區加強通風換氣，防止可燃蒸氣累積</li>
+      </ul>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>供應管路貫穿防火區劃處，須以列名認可的防火填塞（Firestop）系統封堵，避免火煙沿管道間延燒至其他區域。</div>
+      </div>
     </div>
 
     <!-- 製程安全管理 -->
-    <div class="section" id="s5">
+    <div class="section" id="s7">
       <div class="section-header">
-        <div class="section-num yellow">5</div>
+        <div class="section-num yellow">7</div>
         <h2>製程安全管理（Process Safety）</h2>
       </div>
 
@@ -815,10 +921,40 @@
       </ol>
     </div>
 
-    <!-- FM 7701 -->
-    <div class="section" id="s6">
+    <!-- 緊急應變與消防組織 -->
+    <div class="section" id="s8">
       <div class="section-header">
-        <div class="section-num green">6</div>
+        <div class="section-num green">8</div>
+        <h2>緊急應變與消防組織</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">🚒</div>
+        <div>FM 7-7 要求廠區建立<b>自有緊急應變編組</b>，並與地方消防單位保持熟悉度，降低應變時間對財損擴大的影響。</div>
+      </div>
+
+      <h3>A. 應變組織與訓練</h3>
+      <ul class="steps">
+        <li>廠內編組初期應變小隊（ERT），涵蓋滅火、疏散引導、化學品洩漏處置</li>
+        <li>每年至少辦理一次全廠疏散演練，特殊氣體洩漏情境演練頻率應更高</li>
+        <li>邀請轄區消防單位定期入廠熟悉（Pre-fire Planning / Familiarization Tour），事先掌握化學品儲放位置與滅火限制（如矽烷不宜直接以水柱撲滅氣體火焰）</li>
+      </ul>
+
+      <h3>B. 系統停用管制（Impairment Management）</h3>
+      <table>
+        <thead><tr><th>項目</th><th>要求</th></tr></thead>
+        <tbody>
+          <tr><td>撒水系統停水作業</td><td>須申請 Impairment Permit，超過 <code>8 小時</code> 應通知保險方並安排消防監視</td></tr>
+          <tr><td>動火作業（Hot Work）</td><td>採用 Hot Work Permit 制度，作業區 <code>11 公尺</code> 內清除可燃物並派駐監視人員</td></tr>
+          <tr><td>偵測 / 連鎖系統維護</td><td>維護期間須有替代偵測措施（如專人巡檢）並記錄起訖時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FM 7701 -->
+    <div class="section" id="s9">
+      <div class="section-header">
+        <div class="section-num green">9</div>
         <h2>FM 7701 製程設備評估</h2>
       </div>
 
@@ -846,9 +982,9 @@
     </div>
 
     <!-- 資安 -->
-    <div class="section" id="s7">
+    <div class="section" id="s10">
       <div class="section-header">
-        <div class="section-num purple">7</div>
+        <div class="section-num purple">10</div>
         <h2>資安（Cybersecurity）— 2024 新增章節</h2>
       </div>
 
@@ -866,9 +1002,9 @@
     </div>
 
     <!-- 公用設施 -->
-    <div class="section" id="s8">
+    <div class="section" id="s11">
       <div class="section-header">
-        <div class="section-num">8</div>
+        <div class="section-num">11</div>
         <h2>公用設施與其他危害</h2>
       </div>
 
@@ -909,10 +1045,46 @@
       </table>
     </div>
 
-    <!-- 相關規範 -->
-    <div class="section" id="s9">
+    <!-- 營運持續與財務影響 -->
+    <div class="section" id="s12">
       <div class="section-header">
-        <div class="section-num">9</div>
+        <div class="section-num">12</div>
+        <h2>營運持續與財務影響評估</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">📊</div>
+        <div>FM Global 的核保邏輯不僅看「會不會失火」，更重視<b>單一事故對營運中斷的最大可預見損失（MFL, Maximum Foreseeable Loss）</b>。半導體廠因設備高度客製化、交期長，火災後的復原時間往往遠超過建築重建時間。</div>
+      </div>
+
+      <h3>A. 常見營運中斷放大因素</h3>
+      <table>
+        <thead><tr><th>因素</th><th>影響</th></tr></thead>
+        <tbody>
+          <tr><td>單一供應商關鍵設備（如 EUV 微影機台）</td><td>交期可達 12–18 個月，火損後難以短期替換</td></tr>
+          <tr><td>潔淨室污染（非火損本身，而是煙塵 / 滅火水漬）</td><td>即使未直接延燒，鄰近區域仍可能因污染而全面停產清潔</td></tr>
+          <tr><td>公用設施單點故障（UPS、DI Water、特氣供應）</td><td>缺乏備援時，單一系統事故可導致全廠停機</td></tr>
+        </tbody>
+      </table>
+
+      <h3>B. 損失預防對應措施</h3>
+      <ul class="steps">
+        <li>關鍵公用設施（電力、DI Water、特氣）建立 N+1 或異地備援</li>
+        <li>強化防火區劃（Fire Compartmentation），限制單一事故延燒至整層潔淨室</li>
+        <li>制定緊急供應鏈計畫，預先確認關鍵零組件之替代供應商或安全庫存</li>
+        <li>定期辦理 FM Global 風險工程師複勘（Risk Engineering Survey），追蹤改善建議事項（Recommendations）完成率</li>
+      </ul>
+
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div>建議事項完成率高、無逾期未結案項目的廠區，通常能取得更佳的 <b>HPR（Highly Protected Risk）</b> 評級與保費優惠。</div>
+      </div>
+    </div>
+
+    <!-- 相關規範 -->
+    <div class="section" id="s13">
+      <div class="section-header">
+        <div class="section-num">13</div>
         <h2>相關配套規範（必須搭配閱讀）</h2>
       </div>
 
@@ -920,6 +1092,14 @@
         <div class="std-card">
           <div class="std-id">DS 1-56</div>
           <div class="std-desc">潔淨室（Cleanrooms）防護通則</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">DS 5-48</div>
+          <div class="std-desc">自動火警探測系統設計原則</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">DS 7-29</div>
+          <div class="std-desc">可攜式容器易燃液體儲存</div>
         </div>
         <div class="std-card">
           <div class="std-id">DS 7-78</div>
@@ -946,6 +1126,14 @@
           <div class="std-desc">半導體廠房防火標準（美國法規面）</div>
         </div>
         <div class="std-card">
+          <div class="std-id">NFPA 30</div>
+          <div class="std-desc">易燃 / 可燃液體法規（美國法規面）</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">NFPA 72</div>
+          <div class="std-desc">火警警報系統設計與測試規範</div>
+        </div>
+        <div class="std-card">
           <div class="std-id">FM 4910</div>
           <div class="std-desc">潔淨室材料可燃性測試協議</div>
         </div>
@@ -961,7 +1149,7 @@
     </div>
 
     <!-- 核心重點 -->
-    <div class="section" id="s10">
+    <div class="section" id="s14">
       <div class="section-header">
         <div class="section-num green">★</div>
         <h2>消防 / 損防工程師核心行動重點</h2>
@@ -969,7 +1157,7 @@
 
       <div class="callout green">
         <div class="callout-icon">🎯</div>
-        <div>以下為對照 FM 7-7 要求，TSMC 工程師日常稽核 / 設計 / 審查時最需掌握的七大重點。</div>
+        <div>以下為對照 FM 7-7 要求，TSMC 工程師日常稽核 / 設計 / 審查時最需掌握的九大重點。</div>
       </div>
 
       <ol class="priority-list">
@@ -987,8 +1175,14 @@
         </li>
         <li>
           <div>
+            <div class="p-title">火警探測與氣體監測 — ASD / TGM 覆蓋確認</div>
+            <div class="p-desc">確認製程工具、AHU 風管、Sub-fab 皆有空氣採樣式偵煙覆蓋，氣體監測雙段警報邏輯連動自動截止閥</div>
+          </div>
+        </li>
+        <li>
+          <div>
             <div class="p-title">矽烷防護 — Gas Cabinet 內部撒水頭</div>
-            <div class="p-desc">每個 Gas Cabinet 內裝 165°F 快速響應撒水頭，搭配洩漏偵測與自動截止閥</div>
+            <div class="p-desc">每個 Gas Cabinet 內裝 165°F 快速響應撒水頭，搭配洩漏偵測與自動截止閥；應變教育納入「先斷源、後冷卻」原則</div>
           </div>
         </li>
         <li>
@@ -1005,14 +1199,20 @@
         </li>
         <li>
           <div>
+            <div class="p-title">易燃液體儲存合規 — 存量與圍堵</div>
+            <div class="p-desc">日用桶存量分級管制、BCD 廠房防液堤容量核算、不相容化學品分區存放</div>
+          </div>
+        </li>
+        <li>
+          <div>
             <div class="p-title">製程安全三核心 — PHA、MOC、事故調查</div>
             <div class="p-desc">這三項是 FM 稽核最常查的項目，需確保文件完整、追蹤閉環、定期複審</div>
           </div>
         </li>
         <li>
           <div>
-            <div class="p-title">OT 資安評估（2024 新增）</div>
-            <div class="p-desc">依 DS 7-110 完成 OT 網路資安風險評估，硬體聯鎖確保在網路攻擊情境下仍能獨立運作</div>
+            <div class="p-title">應變編組與 OT 資安 — 雙軌並進</div>
+            <div class="p-desc">落實 Impairment / Hot Work 許可制度與定期演練；依 DS 7-110 完成 OT 網路資安風險評估，硬體聯鎖確保在網路攻擊情境下仍能獨立運作</div>
           </div>
         </li>
       </ol>
