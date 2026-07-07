@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM Global DS 2-0 — 自動撒水系統安裝準則重點整理</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3350;
+      --accent: #4f8ef7;
+      --accent2: #7c5cbf;
+      --accent3: #e05c5c;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --text: #e4e6f0;
+      --muted: #8b92b3;
+      --tag-bg: #1e3a5f;
+      --tag-text: #70b3ff;
+      --warn-bg: #3a2010;
+      --warn-text: #f0a060;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Helvetica Neue', '蘋方-繁', 'PingFang TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0d1b3e 0%, #1a2a5e 50%, #0d1b3e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(79,142,247,0.12) 0%, transparent 70%);
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(79,142,247,0.15);
+      border: 1px solid rgba(79,142,247,0.4);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+      position: relative;
+    }
+    .header h1 span { color: var(--accent); }
+    .header-sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+      position: relative;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+    .meta-item strong { color: var(--text); }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    /* ── TOC Sidebar ── */
+    .toc {
+      width: 250px;
+      flex-shrink: 0;
+      padding: 28px 0 28px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .toc-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .toc a {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 8px;
+      border-left: 2px solid transparent;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toc a:hover { color: var(--accent); border-left-color: var(--accent); background: rgba(79,142,247,0.06); }
+    .toc a.sub { padding-left: 18px; font-size: 12px; }
+    .toc a.pending { opacity: 0.45; font-style: italic; }
+
+    /* ── Main Content ── */
+    main {
+      flex: 1;
+      min-width: 0;
+      padding: 28px 32px 60px;
+    }
+
+    /* ── Section ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      padding: 0 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .section-num.danger { background: var(--accent3); }
+    .section-num.purple { background: var(--accent2); }
+    .section-num.green  { background: var(--green); }
+    .section-num.yellow { background: var(--yellow); }
+    .section-num.muted  { background: var(--muted); }
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 22px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3.warn { color: var(--accent3); }
+    h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 14px 0 6px;
+    }
+    p { color: var(--muted); margin-bottom: 8px; }
+    .clause-ref {
+      font-family: 'SF Mono', monospace;
+      font-size: 10.5px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 12px 0;
+    }
+    th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(46,51,80,0.5);
+      vertical-align: top;
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td strong { color: #fff; }
+    td code {
+      background: rgba(79,142,247,0.12);
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .clause-table td:first-child:nth-last-child(2) { width: 92px; }
+
+    /* ── Highlight Boxes ── */
+    .callout {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .callout-icon { flex-shrink: 0; font-size: 18px; line-height: 1.6; }
+    .callout.info  { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.25); }
+    .callout.warn  { background: var(--warn-bg); border: 1px solid rgba(240,160,96,0.35); color: var(--warn-text); }
+    .callout.danger{ background: rgba(224,92,92,0.08); border: 1px solid rgba(224,92,92,0.3); }
+    .callout.green { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.3); }
+    .callout b { color: #fff; }
+
+    /* ── Stat Cards ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .stat-value.red { color: var(--accent3); }
+    .stat-value.green { color: var(--green); }
+    .stat-value.yellow { color: var(--yellow); }
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+    }
+    .tag.green { background: rgba(63,185,80,0.15); color: var(--green); }
+    .tag.red   { background: rgba(224,92,92,0.15); color: var(--accent3); }
+    .tag.yellow{ background: rgba(210,153,34,0.15); color: var(--yellow); }
+
+    /* ── Priority Box ── */
+    .priority-list {
+      counter-reset: priority;
+      list-style: none;
+    }
+    .priority-list li {
+      counter-increment: priority;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(46,51,80,0.4);
+    }
+    .priority-list li:last-child { border-bottom: none; }
+    .priority-list li::before {
+      content: counter(priority);
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .priority-list li .p-title { font-weight: 700; color: #fff; font-size: 14px; }
+    .priority-list li .p-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Step List ── */
+    .steps {
+      list-style: none;
+    }
+    .steps li {
+      position: relative;
+      padding: 8px 0 8px 22px;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .steps li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: var(--accent);
+    }
+    .steps li > ul {
+      margin-top: 6px;
+    }
+    .steps.alpha { counter-reset: alpha; }
+    .steps.alpha li::before {
+      content: counter(alpha, upper-alpha) '.';
+      counter-increment: alpha;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Two columns ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .col-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .col-card h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+
+    /* ── Related Standards ── */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .std-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .std-id {
+      background: rgba(79,142,247,0.15);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .std-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    /* ── Pending outline ── */
+    .pending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pending-item {
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .pending-item strong { color: var(--text); font-size: 13px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* ── Mobile Nav (hidden on desktop) ── */
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav a {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 11px 12px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .mobile-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Mobile Responsive ── */
+    @media (max-width: 768px) {
+      .toc { display: none; }
+      .mobile-nav { display: block; }
+      .layout { display: block; }
+      .section { scroll-margin-top: 56px; }
+
+      .header { padding: 24px 16px 20px; }
+      .header h1 { font-size: 19px; }
+      .header-sub { font-size: 12px; }
+      .header-meta { gap: 8px; }
+      .meta-item { font-size: 11px; padding: 4px 8px; }
+
+      main { padding: 14px 12px 48px; }
+
+      .section { padding: 18px 14px; border-radius: 10px; margin-bottom: 14px; }
+      h2 { font-size: 15px; }
+      h3 { font-size: 13px; margin: 16px 0 6px; }
+
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      th, td { padding: 8px 10px; font-size: 12.5px; white-space: normal; word-break: break-word; }
+      .clause-table td:first-child:nth-last-child(2) { width: 72px; }
+
+      .callout { padding: 12px 14px; font-size: 13px; gap: 10px; }
+      .callout-icon { font-size: 16px; }
+
+      .stat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-value { font-size: 22px; }
+      .stat-label { font-size: 10.5px; }
+      .stat-card { padding: 12px; }
+
+      .two-col { grid-template-columns: 1fr; gap: 10px; }
+
+      .standards-grid, .pending-grid { grid-template-columns: 1fr; gap: 8px; }
+
+      .priority-list li { gap: 10px; padding: 10px 0; }
+      .priority-list li .p-title { font-size: 13px; }
+      .priority-list li .p-desc { font-size: 12px; }
+
+      .steps li { font-size: 13px; }
+
+      footer { font-size: 11px; padding: 16px 12px; }
+    }
+
+    @media (max-width: 380px) {
+      .header h1 { font-size: 16px; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .toc { display: none; }
+      .mobile-nav { display: none; }
+      main { padding: 0; }
+      .section { break-inside: avoid; }
+      body { background: #fff; color: #111; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">FM Global Property Loss Prevention</div>
+  <h1>Data Sheet <span>2-0</span> — 自動撒水系統安裝準則</h1>
+  <div class="header-sub">Installation Guidelines for Automatic Sprinklers｜條文重點中文整理（依原文條款編號對照）</div>
+  <div class="header-meta">
+    <div class="meta-item">📄 <strong>原文版本</strong>：2021年10月版，2026年4月Interim Revision，共 187 頁</div>
+    <div class="meta-item">📌 <strong>整理進度</strong>：全書完成（1.0 Scope ～ Appendix C）</div>
+    <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-07</div>
+    <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
+    <div class="meta-item">🔗 <a href="index.html" style="color:var(--accent);text-decoration:none;">同系列：FM Global DS 7-7 半導體廠整理 →</a></div>
+    <div class="meta-item">🔗 <a href="nfpa13.html" style="color:var(--accent);text-decoration:none;">同系列：NFPA 13 撒水系統整理 →</a></div>
+    <div class="meta-item">🔗 <a href="https://beartechnician.github.io/osh-manager/" style="color:var(--accent);text-decoration:none;">同系列：職業安全衛生管理員教育訓練整理 →</a></div>
+  </div>
+</div>
+
+<!-- 手機版頂部導覽（桌機隱藏） -->
+<nav class="mobile-nav">
+  <a href="#s1">1 適用範圍</a>
+  <a href="#s21">2.1 一般建議</a>
+  <a href="#s22">2.2 系統類型</a>
+  <a href="#s23">2.3 系統元件</a>
+  <a href="#s24">2.4 配管</a>
+  <a href="#s251">2.5.1 撒水頭一般建議</a>
+  <a href="#s252">2.5.2 下垂/直立式</a>
+  <a href="#s253">2.5.3 側牆式</a>
+  <a href="#s254">2.5.4 儲存型</a>
+  <a href="#s26">2.6 圖說審查</a>
+  <a href="#s27">2.7 驗收測試</a>
+  <a href="#s3">3.0 損失歷史</a>
+  <a href="#appA">附錄A 名詞解釋</a>
+</nav>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">目錄（依原文章節）</div>
+    <a href="#s1">1.0 適用範圍</a>
+    <a href="#s21">2.1 灑水系統安裝一般建議</a>
+    <a href="#s22">2.2 灑水系統類型</a>
+    <a href="#s23">2.3 系統元件</a>
+    <a href="#s24">2.4 灑水系統配管</a>
+    <a href="#s251">2.5.1 撒水頭一般建議</a>
+    <a href="#s252" class="sub">2.5.2 非儲存型下垂/直立式</a>
+    <a href="#s253" class="sub">2.5.3 非儲存型側牆式</a>
+    <a href="#s254" class="sub">2.5.4 儲存型撒水頭</a>
+    <a href="#s255" class="sub">2.5.5 特殊防護撒水頭</a>
+    <a href="#s26">2.6 圖說審查</a>
+    <a href="#s27">2.7 系統驗收測試</a>
+    <a href="#s28" class="sub">2.8 操作與維護</a>
+    <a href="#s29" class="sub">2.9 點火源控制</a>
+    <a href="#s3">3.0 建議依據支持（損失歷史）</a>
+    <a href="#s4">4.0 參考文獻</a>
+    <a href="#appA">附錄A 名詞解釋</a>
+    <a href="#appB" class="sub">附錄B 文件修訂歷史</a>
+    <a href="#appC" class="sub">附錄C 表單</a>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div>本頁為 <b>FM Global Property Loss Prevention Data Sheet 2-0, Installation Guidelines for Automatic Sprinklers（2021年10月版，2026年4月Interim Revision）</b>條文重點之中文摘要與整理，依原文條款編號對照，<b>非官方逐字翻譯，也非完整條文複製</b>。內容涉及大量撒水頭間距、阻礙物判斷、天花板構造分類等設計規則與圖示說明，正式設計與合規判斷請務必以 FM Global 官方原文為準，切勿僅憑本頁內容進行實際系統設計。</div>
+    </div>
+
+    <!-- Section 1.0 -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>1.0 適用範圍（Scope）</h2>
+      </div>
+
+      <p>本 FM 財產損失預防資料表提供<b>自動撒水系統</b>（含撒水頭及其地面上支撐組件）之安裝建議。本資料表涵蓋以下內容：</p>
+      <ul class="steps">
+        <li>撒水系統所使用之組件</li>
+        <li>組件之固定與支撐方式</li>
+        <li>撒水頭對火災之反應時間</li>
+        <li>撒水頭放水之分布方式</li>
+        <li>FM 圖說審查（plan review）所需之文件</li>
+        <li>FM 驗收測試（acceptance test）所需之資訊</li>
+      </ul>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>
+          <b>本資料表不涵蓋以下內容：</b>
+          <ul class="steps" style="margin-top:8px;">
+            <li>天花板或貨架內撒水系統之<b>設計</b>（請參閱相關用途別資料表；惟本資料表仍提供補充型撒水頭之設計資訊，以及天花板與貨架內撒水頭之最低建議設計壓力）</li>
+            <li>撒水系統之<b>維護</b>（見 Data Sheet 2-81，消防安全檢查與撒水系統維護）</li>
+            <li>撒水系統之<b>地下配管或水源</b>（見 Data Sheet 3-10 私設消防水管及其連接，及其他相關 3 系列資料表）</li>
+            <li>撒水系統配管之<b>內部腐蝕防護</b>（見 Data Sheet 2-1，自動撒水系統之腐蝕）</li>
+            <li>50 年至 500 年地震分區（依 Data Sheet 1-2 定義）內配管之<b>耐震設計</b>（見 Data Sheet 2-8，水系消防系統耐震防護）</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3><span class="clause-ref">1.1</span>危害（Hazards）</h3>
+      <p>與撒水系統安裝相關之危害資訊，可參閱下列 FM「認識危害（Understanding the Hazard, UTH）」手冊：撒水系統腐蝕（P0109）、凍結（P0148）、冰塞（Ice Plugs, P0118）、冷凍庫乾式下垂型撒水頭之冰塞（P0382）、儲存設施天花板撒水防護不足（P253）、缺乏自動撒水系統（P0037）、儲存用撒水頭安裝問題（P0477）。</p>
+
+      <h3><span class="clause-ref">1.2</span>修訂內容（Changes）</h3>
+      <p>2026 年 4 月，本版臨時修訂（Interim revision）納入以下修改：</p>
+      <ul class="steps alpha">
+        <li>2.5.1.1.2 節「撒水頭最低設計壓力」依最新測試結果更新，並新增所有 FM Approved 撒水頭之最低設計壓力</li>
+        <li>Table 2.5.4.5.4.1（鄰近天花板撒水頭之可接受阻礙物位置）修訂，以釐清表格第三欄之準則</li>
+        <li>2.5.4.5.4 與 2.5.4.5.5 節修改，將原屬 2.5.4.5.5 節、僅適用於寬度不超過 2 ft (0.6 m) 阻礙物之內容，移至 2.5.4.5.4 節</li>
+        <li>2.4.1.1.5.2 節更新，指出 FM Approved 之伸縮減徑軋製鋼管（stretched-reduced mill manufactured steel pipe），安裝時無須考量其焊道相對於地板之角度</li>
+      </ul>
+
+      <h3><span class="clause-ref">1.3</span>取代之資料（Superseded Information）</h3>
+      <p>本資料表整併並取代 <b>Data Sheet 8-29「冷藏儲存（Refrigerated Storage）」</b>，以及下列公開工程公告（Engineering Bulletins）：EB 08-05（以偵煙啟動冷凍區撒水系統）、EB 02-11（大型低速風扇 HVLS 與撒水頭之性能）。</p>
+    </div>
+
+    <!-- Section 2.1 -->
+    <div class="section" id="s21">
+      <div class="section-header">
+        <div class="section-num purple">2.1</div>
+        <h2>2.1 灑水系統安裝一般建議</h2>
+      </div>
+      <p><span class="clause-ref">2.0</span> 本節屬「損失預防建議（Loss Prevention Recommendations）」之首節，說明如何使用本資料表、何處需要撒水頭防護、水源建議、系統與組件一般建議，以及其他相關資料表。</p>
+
+      <h3><span class="clause-ref">2.1.1</span>如何使用本資料表</h3>
+      <p>如同任何資料表，唯有完整且全面地閱讀內容，才能真正理解本資料表之資訊。為協助正確使用，資料表提供了一份流程圖（見 <b>Fig. 2.1.1</b>）。該流程圖搭配本文使用，可協助決定自動撒水系統之安裝建議。流程圖之判斷邏輯大致如下：</p>
+      <ul class="steps">
+        <li>先確認欲防護之用途（occupancy）——若為非儲存用途，見 2.5.2（懸掛式／直立式撒水頭）或 2.5.3（側牆型撒水頭）；若為儲存用途，見 2.5.4（儲存用懸掛式／直立式撒水頭）</li>
+        <li>見 2.2 節決定欲安裝之<b>撒水系統類型</b>；見 2.3 節決定系統組件；見 2.4 節決定撒水配管、接頭、吊掛與抗震支撐</li>
+        <li>見 2.1.2 節，除非另有規定，否則整個用途區域皆須設置撒水頭；並確認是否有用途別特定建議可能推翻本資料表之一般建議</li>
+        <li>若防護區域為「非房間（non-room）」，如可燃隱蔽空間、風管內部或冷卻水塔內部，見 2.1.3 節（水源）及 2.5.5 節（特殊防護撒水頭）</li>
+        <li>依適用章節判斷天花板構造為無阻礙型或有阻礙型，據以決定撒水頭之允許水平配置、垂直位置；並判斷天花板坡度超過 2:12（10 度）時之影響，以及如何佈置撒水頭以避免不可接受之放水阻礙</li>
+        <li>另見 2.1.4 節（系統與組件一般建議）、2.1.5 節（其他相關資料表）、2.6 節（FM Global 圖說審查）、2.7 節（驗收測試安排），以及附錄 A 之名詞解釋</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.1.2</span>何處需要撒水頭防護</h3>
+      <ul class="steps">
+        <li><span class="clause-ref">2.1.2.1</span> 應依本資料表於建築物所有部分裝設撒水頭，以防護其免於火災損害</li>
+        <li><span class="clause-ref">2.1.2.2</span> 若建築物某區域之<b>構造與用途內容物皆為不燃性</b>，該區域可省略撒水頭防護</li>
+        <li><span class="clause-ref">2.1.2.3</span> 撒水系統之設計基準（含系統設計、消防栓用水量、系統延時）見相關用途別資料表；並確認該資料表是否有可能推翻本資料表一般建議之特定規定</li>
+        <li><span class="clause-ref">2.1.2.4</span> 固定式特殊防護滅火系統（含降氧系統 oxygen reduction systems）<b>並非撒水防護之替代方案</b>，除非相關用途別資料表明確指出可替代</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.1.3</span>撒水系統之水源</h3>
+      <p><span class="clause-ref">2.1.3.1</span> 每一撒水系統應至少設置一組<b>可靠水源</b>，其流量與壓力須能滿足該用途危害之總需求（天花板、貨架內、消防栓用水）及延時，詳見 Data Sheet 3-29「消防水源可靠性」。<span class="clause-ref">2.1.3.2</span> 水源配管網應依 Data Sheet 3-10「私設消防水管及其連接」佈置。</p>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>相關 3 系列資料表（<span class="clause-ref">2.1.3.3</span>）</h4>
+          <ul class="steps">
+            <li>Data Sheet 3-1 併接公共給水之水槽與蓄水池</li>
+            <li>Data Sheet 3-2 消防用水塔</li>
+            <li>Data Sheet 3-4 土堤支撐式軟性水槽</li>
+            <li>Data Sheet 3-6 消防用襯砌式土質蓄水池</li>
+            <li>Data Sheet 3-7 消防幫浦</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>其他一般規定</h4>
+          <ul class="steps">
+            <li><span class="clause-ref">2.1.3.4</span> 民生用水可自撒水系統水源分接，惟其接管點須位於撒水立管水流警報器與消防水帶接口<b>兩者上游</b></li>
+            <li><span class="clause-ref">2.1.3.5</span> 接通撒水系統前，應將供應立管之地下主管與引入管完全沖洗至水質清澈；多水源或環狀系統應視需要關閉分區閥，使各單一管段達高流速沖洗</li>
+          </ul>
+        </div>
+      </div>
+      <p><span class="clause-ref">2.1.3.5</span> 可接受之最低沖洗流量為下列三者之一：(A) 系統含消防栓需求之水力計算需水量；(B) 依 <b>Table 2.1.3.5</b> 達 10 ft/sec (3 m/sec) 流速所需流量；或 (C) 火災狀況下系統可取得之最大流量。</p>
+      <table class="clause-table">
+        <thead><tr><th>管徑，in. (mm)</th><th>流量，gpm</th><th>流量，L/min</th></tr></thead>
+        <tbody>
+          <tr><td>4 (100)</td><td>390</td><td>1475</td></tr>
+          <tr><td>6 (150)</td><td>880</td><td>3330</td></tr>
+          <tr><td>8 (200)</td><td>1560</td><td>5905</td></tr>
+          <tr><td>10 (250)</td><td>2440</td><td>9235</td></tr>
+          <tr><td>12 (300)</td><td>3520</td><td>13325</td></tr>
+        </tbody>
+      </table>
+      <p style="color:var(--muted);font-size:12.5px;margin-top:-6px;">Table 2.1.3.5 地下主管達 10 ft/sec (3 m/sec) 流速所需之沖洗流量</p>
+
+      <h3><span class="clause-ref">2.1.4</span>撒水系統與其組件之一般建議</h3>
+      <ul class="steps">
+        <li><span class="clause-ref">2.1.4.1</span> 僅得安裝<b>全新且 FM Approved（如有）</b>之撒水系統組件</li>
+        <li><span class="clause-ref">2.1.4.2</span> 每一組件之應用應符合：(A) Approval Guide 之列名內容；(B) 製造商安裝說明；(C) 相關用途別資料表；(D) 任何轄區特定要求</li>
+        <li><span class="clause-ref">2.1.4.3</span> 確保各組件彼此相容，且與安裝環境相容，包括預期最高內部壓力，以及最低與最高周溫</li>
+      </ul>
+      <p><span class="clause-ref">2.1.4.4</span> 適用之撒水系統組件包括但不限於：撒水頭與其化妝蓋、系統閥件（濕式警報逆止閥、乾式閥、水幕閥等）及其附件、系統控制閥、逆止閥（含防逆流閥）、水流警報器、測試接頭、壓力錶、消防水帶接口、排水閥、洩壓閥、減壓閥、撒水配管、配管接頭與組件、配管吊掛與抗震支撐。</p>
+
+      <h3><span class="clause-ref">2.1.5</span>其他相關資料表</h3>
+      <p>除本資料表外，下列資料表亦可能影響自動撒水系統之安裝與設計：</p>
+      <ul class="steps">
+        <li><b>Data Sheet 1-20</b> 建築物外部火災暴露防護——用於大型充油變壓器、外部裝卸區、露天儲存等鄰近有（或需要）撒水防護建築物之外部危害，其暴露防護撒水頭安裝建議</li>
+        <li><b>Data Sheet 1-57</b> 建築中之塑膠材料——判斷引入塑膠建材時可能需要之撒水補充防護</li>
+        <li><b>Data Sheet 2-1</b> 自動撒水系統之腐蝕——用於腐蝕性、低溫或高溫等非典型環境之配管內部防蝕</li>
+        <li><b>Data Sheet 2-8</b> 水系消防系統耐震防護——用於 50 年至 500 年地震分區（依 Data Sheet 1-2 定義）之系統</li>
+        <li><b>Data Sheet 2-81</b> 消防安全檢查與撒水系統維護——系統安裝完成後之維護保養建議</li>
+        <li><b>Data Sheet 3-26</b> 非儲存用途之消防防護——大多數非儲存用途危害之系統設計</li>
+        <li><b>Data Sheet 8-1</b> 商品分類——一般倉儲環境常見產品之分類</li>
+        <li><b>Data Sheet 8-9</b> 第 1、2、3、4 類及塑膠商品之儲存——大多數儲存用途危害之系統設計</li>
+      </ul>
+    </div>
+
+    <!-- Section 2.2 -->
+    <div class="section" id="s22">
+      <div class="section-header">
+        <div class="section-num purple">2.2</div>
+        <h2>2.2 灑水系統類型</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.2.1</span>系統類型之一般建議</h3>
+      <p><span class="clause-ref">2.2.1.1</span> <b>系統選型</b>：見相關用途別資料表確認可安裝之系統類型是否受限；若該資料表指定特定系統類型，見 2.2 節相對應之子節；若未指定，見 2.2.2–2.2.9 節判斷何種系統適用於該防護區域。<span class="clause-ref">2.2.1.2</span> <b>組件與環境相容性</b>：於腐蝕性、低溫或高溫等非典型環境，應於 Approval Guide 查詢可用之組件。</p>
+
+      <h4><span class="clause-ref">2.2.1.3</span>建議之系統設計與水力計算</h4>
+      <p>用途別資料表未提供 Hazen-Williams C 值（管粗糙係數）建議時，採 <b>Table 2.2.1.3.3</b> 之預設值：</p>
+      <table class="clause-table">
+        <thead><tr><th>系統類型</th><th>配管材質／特殊條件</th><th>Hazen-Williams C 值</th></tr></thead>
+        <tbody>
+          <tr><td>濕式</td><td>黑鐵管 / 聚合物強化管 / 塑膠管</td><td>120 / 140 / 150</td></tr>
+          <tr><td>乾式或預動作式</td><td>黑鐵管（一般）／黑鐵管＋惰性氣體如氮氣／內鍍鋅管／聚合物強化管</td><td>100／120／120／140</td></tr>
+          <tr><td>冷凍區式</td><td>黑鐵管（一般）／黑鐵管＋周溫恆維持 ≤20°F (-7°C)／黑鐵管＋惰性氣體／內鍍鋅管／聚合物強化管</td><td>100／120／120／120／140</td></tr>
+          <tr><td>真空式</td><td>黑鐵管（一般）／符合 2.2.1.3.4 建議／周溫恆 ≤20°F (-7°C)／內鍍鋅管／聚合物強化管</td><td>100／120／120／120／140</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.2.1.3.4</span> 真空式系統之 C 值可採 120，前提為配管佈置符合：(A) 全系統為單一路徑流動（無迴路或格柵狀）；(B) 水源可滿足最大建議送水時間（如適用）；(C) 符合 2.2.1.4 節建議；(D) 接管方式可避免積水；(E) 支管與主管皆有適當坡度以避免系統內積水。</p>
+      <p><span class="clause-ref">2.2.1.3.5</span> 應於系統閥處張貼硬式設計資料標示牌，至少載明：防護區域名稱、用途危害分類、撒水頭識別編號（SIN）、撒水頭公稱動作溫度、最大間距、設計面積內撒水頭數量、最低設計壓力、立管底部所需流量與壓力、消防栓用水量、安裝承包商名稱。<span class="clause-ref">2.2.1.3.6</span> 防凍液系統另須依 2.2.8.3 節補充標示牌資訊。</p>
+
+      <h4><span class="clause-ref">2.2.1.4</span>系統最大防護面積</h4>
+      <ul class="steps">
+        <li>濕式天花板層系統：僅受水力計算需求及 2.3.3 節水流警報器要求限制</li>
+        <li>乾式天花板層系統：受水力計算需求及系統設計之送水時間限制</li>
+        <li>貨架內系統（濕式或乾式）：貨架佔用樓地板面積（含走道）上限 <b>40,000 ft² (3,715 m²)</b>，不論貨架內撒水層數</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.2.1.5</span>配管佈置方式</h4>
+      <p>濕式與水幕（deluge）系統之配管可為單一路徑流動、環狀（looped）或格柵狀（gridded）。乾式、預動作式、冷凍區式或真空式系統，配管須為<b>單一路徑流動（無迴路或格柵）</b>，並可滿足最大建議送水時間及 2.2.1.4 節之面積限制；惟非儲存用途之乾式與預動作式系統，其配水主管（feed main）／橫走主管（cross main）可為環狀。</p>
+
+      <h4><span class="clause-ref">2.2.1.7</span>沖洗佈置</h4>
+      <p>所有系統應於橫走主管、近端與遠端主管末端設置可拆卸接頭（沖洗接頭），最小直徑 <b>1.25 in. (32 mm)</b>。格柵狀系統之支管應使一端可用簡易接頭或撓性接頭拆卸（見 Fig. 2.2.1.7.2），或安裝 FM Approved 支管測試器等具同等效果之佈置方式，以利沖洗作業。</p>
+
+      <h4><span class="clause-ref">2.2.1.10</span>乾式與預動作式系統之氣體介質供應</h4>
+      <ul class="steps">
+        <li>系統維壓宜使用<b>惰性氣體</b>（如氮氣）或經 FM Approved 之特定氣體介質，並確保與所有組件相容</li>
+        <li>使用<b>空氣</b>作為介質之可接受條件：(A) 供氣管路裝有再生式空氣乾燥機；或 (B) 系統防護撒水頭數 ≤20 個</li>
+        <li>氣體供應須依乾式閥製造商規格，隨時可用；可靠氣體供應（如 FM Approved 氮氣產生器）須能於 <b>30 分鐘內</b>將系統充填至最低所需維護壓力，同時仍滿足最大建議送水時間，且不得超過系統最大建議氣體維持壓力</li>
+        <li>氣體供應與乾式／預動作閥間應裝逆止閥；供應與系統間應裝洩壓閥，設定於系統最大建議維持壓力<b>再加 5 psi (0.3 bar)</b>時洩放</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.2.1.11</span>送水時間（Water Delivery Time）</h4>
+      <p>除水幕系統外，用途別資料表未指定最大送水時間時，採下列之一：(A) 最遠單一撒水頭動作、60 秒；(B) 非儲存用途最遠支管最遠 2 個撒水頭動作、50 秒；(C) 儲存用途、天花板有阻礙構造，最遠支管最遠 2 個撒水頭動作、40 秒；(D) 儲存用途、天花板無阻礙構造，最遠 2 支支管共 4 個撒水頭動作、40 秒。水幕系統未指定時，最大送水時間為 <b>30 秒</b>。經驗顯示，為達成上述送水時間，系統規模宜限制在約 <b>10,000–12,000 ft² (930–1,115 m²)</b>。</p>
+
+      <h4><span class="clause-ref">2.2.1.12</span>預動作、冷凍區、真空、水幕系統之啟動</h4>
+      <p>此類系統之火警偵測（熱感知或偵煙）與火警受信總機，應依 Data Sheet 5-48「自動火災偵測」、相關用途別資料表及以下建議設置：</p>
+      <ul class="steps">
+        <li>每一系統應設置一台受信總機；一台總機可啟動多套系統，惟須各自具備獨立釋放模組，且各模組可獨立隔離監控，電池備援須能供應每套連接系統 <b>90 小時</b>電力</li>
+        <li>預動作系統須可<b>自動與手動</b>兩種方式啟動，並提供火災時可手動啟動預動作／水幕閥之易達裝置</li>
+        <li>真空系統於單一連鎖或雙重連鎖設定下，<b>不得</b>因真空過度損失而設計為「失效即開（fail-safe open）」</li>
+        <li>熱感知裝置除相關用途別資料表另有規定外，應採用定溫式、升溫速率式或兩者併用型；除經用途別資料表特別允許外，不建議採用火焰式偵測</li>
+        <li><b>冷凍區系統</b>僅得使用定溫式熱感知，<b>不得</b>使用引示型撒水頭（pilot sprinklers）；若熱感知為氣動式，其氣體介質須與撒水系統氣體介質相互獨立</li>
+        <li>偵測迴路採單迴路 Class A 配線；每一撒水系統應設置獨立偵測系統</li>
+      </ul>
+      <p>天花板層熱感知或偵煙感知之間距，依天花板構造為無阻礙或有阻礙而異：無阻礙且平滑天花板依 Approval Guide 列名間距裝設；無阻礙非平滑天花板，熱感知間距不超過列名最大間距 <b>50%</b>，或採與天花板撒水頭相同間距；偵煙感知則平滑天花板 <b>30 ft (9.1 m)</b>、非平滑天花板 <b>15 ft (4.6 m)</b>。有阻礙天花板應於每一結構樑柱形成之通道內裝設感知器。貨架內撒水頭之啟動偵測，應採與貨架內撒水頭相同之水平間距與垂直位置。</p>
+
+      <h3><span class="clause-ref">2.2.2</span>濕式系統（Wet-Pipe Sprinkler Systems）</h3>
+      <p>一般建議見 2.2.1 節。<span class="clause-ref">2.2.2.2</span> 僅適用於防護區域周溫恆維持於 <b>40°F (4°C) 至 200°F (95°C)</b> 之間之場所。<span class="clause-ref">2.2.2.3</span> 可安裝懸掛式、側牆型及直立式撒水頭（標準型與延伸涵蓋型）；乾式懸掛型、乾式側牆型與乾式直立型撒水頭亦可安裝於濕式系統，惟連接乾式撒水頭之管段須依製造商說明採取防凍措施。</p>
+
+      <h3><span class="clause-ref">2.2.3</span>乾式系統（Dry-Pipe Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.3.2</span> 適用時機：防護區域周溫可能低於 <b>40°F (4°C)</b> 或高於 <b>200°F (95°C)</b>。惟當周溫恆低於 <b>20°F (-7°C)</b> 且用途為儲存時，應改採 <b>冷凍區式系統</b>（2.2.5 節）而非乾式系統。<span class="clause-ref">2.2.3.3</span> 僅得安裝直立型或乾式型撒水頭（乾式直立型、乾式側牆型）；除用途別資料表另有規定外，應安裝標準反應型、公稱 <b>280°F (140°C)</b> 動作溫度撒水頭。</p>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div><span class="clause-ref">2.2.3.4</span> 乾式閥下游水路中<b>不得</b>安裝其他系統閥（如預動作閥或水幕閥）或逆止閥。<span class="clause-ref">2.2.3.5</span> 若乾式閥（如低差動式）閥瓣上方可能積水達不可接受程度，應設置自動高水位訊號裝置或自動排水裝置。</div>
+      </div>
+      <p><span class="clause-ref">2.2.3.6</span> 安裝加速器（accelerator）時，須確認 Approval Guide 列名其與所用乾式閥相容，並依製造商說明安裝，包括：加速器與立管連接處應高於閥門與加速器復位時預期之積水（引示水與回流水）水位（除非加速器設計已可防止其節流孔與其他運作零件被淹沒）；立管與加速器間應裝設指示型控制閥及 FM Approved 防淹裝置（內建防淹裝置者除外）；加速器與乾式閥中間腔室間應裝逆止閥（若加速器需壓力回饋，可改用指示型閥）。</p>
+
+      <h3><span class="clause-ref">2.2.4</span>預動作系統（Preaction Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.4.2</span> 適用時機：周溫可能低於 40°F (4°C)，或高於 200°F (95°C)；或周溫介於 40–200°F 之間，惟須採用<b>單一連鎖式（single-interlock）</b>預動作系統並依 2.2.1.12 節設置啟動偵測。周溫恆低於 20°F (-7°C) 且用途為儲存者，應改用冷凍區式系統。<span class="clause-ref">2.2.4.3</span> 僅得安裝直立型或乾式型撒水頭（乾式懸掛型、乾式直立型、乾式側牆型）；若防護區域不受凍結影響，且配管內部為鍍鋅（或同等塗層）或依 2.2.1.10 節充填惰性氣體者，亦可安裝懸掛型撒水頭。除用途別資料表另有規定外，應安裝標準反應型、公稱 280°F (140°C) 撒水頭；惟單一連鎖式系統若可視為濕式系統設計者，應安裝公稱 <b>160°F (70°C)</b> 撒水頭。<span class="clause-ref">2.2.4.4</span> 預動作閥下游水路中不得安裝其他系統閥（如乾式閥或水幕閥）或逆止閥。</p>
+
+      <h3><span class="clause-ref">2.2.5</span>冷凍區系統（Refrigerated-Area Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.5.1</span> 除本節另有修改或補充者外，應依<b>雙重連鎖式（double-interlock）</b>預動作系統（2.2.4 節）之建議設置。<span class="clause-ref">2.2.5.2</span> 適用於防護區域周溫恆維持低於 <b>20°F (-7°C)</b> 且用途為儲存之場所。</p>
+      <p><span class="clause-ref">2.2.5.3</span> 配水主管配管應能於通過「加溫空間→冷凍空間」交界處輕易拆卸，以便檢查是否形成冰塞（見 Fig. 2.2.5.3.1）；每一立管應設置 <b>2 in. (50 mm)</b> 試驗排放管，配平時關閉閥及其下游常開之試驗控制閥。</p>
+      <p><span class="clause-ref">2.2.5.4</span> 氣體介質宜採惰性氣體（如氮氣）維壓。若採空氣，須設置適當容量之 FM Approved 冷凍區專用乾燥空氣機組，或設置適當容量之除濕機／再生式空氣乾燥機，並使乾燥空氣經可拆卸之雙迴路管線送至配水主管以利冰塞檢查與清除；各迴路管線暴露外表面積須達 <b>0.7 ft²/scfm (0.038 m²/(m³/h))</b> 以上，管線最小長度須達其公稱直徑之 <b>30 倍</b>以上，並以裝有逆止閥之回彎接頭連接主管。氣體供應之壓力露點須維持較防護區域周溫低 <b>20°F (11°C)</b>；供應須能於 30 分鐘內充填至最低維護壓力，並比照 2.2.1.10 節設置逆止閥與洩壓閥（洩放設定為維持壓力再加 5 psi/0.3 bar）。</p>
+
+      <h3><span class="clause-ref">2.2.6</span>真空系統（Vacuum Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.6.1</span> 除本節修改或補充者外，依預動作系統（2.2.4 節）之建議設置。<span class="clause-ref">2.2.6.2</span> 僅得安裝經 FM Approved 專用於真空系統之直立型或乾式型撒水頭；若防護區域周溫恆維持 <b>40°F (4°C)</b> 以上，亦可安裝經 FM Approved 專用於真空系統之懸掛型撒水頭。視系統設計基準為乾式或濕式系統，分別安裝公稱 280°F (140°C) 或 160°F (70°C) 撒水頭（除用途別資料表另有規定）。</p>
+
+      <h3><span class="clause-ref">2.2.7</span>水幕系統（Deluge Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.7.1</span> 除本節修改或補充者外，依預動作系統（2.2.4 節）之建議設置。<span class="clause-ref">2.2.7.2</span> 應使用已移除感熱元件與孔口蓋、且適用於該防護危害之 FM Approved 撒水頭，或適用於該防護危害之 FM Approved 開放式噴頭（open spray nozzles）。<span class="clause-ref">2.2.7.3</span> 配管佈置須能滿足系統最大建議送水時間及 2.2.1.4 節之建議。</p>
+
+      <h3><span class="clause-ref">2.2.8</span>防凍液系統（Antifreeze Solution Sprinkler Systems）</h3>
+      <p><span class="clause-ref">2.2.8.1</span> 應使用 FM Approved 防凍液，並依 Approval Guide 列名內容使用；除用途別資料表另有規定外，防凍液系統於設計上視為濕式系統；所有組件須與所用防凍液相容。</p>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div><span class="clause-ref">2.2.8.2</span> 若無 FM Approved 防凍液可用，除符合下列條件外，應改安裝乾式、預動作式或冷凍區式系統。若防護區域面積<b>不超過 2,000 ft² (185 m²)</b>（如小型裝卸區或冷藏室），可接受使用非 FM Approved 防凍液系統，其種類與建議濃度依 <b>Table 2.2.8.2.2</b>。</div>
+      </div>
+      <table class="clause-table">
+        <thead><tr><th>防凍液種類</th><th>濃度（體積百分比）</th><th>對應最低周溫，°F (°C)</th></tr></thead>
+        <tbody>
+          <tr><td>Diethylene Glycol 二甘醇</td><td>50 / 55 / 60</td><td>0 (-18) / -15 (-26) / -30 (-35)</td></tr>
+          <tr><td>Ethylene Glycol 乙二醇</td><td>39 / 44 / 49 / 53</td><td>0 (-18) / -10 (-23) / -20 (-29) / -30 (-35)</td></tr>
+          <tr><td>Glycerin 甘油（C.P. 或 U.S.P. 96.5）</td><td>40 / 50 / 60 / 70</td><td>15 (-10) / 0 (-18) / -20 (-29) / -30 (-35)</td></tr>
+          <tr><td>Propylene Glycol 丙二醇</td><td>30 / 40 / 50 / 60</td><td>20 (-7) / 5 (-15) / -15 (-26) / -50 (-46)</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.2.8.2.3</span> 防護面積超過 2,000 ft² (185 m²) 時，非 FM Approved 防凍液系統於下列條件下仍可接受：(A) 周溫恆 ≥32°F (0°C)：採丙二醇 20–25% 或甘油 30–35%；(B) 周溫恆 ≥25°F (-4°C)：採丙二醇 25–30% 或甘油 35–40%。<span class="clause-ref">2.2.8.2.4</span> 防凍液應預先調配並驗證其濃度後方可注入系統。<span class="clause-ref">2.2.8.2.5</span> 接通自來水（潔淨水）水源之防凍液，須為主管機關可接受者。</p>
+      <p><span class="clause-ref">2.2.8.3</span> 系統應張貼標示牌，載明防凍液種類、濃度百分比、所需容量及設計所依據之最低周溫。</p>
+      <p><span class="clause-ref">2.2.8.4</span> 接自潔淨水源者，供水配管、防逆流閥與膨脹室應依 Fig. 2.2.8.4.1 佈置；膨脹室容量須為預期最大熱膨脹量之 <b>1.5 倍</b>並與防凍液相容。接自非潔淨水源者，可依同圖佈置，或以「附 1/32 in. (0.8 mm) 孔逆止閥」取代防逆流閥，此時膨脹槽可省略。</p>
+
+      <h3><span class="clause-ref">2.2.9</span>暴露防護系統（Exposure-Protection Sprinkler Systems）</h3>
+      <p>暴露防護系統依其啟動方式與噴頭型式，分別比照下列系統之建議辦理：</p>
+      <table class="clause-table">
+        <thead><tr><th>噴頭／啟動方式</th><th>比照之系統建議</th></tr></thead>
+        <tbody>
+          <tr><td>閉鎖型撒水頭或自動噴頭，以乾式系統方式啟動</td><td>乾式系統（2.2.3 節）</td></tr>
+          <tr><td>閉鎖型撒水頭或自動噴頭，以預動作系統方式啟動</td><td>預動作系統（2.2.4 節）</td></tr>
+          <tr><td>開放型撒水頭或開放式噴頭</td><td>水幕系統（2.2.7 節）</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.2.9.4</span> 應查閱 Approval Guide，確認所選撒水頭經 FM Approved 適用於欲防護之危害類型。</p>
+
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div><b>系統類型速覽</b>：濕式（周溫 4–95°C）／乾式（可能低於 4°C 或高於 95°C）／預動作（同乾式範圍，惟單一連鎖可於 4–95°C 採濕式設計邏輯）／冷凍區（恆低於 -7°C，儲存用）／真空（同預動作，惟不得失效即開）／水幕（開放噴頭，整區同時放水）／防凍液（視為濕式，小面積或特定濃度條件下可用非 FM Approved 防凍液）／暴露防護（依噴頭型式與啟動方式比照乾式、預動作或水幕系統）。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s23">
+      <div class="section-header">
+        <div class="section-num">2.3</div>
+        <h2>2.3 系統元件（Sprinkler System Components）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.3.1</span>控制閥（Control Valves）</h3>
+      <p><span class="clause-ref">2.3.1.1</span> 每一撒水系統至少應設置一個控制閥。<span class="clause-ref">2.3.1.2</span> 控制閥之配置應確保於火災發生時，以及進行測試、檢查與維護時皆可隨時到達並操作，並依下列優先順序選擇（詳原文 Fig. 2.3.1.2 之配置示意）：</p>
+      <ul class="steps alpha">
+        <li>室外，距離所防護建築物或區域 <b>≥40 ft (12 m)</b></li>
+        <li>室外，距離所防護建築物或區域 <b>&lt;40 ft (12 m)</b></li>
+        <li>室外，採<b>壁式指示閥（wall post indicator valve）</b>，設置於至少 1 小時防火時效之外牆沿線</li>
+        <li>室內，位於具至少 1 小時防火時效構造、且可由室外門直接進入之房間內</li>
+        <li>室內，位於由另一撒水系統防護之區域內</li>
+      </ul>
+      <p><span class="clause-ref">2.3.1.3</span> 若用途危害需要抗爆（damage-limiting）構造，所有室外控制閥應設於耐壓外牆後方，室內控制閥則應設於具耐壓牆之封閉空間內。<span class="clause-ref">2.3.1.4</span> 應提供標示方式，以辨識每一控制閥所影響之廠區範圍。</p>
+
+      <h3><span class="clause-ref">2.3.2</span>逆止閥（Check Valves）</h3>
+      <p><span class="clause-ref">2.3.2.1</span> 每一撒水系統至少應裝設一個逆止閥；裝設警報逆止閥（alarm check valve）、乾式閥、預動式閥、開放式（deluge）閥或防止逆流裝置（backflow preventer）均可滿足此項建議。<span class="clause-ref">2.3.2.2</span> FM 認可之逆止閥可依其認可清單（Approval Guide）所載，安裝於垂直或水平位置。<span class="clause-ref">2.3.2.3</span> 除各用途別資料表另有規定外，逆止閥可裝設於配備乾式或預動式系統閥之立管上。<span class="clause-ref">2.3.2.4</span> 除各用途別資料表另有規定外，<b>不得</b>將逆止閥裝設於乾式或預動式系統立管下游（如送水主管、橫走主管等）。<span class="clause-ref">2.3.2.5</span> 當 AHJ 要求裝設防止逆流裝置時，參見 Data Sheet 3-10《私設消防水管及其連接》。</p>
+
+      <h3><span class="clause-ref">2.3.3</span>水流警報裝置（Waterflow Alarms）</h3>
+      <ul class="steps">
+        <li>每一撒水系統至少應裝設一個於系統內產生水流時啟動之警報裝置（<span class="clause-ref">2.3.3.1</span>）</li>
+        <li>撒水頭動作（即水流警報裝置下游最遠端之查驗試驗接頭開啟）後，警報訊號應於<b>不超過 60 秒</b>內發出（<span class="clause-ref">2.3.3.2</span>）</li>
+        <li>防護面積 <b>≥2,000 ft² (185 m²)</b> 之撒水系統，水流警報裝置至少應提供現場（local）通報（<span class="clause-ref">2.3.3.3</span>）</li>
+        <li>採用葉片式（vane-type）水流警報裝置時，其可裝設之最小公稱撒水管徑為 <b>2 in. (50 mm)</b>（<span class="clause-ref">2.3.3.4</span>）</li>
+        <li>相關監控補充建議見 Data Sheet 9-1《財產監控》與 Data Sheet 5-40《火警系統》（<span class="clause-ref">2.3.3.5</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.3.4</span>查驗試驗與旁通試驗接頭</h3>
+      <h4>查驗試驗接頭（Inspector's Test Connection，<span class="clause-ref">2.3.4.1</span>）</h4>
+      <p><span class="clause-ref">2.3.4.1.1</span> 裝有水流警報裝置之撒水系統下游應裝設查驗試驗接頭；<span class="clause-ref">2.3.4.1.2</span> 防凍液系統或開放式（deluge）系統則<b>免設</b>。<span class="clause-ref">2.3.4.1.3</span> 下列系統類型之查驗試驗接頭應設於系統<b>水力最遠端</b>：</p>
+      <ul class="steps">
+        <li>採特定送水時間設計之乾式系統</li>
+        <li>非連鎖式（non-interlock）預動式系統</li>
+        <li>未依濕式系統設計配置之單連鎖式（single-interlock）預動式系統</li>
+        <li>雙連鎖式（double-interlock）預動式系統</li>
+        <li>冷凍庫用撒水系統</li>
+        <li>真空式撒水系統</li>
+      </ul>
+      <p><span class="clause-ref">2.3.4.1.4</span> 不屬上述類型之系統，查驗試驗接頭得設於水流警報裝置下游任何位置。設計以 2 顆撒水頭（最遠分支管）或 4 顆撒水頭（最遠 2 條分支管）動作為基準者，其查驗試驗接頭配置範例參見原文 <b>Fig. 2.3.4.1.5(a)/(b)</b>（<span class="clause-ref">2.3.4.1.5</span>），配置上均採 90° 常閉快速開啟閥搭配立管處之快速開啟閥。</p>
+      <ul class="steps">
+        <li>查驗試驗接頭配管公稱管徑最小 <b>1 in. (25 mm)</b>，且不得大於該系統最小分支管管徑（<span class="clause-ref">2.3.4.1.6</span>）</li>
+        <li>孔口出口尺寸應等於該系統所裝撒水頭中<b>最小孔口尺寸</b>（<span class="clause-ref">2.3.4.1.7</span>）</li>
+        <li>應設於便於測試之處，並排放至可承受最大預期排水量之場所；<b>不得</b>排放至室內（如集水溝、污水槽）（<span class="clause-ref">2.3.4.1.8</span>）</li>
+        <li>應附識別標籤，標示閥件功能及所屬受測系統（<span class="clause-ref">2.3.4.1.9</span>）</li>
+      </ul>
+      <h4>旁通試驗接頭（By-Pass Test Connection，<span class="clause-ref">2.3.4.2</span>）</h4>
+      <p><span class="clause-ref">2.3.4.2.1</span> 屬 2.3.4.1.3 所列系統類型者，除於系統最遠端設置查驗試驗接頭外，應<b>另於系統立管處設置旁通試驗接頭</b>，以便獨立於查驗試驗接頭測試水流警報裝置。<span class="clause-ref">2.3.4.2.2</span> 裝有水流警報裝置之防凍液系統，亦應於立管處設置旁通試驗接頭。<span class="clause-ref">2.3.4.2.3</span> 每一旁通試驗接頭應附識別標籤，標示閥件功能。</p>
+
+      <h3><span class="clause-ref">2.3.5</span>壓力表（Pressure Gauges）</h3>
+      <p><span class="clause-ref">2.3.5.1</span> 壓力表額定值至少應為裝設地點預期靜壓之 <b>2 倍</b>。<span class="clause-ref">2.3.5.2</span> 至少應於下列位置裝設壓力表：</p>
+      <ul class="steps alpha">
+        <li>警報逆止閥、乾式閥或預動式閥之上、下游兩側</li>
+        <li>無警報逆止閥／乾式閥／預動式閥時，撒水立管上逆止閥之上、下游兩側</li>
+        <li>供應開放式撒水頭之自動系統閥上游側</li>
+        <li>供應乾式與預動式系統之空氣源</li>
+        <li>乾式系統之空氣儲罐與空氣泵浦供應源（如有裝設）</li>
+        <li>乾式或預動式系統之加速器（accelerator），用以顯示加速器處之空氣壓力</li>
+      </ul>
+      <p><span class="clause-ref">2.3.5.3</span> 開放式（deluge）或暴露防護型撒水系統，應於最遠端撒水頭附近提供壓力表連接口。<span class="clause-ref">2.3.5.4</span> 所有系統壓力表應裝設於便於目視檢查、測試與維護之處。</p>
+
+      <h3><span class="clause-ref">2.3.6</span>送水口（Fire Service Connections）</h3>
+      <p><span class="clause-ref">2.3.6.1</span> 每一撒水系統應裝設送水口，並設於鄰近所供應系統之外牆（或等效位置）沿線。<span class="clause-ref">2.3.6.2</span> 經 AHJ 同意，單一送水口可接於消防泵浦下游之地下廠區主管，供應所有由該廠區主管供水之撒水系統（配置方式另見 Data Sheet 3-10《私設消防水管及其連接》）。</p>
+      <p>依系統類型之送水口接管位置（<span class="clause-ref">2.3.6.3–2.3.6.5</span>，範例參見原文 Fig. 2.3.6）：</p>
+      <table class="clause-table">
+        <thead><tr><th>系統類型</th><th>送水口接管位置</th></tr></thead>
+        <tbody>
+          <tr><td>個別濕式、預動式或開放式（deluge）系統</td><td>接於系統閥<b>下游側</b></td></tr>
+          <tr><td>個別乾式系統</td><td>於立管上、乾式閥<b>上游</b>另裝一逆止閥，送水口接於系統閥與該逆止閥之間</td></tr>
+          <tr><td>多套濕式／乾式系統共用集管立管（manifolded riser）</td><td>集管裝有位於送水口<b>上游</b>之逆止閥時，送水口可接於集管上</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.3.6.6</span> 供應 8 in. (200 mm) 以下立管，送水口最小 <b>4 in. (100 mm)</b>；供應大於 8 in. (200 mm) 立管，送水口最小 <b>6 in. (150 mm)</b>。<span class="clause-ref">2.3.6.7</span> 送水口之接頭與內部連接件應與當地消防單位裝備相容。<span class="clause-ref">2.3.6.8</span> 應於所有送水口處提供標示牌，標明所供應之撒水系統。<span class="clause-ref">2.3.6.9</span> 經 AHJ 裁量，送水口得予省略。</p>
+
+      <h3><span class="clause-ref">2.3.7</span>排水閥（Drain Valves）</h3>
+      <ul class="steps">
+        <li>每一撒水系統立管應裝設最小 <b>2 in. (50 mm)</b> 排水閥（<span class="clause-ref">2.3.7.1</span>）</li>
+        <li>應設於便於操作、測試與維護之處（<span class="clause-ref">2.3.7.2</span>）</li>
+        <li>應排放至可承受最大預期排水量之<b>室外</b>場所，不得排放至室內（如集水溝、污水槽）（<span class="clause-ref">2.3.7.3</span>）</li>
+        <li>應附識別標籤，標示閥件功能（<span class="clause-ref">2.3.7.4</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.3.8</span>洩壓閥（Pressure Relief Valves）</h3>
+      <p><span class="clause-ref">2.3.8.1</span> 當撒水配管周遭環境溫度可能超過 <b>120°F (50°C)</b> 時，每一格柵式（gridded）濕式系統應裝設不小於 <b>1⁄4 in. (6 mm)</b> 之洩壓閥或等效洩壓裝置，其動作壓力應設定為系統各元件中最低之最高額定工作壓力。<span class="clause-ref">2.3.8.2</span> 洩壓閥應排放至安全處所（通常排入主排水管線）。<span class="clause-ref">2.3.8.3</span> 濕式系統採用內部鍍鋅鋼管者，應於系統高點裝設洩壓閥，並直接排放至室外。</p>
+
+      <h3><span class="clause-ref">2.3.9</span>減壓閥（Pressure Reducing Valves）</h3>
+      <p><span class="clause-ref">2.3.9.1</span> 撒水系統設計應盡可能避免需要使用減壓閥。<span class="clause-ref">2.3.9.2</span> 若 AHJ 要求且無法避免裝設減壓閥，應使用 <b>FM 認可</b>之減壓閥，並依 Data Sheet 3-11《消防用流量與壓力調節裝置》辦理安裝。</p>
+
+      <h3><span class="clause-ref">2.3.10</span>孔口限流板（Orifice Restriction Plates）</h3>
+      <p><span class="clause-ref">2.3.10.1</span> 撒水系統內<b>不得</b>裝設孔口限流板（orifice plate）。</p>
+
+      <h3><span class="clause-ref">2.3.11</span>自動破管阻斷閥（Automatic Breach Containment Valves）</h3>
+      <p>自動撒水系統<b>不得</b>裝設自動破管阻斷閥。若當地 AHJ 要求裝設，參見 Data Sheet 3-11《流量與壓力調節裝置》。</p>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚫</div>
+        <div>本節多處為明確「禁止」事項：<b>孔口限流板（2.3.10.1）</b>與<b>自動破管阻斷閥（2.3.11）</b>一律不得裝設；<b>逆止閥不得裝設於乾式／預動式系統立管下游</b>（2.3.2.4）；查驗試驗接頭與排水閥之排水<b>不得</b>導入室內集水溝或污水槽（2.3.4.1.8、2.3.7.3）。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s24">
+      <div class="section-header">
+        <div class="section-num">2.4</div>
+        <h2>2.4 灑水系統配管（Sprinkler System Piping）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.4.1.1</span>鋼製撒水配管（Steel Sprinkler Pipe）</h3>
+      <p><span class="clause-ref">2.4.1.1.1.1</span> 撒水系統配管（即輸水至撒水頭之管路）最小管徑為 <b>1 in. (25 mm)</b>。<span class="clause-ref">2.4.1.1.1.2</span> 無論選用何種管徑，均應以水力計算證實滿足相關用途別資料表所定之最低設計要求。</p>
+
+      <h4>管壁厚度要求</h4>
+      <p><span class="clause-ref">2.4.1.1.2.1</span> 於對水損敏感之用途場所（如資料中心、博物館展區、半導體廠等），應裝設不低於下表最小管壁厚度之鋼管：</p>
+      <table class="clause-table">
+        <thead><tr><th>公稱管徑 in. (mm)</th><th>最小管壁厚度 in. (mm)</th></tr></thead>
+        <tbody>
+          <tr><td>1 (25)</td><td>0.126 (3.2)</td></tr>
+          <tr><td>1-1/4–1-1/2 (32–40)</td><td>0.126 (3.2)</td></tr>
+          <tr><td>2 (50)</td><td>0.142 (3.6)</td></tr>
+          <tr><td>2-1/2–4 (65–100)</td><td>0.188 (4.0–4.5)</td></tr>
+          <tr><td>5 (125)</td><td>0.197 (5.0)</td></tr>
+          <tr><td>6 (150)</td><td>0.219 (5.0)</td></tr>
+          <tr><td>8 (200)</td><td>0.277 (6.3)</td></tr>
+          <tr><td>10 (250)</td><td>0.307 (6.3)</td></tr>
+          <tr><td>12 (300)</td><td>0.330 (7.1)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>上表節錄自 <b>Table 2.4.1.1.2.1(a)/(b)</b>，公制欄位為原文對照值而非逐一線性換算，正式設計請以原表逐格數值為準。</div>
+      </div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>濕式／開放式（deluge）系統（<span class="clause-ref">2.4.1.1.2.2</span>）</h4>
+          <ul class="steps">
+            <li>黑鐵管（black steel），或</li>
+            <li>耐內部氧化之撒水鋼管</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>其他類型系統（<span class="clause-ref">2.4.1.1.2.3</span>）</h4>
+          <ul class="steps">
+            <li>耐內部氧化之撒水鋼管，或</li>
+            <li>黑鐵管——限系統氣體介質符合 2.2.1.10 規定者（真空式系統除外）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div><span class="clause-ref">2.4.1.1.2.4</span> <b>禁止</b>使用內部鍍鋅鋼管於：(A) 濕式系統；(B) 周遭環境溫度可能超過 <b>130°F (54°C)</b> 之區域，除非該管材經 FM 認可可用於此條件。</div>
+      </div>
+
+      <h4>乾式／預動式／冷凍庫／真空式系統之配管坡度（<span class="clause-ref">2.4.1.1.3</span>）</h4>
+      <p><span class="clause-ref">2.4.1.1.3.1</span> 乾式與預動式系統配管應能排回系統主要 2 in. (50 mm) 立管排水口：分支管最小坡度 <b>1/2 in. per 10 ft (4 mm/m)</b>，其餘配管最小坡度 <b>1/4 in. per 10 ft (2 mm/m)</b>。<span class="clause-ref">2.4.1.1.3.2</span> 無法排回系統主排水口之管段，應設置輔助排水設施（或等效方式），將積水排至安全區域。</p>
+
+      <h4>鋼管彎曲（<span class="clause-ref">2.4.1.1.4</span>）</h4>
+      <p><span class="clause-ref">2.4.1.1.4.1</span> 任何尺寸之撒水鋼管，於下列條件下均可彎曲：管壁厚度 ≥<b>0.100 in. (2.6 mm)</b>；彎曲最小半徑為 <b>12 倍管徑</b>；且彎曲後管體仍維持圓形。<span class="clause-ref">2.4.1.1.4.2</span> 彎曲半徑小於 12 倍管徑者，管體仍須維持圓形，且管壁厚度須符合下表（節錄自 Table 2.4.1.1.4.2）：</p>
+      <table class="clause-table">
+        <thead><tr><th>公稱管徑 in. (mm)</th><th>最小管壁厚度 in. (mm)</th><th>容許最小彎曲半徑（倍管徑）</th></tr></thead>
+        <tbody>
+          <tr><td>1 (25)</td><td>0.125 (3.2)</td><td>6</td></tr>
+          <tr><td>1-1/4–2 (32–50)</td><td>0.140–0.155 (3.6–4.0)</td><td>6</td></tr>
+          <tr><td>2-1/2–4 (65–100)</td><td>0.195–0.235 (5.0–6.0)</td><td>5</td></tr>
+          <tr><td>5–12 (125–300)</td><td>0.250–0.405 (6.3–10.3)</td><td>5</td></tr>
+        </tbody>
+      </table>
+
+      <h4>配管保護（<span class="clause-ref">2.4.1.1.5</span>）</h4>
+      <ul class="steps">
+        <li>爆炸危害場所之配管安裝，另見 Data Sheet 7-14《化學工廠消防》（<span class="clause-ref">2.4.1.1.5.1</span>）</li>
+        <li>縱向電焊黑鐵管，可行時應使焊縫線相對地面旋轉至少 <b>45°</b> 安裝，以降低管內加速腐蝕之風險（地面正下方 0° 為焊縫指向地面之基準）；<b>FM 認可之縮徑輾軋製程（stretch-reduced mill）鋼管則不受此焊縫方向限制</b>（<span class="clause-ref">2.4.1.1.5.2</span>）</li>
+        <li>所有撒水配管管端應保持平滑，不得有毛邊或飛邊（<span class="clause-ref">2.4.1.1.5.3</span>）</li>
+        <li><b>不得</b>於撒水配管上懸掛任何物品，包括電纜線槽、風管、揚聲器或標示牌（<span class="clause-ref">2.4.1.1.5.4</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.4.1.2</span>可撓式撒水鋼管（Flexible Steel Sprinkler Pipe）</h3>
+      <p>使用可撓式金屬配管時，應確認為 <b>FM 認可</b>品且與所防護危害相容；安裝應依製造商指引辦理，管長之摩擦損失分析亦應參照其指引（<span class="clause-ref">2.4.1.2.1</span>）。</p>
+
+      <h3><span class="clause-ref">2.4.1.3</span>非金屬撒水配管（Non-Metallic Sprinkler Pipe）</h3>
+      <p><span class="clause-ref">2.4.1.3.1</span> 地震區域使用非金屬撒水配管之限制，另見 Data Sheet 2-8《水系消防系統耐震防護》。<span class="clause-ref">2.4.1.3.2</span> 非金屬撒水配管<b>僅限用於非儲存類用途</b>場所。<span class="clause-ref">2.4.1.3.3</span> 所有非金屬撒水配管應以至少 <b>15 分鐘防火時效</b>、固定不可拆卸之屏障加以遮蔽。</p>
+      <p><span class="clause-ref">2.4.1.3.4</span> 非金屬配管可<b>不加遮蔽（暴露）</b>之條件，須同時滿足：</p>
+      <ul class="steps alpha">
+        <li>該非金屬配管經 FM 認可特別列名可作為暴露配管使用</li>
+        <li>用途危害屬 Data Sheet 3-26《非儲存用途消防》所定之 HC-1</li>
+        <li>防護區域最大天花板高度 30 ft (9.1 m)</li>
+        <li>系統為濕式系統</li>
+        <li>天花板撒水頭為快速反應型</li>
+        <li>系統垂直管段為金屬材質——惟若垂直管段由快速反應直立式撒水頭防護，且該撒水頭與垂直管段水平距離 ≤1 ft (0.3 m)，垂直管段亦可為暴露非金屬配管</li>
+      </ul>
+      <p><span class="clause-ref">2.4.1.3.5</span> 公稱管徑 <b>3 in. (90 mm) 以上</b>之非金屬配管，若僅作為撒水立管使用，可予接受。</p>
+
+      <h3><span class="clause-ref">2.4.2</span>配管接頭與組件（Pipe Connections and Assemblies）</h3>
+      <p><span class="clause-ref">2.4.2.1.1</span> 連接兩不同管徑之撒水配管時，應使用 <b>FM 認可之一體成型異徑接頭</b>。<span class="clause-ref">2.4.2.1.2</span> 撒水配管接頭（如機械式三通）<b>不得</b>突出於配管流路內。</p>
+
+      <h4>螺紋、溝槽與焊接接頭（<span class="clause-ref">2.4.2.2</span>）</h4>
+      <p>螺紋式（threaded）、輾軋溝槽（roll-grooved）、切削溝槽（cut-grooved）或焊接式撒水配管之建議最小管壁厚度，依原文 Table 2.4.2.2.1(1)/(2) 依公稱管徑分列兩欄（溝槽／焊接管；螺紋／切削溝槽管），管徑愈大兩者差異愈明顯，例如 1 in. 管溝槽／焊接管最小壁厚 0.102 in.（搭配指定接頭時可低至 0.065 in.）、螺紋／切削溝槽管則需 0.133 in.；6 in. 管則分別為 0.158 in. 與 0.280 in.；12 in. 管分別為 0.220 in. 與 0.330 in.（<span class="clause-ref">2.4.2.2.1</span>）。</p>
+      <ul class="steps">
+        <li><b>螺紋接頭</b>：螺紋加工應依當地法規並與配管接頭螺紋相容；所有螺紋接頭之外螺紋應依製造商指引塗布填料膏、生料帶或等效密封材，且不得影響公母螺紋之完全嚙合（<span class="clause-ref">2.4.2.2.2</span>）</li>
+        <li><b>溝槽接頭</b>：溝槽尺寸須符合溝槽式接頭製造商之要求；除配管認可清單另有規定外，應於鍍鋅或塗裝<b>前</b>先行輾軋溝槽（<span class="clause-ref">2.4.2.2.3</span>）</li>
+        <li><b>焊接接頭</b>：應使用 FM 認可之焊接接頭與焊接構造；焊接方法與人員資格須符合最新版 ANSI/AWS B2.1 或 EN ISO 9606-1 或同等標準之最低要求；管端對接焊（butt-weld）符合可接受焊接方法者，得免用接頭；現場熱工作業應依 Data Sheet 10-3《動火管理》辦理；應確保焊接環境不致影響焊接品質；配管開孔尺寸應與接頭尺寸相同且無毛邊；所有自配管切除之料片（coupon）應於系統通水啟用前完全移除並留存紀錄（<span class="clause-ref">2.4.2.2.4</span>）</li>
+      </ul>
+
+      <h4>平口端接頭（<span class="clause-ref">2.4.2.3</span>）</h4>
+      <p>撒水配管管壁厚度 <b>小於 0.133 in. (3.38 mm)</b> 時，應使用經 FM 認可、專為平口端或類似接頭列名之撒水配管（<span class="clause-ref">2.4.2.3.1</span>）；平口端接頭扣件之正確扭力應依製造商安裝指引確認（<span class="clause-ref">2.4.2.3.2</span>）。</p>
+
+      <h3><span class="clause-ref">2.4.3</span>配管吊架與支撐（Pipe Hanging and Bracing）</h3>
+
+      <h4>吊架及其組件（<span class="clause-ref">2.4.3.1</span>）</h4>
+      <p><span class="clause-ref">2.4.3.1.1</span> 吊架、吊架組件（支柱、吊桿、托架、扁鐵、焊接接合、扣件等）及其與建築結構之連接組件（混凝土崁入件、後裝式混凝土錨栓、焊接、束環、螺栓、螺絲等）均應為 <b>FM 認可</b>品。<span class="clause-ref">2.4.3.1.2</span> 補強吊架與扣件固定之輔助組件（如吊桿、角鋼）應為<b>鐵系金屬</b>，並與安裝環境相容。</p>
+      <p><span class="clause-ref">2.4.3.1.3</span> 以鋼吊桿連接吊架與扣件時，最小吊桿直徑與螺紋嚙合長度應依所支撐撒水管徑決定（節錄自 Table 2.4.3.1.3）：</p>
+      <table class="clause-table">
+        <thead><tr><th>公稱撒水管徑 in. (mm)</th><th>最小吊桿直徑 in. (mm)</th><th>最小螺紋嚙合長度 in. (mm)</th></tr></thead>
+        <tbody>
+          <tr><td>1–4 (25–100)</td><td>3/8 (10)</td><td>0.32 (8.0)</td></tr>
+          <tr><td>5、6、8 (125、150、200)</td><td>1/2 (12)</td><td>0.43 (10.4)</td></tr>
+          <tr><td>10、12 (250、300)</td><td>5/8 (16)</td><td>0.54 (14.1)</td></tr>
+        </tbody>
+      </table>
+
+      <h4>吊架之固定（<span class="clause-ref">2.4.3.2</span>）</h4>
+      <p><span class="clause-ref">2.4.3.2.1.1</span> 吊架扣件或錨栓須與其附著材質相容（含木構造）。<span class="clause-ref">2.4.3.2.1.2</span> 支撐結構構件（如檁條、樑、樓板）須能承受該構件所繫全部吊架之額外垂直集中載重，並加計於該構件最不利吊架位置施加之額外 <b>250 lb (113 kg)</b> 垂直集中載重；各吊架載重應等於其負責供水配管（充水狀態）之重量，並視為靜載重，依所採設計方法乘以適當載重係數——容許應力設計法（ASD）靜載重係數通常為 <b>1.0</b>；強度設計法（LRFD）單獨考量靜載重時通常為 <b>1.4</b>，併計活載重組合時為 <b>1.2</b>。<span class="clause-ref">2.4.3.2.1.3–2.4.3.2.1.4</span> 吊架組件固定於建築結構或非建築結構時，均須確認該結構可承受充水撒水配管之額外載重（必要時應取得計算書）。</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>鋼承板屋頂（<span class="clause-ref">2.4.3.2.2</span>）</h4>
+          <p><b>不得</b>將吊架直接固定於屋頂鋼承板上。分支管吊架（僅支撐 ≤3 in. (75 mm) 分支管）於下列條件均滿足時，可固定於鋼承板：結構支撐間距大於分支管吊架容許最大間距；吊架扣件經認可清單列為可用於鋼承板；扣件依製造商指引安裝；且鋼承板結構設計已計入其上所有附掛物之靜載重、活載重、附屬載重及撒水配管最低required載重。</p>
+        </div>
+        <div class="col-card">
+          <h4>鋼檁條（<span class="clause-ref">2.4.3.2.3</span>）</h4>
+          <p>吊架扣件應依建物製造商規範固定於 C 型或 Z 型鋼檁條，並確保結構可承受額外載重（依構材有效斷面性質計算）。製造商資訊不可得時：Z 型檁條應固定於腹板中點，或固定於底翼板上盡量靠近腹板處（距腹板不超過翼板寬度之 1/2）；C 型檁條應固定於腹板中點。<b>兩者皆不得</b>以翼板加勁部位作為固定點或與吊架組件接觸。</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>混凝土（<span class="clause-ref">2.4.3.2.4</span>）</h4>
+          <p>應使用 FM 認可之崁入件、膨脹錨栓或扣件，依製造商指引安裝，並確保支撐力符合 2.4.3.2.1 之最低載重要求。錨栓安裝<b>不得損及</b>鋼筋、預鑄／預力鋼絞線或post-tension鋼腱等混凝土補強構件；<b>不得</b>將混凝土錨栓裝設於空心混凝土砌塊（磚造）構造內。使用火藥擊發式固定系統（PAFS）者，工具與擊發式扣件須為 FM 認可品且與被固定材質相容；於 FM 地震分區<b>≤500 年</b>者，<b>禁止</b>使用火藥擊發式固定系統於撒水配管支撐或斜撐。結構混凝土構件可用 FM 認可之底切式（undercut）扣件並容許垂直或水平安裝，其餘混凝土扣件僅限水平安裝（另有現場測試條件者除外，見下）。</p>
+        </div>
+        <div class="col-card">
+          <h4>混凝土扣件現場測試（<span class="clause-ref">2.4.3.2.5</span>）</h4>
+          <p>下列情形應於每一天花板至少對 3 個代表性吊架進行現場承載測試：後裝式混凝土扣件（底切式除外）以垂直方向安裝並支撐大於 3 in. (80 mm) 配管者；使用火藥擊發式扣件者；或任何扣件（不論方向）裝設於輕質結構混凝土或類似混凝土者。測試載重應為充水撒水配管負責重量之<b>2 倍</b>。</p>
+        </div>
+      </div>
+      <p><span class="clause-ref">2.4.3.2.6</span> 複合木桁架／木格柵之吊架固定，應洽詢桁架製造商取得建議安裝點。</p>
+
+      <h4>吊架之位置與間距（<span class="clause-ref">2.4.3.3</span>）</h4>
+      <p><span class="clause-ref">2.4.3.3.1.1</span> 鋼製撒水配管吊架之最大水平間距，應依下表（節錄自 Table 2.4.3.3.1.1，並對照最小管壁厚度基準 Table 2.4.3.3.1.1(1)）辦理，或依配管於認可清單所載之特定規定辦理：</p>
+      <table class="clause-table">
+        <thead><tr><th>撒水管材</th><th>1–2-1/2 in. (25–65mm)</th><th>3 in. (80mm)</th><th>&gt;3 in. (80mm)</th></tr></thead>
+        <tbody>
+          <tr><td>管壁厚度<b>低於</b> Table 2.4.3.3.1.1(1) 基準值</td><td>12 ft (3.7 m)</td><td>12 ft (3.7 m)</td><td>不適用——應改用符合 Table 2.4.3.3.1.1(1) 最小管壁厚度之配管</td></tr>
+          <tr><td>管壁厚度<b>等於或大於</b> Table 2.4.3.3.1.1(1) 基準值</td><td>12–15 ft (3.7–4.6 m)（1 in. 為 12 ft，其餘為 15 ft）</td><td>15 ft (4.6 m)</td><td>15 ft (4.6 m)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>Table 2.4.3.3.1.1(1) 所定「較厚管壁」基準約為：1–2 in. 管 0.105 in. (2.7 mm)；2-1/2–4 in. 管 0.115 in. (2.9 mm)；5–6 in. 管 0.130 in. (3.3 mm)；8–12 in. 管 0.180 in. (4.6 mm)。管壁未達此基準者，間距一律以 12 ft (3.7 m) 為上限。</div>
+      </div>
+      <ul class="steps">
+        <li>任何超過 <b>6 ft (1.8 m)</b> 長之配管段，至少應以 1 個吊架支撐（<span class="clause-ref">2.4.3.3.1.2</span>）</li>
+        <li>橫走主管、近端主管、遠端主管之吊架間距，於主管吊架之間所有分支管均設有吊架，且該分支管吊架符合「距主管接點 6 ft (1.8 m) 內」或「不超過 Table 2.4.3.3.1.1 間距之 1/2」者，主管吊架間距可較表定值增加 <b>5 ft (1.5 m)</b>（<span class="clause-ref">2.4.3.3.1.3</span>）</li>
+        <li>橫走主管、近端主管、遠端主管應於最後一條分支管水平 <b>3 ft (0.9 m)</b> 內設置吊架（<span class="clause-ref">2.4.3.3.1.4</span>）</li>
+        <li>橫走主管、近端主管、遠端主管應於任何垂直管段連接處水平 <b>2 ft (0.6 m)</b> 內設置吊架（<span class="clause-ref">2.4.3.3.1.5</span>）</li>
+        <li>主管吊架距分支管接點水平距離超過 6 ft (1.8 m) 時，應於分支管上距主管 <b>1 ft (0.3 m)</b> 內設置吊架（<span class="clause-ref">2.4.3.3.1.6</span>）</li>
+        <li>分支管流向水平轉向處，應於該連接點 <b>1 ft (0.3 m)</b> 內設置吊架（<span class="clause-ref">2.4.3.3.1.7</span>）</li>
+        <li>單一流路分支管末端撒水頭前，應於水平 <b>1–3 ft (0.3–0.9 m)</b> 範圍內設置吊架（<span class="clause-ref">2.4.3.3.1.8</span>）</li>
+        <li>公稱管徑 <b>2-1/2 in. (65 mm) 以上</b>之配管，若於接頭兩側各設 1 個吊架（水平間距不超過 3 ft (0.9 m)），最大吊架間距可放寬至 <b>26 ft (8 m)</b>（<span class="clause-ref">2.4.3.3.1.9</span>，配置範例見原文 Fig. 2.4.3.3.1.9）</li>
+        <li>公稱管徑 <b>5 in. (125 mm) 以上</b>之配管，若每一管段至少設 2 個吊架，最大間距可再增加 <b>5 ft (1.5 m)</b>（<span class="clause-ref">2.4.3.3.1.10</span>）</li>
+        <li>裝設直立式撒水頭時，吊架與撒水頭之最小水平距離：非儲存類危害 <b>3 in. (75 mm)</b>；儲存類危害 <b>12 in. (300 mm)</b>（<span class="clause-ref">2.4.3.3.1.11</span>）</li>
+        <li>FM 認可非剛性撒水配管（可撓式撒水軟管）之吊架位置與間距，應依認可清單規定（<span class="clause-ref">2.4.3.3.1.12</span>）</li>
+      </ul>
+
+      <h4>垂直鋼製撒水配管之支撐（<span class="clause-ref">2.4.3.3.2</span>）</h4>
+      <ul class="steps">
+        <li>垂直撒水立管應於管底處支撐，並計入充水垂直水柱與配管本身之重量；配管由垂直轉水平處，應於轉向點水平 <b>1 ft (0.3 m)</b> 內以吊架或管座支撐（<span class="clause-ref">2.4.3.3.2.1</span>）</li>
+        <li>垂直撒水配管至少每 <b>12 ft (3.6 m)</b> 應以專為垂直配管設計之支撐件支撐（<span class="clause-ref">2.4.3.3.2.2</span>）</li>
+        <li>直立式撒水頭直接連接之垂直配管長度 <b>≥4 ft (1.2 m)</b> 者，應提供額外支撐（<span class="clause-ref">2.4.3.3.2.3</span>）</li>
+        <li>下垂式撒水頭直接連接之垂直配管長度 <b>≥4 ft (1.2 m)</b> 者，應提供額外支撐；惟若該下垂式撒水頭已固定於受支撐構造（如吊頂或風管）上，此垂直距離上限可放寬至 <b>12 ft (3.6 m)</b>（<span class="clause-ref">2.4.3.3.2.4–2.4.3.3.2.5</span>）</li>
+        <li>壁掛式側牆撒水頭應加設額外支撐以限制其轉動（<span class="clause-ref">2.4.3.3.2.6</span>）</li>
+        <li>分支管採溝槽式接頭連接時，所有回彎管（return bend）、無支撐水平延伸管（armover）等配置應加設限制向上位移之額外支撐（<span class="clause-ref">2.4.3.3.2.7</span>）；採其他方式連接者，凡水平長度<b>超過 2 ft (0.6 m)</b> 之回彎管、armover 等配置亦應加設額外支撐（<span class="clause-ref">2.4.3.3.2.8</span>）</li>
+      </ul>
+
+      <h4>非金屬配管之支撐（<span class="clause-ref">2.4.3.3.3</span>）</h4>
+      <p>非金屬配管之強度因產品而異，其吊架型式及水平／垂直間距應依製造商之要求辦理，不套用鋼管間距表。</p>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>本節吊架間距與載重表格（Table 2.4.3.3.1.1 及其對照基準表 2.4.3.3.1.1(1)）為配管支撐設計核心依據，本頁僅摘錄關鍵管徑與間距對應關係；正式設計仍應查核原文表格與配管認可清單之特定規定。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s251">
+      <div class="section-header">
+        <div class="section-num">2.5.1</div>
+        <h2>撒水頭一般建議</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.5.1.1.1</span>撒水頭建議標稱溫度等級</h3>
+      <p>撒水頭之建議標稱溫度等級應查閱各用途別專用資料表（occupancy-specific data sheet）決定。惟若受防護區域內撒水頭處之<b>周圍溫度超過 100°F (38°C)</b>，應依下表決定撒水頭之建議標稱溫度。</p>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭處最高周圍溫度<br>°F (°C)</th><th>撒水頭標稱溫度等級<br>°F (°C)</th><th>溫度分類</th><th>玻璃球顏色</th></tr></thead>
+        <tbody>
+          <tr><td>100 (40)</td><td>135 (55)</td><td>普通 Ordinary</td><td>橙色</td></tr>
+          <tr><td>100 (40)</td><td>160 (70)</td><td>普通 Ordinary</td><td>紅色</td></tr>
+          <tr><td>150 (65)</td><td>175 (80)</td><td>普通 Ordinary</td><td>黃色</td></tr>
+          <tr><td>150 (65)</td><td>212 (100)</td><td>中溫 Intermediate</td><td>綠色</td></tr>
+          <tr><td>225 (110)</td><td>280 (140)</td><td>高溫 High</td><td>藍色</td></tr>
+          <tr><td>300 (150)</td><td>350 (175)</td><td>特高溫 Extra High</td><td>紫紅色</td></tr>
+          <tr><td>375 (190)</td><td>425 (220)</td><td>超特高溫 Very Extra High</td><td>黑色</td></tr>
+          <tr><td>475 (245)</td><td>525 (275)</td><td>極高溫 Ultra High</td><td>黑色</td></tr>
+          <tr><td>625 (330)</td><td>650 (345)</td><td>極高溫 Ultra High</td><td>黑色</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>部分國家以撒水頭的臂架（arm frame）顏色標示溫度分類，應查閱當地國家法規以確認依臂架顏色判讀之溫度分類。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.1.1.2</span>撒水頭建議最小設計壓力</h3>
+      <p>應依用途別專用資料表決定天花板撒水系統（及適用時之貨架內撒水系統）之防護設計。當設計係以放水密度或流量表示時，應換算為對應之設計壓力，並與 Table 2.5.1.1.2 所列該型撒水頭之數值比較；<b>若換算後之壓力低於表列數值，設計應採用表列數值</b>。</p>
+      <table class="clause-table">
+        <thead><tr><th>K 值</th><th>涵蓋類型</th><th>方向</th><th>RTI 等級</th><th>應用</th><th>最小設計壓力 psi (bar)</th></tr></thead>
+        <tbody>
+          <tr><td>K5.6 (K80)</td><td>標準型</td><td>下垂／側牆／直立</td><td>快速或標準</td><td>非儲存</td><td>7 (0.5)</td></tr>
+          <tr><td>K5.6 (K80)</td><td>標準型</td><td>乾式下垂／直立</td><td>快速或標準</td><td>非儲存</td><td>7–10 (0.5–0.7)</td></tr>
+          <tr><td>K5.6 (K80)</td><td>延伸涵蓋型</td><td>下垂／側牆</td><td>快速</td><td>非儲存</td><td>7 (0.5)，側牆依間距可達 22–35 (1.5–2.4)</td></tr>
+          <tr><td>K8.0 (K115)</td><td>標準型</td><td>下垂／直立</td><td>快速或標準</td><td>非儲存</td><td>7–10 (0.5–0.7)</td></tr>
+          <tr><td>K8.0 (K115)</td><td>延伸涵蓋型側牆</td><td>—</td><td>快速</td><td>非儲存</td><td>依間距 16–36 (1.1–2.5)</td></tr>
+          <tr><td>K11.2 (K160)</td><td>標準／延伸</td><td>下垂或直立</td><td>快速或標準</td><td>非儲存或儲存</td><td>7 (0.5)；延伸型 12 (0.8)</td></tr>
+          <tr><td>K14.0 (K200)</td><td>標準／延伸</td><td>下垂／直立／側牆</td><td>快速或標準</td><td>非儲存或儲存</td><td>7–10 (0.5–0.7)；延伸型下垂/直立 18 (1.2)</td></tr>
+          <tr><td>K16.8 (K240)</td><td>標準型</td><td>下垂／直立</td><td>快速或標準</td><td>非儲存或儲存</td><td>7–10 (0.5–0.7)</td></tr>
+          <tr><td>K19.6 (K280)</td><td>標準型</td><td>下垂</td><td>標準</td><td>非儲存 7 (0.5)／儲存 10 (0.7)</td><td>7–10 (0.5–0.7)</td></tr>
+          <tr><td>K22.4 (K320)</td><td>標準型</td><td>下垂</td><td>快速</td><td>非儲存 10 (0.7)／儲存 15 (1.0)</td><td>10–15 (0.7–1.0)</td></tr>
+          <tr><td>K25.2 (K360)</td><td>標準／延伸</td><td>下垂／直立</td><td>快速或標準</td><td>非儲存或儲存</td><td>7–15 (0.5–1.0)；延伸型儲存最高 20 (1.4)</td></tr>
+          <tr><td>K28.0 (K400)</td><td>標準型</td><td>下垂</td><td>快速</td><td>非儲存 15 (1.0)／儲存 20 (1.4)</td><td>15–20 (1.0–1.4)</td></tr>
+          <tr><td>K33.6 (K480)</td><td>標準型</td><td>下垂／直立</td><td>快速或標準</td><td>非儲存或儲存</td><td>10–20 (0.7–1.4)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>上表為 Table 2.5.1.1.2 之精簡整理，實務設計時每一 K 值下依撒水頭方向、RTI、間距組合之最小設計壓力差異甚大，務必查閱原表逐項核對，不得僅憑本摘要決定設計壓力。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.1.2</span>同一區域混合裝設撒水頭</h3>
+      <p><span class="clause-ref">2.5.1.2.1</span> 同一區域內<b>不得混合裝設</b>涵蓋類型、K 值、方向、RTI 等級及／或溫度等級互不相同之撒水頭。惟下列情形例外：</p>
+      <ul class="steps">
+        <li><b>不同 K 值</b>（2.5.1.2.2）：用以防護相鄰兩種需不同撒水設計之用途危害，且兩者螺紋尺寸不同時，較高危害用途之撒水設計應向四周延伸至少一顆撒水頭涵蓋範圍</li>
+        <li><b>下垂與直立式並用</b>（2.5.1.2.3）：用以防護相鄰兩種不同用途危害時，同樣應將較高危害用途之設計向四周延伸至少一顆撒水頭</li>
+        <li><b>直立式替代受阻礙下垂式</b>（2.5.1.2.4）：僅方向不同、其餘屬性相同，且該直立式為該用途危害之可接受防護選項時</li>
+        <li><b>不同 RTI 等級</b>（2.5.1.2.5、2.5.1.2.6）：以至少 2 ft (0.6 m) 深不燃實體防煙垂壁（draft curtain）區隔快速反應區與標準反應區，並在標準反應側距垂壁至少 7-1/2 ft (2.3 m) 範圍內保持無可燃物；或以至少 2 ft (0.6 m) 天花板高差區隔，標準反應撒水頭裝設於較高天花板下，同樣需 7-1/2 ft (2.3 m) 無可燃物淨空</li>
+        <li><b>不同溫度等級</b>（2.5.1.2.7）：K 值、方向、RTI、涵蓋類型皆相同，僅因局部周圍溫度較高（如熱風機出風口附近）需較高溫度等級時</li>
+        <li><b>側牆式與下垂／直立式並存</b>（2.5.1.2.8）：允許同區裝設</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.1.3</span>防煙垂壁（Draft Curtains）</h3>
+      <p><span class="clause-ref">2.5.1.3.1</span> 除非本資料表其他章節或相關用途別專用資料表針對特定情況建議設置，<b>否則不得裝設防煙垂壁</b>。<span class="clause-ref">2.5.1.3.2</span> 若建議設置，垂壁應為至少 <b>2 ft (0.6 m) 深之不燃材料</b>（如至少 26 號規（0.5 mm）鋼板、水泥板或石膏板）。若天花板不平整，當垂壁頂端與天花板間之垂直縫隙超過 4 in. (100 mm) 時，應以鋼板、水泥板、石膏板、礦棉、陶瓷纖維或 FM 認證防火填塞材填補。</p>
+
+      <h3><span class="clause-ref">2.5.1.4</span>實體夾層（Solid Mezzanines）下方之撒水防護</h3>
+      <p>依下列決策順序判斷實體夾層下方撒水頭之裝設方式（原文以流程圖 Fig. 2.5.1.4 表示，決策邏輯如下）：</p>
+      <ol class="steps" style="list-style:decimal; padding-left:20px;">
+        <li>若該用途別專用資料表針對夾層下方之防護<b>已提供採快速反應撒水頭之防護選項</b> → 依該資料表規定，以 <b>160°F (70°C) 標稱溫度、快速反應</b>撒水頭防護夾層下方</li>
+        <li>否則，若夾層<b>上方</b>天花板撒水頭之標稱溫度<b>高於 160°F (70°C)</b> → 同樣以 160°F (70°C) 標稱、快速反應撒水頭防護夾層下方</li>
+        <li>否則，若夾層上方天花板撒水頭之 RTI 等級為<b>標準反應</b> → 同樣以 160°F (70°C) 標稱、快速反應撒水頭防護夾層下方</li>
+        <li>以上皆非（即上方為快速反應且標稱溫度 ≤160°F）→ 依該用途別專用資料表規定防護夾層下方，且<b>夾層下方之撒水頭不須併入夾層上方天花板撒水系統之設計面積</b>；同時應沿夾層周邊及夾層上任何開口周圍，加裝至少 <b>2 ft (0.6 m) 深之不燃防煙垂壁</b></li>
+      </ol>
+
+      <h3><span class="clause-ref">2.5.1.5</span>實體走道（Solid Walkways）</h3>
+      <p><span class="clause-ref">2.5.1.5.1</span> 走道下方原則上使用與走道上方天花板相同之撒水頭，惟走道下方撒水頭應為 <b>快速反應 RTI</b> 且標稱溫度 <b>160°F (70°C)</b>，並沿用天花板既有之枝管配置供應。<span class="clause-ref">2.5.1.5.2</span> 亦可改依走道相鄰用途之撒水設計及走道高度決定供應走道下方撒水頭之枝管管徑。<span class="clause-ref">2.5.1.5.3</span> 走道下方撒水頭<b>不須併入</b>上方天花板系統之水力設計。<span class="clause-ref">2.5.1.5.4</span> 寬度超過 <b>10 ft (3.0 m)</b> 之實體走道，應依 2.5.1.4 實體夾層之建議辦理防護。</p>
+
+      <h3><span class="clause-ref">2.5.1.6</span>可燃隱蔽空間</h3>
+      <p>可燃式吊頂下方及可燃隱蔽空間內撒水頭之裝設建議，請參閱 <b>Data Sheet 1-12《天花板與隱蔽空間》</b>；其建議設計則參閱 <b>Data Sheet 3-26《非儲存用途消防防護》</b>。</p>
+
+      <h3><span class="clause-ref">2.5.1.7</span>牆面與樓地板開口之防護</h3>
+
+      <h4><span class="clause-ref">2.5.1.7.1</span>輸送機開口（Conveyor Openings）</h4>
+      <p><span class="clause-ref">2.5.1.7.1.1</span> 輸送機開口原則上應以 <b>FM 認證開放式水霧噴頭（open-type water spray nozzles）</b>防護（依 2.5.1.7.1.2–2.5.1.7.1.6）。惟穿越防火隔間牆之輸送機開口，若開口面積<b>不超過 8 ft² (0.75 m²)</b>，可改以快速反應自動撒水頭防護。</p>
+      <ul class="steps">
+        <li><b>單向輸送</b>（2.5.1.7.1.2）：噴頭應裝設於偵測啟動側，噴頭噴射中心線與牆面夾角 <b>&lt;30°</b>，距開口至少 3 ft (0.9 m)</li>
+        <li><b>雙向輸送</b>（2.5.1.7.1.3）：開口兩側皆須裝設水霧噴頭與偵測，配置原則同上，兩側均距開口至少 3 ft (0.9 m)</li>
+        <li><b>樓地板／天花板開口</b>（2.5.1.7.1.4）：垂直開口與傾斜開口配置有別；傾斜開口噴頭應設於開口平面上方 20–30 in. (500–750 mm)，並於 5–6 ft (1.5–1.8 m) 範圍內設置不燃隔板／擋板（baffle）</li>
+      </ul>
+      <p><span class="clause-ref">2.5.1.7.1.5</span> 水霧系統配置原則：（A）開口兩側各設獨立水霧系統；（B）每側水霧系統由同側撒水系統供水；（C）設置控制閥以便將水霧系統與撒水系統隔離；（D）以 FM 認證快速反應先導撒水頭（pilot sprinkler）或升溫速率偵測器啟動水霧系統，並裝設於其所啟動噴頭的開口對側；（E）噴頭與開口之距離不超過 Table 2.5.1.7.1.6(b) 所列數值；（F）噴頭數量與噴射角度應確保開口被密集水霧完整覆蓋。</p>
+      <table class="clause-table">
+        <thead><tr><th>開口上緣距地板高度 ft (m)</th><th>每開口最小放水密度 gpm/ft² (mm/min)</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 15 (4.6)</td><td>2 (80)</td></tr>
+          <tr><td>&lt; 20 (6.1)</td><td>2.5 (100)</td></tr>
+          <tr><td>&lt; 30 (9.1)</td><td>3 (120)</td></tr>
+          <tr><td>≥ 30 (9.1)</td><td>4 (160)</td></tr>
+        </tbody>
+      </table>
+      <table class="clause-table">
+        <thead><tr><th>單一噴頭放水量 gpm (L/min)</th><th>距開口最大水平距離 ft (m)</th></tr></thead>
+        <tbody>
+          <tr><td>≤ 15 (57)</td><td>5.5 (1.7)</td></tr>
+          <tr><td>≤ 25 (95)</td><td>7 (2.1)</td></tr>
+          <tr><td>≤ 35 (132)</td><td>8 (2.4)</td></tr>
+          <tr><td>&gt; 35 (132)</td><td>9 (2.7)</td></tr>
+        </tbody>
+      </table>
+      <p>水霧噴頭最小放水壓力應維持 <b>25 psi (1.7 bar)</b>，且水力計算應計入水霧系統與開口對側相鄰撒水系統之同時放水（2.5.1.7.1.6）。</p>
+
+      <h4><span class="clause-ref">2.5.1.7.2</span>電梯升降井（Elevator Hoistways）</h4>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>升降井底部</h4>
+          <p>若電梯井為<b>封閉、不燃、無可燃液壓油</b>且皮帶為不燃或限燃材質，井底可<b>免設撒水頭</b>（2.5.1.7.2.1）。否則應於井坑地板上方不超過 2 ft (0.6 m) 處裝設最小 K5.6 (K80) 側牆式撒水頭，標稱溫度 ≤212°F (100°C)（2.5.1.7.2.2）。</p>
+        </div>
+        <div class="col-card">
+          <h4>升降井頂部</h4>
+          <p>若電梯<b>專供載客</b>、井體不燃或限燃、車廂材料符合 ASTM A17.1，且皮帶不燃或限燃，井頂可<b>免設撒水頭</b>（2.5.1.7.2.3）。否則應於井頂裝設最小 K5.6 (K80) 撒水頭，標稱溫度 ≤212°F (100°C)（2.5.1.7.2.4）。</p>
+        </div>
+      </div>
+
+      <h4><span class="clause-ref">2.5.1.7.3</span>垂直封閉管道間</h4>
+      <p><span class="clause-ref">2.5.1.7.3.1</span> 若管道間<b>不燃或限燃、不可進入</b>，且僅作為風管、電氣或機械管道使用，可免設撒水頭。<span class="clause-ref">2.5.1.7.3.2</span> 否則應於管道間頂部裝設最小 K5.6 (K80) 撒水頭，標稱溫度 ≤212°F (100°C)。<span class="clause-ref">2.5.1.7.3.3</span> 若管道間內壁為可燃材質，除頂部撒水頭外，應<b>每隔一樓層</b>加裝一顆同規格撒水頭。<span class="clause-ref">2.5.1.7.3.4</span> 若可燃管道間被分段截斷（trapped），應於每一截斷段頂部再加裝一顆撒水頭。<span class="clause-ref">2.5.1.7.3.5</span> 可進入之管道間，其底部應於距管道間底部不超過 2 ft (0.6 m) 處裝設最小 K5.6 (K80) 側牆式撒水頭，標稱溫度 ≤212°F (100°C)。</p>
+
+      <h4><span class="clause-ref">2.5.1.7.4</span>未封閉之垂直樓地板開口</h4>
+      <p><span class="clause-ref">2.5.1.7.4.1</span> 同時符合下列三項條件時，<b>免設</b>防煙垂壁＋密集撒水頭組合：（A）開口相連之各樓層均已依 FM 資料表以天花板撒水頭防護；（B）開口相對兩端之最短水平距離全向皆 ≥20 ft (6.1 m)；（C）開口面積 ≥1,000 ft² (93 m²)。</p>
+      <p><span class="clause-ref">2.5.1.7.4.2–5</span> 未符合上述條件者，應於開口周邊裝設：</p>
+      <ul class="steps">
+        <li><b>防煙垂壁</b>：不燃或限燃材料，至少 18 in. (450 mm) 深，緊鄰開口設置</li>
+        <li><b>密集撒水頭</b>：沿開口每 6 ft (1.8 m) 裝設一顆，原則採用與鄰接天花板相同之撒水頭，惟若鄰接天花板為標準反應，開口處應改用<b>快速反應</b>撒水頭；撒水頭應水平距垂壁 6–12 in. (150–300 mm)</li>
+        <li><b>擋板（baffle）</b>：若撒水頭間距將小於 6 ft (1.8 m)，應於撒水頭之間加裝不燃或限燃擋板，長度 ≥8 in. (200 mm)、高度 ≥6 in. (150 mm)；直立式撒水頭之擋板應高出頂部 2–3 in. (50–75 mm)，下垂式則與撒水頭偏向板齊平</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.5.1.7.5</span>樓梯間</h4>
+      <ul class="steps">
+        <li>所有<b>可燃構造</b>樓梯下方應裝設撒水頭（2.5.1.7.5.1）</li>
+        <li>樓梯平台若作<b>儲存使用</b>，平台下方應裝設撒水頭（2.5.1.7.5.2）</li>
+        <li>不燃樓梯間、樓梯及裝修材料均為不燃或限燃者，應於樓梯間頂部及井底上方第一個可到達之平台下方裝設撒水頭（2.5.1.7.5.3）</li>
+        <li>設有出入門之各樓層樓梯平台，均應裝設撒水頭（2.5.1.7.5.4）</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.5.1.7.6</span>電扶梯（Escalators）</h4>
+      <p><span class="clause-ref">2.5.1.7.6.1</span> 若構造或用途屬可燃性質，應對電扶梯所服務之樓層裝設撒水防護。<span class="clause-ref">2.5.1.7.6.2</span> 若電扶梯每一樓層之出入口上方設有天花板，應沿電扶梯周邊裝設<b>快速反應</b>撒水頭（原文以圖示表示配置方式，重點為沿開口周邊密集布置，類似 2.5.1.7.4 之開口防護概念）。<span class="clause-ref">2.5.1.7.6.3</span> 若電扶梯各樓層出入口上方<b>未設</b>天花板，其形成之垂直開口應依 <b>2.5.1.7.4</b>（未封閉垂直樓地板開口）之建議辦理防護。</p>
+
+      <h4><span class="clause-ref">2.5.1.7.7</span>窗戶</h4>
+      <p><span class="clause-ref">2.5.1.7.7.1</span> 防火隔間牆上裝設窗戶時，為防止火勢經窗戶延燒，應符合下列全部條件：（A）窗戶之時效等級至少為所在防火隔間時效之 <b>75%</b>；（B）玻璃／玻璃裝配認證用於防火屏障且至少 <b>1 小時</b>時效；（C）窗框認證至少 1 小時時效；（D）依圖示（Fig. 2.5.1.7.7.1）於窗戶兩側各保留<b>寬 2 ft (0.6 m)</b>、且<b>最大尺寸不小於 6 ft (1.8 m)</b>之無可燃物淨空區域。</p>
+      <p><span class="clause-ref">2.5.1.7.7.2</span> 未符合上述條件時，應改以撒水頭防護窗戶，二擇一：（a）於<b>預動式（deluge）</b>系統上裝設開放式最小 K5.6 (K80) 下垂式撒水頭；或（b）於<b>濕式</b>系統上裝設 165°F (70°C) 標稱、快速反應、最小 K5.6 (K80) 下垂式撒水頭。窗戶撒水系統之配管與控制應比照<b>貨架內撒水系統</b>之配置原則。</p>
+      <ul class="steps">
+        <li><b>預動式系統動作</b>（2.5.1.7.7.3）：以複合式升溫速率＋定溫（標稱 135°F [57°C]）探測器觸發，探測器裝設於窗戶撒水頭正上方之天花板／屋頂處，距牆至少 6 in. (150 mm)，沿窗平行方向中心距最大 10 ft (3.0 m)</li>
+        <li><b>撒水頭間距與位置</b>（2.5.1.7.7.4）：下垂式撒水頭沿窗戶中心距 6–10 ft (1.8–3.0 m)，鄰近窗戶上緣但至少低於天花板 6 in. (150 mm)，偏向板朝向平行窗戶並距窗約 12 in. (300 mm)</li>
+        <li><b>擋板</b>（2.5.1.7.7.5）：天花板撒水頭與窗戶撒水頭間距小於 6 ft (1.8 m) 時應加裝擋板</li>
+        <li><b>高窗分層防護</b>（2.5.1.7.7.6）：窗高超過 13 ft (4.0 m) 時，應增設具擋水板之額外層級撒水頭，各層防護垂直面積大致相等</li>
+        <li><b>設計流量</b>（2.5.1.7.7.7）：窗戶撒水系統每窗寬 1 linear ft 至少提供 <b>4 gpm (50 L/min/m)</b>，並應計入與其相鄰天花板撒水系統及消防栓用水量之同時放水需求</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.1.8</span>輸送機系統自動停機</h3>
+      <p>輸送機系統應配置為於撒水系統流水（waterflow）發生時<b>自動停止運轉</b>。</p>
+
+      <h3><span class="clause-ref">2.5.1.9</span>天花板撒水頭下方淨空</h3>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value">3 ft</div><div class="stat-label">(0.9 m) — 標準涵蓋型天花板撒水頭偏向板與可燃物間之最小淨空</div></div>
+        <div class="stat-card"><div class="stat-value green">5 ft</div><div class="stat-label">(1.5 m) — 延伸涵蓋型天花板撒水頭偏向板與可燃物間之最小淨空</div></div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.1.10</span>撒水頭防護免受損傷</h3>
+      <p><span class="clause-ref">2.5.1.10.1</span> 對易受機械損傷之撒水頭應提供保護，如 FM 認證撒水頭護籠、鋼構護框、混凝土護柱等，惟保護裝置本身不得違反該撒水頭之阻礙判斷準則。</p>
+      <p><span class="clause-ref">2.5.1.10.2</span> <b>乾式下垂型撒水頭之防護</b>：若乾式下垂撒水頭用於防護低溫／冷凍區域並由濕式系統供水，應於該區天花板頂面與供應乾式下垂撒水頭之架空配管間，維持至少 <b>12 in. (300 mm)</b> 垂直距離（2.5.1.10.2.1）。為避免加溫區內乾式下垂垂管外部積水，可將該垂管貫穿孔緊密填塞，並以熱敏膠帶（thermal mastic tape，或同等品）包覆天花板上方之垂管部分（2.5.1.10.2.2）。</p>
+
+      <h3><span class="clause-ref">2.5.1.11</span>撒水頭迴水彎（Return Bends）</h3>
+      <p><span class="clause-ref">2.5.1.11.1</span> 由生水源、磨坊池（mill pond）或無蓋蓄水池供水之 K11.2 (K160) 以下下垂式撒水頭，應裝設至少 <b>1 in. (25 mm)</b> 之個別迴水彎。<span class="clause-ref">2.5.1.11.2</span> 下列情形<b>免裝</b>迴水彎：（A）系統已設有 FM 認證濾網（strainer）；（B）預動式（deluge）系統；（C）乾式下垂型撒水頭。</p>
+
+      <h3><span class="clause-ref">2.5.1.12</span>直立式撒水頭臂架方向</h3>
+      <p>直立式撒水頭裝設時，其臂架應與枝管（branch line）方向<b>平行</b>。</p>
+
+      <h3><span class="clause-ref">2.5.1.13</span>備用撒水頭</h3>
+      <p><span class="clause-ref">2.5.1.13.1</span> 應於現場為每一種已裝設之撒水頭類型備存<b>備用撒水頭</b>，並備妥裝設所需之工具。<span class="clause-ref">2.5.1.13.2</span> 備用撒水頭之最低數量，應依該撒水系統設計面積內、該類型撒水頭所需之最大裝設數量決定。</p>
+    </div>
+
+    <div class="section" id="s252">
+      <div class="section-header">
+        <div class="section-num">2.5.2</div>
+        <h2>2.5.2 非儲存型下垂式與直立式撒水頭（一）：適用範圍與天花板構造</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本節整理原文 <span class="clause-ref">2.5.2.1</span>–<span class="clause-ref">2.5.2.3.4</span>，涵蓋非儲存型下垂式（Pendent）與直立式（Upright）撒水頭之<b>適用範圍判斷邏輯、天花板構造分類（無遮蔽／有遮蔽）、水平（牆壁／牆角距離）與垂直定位、天花板坡度規則</b>。有遮蔽天花板構造之定位方式（<span class="clause-ref">2.5.2.4</span>）與撒水頭放水型態阻礙物判斷（<span class="clause-ref">2.5.2.5</span>）留待其他章節整理。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.2.1</span>適用範圍與撒水頭選用邏輯（General Recommendations）</h3>
+      <p><span class="clause-ref">2.5.2.1.1</span>* 依 Fig. 2.5.2.1 流程圖判斷特定用途可安裝之非儲存型下垂式／直立式撒水頭：先確認該用途所屬之專用用途資料表（occupancy-specific Data Sheet）是否已將其列為可比照非儲存型處理；接著確定天花板層級之防護選項，並自該資料表取得（如有提供）撒水頭之涵蓋類型、K 值、方位、RTI 與溫級屬性。</p>
+      <ul class="steps">
+        <li>若防護區域環境溫度可能超過 <b>100°F (38°C)</b>：以 Table 2.5.1.1.1 決定天花板層級撒水頭之溫級</li>
+        <li>若專用資料表未指定可用 K 值：以 Table 2.5.2.1.1(a)、(b) 決定可用 K 值</li>
+        <li>若專用資料表未指定是否可用快速反應（Quick-Response）撒水頭：依 <span class="clause-ref">2.5.2.1.2</span> 判斷</li>
+      </ul>
+
+      <h4>可接受之 K 值（<span class="clause-ref">2.5.2.1.1</span>）</h4>
+      <table class="clause-table">
+        <thead><tr><th>公稱 K 值，gpm/(psi)<sup>0.5</sup>（L/min/[bar]<sup>0.5</sup>）</th><th>公稱管牙尺寸，in.（mm）</th></tr></thead>
+        <tbody>
+          <tr><td>2.8 (40)</td><td>1/2 或 3/4 (15 或 20)</td></tr>
+          <tr><td>5.6 (80)</td><td>1/2 或 3/4 (15 或 20)</td></tr>
+          <tr><td>8.0 (115)</td><td>1/2 或 3/4 (15 或 20)</td></tr>
+          <tr><td>11.2 (160)</td><td>1/2 或 3/4 (15 或 20)<sup>註1</sup></td></tr>
+          <tr><td>14.0 (200)</td><td>3/4 (20)</td></tr>
+          <tr><td>16.8 (240)</td><td>3/4 (20)</td></tr>
+          <tr><td>19.6 (280)</td><td>1 (25)</td></tr>
+          <tr><td>22.4 (320)</td><td>1 (25)</td></tr>
+          <tr><td>25.2 (360)</td><td>1 (25)</td></tr>
+          <tr><td>28.0 (400)</td><td>1 (25)</td></tr>
+          <tr><td>33.6 (480)</td><td>1-1/4 (32)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;">註1：K11.2 (K160) 採公稱 1/2 in. (15 mm) NPT 牙口者，僅限作為既有 K8.0 (K115) 以下撒水頭之汰換（retrofit）用途時方可使用。</p>
+
+      <table class="clause-table">
+        <thead><tr><th>專用資料表建議之放水密度，gpm/ft²（mm/min）</th><th>標準涵蓋型最低建議 K 值</th><th>延伸涵蓋型最低建議 K 值</th></tr></thead>
+        <tbody>
+          <tr><td>密度 ≤ 0.10 (4)</td><td>K5.6 (K80)</td><td>K5.6EC (K80EC)</td></tr>
+          <tr><td>0.10 (4) &lt; 密度 ≤ 0.30 (12)</td><td>K5.6 (K80)</td><td>K11.2EC (K160EC)</td></tr>
+          <tr><td>密度 &gt; 0.30 (12)</td><td>K11.2 (K160)</td><td>K25.2EC (K360EC)</td></tr>
+        </tbody>
+      </table>
+
+      <h4><span class="clause-ref">2.5.2.1.2</span>快速反應（RTI）撒水頭之適用限制</h4>
+      <p>標準反應（Standard-Response）非儲存型撒水頭可用於濕式與乾式系統。快速反應（Quick-Response）撒水頭僅可用於濕式系統；下列用途<b>不得</b>使用快速反應撒水頭：</p>
+      <ul class="steps alpha">
+        <li>易燃液體噴塗作業</li>
+        <li>使用易燃液體之液壓設備</li>
+        <li>存在非附屬於製程、且盛裝容器容量超過 5 加侖 (19 公升) 安全容器之易燃液體場所</li>
+        <li>油箱內有燃油之車輛組裝或維修區域</li>
+        <li>存在大面積遮蔽撒水放水之場所</li>
+        <li>天花板及／或建築結構支撐構件上可能堆積油污、粉塵、棉絮等可燃殘留物之區域</li>
+        <li>專用資料表未建議該用途採用快速反應撒水頭者</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.2.2</span>天花板構造類型（無遮蔽 vs. 有遮蔽）之判定</h3>
+      <p><span class="clause-ref">2.5.2.2.1</span> 依 Fig. 2.5.2.2.1 流程圖判定天花板構造是否為無遮蔽（Unobstructed）或有遮蔽（Obstructed）。<b>實心天花板結構構件（solid ceiling structural member）</b>係指其於垂直面之斷面開口率<b>低於 70%</b> 者。</p>
+      <ul class="steps">
+        <li>天花板是否平整、如懸吊式天花板（smooth, such as a suspended ceiling）？<b>是</b> → 判定為無遮蔽</li>
+        <li>所有實心天花板結構構件深度是否 ≤ 4 in. (100 mm)？<b>是</b> → 判定為無遮蔽</li>
+        <li>實心天花板結構構件間距是否 ≥ 20 ft (6.1 m)？<b>是</b> → 判定為無遮蔽</li>
+        <li>實心天花板結構構件間之最小距離是否符合 Table 2.5.2.2.1 規定？<b>是</b> → 判定為無遮蔽</li>
+        <li>以上皆否 → 判定為<b>有遮蔽（Obstructed）</b></li>
+      </ul>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭 K 值</th><th>最高用途危害等級</th><th>最大天花板高度，ft (m)</th><th>判定為無遮蔽所需之實心結構構件最小間距，ft (m)</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="3">≤ K8.0 (K115)</td><td>HC-2</td><td>60 (18.3)</td><td>15 (4.6)</td></tr>
+          <tr><td>HC-3</td><td>30 (9.1)</td><td>12 (3.7)</td></tr>
+          <tr><td>HC-3</td><td>45 (13.7)</td><td>10 (3.0)</td></tr>
+          <tr><td rowspan="3">K11.2 (K160)</td><td>HC-2</td><td>60 (18.3)</td><td>15 (4.6)</td></tr>
+          <tr><td>HC-3</td><td>30 (9.1)</td><td>12 (3.7)</td></tr>
+          <tr><td>HC-3</td><td>60 (18.3)</td><td>10 (3.0)</td></tr>
+          <tr><td rowspan="4">≥ K14 (K200)</td><td>HC-2</td><td>60 (18.3)</td><td>15 (4.6)</td></tr>
+          <tr><td>HC-2</td><td>&gt; 60 (18.3)</td><td>12 (3.7)</td></tr>
+          <tr><td>HC-3</td><td>30 (9.1)</td><td>12 (3.7)</td></tr>
+          <tr><td>HC-3</td><td>&gt; 30 (9.1)</td><td>10 (3.0)</td></tr>
+          <tr><td rowspan="3">K11.2EC (K160EC) 直立式</td><td>HC-1</td><td>30 (9.1)</td><td>20 (6.1)</td></tr>
+          <tr><td>HC-2</td><td>60 (18.3)</td><td>16 (4.9)</td></tr>
+          <tr><td>HC-3</td><td>45 (13.7)</td><td>16 (4.9)</td></tr>
+          <tr><td rowspan="3">K14.0EC (K200EC) 直立式</td><td>HC-2</td><td>60 (18.3)</td><td>20 (6.1)</td></tr>
+          <tr><td>HC-3</td><td>30 (9.1)</td><td>20 (6.1)</td></tr>
+          <tr><td>HC-3</td><td>45 (13.7)</td><td>16 (4.9)</td></tr>
+          <tr><td>K25.2EC (K360EC)</td><td>HC-3</td><td>任何高度</td><td>14 (4.3)</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.2.2.2</span> 若流程圖判定天花板構造為<b>無遮蔽</b>，依 <span class="clause-ref">2.5.2.3</span> 之水平／垂直定位建議安裝。<span class="clause-ref">2.5.2.2.3</span> 若判定為<b>有遮蔽</b>，依 2.5.2.4（本節不涵蓋）之建議安裝。</p>
+
+      <h3><span class="clause-ref">2.5.2.3</span>無遮蔽天花板構造下之水平與垂直定位</h3>
+
+      <h4><span class="clause-ref">2.5.2.3.1</span>水平直線與面積間距</h4>
+      <p>若專用資料表未提供天花板撒水頭間距建議，無遮蔽天花板構造下之非儲存型下垂式／直立式撒水頭應依危害等級分別採用 Table 2.5.2.3.1.1(a)（危害等級一）、(b)（危害等級二）、(c)（危害等級三），依天花板高度、K 值、方位、反應等級與天花板坡度決定容許之最小／最大直線間距（約 7–20 ft／2.1–6.1 m）與最小／最大面積間距（約 64–400 ft²／6.0–37.2 m²）。<span class="clause-ref">2.5.2.3.1.2</span> 撒水頭間之直線距離應<b>沿天花板坡度量測</b>，而非以樓地板平面之投影距離計算。</p>
+
+      <h4><span class="clause-ref">2.5.2.3.2</span>撒水頭與牆壁、牆角之水平距離</h4>
+      <p>非儲存型下垂式／直立式撒水頭與牆壁之水平距離，應以垂直於牆面方向量測；與牆角之距離依牆角角度區分，詳 Fig. 2.5.2.3.2。</p>
+      <table class="clause-table">
+        <thead><tr><th>量測情境</th><th>與牆面之水平距離 D<sub>W</sub></th><th>與牆角之水平距離 D<sub>C</sub></th></tr></thead>
+        <tbody>
+          <tr><td>牆角角度 &lt; 90°</td><td>4 in. (100 mm) ≤ D<sub>W</sub> ≤ 50% S<sub>MAX</sub></td><td>4 in. (100 mm) ≤ D<sub>C</sub> ≤ 75% S<sub>MAX</sub></td></tr>
+          <tr><td>牆角角度 ≥ 90°</td><td>4 in. (100 mm) ≤ D<sub>W</sub> ≤ 50% S<sub>MAX</sub></td><td>4 in. (100 mm) ≤ D<sub>C</sub> ≤ 71% S<sub>MAX</sub></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;">式中 S<sub>MAX</sub> = 撒水頭最大容許直線間距（詳 Table 2.5.2.3.1.1(a)/(b)/(c)）。無論牆角角度為何，撒水頭與牆面之最小距離均不得小於 4 in. (100 mm)。</p>
+
+      <h4><span class="clause-ref">2.5.2.3.3</span>無遮蔽構造下撒水頭之垂直位置</h4>
+      <p><span class="clause-ref">2.5.2.3.3.1</span> 撒水頭（感熱元件中心線）與天花板下緣間之垂直距離 D<sub>V</sub>，應<b>垂直於天花板面</b>量測（無論天花板是否傾斜，皆以垂直天花板之方向為準，而非鉛垂方向）。</p>
+
+      <div class="callout info">
+        <div class="callout-icon">🌊</div>
+        <div><b>波浪型（corrugated）天花板</b>（<span class="clause-ref">2.5.2.3.3.2</span>）：以波谷寬度 X、波峰寬度 Y、波高 H 判斷量測基準點——當 <b>X ≥ 3 in. (75 mm)</b>、<b>Y ≤ 3 in. (75 mm)</b> 且 <b>H ≤ 0.5X</b> 三條件同時成立時，垂直距離以<b>波谷下緣（基準點 1）</b>量起；若上述任一條件不成立，則改以<b>波峰下緣（基準點 2）</b>量起。</div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">🧊</div>
+        <div><b>保溫材／帆布式支撐（insulation）</b>（<span class="clause-ref">2.5.2.3.3.3</span>）：當天花板下緣鋪設乙烯基帆布支撐或礦棉、玻璃纖維毯等類似保溫系統（<b>反射式天花板不適用本規定</b>）而呈現下垂弧形時，垂直距離 = <b>Y − (0.5)X</b>；其中 X 為結構構件間保溫材下垂之總深度（自天花板量至垂弧最低點），Y 為天花板至撒水頭感熱元件中心線之距離。</div>
+      </div>
+
+      <p><span class="clause-ref">2.5.2.3.3.4</span> 除非專用資料表另有規定，非儲存型下垂式／直立式撒水頭感熱元件中心線應依下表位於天花板下緣以下之範圍內（並應依 Table 2.5.2.3.1.1(a)/(b)/(c) 確認該天花板高度可用之撒水頭種類）：</p>
+      <table class="clause-table">
+        <thead><tr><th>建築天花板高度</th><th>撒水頭種類與 K 值</th><th>垂直距離範圍（感熱元件中心線至天花板下緣）</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="5">≤ 30 ft (9.1 m)</td><td>延伸涵蓋型 K ≤ 8.0EC (115EC)</td><td>1–4 in. (25–100 mm)</td></tr>
+          <tr><td>延伸涵蓋型 K ≥ 11.2EC (160EC)</td><td>2–12 in. (50–300 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K ≤ 11.2 (160)，或標準涵蓋型標準反應</td><td>2–12 in. (50–300 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K14.0 (K200) 或 16.8 (240)</td><td>2–13 in. (50–325 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K ≥ 19.6 (280)</td><td>2–17 in. (50–425 mm)</td></tr>
+          <tr><td rowspan="4">&gt; 30 ft 且 ≤ 60 ft (9.1–18.3 m)</td><td>延伸涵蓋型 K ≥ 11.2EC (160EC)</td><td>2–12 in. (50–300 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K ≤ 11.2 (160)，或標準涵蓋型標準反應</td><td>2–12 in. (50–300 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K14.0 (K200) 或 16.8 (240)</td><td>2–13 in. (50–325 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K ≥ 19.6 (280)</td><td>2–17 in. (50–425 mm)</td></tr>
+          <tr><td rowspan="2">&gt; 60 ft (18.3 m)</td><td>延伸涵蓋型 K ≥ 25.2EC (360EC)</td><td>2–12 in. (50–300 mm)</td></tr>
+          <tr><td>標準涵蓋型快速反應 K ≥ 19.6 (280)</td><td>2–17 in. (50–425 mm)</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.2.3.3.5</span> 以上垂直位置規定<b>不適用於</b>齊平型（flush）、嵌入型（recessed）或隱藏型（concealed）非儲存型撒水頭。</p>
+
+      <h4><span class="clause-ref">2.5.2.3.4</span>天花板坡度對撒水頭安裝之影響</h4>
+      <p><span class="clause-ref">2.5.2.3.4.1</span> 依 Fig. 2.5.2.3.4.1(a) 流程圖判斷天花板坡度之影響；坡度非直線之天花板，應以分析點之切線（point of tangency）計算坡度。判斷順序如下：</p>
+      <ul class="steps">
+        <li>坡度 ≤ 1 in 12 (5°)：<b>坡度不影響</b>撒水頭安裝規定</li>
+        <li>坡度 ≤ 2 in 12 (10°)：將撒水頭感熱元件中心線定位於<b>屋脊（peak）以下</b>，如 Fig. 2.5.2.3.4.1(b)</li>
+        <li>坡度 &gt; 2 in 12 (10°) 且撒水頭為延伸涵蓋型且 K &lt; K25.2 (K360)：<b>不相容</b>於此坡度，須依 Fig. 2.5.2.3.4.1(c) 採取補救措施（設置假天花板）</li>
+        <li>坡度 ≤ 4 in 12 (18.5°)：可採下列任一方式，並將感熱元件中心線定位於屋脊以下（如 Fig. 2.5.2.3.4.1(b)）
+          <ul class="steps">
+            <li><b>方式一</b>：濕式系統以乾式系統基準設計；若無乾式設計基準，則將濕式設計面積增加 30%；乾式系統則將設計面積增加 30%</li>
+            <li><b>方式二</b>：撒水頭以 4×4 ft (1.2×1.2 m) 間距安裝，惟最靠近屋脊之撒水頭仍採正常間距</li>
+          </ul>
+        </li>
+        <li>坡度 &gt; 4 in 12 (18.5°) 但用途危害等級屬 <b>HC-1</b>：仍可採上列方式一或方式二</li>
+        <li>坡度 &gt; 4 in 12 (18.5°) 且非 HC-1，惟沿坡面之天花板長度 ≤ 35 ft (10.7 m)：仍可採上列方式一或方式二</li>
+        <li>以上皆不成立（坡度 &gt; 4 in 12、非 HC-1、且沿坡面長度 &gt; 35 ft）：依 Fig. 2.5.2.3.4.1(c) 設置假天花板安裝撒水頭</li>
+      </ul>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div><b>屋脊附近撒水頭定位</b>（Fig. 2.5.2.3.4.1(b)）：坡度 &gt; 1 in 12 (5°) 時，撒水頭應安裝於屋脊 <b>3 ft (0.9 m)</b> 範圍內，撒水板可平行天花板或平行地板。<b>假天花板安排</b>（Fig. 2.5.2.3.4.1(c)，適用坡度 &gt; 4 in 12／18.5°）：以整片平整不燃假天花板區隔，假天花板頂緣與屋脊之間至少保留 <b>15 ft (4.6 m)</b>，假天花板下方撒水頭則依其實際防護之用途危害與假天花板高度另行設計。</div>
+      </div>
+      <p><span class="clause-ref">2.5.2.3.4.2</span> 設置平整、連續之假天花板時，應使用最小 22 號規格 (0.7 mm) 金屬薄板或同等不燃材料，並以能承受最小 <b>3 lb/ft² (14.6 kg/m²)</b> 上舉風壓之方式固定；較不理想但可接受之替代方案為最小 3/8 in. (10 mm) 合板（或同等材料）。<span class="clause-ref">2.5.2.3.4.3</span> 非儲存型下垂式／直立式撒水頭之撒水板應<b>平行天花板或平行地板</b>安裝。</p>
+    </div>
+
+    <div class="section" id="s252b">
+      <div class="section-header">
+        <div class="section-num">2.5.2</div>
+        <h2>非儲存型下垂式與直立式撒水頭（二）：阻礙物判斷規則</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.5.2.4</span>阻礙式天花板構造下之水平／垂直安裝位置</h3>
+      <p><span class="clause-ref">2.5.2.4.1</span> 撒水頭間之直線距離，應沿天花板坡度量測，<b>不得</b>以地板水平視角量測。<span class="clause-ref">2.5.2.4.2</span> 依 Fig. 2.5.2.4.2 流程圖判斷阻礙式天花板構造下撒水頭之建議水平與垂直安裝位置，判斷邏輯摘要如下表。</p>
+
+      <table class="clause-table">
+        <thead><tr><th>條件（依序判斷）</th><th>安裝方式</th></tr></thead>
+        <tbody>
+          <tr><td>天花板坡度 &gt; 4 in 12 (18.5°)</td><td>依 Fig. 2.5.2.3.4.1(c) 設置假天花板（false ceiling）</td></tr>
+          <tr><td>實心天花板結構材深度 &gt; 24 in. (600 mm)（坡度 ≤4 in 12 情形）</td><td>於阻礙式構造形成之<b>每一通道（channel）</b>內皆須設置撒水頭</td></tr>
+          <tr><td>實心結構材深度 &lt; 30 in. (750 mm) 且坡度 &lt; 1 in 12 (5°)</td><td>採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>坡度 &lt; 1 in 12 (5°) 且結構材深度 &lt; 24 in. (600 mm)</td><td>採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>坡度 &lt; 1 in 12 (5°) 但結構材深度 ≥ 24 in. (600 mm)</td><td>需<b>通道阻塞（channel-block）</b>結構材後，再採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>坡度 &lt; 2 in 12 (10°) 且結構材深度 &lt; 18 in. (450 mm)</td><td>採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>坡度 &lt; 2 in 12 (10°) 但結構材深度 ≥ 18 in. (450 mm)</td><td>需通道阻塞後，再採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>實心結構材與天花板坡度方向<b>垂直</b>（perpendicular）</td><td>需通道阻塞後，再採「正常水平間距／調整垂直間距」安裝</td></tr>
+          <tr><td>實心結構材與天花板坡度方向<b>不垂直</b></td><td>於阻礙式構造形成之每一通道內皆須設置撒水頭</td></tr>
+        </tbody>
+      </table>
+
+      <h4>每一通道皆設置撒水頭時之設計方式（<span class="clause-ref">2.5.2.4.3</span>）</h4>
+      <ul class="steps alpha">
+        <li><b>水平間距</b>：依用途危害專用資料表所列直線間距決定通道內撒水頭最小／最大水平間距；如未提供，則依危害等級套用 Table 2.5.2.3.1.1(a)／(b)／(c)。若結構材上有開口，得於各通道間水平交錯配置撒水頭，以符合最小建議直線間距</li>
+        <li><b>垂直間距</b>：依 2.5.2.3.3 所列距離決定通道內撒水頭於天花板下方之最小／最大垂直位置</li>
+        <li><b>系統設計（採密度／需求面積法時）</b>：
+          <ul>
+            <li>每一支管上作動撒水頭數：取需求面積之平方根，乘以適用之形狀係數，再除以通道內撒水頭之直線間距（非整數依一般捨入法處理）</li>
+            <li>水力分析納入之撒水頭數：以規定需求面積除以撒水頭最大允許面積間距（非整數依一般捨入法處理）</li>
+            <li>最遠端撒水頭最小需求流量：以規定放水密度乘以撒水頭最大允許面積間距</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>正常水平間距／調整垂直間距（<span class="clause-ref">2.5.2.4.4</span>）</h4>
+      <p><b>A. 水平間距</b>：依用途危害專用資料表之直線與面積間距決定；未提供者依危害等級套用 Table 2.5.2.3.1.1(a)／(b)／(c)。<b>B. 垂直間距</b>：依 2.5.2.3.3 決定天花板下方最小／最大垂直位置；若實心結構材深度導致無法依 2.5.2.3.3 施作，撒水頭感熱元件應位於<b>實心天花板結構材下緣以下不超過 6 in. (150 mm)</b> 之平面內（見 Fig. 2.5.2.4.4 綠色區域）：</p>
+      <table class="clause-table">
+        <thead><tr><th>天花板坡度</th><th>結構材深度門檻</th><th>感熱元件容許位置（超出 2.5.2.3.3 規定時）</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 2 in 12 (10°)</td><td>&lt; 24 in. (600 mm)</td><td>結構材下緣以下 ≤ 6 in. (150 mm)</td></tr>
+          <tr><td>&lt; 4 in 12 (18.5°)</td><td>&lt; 18 in. (450 mm)</td><td>結構材下緣以下 ≤ 6 in. (150 mm)</td></tr>
+        </tbody>
+      </table>
+
+      <h4>通道阻塞 Channel-Blocking（<span class="clause-ref">2.5.2.4.5</span>）</h4>
+      <p>需通道阻塞時，除依上述 A／B 決定水平與垂直間距外，應以阻塞材<b>封閉實心天花板結構材形成之通道全深度</b>（見 Fig. 2.5.2.4.5），並限制每一通道之最大容積：</p>
+      <table class="clause-table">
+        <thead><tr><th>天花板坡度</th><th>單一通道最大容積</th></tr></thead>
+        <tbody>
+          <tr><td>≤ 2 in 12 (10°)</td><td>400 ft³ (11.3 m³)</td></tr>
+          <tr><td>&gt; 2 in 12 (10°) 但 ≤ 4 in 12 (18.5°)</td><td>300 ft³ (8.5 m³)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>進行通道全深度阻塞時，天花板下緣與結構材頂部間（如波浪型鋼承板屋面所形成）<b>高度 ≤ 4 in. (100 mm) 之開口空隙可不必填塞</b>。</div>
+      </div>
+      <p><span class="clause-ref">2.5.2.4.6</span> 阻礙式構造下之撒水頭，其與牆面／牆角之水平距離安裝方式，比照 Fig. 2.5.2.3.2（無阻礙構造）辦理。<span class="clause-ref">2.5.2.4.7</span> 天花板坡度超過 1 in 12 (5°) 時，撒水頭應設置於天花板峰頂 3 ft (0.9 m) 範圍內（見 Fig. 2.5.2.3.4.1(b)）。<span class="clause-ref">2.5.2.4.8</span> 撒水頭撒水盤方向應與天花板平行或與地板平行。</p>
+
+      <h3><span class="clause-ref">2.5.2.5</span>天花板層撒水頭撒水型態之阻礙判斷總則</h3>
+      <h4><span class="clause-ref">2.5.2.5.1</span>棋盤格區域內之物件——不視為阻礙</h4>
+      <p><span class="clause-ref">2.5.2.5.1.1</span> 若某物件<b>完全位於</b> Fig. 2.5.2.5.1.1(a)（標準涵蓋型撒水頭）或 Fig. 2.5.2.5.1.1(b)（延伸涵蓋型撒水頭）所示、以撒水頭為中心呈棋盤格狀交錯分布之允許區域內，則該物件<b>不構成</b>對撒水頭撒水型態之阻礙——此棋盤格區域依撒水頭為標準涵蓋型或延伸涵蓋型而有不同範圍。<span class="clause-ref">2.5.2.5.1.2</span> 若物件並非完全位於棋盤格區域內，應依後續各節（2.5.2.5.2 以下）逐項判斷該物件是否構成不可接受之阻礙。</p>
+
+      <h4><span class="clause-ref">2.5.2.5.2</span>天花板結構構材及類似物件之阻礙判斷</h4>
+      <p><span class="clause-ref">2.5.2.5.2.1</span> 若天花板結構構材（如工字樑 I-Beam）或其他類似物件，其垂直斷面之<b>開口率低於 70%</b>，且延伸凸出棋盤格區域範圍外（見 Fig. 2.5.2.5.2.1(a)），則應如 Fig. 2.5.2.5.2.1(b) 所示，將撒水頭分設於該結構構材<b>兩側</b>。</p>
+      <table class="clause-table">
+        <thead><tr><th>判斷項目</th><th>準則</th></tr></thead>
+        <tbody>
+          <tr><td>結構構材開口率 ≥ 70%（<span class="clause-ref">2.5.2.5.2.2</span>）</td><td><b>不構成</b>撒水頭撒水型態之阻礙</td></tr>
+          <tr><td>開口率 ≥ 70% 但水平距離標準涵蓋型撒水頭 &lt; 12 in. (300 mm)，或延伸涵蓋型撒水頭 &lt; 18 in. (450 mm)（<span class="clause-ref">2.5.2.5.2.3</span>）</td><td>構材之交叉斜撐（cross-bracing）等組件須同時滿足：(A) 寬度不超過 3 in. (75 mm)；且 (B) 與撒水頭之最小水平距離 ≥ 該物件寬度之 3 倍</td></tr>
+          <tr><td>無法滿足上列 2.5.2.5.2.3 準則（<span class="clause-ref">2.5.2.5.2.4</span>）</td><td>重新配置撒水頭位置：標準涵蓋型撒水頭距最近結構構材水平距離 ≥ 12 in. (300 mm)；延伸涵蓋型撒水頭 ≥ 18 in. (450 mm)</td></tr>
+        </tbody>
+      </table>
+      <p>Fig. 2.5.2.5.2.1(b) 另示：撒水頭以結構構材（如工字樑）中心線量測之垂直高度差 H 應 <b>&lt; 最大允許直線間距之 50%</b>，且撒水頭與樑之水平距離 &gt; 12 in. (300 mm)（適用樑寬達 4 ft／1.2 m 者）。</p>
+
+      <h4><span class="clause-ref">2.5.2.5.3</span>個別物件與群組物件之阻礙分析</h4>
+      <p><span class="clause-ref">2.5.2.5.3.1</span> 一物件若與相鄰同等或更大尺寸之物件間，水平距離達該物件寬度之<b>至少 3 倍</b>，則可視為獨立分析之「<b>個別物件（Individual Object）</b>」。<span class="clause-ref">2.5.2.5.3.2</span> 反之，若物件與相鄰同等或更大物件間之水平距離<b>小於</b>該較小物件寬度之 3 倍，則應與該相鄰物件合併視為「<b>群組物件（Grouped Object）</b>」。<span class="clause-ref">2.5.2.5.3.3</span> 群組物件之整體寬度為各組成物件寬度之總和；物件間之空隙<b>不須</b>納入寬度計算。</p>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>Fig. 2.5.2.5.3.1 範例：物件 A 寬 2 in. (50 mm)，與物件 B 相距 12 in. (300 mm)——因 12 in. &gt; 3 × 2 in.，A 為<b>個別物件</b>。物件 B（寬 18 in./450 mm）與物件 C（寬 24 in./600 mm）相距 12 in. (300 mm)——因 12 in. &lt; 3 × 18 in.，B、C 合併為<b>群組物件</b>，整體寬度 = 18 in. + 24 in. = <b>42 in. (1050 mm)</b>。</div>
+      </div>
+
+      <h4><span class="clause-ref">2.5.2.5.4 – 2.5.2.5.5</span>依物件寬度決定是否需增設補充撒水頭</h4>
+      <p><span class="clause-ref">2.5.2.5.4</span> 任何物件（以其最小尺寸、於平行地板之平面上量測）<b>寬度 ≤ 4 ft (1.2 m)</b> 者，不構成撒水頭撒水型態之阻礙。<span class="clause-ref">2.5.2.5.5.1</span> 個別或群組物件<b>寬度 &gt; 4 ft (1.2 m)</b> 者，應於該阻礙物件下方設計並安裝<b>補充撒水頭（Supplemental Sprinklers）</b>。</p>
+      <p><span class="clause-ref">2.5.2.5.5.2</span> 補充撒水頭設計若同時符合下列條件，可視為可接受，<b>不須</b>與天花板層撒水系統進行水力平衡計算或併入其設計：</p>
+      <ul class="steps alpha">
+        <li>補充撒水頭由濕式（或同類）撒水系統供水</li>
+        <li>供應補充撒水頭之配管管徑 ≥ 天花板層撒水系統支管管徑</li>
+        <li>補充撒水頭屬性與天花板層撒水頭相同；可接受之差異僅限：(1) 天花板層為標準反應時，補充撒水頭為快速反應；或 (2) 補充撒水頭 K 值大於天花板層撒水頭；或 (3) 補充撒水頭標稱動作溫度低於天花板層撒水頭</li>
+      </ul>
+      <p><span class="clause-ref">2.5.2.5.5.3</span> 未符合上述條件時，補充撒水頭配管尺寸依下列方式決定：(A) 以阻礙物底部作為設計用「天花板高度」，自對應用途危害專用資料表查得放水密度；(B) 設計面積內納入該受影響區域<b>所有</b>補充撒水頭，最多 4 個（若由兩條支管供水，可以每線 2 個計入）；(C) 補充撒水頭之需求流量與壓力<b>不須</b>與天花板層撒水系統水力平衡。<span class="clause-ref">2.5.2.5.5.4</span> 安裝要求：補充撒水頭應盡量貼近阻礙物件下緣設置於同一垂直平面；水平配置應於阻礙物件投影範圍內，依 Table 2.5.2.3.1.1(a)／(b)／(c) 之直線與面積間距（依用途危害及撒水頭屬性選用）。</p>
+
+      <h4><span class="clause-ref">2.5.2.5.9</span>輸送機（Conveyor）造成之撒水阻礙判斷</h4>
+      <p>依 Fig. 2.5.2.5.9 流程圖判斷輸送機是否構成天花板層撒水頭撒水之不可接受阻礙，判斷邏輯如下：</p>
+      <table class="clause-table">
+        <thead><tr><th>條件（依序判斷）</th><th>結論</th></tr></thead>
+        <tbody>
+          <tr><td>輸送機下方區域將保持無可燃物</td><td>不需於輸送機下方設置補充撒水頭</td></tr>
+          <tr><td>輸送機寬度 &lt; 4 ft (1.2 m)</td><td>不需於輸送機下方設置補充撒水頭</td></tr>
+          <tr><td>輸送機為滾輪式（roller type）</td><td>不需於輸送機下方設置補充撒水頭</td></tr>
+          <tr><td>輸送機皮帶為格柵式（grid type）且開口率 &gt; 70%</td><td>不需於輸送機下方設置補充撒水頭</td></tr>
+          <tr><td>輸送機皮帶為格柵式但開口率 ≤ 70%</td><td>應依 2.5.2.5.3 於輸送機下方提供快速反應補充撒水頭</td></tr>
+          <tr><td>輸送機皮帶為實心式（solid-belt）</td><td>依 2.5.2.5.3（個別／群組物件分析法）判斷該實心皮帶輸送機是否構成撒水阻礙</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>本節僅摘要 FM DS 2-0 第 2.5.2.4－2.5.2.5.9 節（不含 2.5.2.5.6－2.5.2.5.8 開放格柵天花板／夾層／走道之獨立規定）有關阻礙式天花板構造與各類阻礙物判斷之重點規則，各流程圖（Fig. 2.5.2.4.2、Fig. 2.5.2.5.9 等）與圖示之幾何細節已以文字／表格方式轉譯，正式設計仍應查閱原文圖表確認。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s253">
+      <div class="section-header">
+        <div class="section-num">2.5.3</div>
+        <h2>非儲存型側牆式撒水頭（Nonstorage Sidewall Sprinklers）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.5.3.1</span>非儲存型側牆式撒水頭一般建議</h3>
+      <p><span class="clause-ref">2.5.3.1.1</span> 側牆式（Sidewall）撒水頭可於同時符合下列條件時使用：</p>
+      <ul class="steps alpha">
+        <li>用途危害符合 Data Sheet 3-26《非儲存用途消防用水需求》所定義之 <b>HC-1 或 HC-2</b>，且</li>
+        <li>天花板構造屬於<b>平坦、平滑且無阻礙（unobstructed）</b>，且</li>
+        <li>防護區域天花板高度不超過 <b>30 ft (9.1 m)</b>。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.1.2</span> 有關 <b>K14.0EC (K200EC) 水平側牆式撒水頭</b>之額外一般建議，詳見 2.5.3.4 節。</p>
+
+      <h4>天花板凹穴（Ceiling Pockets）之側牆式撒水頭設置判斷（<span class="clause-ref">2.5.3.1.3</span>）</h4>
+      <p>依 Fig. 2.5.3.1.3 流程圖判斷天花板凹穴範圍內，是否須於主要下層天花板撒水頭之外，另於凹穴內加裝撒水頭。流程圖之判斷邏輯重點如下：</p>
+      <ul class="steps">
+        <li>凹穴構造若含有<b>發泡塑膠（expanded plastics）</b>材料，直接建議於凹穴範圍內設置撒水頭（另參 Data Sheet 1-57《建築用塑膠材料》之補充建議）。</li>
+        <li>若無發泡塑膠，續依凹穴<b>體積是否 &gt; 1,000 ft³ (28 m³)</b>、凹穴間<b>水平距離是否小於撒水頭最大線性間距</b>、凹穴<b>高度是否 &gt; 3 ft (0.9 m)</b>，逐層判斷是否須強制設置、可選擇性設置，或不需要設置。</li>
+        <li>另一分支則依凹穴<b>短邊寬度是否 ≤ 下層天花板撒水頭最大線性間距</b>、凹穴<b>高度是否 ≤ 24 in. (600 mm)</b>、鄰近 10 ft (3.0 m) 內凹穴之<b>累計體積是否 &gt; 1,000 ft³ (28 m³)</b>、凹穴<b>面積是否 &gt; 40 ft² (3.7 m²)</b> 等條件，決定設置為必要、可選，或建議設置。</li>
+      </ul>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>若流程圖判定凹穴內須設置撒水頭，應依該凹穴之<b>最大天花板高度</b>所對應之準則安裝。凹穴內撒水頭與下方主天花板撒水頭之間的<b>最小水平間距限制可忽略</b>，但<b>最大水平間距限制不可忽略</b>。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.3.2</span>非儲存型側牆式撒水頭之水平配置</h3>
+
+      <h4>水平線性間距（<span class="clause-ref">2.5.3.2.1</span>）</h4>
+      <p><span class="clause-ref">2.5.3.2.1.1</span> 若該用途之專屬 Data Sheet 未另行規定天花板撒水頭間距，應依用途危害類別，依下表 2.5.3.2.1.1(a)（危害類別1）或 2.5.3.2.1.1(b)（危害類別2）於無阻礙天花板構造下安裝非儲存型側牆式撒水頭。</p>
+
+      <table class="clause-table">
+        <thead><tr><th colspan="7">Table 2.5.3.2.1.1(a). 危害類別 1（HC-1）天花板側牆式撒水頭間距</th></tr></thead>
+        <tbody>
+          <tr><th>天花板／牆面構造</th><th>K 值</th><th>RTI</th><th>沿裝設牆方向 最小～最大</th><th>離裝設牆方向 最小～最大</th><th>面積下限</th><th>面積上限</th></tr>
+          <tr><td rowspan="3">平坦、平滑，<br>不燃材質裝修</td><td>K5.6 (80)</td><td>Quick 或 Standard</td><td>6 ft (1.8 m) ～ 14 ft (4.3 m)</td><td>6 ft (1.8 m) ～ 14 ft (4.3 m)</td><td>DNA</td><td>196 ft² (18.2 m²)</td></tr>
+          <tr><td>K5.6EC (80EC)</td><td>Quick</td><td>見註1 ～ 16 ft (4.9 m)</td><td>見註1 ～ 20 ft (6.1 m)</td><td>DNA</td><td>320 ft² (29.7 m²)</td></tr>
+          <tr><td>K8.0EC (115EC)</td><td>Quick</td><td>見註1 ～ 16 ft (4.9 m)</td><td>見註1 ～ 24 ft (7.3 m)</td><td>DNA</td><td>384 ft² (35.7 m²)</td></tr>
+          <tr><td rowspan="3">平坦、平滑，<br>可燃材質裝修</td><td>K5.6 (80)</td><td>Quick 或 Standard</td><td>6 ft (1.8 m) ～ 14 ft (4.3 m)</td><td>6 ft (1.8 m) ～ 12 ft (3.7 m)</td><td>DNA</td><td>120 ft² (11.1 m²)</td></tr>
+          <tr><td>K5.6EC (80EC)</td><td>Quick</td><td>見註1 ～ 16 ft (4.9 m)</td><td>見註1 ～ 20 ft (6.1 m)</td><td>DNA</td><td>320 ft² (29.7 m²)</td></tr>
+          <tr><td>K8.0EC (115EC)</td><td>Quick</td><td>見註1 ～ 16 ft (4.9 m)</td><td>見註1 ～ 24 ft (7.3 m)</td><td>DNA</td><td>384 ft² (35.7 m²)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--muted);">註1：最小線性間距係為避免撒水頭被安裝於相鄰延伸涵蓋型（Extended Coverage）側牆式撒水頭之防護範圍內所需之距離。</p>
+
+      <table class="clause-table">
+        <thead><tr><th colspan="7">Table 2.5.3.2.1.1(b). 危害類別 2（HC-2）天花板側牆式撒水頭間距</th></tr></thead>
+        <tbody>
+          <tr><th>天花板／牆面構造</th><th>K 值</th><th>RTI</th><th>沿裝設牆方向 最小～最大</th><th>離裝設牆方向 最小～最大</th><th>面積下限</th><th>面積上限</th></tr>
+          <tr><td>平坦、平滑，不燃材質裝修</td><td>K5.6 (80)</td><td>Quick 或 Standard</td><td>6 ft (1.8 m) ～ 10 ft (3.0 m)</td><td>6 ft (1.8 m) ～ 10 ft (3.0 m)</td><td>DNA</td><td>100 ft² (9.3 m²)</td></tr>
+          <tr><td>平坦、平滑，可燃材質裝修</td><td>K5.6 (80)</td><td>Quick 或 Standard</td><td>6 ft (1.8 m) ～ 10 ft (3.0 m)</td><td>6 ft (1.8 m) ～ 10 ft (3.0 m)</td><td>DNA</td><td>80 ft² (7.4 m²)</td></tr>
+        </tbody>
+      </table>
+
+      <p><span class="clause-ref">2.5.3.2.1.2</span> 撒水頭間之線性距離應<b>沿天花板斜面量測</b>，而非以樓地板水平視角量測。</p>
+      <p><span class="clause-ref">2.5.3.2.1.3</span> 非儲存型側牆式撒水頭應沿<b>連續之牆、過樑（lintel）或類似結構物</b>設置，且僅限用於<b>最大天花板坡度 2/12（10°）</b>以下之平坦、平滑天花板構造。</p>
+      <p><span class="clause-ref">2.5.3.2.1.4</span> 側牆式撒水頭可安裝於<b>非連續垂直牆</b>（如過樑、天花板收邊牆板 soffits）上，惟須同時符合下列條件：</p>
+      <ul class="steps alpha">
+        <li>該非連續牆須<b>緊貼上方天花板</b>，且</li>
+        <li>該牆須向下垂直延伸至少 <b>2 in. (50 mm)</b>，超過撒水頭感熱元件中心線之下方，且</li>
+        <li>符合 2.5.3.3 節所定<b>撒水盤（deflector）垂直位置</b>之相關建議。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.2.1.5</span> 非儲存型側牆式撒水頭之撒水盤應<b>平行於天花板</b>設置。</p>
+      <p><span class="clause-ref">2.5.3.2.1.6</span> 有關 K14.0EC (K200EC) 水平側牆式撒水頭之水平線性間距建議，詳見 2.5.3.4 節。</p>
+
+      <h4>撒水頭與牆面／牆角之水平距離（<span class="clause-ref">2.5.3.2.2</span>）</h4>
+      <p><span class="clause-ref">2.5.3.2.2.1</span> 非儲存型側牆式撒水頭應依 Fig. 2.5.3.2.2.1(a) 所示，以<b>垂直於牆面量測</b>之水平距離安裝；與牆角之關係則依 Fig. 2.5.3.2.2.1(b) 辦理。</p>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭類型</th><th>與裝設牆之水平距離</th></tr></thead>
+        <tbody>
+          <tr><td>標準涵蓋型水平側牆式（Standard-Coverage Horizontal Sidewall）</td><td>DH &lt; 6 in. (150 mm)</td></tr>
+          <tr><td>標準涵蓋型垂直側牆式（Standard-Coverage Vertical Sidewall）</td><td>4 in. (100 mm) &lt; DV &lt; 6 in. (150 mm)</td></tr>
+          <tr><td>延伸涵蓋型水平側牆式（Extended-Coverage Horizontal Sidewall）</td><td>3/4 in. (20 mm) &lt; DHE &lt; 1-1/2 in. (38 mm)</td></tr>
+          <tr><td>延伸涵蓋型垂直側牆式（Extended-Coverage Vertical Sidewall）</td><td>3/4 in. (20 mm) &lt; DVE &lt; 1-1/2 in. (38 mm)</td></tr>
+          <tr><td>與<b>牆角（corner wall）</b>之水平距離 DCW（所有側牆式撒水頭通用）</td><td>4 in. (100 mm) &lt; DCW &lt; 50% S<sub>MAX</sub>（S<sub>MAX</sub> 為撒水頭最大允許線性間距）</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.3.2.2.2</span> 有關 K14.0EC (K200EC) 水平側牆式撒水頭之水平配置建議，詳見 2.5.3.4 節。</p>
+
+      <h3><span class="clause-ref">2.5.3.3</span>非儲存型側牆式撒水頭之垂直位置</h3>
+      <p><span class="clause-ref">2.5.3.3.1</span> 應依 Fig. 2.5.3.3.1 所示，將非儲存型側牆式撒水頭感熱元件之中心線安裝於天花板底面垂直下方之規定範圍內：</p>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭類型</th><th>撒水盤距天花板底面之垂直距離</th></tr></thead>
+        <tbody>
+          <tr><td>標準涵蓋型水平側牆式（DH）</td><td>4 in. (100 mm) &lt; DH &lt; 6 in. (150 mm)</td></tr>
+          <tr><td>標準涵蓋型垂直側牆式（DV）</td><td>4 in. (100 mm) &lt; DV &lt; 6 in. (150 mm)</td></tr>
+          <tr><td>延伸涵蓋型水平側牆式（DHE）</td><td>4 in. (100 mm) &lt; DHE &lt; 6 in. (150 mm)</td></tr>
+          <tr><td>延伸涵蓋型垂直側牆式（DVE）</td><td>4 in. (100 mm) &lt; DVE &lt; 6 in. (150 mm)</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.3.3.2</span> 特定撒水頭於天花板下方可允許之<b>加大垂直距離</b>，請參閱 Approval Guide。</p>
+      <p><span class="clause-ref">2.5.3.3.3</span> 天花板坡度超過 <b>1/12（5°）</b>時，應依 Fig. 2.5.3.3.3 所示位置設置側牆式撒水頭：於坡度介於 5° 至 10° 之間（10° &gt; θ &gt; 5°）時，撒水頭應設置於<b>距屋脊（ceiling peak）水平最大 3 ft (0.9 m)</b>範圍內。</p>
+
+      <h3><span class="clause-ref">2.5.3.4</span>K14.0EC (K200EC) 水平側牆式撒水頭安裝準則</h3>
+      <p><span class="clause-ref">2.5.3.4.1</span> K14.0EC (K200EC) 水平側牆式撒水頭可於同時符合下列條件時使用：</p>
+      <ul class="steps alpha">
+        <li>用途危害符合 Data Sheet 3-26 所定義之 <b>HC-1、HC-2、HC-3 或附屬儲存（incidental storage）</b>，且</li>
+        <li>該用途須與<b>快速反應型（quick-response）</b>撒水頭相容（不相容用途詳 2.5.2.1.2.2 節），且</li>
+        <li>天花板構造須為<b>無阻礙（unobstructed）</b>；惟若同時符合下列兩項，含桁條（purlins）之樑／工字樑（girders/I-beams）天花板構造仍可視為符合本項：
+          <ul class="steps">
+            <li>桁條深度 ≤ 10 in. (250 mm)；且</li>
+            <li>結構支撐間距 ≤ 25 ft (7.6 m)，且下弦（bottom chord）最大寬度 ≤ 10 in. (250 mm)</li>
+          </ul>
+        </li>
+        <li>防護區域天花板高度不超過 <b>32 ft (9.8 m)</b>，且</li>
+        <li>天花板坡度不超過 <b>2/12（10°）</b>。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.4.2</span> 應安裝標稱動作溫度 <b>160°F (70°C)</b> 之 K14.0EC (K200EC) 水平側牆式撒水頭，除非防護區域周溫要求採 <b>212°F (100°C)</b> 標稱溫級。</p>
+      <p><span class="clause-ref">2.5.3.4.3</span> K14.0EC (K200EC) 水平側牆式撒水頭之撒水盤應配置為<b>平行於地板</b>。</p>
+      <p><span class="clause-ref">2.5.3.4.4</span> 除<b>真空式撒水系統</b>外，K14.0EC (K200EC) 水平側牆式撒水頭可安裝於任何類型之撒水系統，無其他限制。</p>
+      <p><span class="clause-ref">2.5.3.4.5</span> 應依 Table 2.5.3.4.5 所列線性與面積間距安裝 K14.0EC (K200EC) 水平側牆式撒水頭：</p>
+      <table class="clause-table">
+        <thead><tr><th colspan="6">Table 2.5.3.4.5. 非儲存型 K14.0EC (K200EC) 水平側牆式撒水頭適用於危害類別 1、2、3 之建議間距</th></tr></thead>
+        <tbody>
+          <tr><th>天花板構造類型</th><th>K 值</th><th>RTI</th><th>沿裝設牆方向 最小～最大</th><th>離裝設牆方向 最小～最大</th><th>面積下限～上限</th></tr>
+          <tr><td>依 2.5.3.4.1(C) 規定</td><td>K14.0EC (200EC)</td><td>Quick</td><td>8 ft (2.4 m) ～ 14 ft (4.3 m)</td><td>8 ft (2.4 m) ～ 12.5 ft (3.8 m)</td><td>64 ft² (5.9 m²) ～ 175 ft² (16.3 m²)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>表列<b>最小間距</b>規定，不適用於安裝在<b>樑之兩側、背對背（back-to-back）</b>設置之撒水頭。</div>
+      </div>
+      <p><span class="clause-ref">2.5.3.4.6</span> 應將撒水頭安裝於主要結構構件（primary structural member）之<b>兩側，並呈背對背</b>配置，其水平位置依 Fig. 2.5.3.4.6 辦理：</p>
+      <table class="clause-table">
+        <thead><tr><th>安裝位置</th><th>水平距離（DHE）</th></tr></thead>
+        <tbody>
+          <tr><td>裝設牆側</td><td>1 in. (25 mm) &lt; DHE &lt; 4 in. (100 mm)</td></tr>
+          <tr><td>桁條（purlin）／工字樑（girder）側，桁條/工字樑最大深度 10 in. (250 mm)</td><td>1 in. (25 mm) &lt; DHE &lt; 4 in. (100 mm)</td></tr>
+          <tr><td>與牆角之水平距離 DCW（同 2.5.3.2.2 節通用規則）</td><td>4 in. (100 mm) &lt; DCW &lt; 50% S<sub>MAX</sub></td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.3.4.7</span> 撒水盤應定位於天花板底面下方之下列範圍（詳 Fig. 2.5.3.4.7）：</p>
+      <ul class="steps alpha">
+        <li>安裝於<b>裝設牆</b>上時：最小 4 in. (100 mm)、最大 6 in. (150 mm) 低於天花板底面；或</li>
+        <li>安裝於<b>工字樑或類似天花板結構構件</b>上時：最小 12 in. (300 mm)、最大 16 in. (400 mm) 低於天花板底面。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.4.8</span> 應依下列方式配置撒水頭與屋脊（roof peak）之相對位置（詳 Fig. 2.5.3.4.8）：</p>
+      <ul class="steps alpha">
+        <li>於<b>屋脊處</b>設置一只撒水頭；或</li>
+        <li>於屋脊兩側<b>等距</b>設置撒水頭，每側距屋脊中心線水平 <b>4 ft (1.2 m)</b>（以平行於地板量測）。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.4.9</span> 撒水盤與任何受防護危害物之間，最小淨距為 <b>10 ft (3.0 m)</b>。</p>
+      <p><span class="clause-ref">2.5.3.4.10</span> 應依 2.5.3.5 節之準則，評估撒水盤下方物體是否可能對撒水頭放水型態造成阻礙。</p>
+      <p><span class="clause-ref">2.5.3.4.11</span> 採用 K14.0EC (K200EC) 水平側牆式撒水頭進行系統設計時，應維持最小工作壓力 <b>7 psi (0.5 bar)</b>。</p>
+
+      <h3><span class="clause-ref">2.5.3.5</span>天花板側牆式撒水頭之阻礙物判定</h3>
+
+      <h4>一般建議（<span class="clause-ref">2.5.3.5.1</span>）</h4>
+      <p><span class="clause-ref">2.5.3.5.1.1</span>／<span class="clause-ref">2.5.3.5.1.2</span> 依 Fig. 2.5.3.5.1.1(a)/(b)（離裝設牆方向）及 Fig. 2.5.3.5.1.2(a)/(b)（沿裝設牆方向），凡完全位於圖示「棋盤格」範圍內之物體，<b>不視為對撒水頭放水型態之阻礙</b>（標準涵蓋型與延伸涵蓋型側牆式撒水頭皆適用各自對應之棋盤格範圍）。</p>
+      <p><span class="clause-ref">2.5.3.5.1.3</span> 若物體並非完全位於棋盤格範圍內，應依下列各節判斷該物體是否構成不可接受之阻礙。</p>
+
+      <h4>鄰近天花板側牆式撒水頭之結構構件或類似物體（<span class="clause-ref">2.5.3.5.2</span>）</h4>
+      <p><span class="clause-ref">2.5.3.5.2.1</span> 若天花板結構構件或類似物體之垂直斷面<b>開放率低於 70%</b>，且延伸超出棋盤格範圍（如 Fig. 2.5.3.5.2.1(a) 所示），應將撒水頭改設置於該結構構件或物體之<b>另一側</b>（如 Fig. 2.5.3.5.2.1(b) 所示；該圖並標示樑寬最大 4 ft (1.2 m)，量測至結構構件中心線之距離 H 須 &gt; 12 in. (300 mm)，且 H 須小於最大允許線性間距之 50%）。</p>
+      <p><span class="clause-ref">2.5.3.5.2.2</span> 天花板結構構件或類似物體之垂直斷面<b>開放率達 70% 以上</b>者，不視為對撒水頭放水型態之阻礙。</p>
+      <p><span class="clause-ref">2.5.3.5.2.3</span> 開放率達 70% 以上，但<b>水平距離</b>小於下列數值者：標準涵蓋型側牆式撒水頭 <b>4 ft (1.2 m)</b>、延伸涵蓋型側牆式撒水頭 <b>8 ft (2.4 m)</b>，則構成該結構構件之交叉支撐（cross-bracing）等物體須同時符合：</p>
+      <ul class="steps alpha">
+        <li>寬度不超過 <b>3 in. (75 mm)</b>，且</li>
+        <li>與撒水頭之最小水平距離為該物體寬度之 <b>3 倍</b>以上。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.5.2.4</span> 若無法符合 2.5.3.5.2.3 節之準則，應將撒水頭改設置於結構構件或物體之另一側（同 Fig. 2.5.3.5.2.1(b)）。</p>
+      <p><span class="clause-ref">2.5.3.5.2.5</span> 若非連續垂直牆造成之遮蔽區域，其深度超過側牆式撒水頭下方 <b>8 in. (200 mm)</b>，於側牆式撒水頭防護區域內，該可燃遮蔽區域下方仍應加裝非儲存型撒水頭（見 Fig. 2.5.3.5.2.5）。</p>
+
+      <h4>天花板側牆式撒水頭下方之單一或分組物體（<span class="clause-ref">2.5.3.5.3</span>）</h4>
+      <p><span class="clause-ref">2.5.3.5.3.1</span> 物體與同尺寸或較大之鄰近物體間，若<b>水平距離達該物體寬度 3 倍以上</b>，可視為分析阻礙時之「個別物體（individual object）」（例如：物體寬度 12 in. (300 mm)，與鄰近物體間隔 2 in. (50 mm)，因 12 in. &gt; 3×2 in.，故為個別物體）。</p>
+      <p><span class="clause-ref">2.5.3.5.3.2</span> 若物體與同尺寸或較大之鄰近物體間，水平距離<b>小於較小物體寬度之 3 倍</b>，應將兩者視為「分組物體（grouped object）」（例如兩物體間距 18 in. (450 mm) 小於 3×較小物體寬度時即應分組）。</p>
+      <p><span class="clause-ref">2.5.3.5.3.3</span> 若二個以上物體構成「分組物體」，其<b>整體寬度為各構成物體寬度之總和</b>；物體間之空隙<b>不須計入</b>整體寬度計算（例如兩物體寬度分別為 18 in. (450 mm) 與 24 in. (600 mm) 時，分組後整體寬度為 42 in. (1050 mm)）。</p>
+
+      <h4>寬度 4 ft (1.2 m) 以下物體（<span class="clause-ref">2.5.3.5.4</span>）</h4>
+      <p>寬度 <b>4 ft (1.2 m) 以下</b>之物體，不視為對撒水頭放水型態之阻礙。</p>
+
+      <h4>寬度超過 4 ft (1.2 m) 物體與補充撒水頭（<span class="clause-ref">2.5.3.5.5</span>）</h4>
+      <p><span class="clause-ref">2.5.3.5.5.1</span> 個別或分組物體寬度超過 4 ft (1.2 m) 者，應依 2.5.3.5.5.2～2.5.3.5.5.4 節於該阻礙物下方設計並安裝<b>補充撒水頭（supplemental sprinklers）</b>。</p>
+      <p><span class="clause-ref">2.5.3.5.5.2</span> 同時符合下列條件時，補充撒水頭之設計<b>視為可接受</b>，<b>不須</b>與天花板撒水系統進行水力平衡或納入天花板撒水頭設計計算：</p>
+      <ul class="steps alpha">
+        <li>補充撒水頭由<b>濕式（或類似）撒水系統</b>供應，且</li>
+        <li>供應補充撒水頭之配管管徑，<b>等於或大於</b>上方天花板撒水系統之支管管徑，且</li>
+        <li>補充撒水頭與天花板撒水頭具<b>相同屬性（特性）</b>。可接受之屬性差異包括：(1) 補充撒水頭為下垂式或直立式而非側牆式；(2) 天花板撒水頭為標準反應型時，補充撒水頭可為快速反應型；(3) 補充撒水頭之 K 值大於天花板撒水頭；(4) 補充撒水頭之標稱溫級低於天花板撒水頭。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.5.5.3</span> 未符合 2.5.3.5.5.2 節準則時，為決定供應補充撒水頭之配管尺寸，其設計依下列方式辦理：</p>
+      <ul class="steps alpha">
+        <li>以該阻礙物<b>底部</b>作為設計用之「天花板高度」，依該用途專屬 Data Sheet 取得防護密度建議，且</li>
+        <li>將受影響區域內<b>所有補充撒水頭（最多 4 只）</b>納入設計面積；若由多條支管供應，可以兩條支管、每條 2 只之方式計入 4 只設計撒水頭，且</li>
+        <li>補充撒水頭設計所需之流量與壓力，<b>不須</b>與上方天花板撒水系統進行水力平衡。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.3.5.5.4</span> 補充撒水頭應依下列方式安裝：</p>
+      <ul class="steps alpha">
+        <li>將補充撒水頭定位於盡可能<b>貼近阻礙物底面</b>之垂直平面上；</li>
+        <li>依阻礙物用途危害及所安裝補充撒水頭之屬性，依 Table 2.5.2.3.1.1(a)、(b) 或 (c) 所定線性與面積間距，於阻礙物範圍內水平安裝補充撒水頭。</li>
+      </ul>
+
+      <h4>開放格柵天花板造成之阻礙（<span class="clause-ref">2.5.3.5.6</span>）</h4>
+      <p><span class="clause-ref">2.5.3.5.6.1</span> 側牆式撒水頭防護區域內<b>不得安裝開放格柵天花板（open-grid ceiling，定義見附錄 A）</b>，除非該用途依 Data Sheet 3-26 分類為 <b>HC-1</b> 危害類別。</p>
+      <p><span class="clause-ref">2.5.3.5.6.2</span> 於 HC-1 用途場所設置由均勻開口構成、<b>開口率達天花板面積 70% 以上</b>之開放格柵天花板時，天花板側牆式撒水頭應依 Table 2.5.3.5.6.2 辦理間距設計：</p>
+      <table class="clause-table">
+        <thead><tr><th>開放格柵天花板垂直深度</th><th>撒水盤與格柵頂部之淨距</th><th>最大允許線性間距</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="3">≤ 1/2 in. (13 mm)</td><td>≥ 18 in. (450 mm)</td><td>10 ft (3.0 m)</td></tr>
+          <tr><td>≥ 24 in. (600 mm)</td><td>12 ft (3.7 m)</td></tr>
+          <tr><td>≥ 48 in. (1200 mm)</td><td>視為無開放格柵天花板存在</td></tr>
+          <tr><td>&gt; 1/2 in. (13 mm)</td><td>≥ 48 in. (1200 mm)</td><td>視為無開放格柵天花板存在</td></tr>
+          <tr><td rowspan="2">≤ 1/4 in. (7 mm)</td><td>≥ 24 in. (600 mm)</td><td>10 ft (3.0 m)</td></tr>
+          <tr><td>≥ 36 in. (900 mm)</td><td>視為無開放格柵天花板存在</td></tr>
+          <tr><td>&gt; 1/4 in. (7 mm)</td><td>≥ 48 in. (1200 mm)</td><td>視為無開放格柵天花板存在</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>本節所列水平間距、垂直距離、阻礙物棋盤格範圍等數據均涉及多組圖示（Fig. 2.5.3.1.3、2.5.3.2.2.1、2.5.3.3.1／3.3、2.5.3.4.6～4.8、2.5.3.5.1.1～5.3.1 等）之幾何關係，本頁已盡量以文字與表格還原原文數據，惟正式設計圖說仍須查閱 FM Global Data Sheet 2-0 原文圖示以確認實際幾何配置。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s254">
+      <div class="section-header">
+        <div class="section-num">2.5.4</div>
+        <h2>儲存型撒水頭（一）：適用範圍與通風口保護</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.5.4.1</span>儲存型撒水頭一般建議</h3>
+      <p>應依對應用途別資料表（occupancy-specific data sheet）指示，判斷該用途是否可視為「儲存（Storage）」處理；若可，再依下列程序決定適用之儲存型撒水頭：</p>
+      <ul class="steps">
+        <li>確定該用途危害之專屬資料表（occupancy-specific data sheet）</li>
+        <li>確定天花板層級可採用之防護選項</li>
+        <li>依用途專屬資料表（如有指示）確認撒水頭之涵蓋型式、K 值、方向（upright/pendent）、RTI 與溫級屬性</li>
+        <li>若防護區域存在環境溫度可能超過 100°F (38°C) 之區域，應依 <b>Table 2.5.1.1.1</b> 決定天花板層級撒水頭之可接受溫級；否則進入下一步</li>
+        <li>若用途專屬資料表未指示可用 K 值，依 <b>Table 2.5.4.1.1</b> 決定天花板層級撒水頭之可接受 K 值</li>
+        <li>若用途專屬資料表未指示是否可用快速反應（Quick-Response）撒水頭，依 <span class="clause-ref">2.5.4.1.2</span> 判斷快速反應撒水頭是否適用</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.4.1.1</span>儲存型撒水頭之可接受 K 值</h3>
+      <p><b>Table 2.5.4.1.1</b> 列出 FM Approved 儲存型撒水頭之公稱 K 值。</p>
+      <table class="clause-table">
+        <thead><tr><th>公稱 K 值，gpm/(psi)<sup>0.5</sup>（L/min/[bar]<sup>0.5</sup>）</th><th>公稱管牙尺寸，in.（mm）</th></tr></thead>
+        <tbody>
+          <tr><td>11.2 (160)</td><td>1/2 或 3/4 (15 或 20)<sup>1</sup></td></tr>
+          <tr><td>14.0 (200)</td><td>3/4 (20)</td></tr>
+          <tr><td>16.8 (240)</td><td>3/4 (20)</td></tr>
+          <tr><td>19.6 (280)</td><td>1 (25)</td></tr>
+          <tr><td>22.4 (320)</td><td>1 (25)</td></tr>
+          <tr><td>25.2 (360)</td><td>1 (25)</td></tr>
+          <tr><td>28.0 (400)</td><td>1 (25)</td></tr>
+          <tr><td>33.6 (480)</td><td>1-1/4 (32)</td></tr>
+        </tbody>
+      </table>
+      <p><b>註1：</b>公稱 1/2 in. (15 mm) NPT 牙徑之 K11.2 (K160) 撒水頭，僅限於作為既設 K8.0 (K115) 或更小撒水頭之汰換／改裝選項時方可使用。</p>
+
+      <h3><span class="clause-ref">2.5.4.1.2</span>儲存型撒水頭 RTI 等級（標準型／快速反應）之判定</h3>
+      <p><span class="clause-ref">2.5.4.1.2.1</span> 標準反應（standard-response）儲存型撒水頭可用於<b>濕式與乾式</b>撒水系統。</p>
+      <p><span class="clause-ref">2.5.4.1.2.2</span> 快速反應（quick-response）儲存型撒水頭僅可用於<b>濕式</b>撒水系統；且下列儲存或高放熱型用途<b>不得</b>使用快速反應撒水頭：</p>
+      <ul class="steps alpha">
+        <li>可燃液體之噴塗作業</li>
+        <li>使用可燃液體之液壓設備</li>
+        <li>存在可燃液體（非屬製程附帶且已置於容量 ≤5 gal (19 L) 安全容器內者除外）之用途</li>
+        <li>油箱內有燃油之車輛組裝或維修區域</li>
+        <li>存在大面積遮蔽撒水放水之用途</li>
+        <li>天花板及／或建築結構支撐構材上可能堆積油污、粉塵、棉絮或類似可燃殘留物之區域</li>
+        <li>用途專屬資料表未建議使用快速反應撒水頭之場所</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.4.1.3</span>儲存型撒水頭區域之重力式排熱／排煙口</h3>
+      <p><span class="clause-ref">2.5.4.1.3.1</span> 天花板層級撒水頭防護之建築物，<b>不應</b>設置重力式排熱口（gravity heat vent）或重力式排煙口（gravity smoke vent）。</p>
+      <p><span class="clause-ref">2.5.4.1.3.2</span> 若無法避免設置此類通風口，通風口面積 <b>≤4 ft² (0.4 m²)</b> 時採下表（對應原文 Fig. 2.5.4.1.3.2(a)）決定所需之補償措施；面積<b>大於 4 ft²</b> 時採後續之表（對應原文 Fig. 2.5.4.1.3.2(b)）。</p>
+
+      <h4>通風口 ≤4 ft² (0.4 m²) 時之判斷（Fig. 2.5.4.1.3.2(a)）</h4>
+      <table class="clause-table">
+        <thead><tr><th>是否僅限人工操作</th><th>非火災時是否恆保持關閉</th><th>天花板撒水系統是否為濕式或同等系統</th><th>結論／適用可接受選項編號</th></tr></thead>
+        <tbody>
+          <tr><td>是</td><td>是</td><td>—</td><td>免特別考量即可裝設天花板撒水頭</td></tr>
+          <tr><td>是</td><td>否</td><td>是</td><td>選項 2、3、4、7 或 9 任一</td></tr>
+          <tr><td>是</td><td>否</td><td>否</td><td>選項 2、5、7 或 9 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>是</td><td>選項 1、3、4、6、7、8 或 9 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>否</td><td>選項 1、5、6、7、8 或 9 任一</td></tr>
+          <tr><td>否</td><td>否</td><td>是</td><td>選項 1、3、4、7 或 9 任一</td></tr>
+          <tr><td>否</td><td>否</td><td>否</td><td>選項 1、5、7 或 9 任一</td></tr>
+        </tbody>
+      </table>
+
+      <h4>通風口 &gt;4 ft² (0.4 m²) 時之判斷（Fig. 2.5.4.1.3.2(b)）</h4>
+      <table class="clause-table">
+        <thead><tr><th>通風口面積</th><th>是否僅限人工操作</th><th>非火災時是否恆保持關閉</th><th>撒水系統是否濕式或同等</th><th>結論／適用選項編號</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="6">&gt;40 ft² (3.7 m²)</td><td>是</td><td>是</td><td>—</td><td>免特別考量</td></tr>
+          <tr><td>是</td><td>否</td><td>是</td><td>選項 2、4、6 或 8 任一</td></tr>
+          <tr><td>是</td><td>否</td><td>否</td><td>選項 2 或 6 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>是</td><td>選項 1、4、5、6、7 或 8 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>否</td><td>選項 1、6 或 7 任一</td></tr>
+          <tr><td>否</td><td>否</td><td>是／否</td><td>是→選項1、4、6或8；否→選項1或6</td></tr>
+          <tr><td rowspan="6">4～40 ft² (0.4～3.7 m²)</td><td>是</td><td>是</td><td>—</td><td>免特別考量</td></tr>
+          <tr><td>是</td><td>否</td><td>是</td><td>選項 2、3、6 或 8 任一</td></tr>
+          <tr><td>是</td><td>否</td><td>否</td><td>選項 2、6 或 8 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>是</td><td>選項 1、3、5、6、7 或 8 任一</td></tr>
+          <tr><td>否</td><td>是</td><td>否</td><td>選項 1、5、6、7 或 8 任一</td></tr>
+          <tr><td>否</td><td>否</td><td>是／否</td><td>是→選項1、3、6或8；否→選項1、6或8</td></tr>
+        </tbody>
+      </table>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>可接受選項（適用 ≤4 ft² 通風口，Fig.(a)）</h4>
+          <ul class="steps">
+            <li>(1) 通風口設定為人工操作，且非火災時恆保持關閉</li>
+            <li>(2) 通風口設定為非火災時恆保持關閉</li>
+            <li>(3) 與最近同類通風口水平間距 ≥2 ft (0.6 m)</li>
+            <li>(4) 此通風口與 5 ft (1.5 m) 半徑內其他同類通風口之合計面積 ≤40 ft² (3.7 m²)</li>
+            <li>(5) 與最近同類通風口水平間距 ≥ 天花板撒水頭最大容許間距</li>
+            <li>(6) 通風口裝設額定溫度 ≥360°F (180°C) 之感溫元件</li>
+            <li>(7) 依 Fig. 2.5.4.1.3.2(c) 或 (d) 增設天花板層級撒水頭</li>
+            <li>(8) 通風口設定為撒水系統動作（或等效更快之偵測方式）時自動開啟，惟至少延遲 20 分鐘</li>
+            <li>(9) 若通風口下方為貨架儲存，依 Fig. 2.5.4.1.3.2(e) 設置貨架內撒水頭</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>可接受選項（適用 &gt;4 ft² 通風口，Fig.(b)）</h4>
+          <ul class="steps">
+            <li>(1) 通風口設定為人工操作，且非火災時恆保持關閉</li>
+            <li>(2) 通風口設定為非火災時恆保持關閉</li>
+            <li>(3) 與最近同類通風口水平間距 ≥ 天花板撒水頭最大容許間距</li>
+            <li>(4) 通風口面積限制在 40 ft² (3.7 m²) 以內，並依第(3)項配置</li>
+            <li>(5) 通風口裝設額定溫度 ≥360°F (180°C) 之感溫元件</li>
+            <li>(6) 依 Fig. 2.5.4.1.3.2(c) 或 (d) 增設天花板層級撒水頭</li>
+            <li>(7) 通風口設定為撒水系統動作（或等效更快之偵測方式）時自動開啟，惟至少延遲 20 分鐘</li>
+            <li>(8) 若通風口下方為貨架儲存，依 Fig. 2.5.4.1.3.2(e) 設置貨架內撒水頭；<b>此選項不適用於面積 &gt;100 ft² (9.3 m²) 之通風口</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>以「假天花板＋增設撒水頭」防護通風口（<span class="clause-ref">2.5.4.1.3.3</span>／Fig. 2.5.4.1.3.2(c)）</h4>
+      <p>採用平整連續之假天花板（false ceiling）搭配增設之天花板層級撒水頭時：假天花板應以<b>最小 22 號規格 (0.7 mm) 鋼板</b>或同等不燃材料製作，並固定至可承受最小 <b>3 lb/ft² (14.6 kg/m²)</b> 上舉風壓之強度；次佳但仍可接受之替代材料為<b>最小 3/8 in. (10 mm) 合板</b>（或類似材料）。假天花板應略微延伸超過通風口邊緣（最大 1 ft [0.3 m]）。</p>
+      <ul class="steps">
+        <li>通風口尺寸 &lt; 天花板撒水頭最大容許間距：假天花板下方增設 upright 或 pendent 型撒水頭，可沿用天花板層級之撒水管路，<b>免納入天花板撒水頭設計</b></li>
+        <li>通風口尺寸 &gt; 天花板撒水頭最大容許之撒水頭涵蓋面積間距：假天花板下方另需增設之天花板層級撒水頭，彼此重疊 &lt;1 ft (0.3 m)，且與最大容許間距相比 &lt;50%</li>
+      </ul>
+
+      <h4>以「增設快速反應撒水頭」防護通風口，不設假天花板（Fig. 2.5.4.1.3.2(d)）</h4>
+      <ul class="steps">
+        <li>通風口面積 &lt;16 ft² (1.5 m²)：於通風口周邊（距邊緣約 2 ft [0.6 m] 內）增設與天花板撒水頭同高程之快速反應撒水頭，優先採 pendent 型，沿用天花板層級撒水管路，<b>免納入天花板撒水頭設計</b></li>
+        <li>通風口面積 &gt;16 ft² (1.5 m²)：於通風口下方以最大 4 ft × 4 ft (1.2 m × 1.2 m) 間距增設快速反應撒水頭，優先採 pendent 型，且<b>應納入天花板撒水頭設計</b></li>
+      </ul>
+
+      <h4>以「貨架內撒水頭」防護通風口（Fig. 2.5.4.1.3.2(e)）</h4>
+      <p>當通風口下方之儲存配置為貨架儲存時，可於貨架頂部設置貨架內撒水頭作為替代防護方式：貨架內撒水頭距通風口開口邊緣（前後左右）應 &lt;5 ft (1.5 m)，且貨架內撒水頭上方僅限一層儲存（one tier of storage）。貨架內撒水頭之配置可為：</p>
+      <ul class="steps">
+        <li>採用與天花板層級相同型式撒水頭及支管管徑者——此選項<b>不需</b>與天花板撒水系統進行水力平衡（hydraulically balanced）</li>
+        <li>依用途專屬資料表對該商品危害與儲存高度所允許之貨架內撒水頭配置，惟仍須限制貨架內撒水頭最上層以上僅一層儲存</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.4.1.4</span>儲存型撒水頭區域之自然抽拔排氣口</h3>
+      <p>若須於儲存用途上方天花板層級設置自然抽拔排氣口（natural draft exhaust vent），依下表決定是否須採取補償措施：</p>
+      <table class="clause-table">
+        <thead><tr><th>通風口面積</th><th>天花板撒水系統是否濕式或同等系統</th><th>結論／適用選項編號</th></tr></thead>
+        <tbody>
+          <tr><td>&gt;100 ft² (9.3 m²)</td><td>是</td><td>選項 4、5 或 7 任一</td></tr>
+          <tr><td>&gt;100 ft² (9.3 m²)</td><td>否</td><td>選項 5</td></tr>
+          <tr><td>40～100 ft² (3.7～9.3 m²)</td><td>是</td><td>選項 4、5、6 或 8 任一</td></tr>
+          <tr><td>40～100 ft² (3.7～9.3 m²)</td><td>否</td><td>選項 5</td></tr>
+          <tr><td>4～40 ft² (0.4～3.7 m²)</td><td>是</td><td>選項 3、5、6 或 9 任一</td></tr>
+          <tr><td>4～40 ft² (0.4～3.7 m²)</td><td>否</td><td>選項 5、6 或 8 任一</td></tr>
+          <tr><td>≤4 ft² (0.4 m²)</td><td>是</td><td>選項 1、2、5、6 或 9 任一</td></tr>
+          <tr><td>≤4 ft² (0.4 m²)</td><td>否</td><td>選項 3、5、6 或 9 任一</td></tr>
+        </tbody>
+      </table>
+      <p><b>可接受選項：</b>(1) 與最近同類通風口水平間距 ≥2 ft (0.6 m)　(2) 此通風口與 5 ft (1.5 m) 半徑內其他同類通風口合計面積 ≤40 ft² (3.7 m²)　(3) 與最近同類通風口水平間距 ≥天花板撒水頭最大容許間距　(4) 通風口面積限制在 40 ft² (3.7 m²) 以內並依第(3)項配置　(5) 依 Fig. 2.5.4.1.3.2(c) 或 (d) 增設天花板層級撒水頭　(6) 若下方為貨架儲存，依 Fig. 2.5.4.1.3.2(e) 設置貨架內撒水頭　(7) 依(6)設置貨架內撒水頭，且通風口設定為貨架內撒水頭出水警報動作時自動關閉　(8) 通風口設定為其內部感熱或感煙偵測動作時自動關閉　(9) 通風口設定為其內部感熱／感煙偵測動作、或撒水系統出水時，兩者任一觸發即自動關閉</p>
+
+      <h3><span class="clause-ref">2.5.4.1.5</span>儲存型撒水頭區域之機械排氣口</h3>
+      <p>若機械排氣口（mechanical exhaust vent）將設置於儲存用途上方天花板層級，依下表決定是否須採取補償措施：</p>
+      <table class="clause-table">
+        <thead><tr><th>通風口面積</th><th>天花板撒水系統是否濕式或同等系統</th><th>結論／適用選項編號</th></tr></thead>
+        <tbody>
+          <tr><td>&gt;100 ft² (9.3 m²)</td><td>不拘</td><td>選項 2</td></tr>
+          <tr><td>40～100 ft² (3.7～9.3 m²)</td><td>是</td><td>選項 2、4 或 6 任一</td></tr>
+          <tr><td>40～100 ft² (3.7～9.3 m²)</td><td>否</td><td>選項 2</td></tr>
+          <tr><td>4～40 ft² (0.4～3.7 m²)</td><td>是</td><td>選項 2、3 或 5 任一</td></tr>
+          <tr><td>4～40 ft² (0.4～3.7 m²)</td><td>否</td><td>選項 1、2、3 或 5 任一</td></tr>
+          <tr><td>≤4 ft² (0.4 m²)</td><td>不拘</td><td>選項 2、4 或 6 任一</td></tr>
+        </tbody>
+      </table>
+      <p><b>可接受選項：</b>(1) 與最近同類通風口水平間距 ≥天花板撒水頭最大容許間距　(2) 依 Fig. 2.5.4.1.3.2(c) 或 (d) 增設天花板層級撒水頭　(3) 若下方為貨架儲存，依 Fig. 2.5.4.1.3.2(e) 設置貨架內撒水頭　(4) 依(3)設置貨架內撒水頭，且通風口設定為貨架內撒水頭出水警報動作時自動關閉　(5) 通風口設定為其內部感熱／感煙偵測動作、或撒水系統出水時自動關閉並停機　(6) 通風口設定為其內部感熱或感煙偵測動作時自動關閉並停機</p>
+
+      <h3><span class="clause-ref">2.5.4.1.6</span>儲存型撒水頭區域之屋脊通風口（Ridge Vent）</h3>
+      <p>屋脊通風口（ridge vent）之可接受天花板層級撒水頭配置，依其寬度區分如下：</p>
+      <table class="clause-table">
+        <thead><tr><th>屋脊通風口寬度</th><th>撒水頭配置方式</th><th>要點</th></tr></thead>
+        <tbody>
+          <tr><td>≤10 ft (3.0 m)</td><td>於通風口<b>峰頂</b>裝設增設之天花板撒水頭</td><td>濕式系統採快速反應型；優先 pendent 型；最大間距 8 ft (2.4 m)；<b>應納入</b>天花板撒水頭設計，並計入自地板至屋脊峰頂之垂直高度</td></tr>
+          <tr><td>&gt;10 ft (3.0 m)</td><td>於通風口內增設天花板撒水頭（沿通風口兩側布置）</td><td>濕式系統採快速反應型；優先 pendent 型；沿脊方向最大間距 8 ft (2.4 m)，距通風口邊緣最大偏移 4 ft (1.2 m)；<b>應納入</b>天花板撒水頭設計</td></tr>
+          <tr><td>≤4 ft (1.2 m)</td><td>於通風口下方、與天花板撒水頭同高程處增設快速反應撒水頭</td><td>採快速反應、優先 pendent 型；最大間距 4 ft (1.2 m)；距通風口邊緣最大偏移 2 ft (0.6 m)；沿用天花板層級撒水管路，<b>免納入</b>天花板撒水頭設計</td></tr>
+          <tr><td>&gt;4 ft (1.2 m)</td><td>通風口下方同高程增設快速反應撒水頭，<b>並</b>於通風口兩側增設天花板撒水頭</td><td>採快速反應、優先 pendent 型；最大間距 4 ft (1.2 m)；距邊緣最大偏移 2 ft (0.6 m)；沿用天花板層級撒水管路，<b>免納入</b>天花板撒水頭設計</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="clause-ref">2.5.4.1.7</span>儲存型撒水頭區域之天窗</h3>
+      <p>無論為玻璃或塑膠材質之天窗（skylight），其下方天花板層級撒水頭之裝設方式應與一般不燃天花板下方之裝設方式相同。若天窗本身配備重力式排熱／排煙口，應依 <span class="clause-ref">2.5.4.1.3</span> 之建議辦理。若天窗高於鄰接天花板面（elevated above the adjacent ceiling area），應依 <span class="clause-ref">2.5.4.1.8</span> 判斷該天窗是否構成「天花板凹陷區（ceiling pocket）」，並據以決定是否須於天窗範圍內加裝撒水頭。</p>
+
+      <h3><span class="clause-ref">2.5.4.1.8</span>儲存型撒水頭區域之天花板凹陷區</h3>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>原文 Fig. 2.5.4.1.8 為多層判斷之流程圖：預設立場為<b>應於天花板凹陷區範圍內設置撒水頭（除主天花板下方撒水頭外）</b>，僅在凹陷區之構造、體積、面積、寬度、高度及與鄰近凹陷區之間距等條件皆符合下列較嚴格之尺寸限制時，凹陷區內撒水頭之設置才轉為<b>可選（optional）</b>。各分歧路徑之精確 Yes/No 對應組合繁多，正式設計請務必查閱原文流程圖確認。</div>
+      </div>
+      <ul class="steps">
+        <li>凹陷區構造含<b>膨脹型塑膠（expanded plastics）</b>者 → 建議於凹陷區footprint內設置撒水頭（另參 FM Data Sheet 1-57《建築中之塑膠》之額外建議）</li>
+        <li>凹陷區體積 <b>&gt;400 ft³ (11.3 m³)</b> → 建議設置撒水頭</li>
+        <li>凹陷區面積 <b>&gt;40 ft² (3.7 m²)</b>：其較短邊寬度是否 ≤ 下方主天花板撒水頭之最大容許間距，且凹陷區高度是否 <b>≤18 in. (450 mm)</b>，兩者皆符合時，凹陷區內撒水頭之設置方為可選</li>
+        <li>凹陷區面積 <b>&gt;4 ft² (0.4 m²)</b>（但 ≤40 ft²）：與鄰近凹陷區之水平距離是否 ≥ 主天花板撒水頭之最大容許間距，符合時撒水頭設置為可選</li>
+        <li>凹陷區（及 10 ft [3.0 m] 範圍內其他凹陷區）之合計面積是否 <b>&gt;40 ft² (3.7 m²)</b>，以及凹陷區高度是否 <b>&gt;3 ft (0.9 m)</b>，為判斷最終分支之關鍵尺寸門檻</li>
+      </ul>
+      <p>凡經流程圖判定「應設置撒水頭」者，須依凹陷區之最大天花板高度，比照該高度對應之一般設計原則裝設撒水頭。凹陷區內撒水頭與主天花板下方撒水頭間之<b>最小</b>容許水平間距可不予考慮，但兩者間之<b>最大</b>容許水平間距仍不得忽略。</p>
+
+      <h3><span class="clause-ref">2.5.4.1.9</span>儲存型天花板撒水頭下方之氣流速度</h3>
+      <p><span class="clause-ref">2.5.4.1.9.1</span> 對儲存型用途，凡儲存物頂部至天花板層級撒水頭所在水平面之間存在氣流（例如 <b>HVLS 大型循環扇</b>或 HVAC 空調設備所產生之氣流），應使氣流速度<b>不超過 5 ft/sec (1.5 m/sec)</b>。若無法將氣流限制在此速度以內，依下表決定應採行之補償措施：</p>
+      <table class="clause-table">
+        <thead><tr><th>氣流是否由風扇（如 HVLS 扇）向下吹送</th><th>受影響區域是否為貨架儲存</th><th>應採行之可接受選項</th></tr></thead>
+        <tbody>
+          <tr><td>否</td><td>—</td><td>選項 2、3、4、5 或 6 任一</td></tr>
+          <tr><td>是</td><td>是</td><td>選項 1、2、5 或 6 任一</td></tr>
+          <tr><td>是</td><td>否</td><td>選項 1 或 2 任一</td></tr>
+        </tbody>
+      </table>
+      <div class="col-card">
+        <h4>可接受選項</h4>
+        <ul class="steps">
+          <li>(1) 通風設備設定為天花板撒水頭出水警報動作時自動停機</li>
+          <li>(2) 於天花板層級裝設 FM Approved 火焰偵測器，監測氣流速度超過 5 ft/s (1.5 m/s) 區域之 10 ft (3.0 m) 半徑範圍，並使氣流源於偵測系統動作時自動停機</li>
+          <li>(3) 若天花板撒水系統為濕式或同等系統，應比照乾式系統之設計基準進行設計；若用途專屬資料表未提供乾式系統設計基準，則將原濕式系統設計面積增加 <b>30%</b>；若為乾式或同等系統，同樣將設計面積增加 30%</li>
+          <li>(4) 依 Fig. 2.5.4.1.9.1(b) 搭配假天花板增設天花板撒水頭</li>
+          <li>(5) 於貨架結構頂部所有橫向通道空間（transverse flue space）內，凡位於氣流速度超過 5 ft/s (1.5 m/s) 區域 5 ft (1.5 m) 半徑範圍者，裝設線型感熱偵測器，並使氣流源於偵測系統動作時自動停機</li>
+          <li>(6) 依 Fig. 2.5.4.1.3.2(e) 設置貨架內撒水頭</li>
+        </ul>
+      </div>
+      <p><span class="clause-ref">2.5.4.1.9.2</span> 依 Fig. 2.5.4.1.9.1(b) 設置平整連續假天花板時，應以<b>最小 22 號規格 (0.7 mm) 鋼板</b>或同等不燃材料製作，並固定至可承受最小 <b>3 lb/ft² (14.6 kg/m²)</b> 上舉風壓之強度；次佳但仍可接受之替代材料為<b>最小 3/8 in. (10 mm) 合板</b>（或類似材料）——與 <span class="clause-ref">2.5.4.1.3.3</span> 假天花板構造要求相同。</p>
+
+      <h3><span class="clause-ref">2.5.4.2</span>儲存型撒水頭之天花板構造（無阻礙／有阻礙）判定</h3>
+      <p><span class="clause-ref">2.5.4.2.1</span> 依 Fig. 2.5.4.2.1 流程圖判斷天花板構造對儲存型撒水頭之裝設而言屬於<b>無阻礙（Unobstructed）</b>或<b>有阻礙（Obstructed）</b>。其中「實心天花板結構構材（solid ceiling structural member）」係指其於垂直面之剖面開口率<b>小於 70%</b> 者。</p>
+      <ul class="steps">
+        <li>天花板是否平滑，例如懸吊式天花板（suspended ceiling）？<b>是</b> → 判定為<b>無阻礙</b></li>
+        <li>（若否）所有實心天花板結構構材深度是否 <b>≤4 in. (100 mm)</b>？<b>是</b> → 判定為<b>無阻礙</b></li>
+        <li>（若否）實心天花板結構構材間距是否 <b>≥14 ft (4.3 m)</b>？<b>是</b> → 判定為<b>無阻礙</b></li>
+        <li>（若否）實心天花板結構構材間之最小距離是否符合 <b>Table 2.5.4.2.1</b> 規定？<b>是</b> → 判定為<b>無阻礙</b>；<b>否</b> → 判定為<b>有阻礙</b></li>
+      </ul>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div><b>Table 2.5.4.2.1</b>（依構材深度、間距與撒水頭間距等變數決定之無阻礙構造最小距離基準表）內容位於本頁摘要範圍之後，未於此處列出；正式判定天花板構造類型時，請查閱 FM Global Data Sheet 2-0 原文表格與圖 2.5.4.2.1。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s254b">
+      <div class="section-header">
+        <div class="section-num">2.5.4</div>
+        <h2>儲存型撒水頭（二）：水平/垂直距離與阻礙物規則</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本節銜接前段「無阻礙／有阻礙天花板構造判定」（2.5.4.2）之後，說明儲存型撒水頭（Storage Sprinklers）於<b>無阻礙天花板構造</b>下之水平（牆／牆角距離）與垂直（天花板下方深度）定位規則，以及<b>有阻礙天花板構造</b>下之定位規則，並開始說明撒水頭放水型態之阻礙物判定原則。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.4.3.2</span>牆面與牆角之水平距離</h3>
+      <p>儲存型撒水頭與牆面之水平距離（垂直於牆面量測，D<sub>W</sub>）與牆角之水平距離（D<sub>C</sub>）應符合下列規定（以 S<sub>MAX</sub> 表示該撒水頭允許之最大直線間距）：</p>
+      <table class="clause-table">
+        <thead><tr><th>位置</th><th>條件</th><th>允許距離範圍</th></tr></thead>
+        <tbody>
+          <tr><td>牆面（Wall）</td><td>垂直於牆面量測</td><td>4 in. (100 mm) &lt; D<sub>W</sub> &lt; 50% S<sub>MAX</sub></td></tr>
+          <tr><td>牆角角度 &lt; 90°</td><td>牆角夾角小於直角（銳角牆角）</td><td>4 in. (100 mm) &lt; D<sub>C</sub> &lt; 75% S<sub>MAX</sub></td></tr>
+          <tr><td>牆角角度 &gt; 90°</td><td>牆角夾角大於直角（鈍角牆角）</td><td>4 in. (100 mm) &lt; D<sub>C</sub> &lt; 71% S<sub>MAX</sub></td></tr>
+        </tbody>
+      </table>
+      <p>上述數值皆以撒水頭至牆面／牆角之水平淨距離為準，最小距離一律不得小於 4 in. (100 mm)，避免撒水頭過度貼近牆面／牆角影響放水型態；最大距離則依牆角角度不同，分別以該撒水頭允許最大直線間距（S<sub>MAX</sub>）之 50%、75% 或 71% 為上限。</p>
+
+      <h3><span class="clause-ref">2.5.4.3.3</span>無阻礙構造下儲存型撒水頭之垂直位置</h3>
+
+      <h4><span class="clause-ref">2.5.4.3.3.1</span>垂直距離之量測方式</h4>
+      <p>撒水頭（感熱元件中心線）與天花板底面之垂直距離，應<b>垂直於天花板面</b>量測（D<sub>V</sub>），而非以鉛垂線量測。此原則適用於水平天花板，亦適用於坡度 &le; 10° 及坡度 &gt; 10° 之斜面天花板：無論天花板是否傾斜，量測方向皆與天花板表面垂直（90°）。</p>
+
+      <h4><span class="clause-ref">2.5.4.3.3.2</span>波浪型（corrugated）天花板之量測</h4>
+      <p>若天花板為波浪型金屬浪板等構造，應依原文 Fig. 2.5.4.3.3.2 所示方式，自撒水頭感熱元件量至波浪天花板底面（波峰或波谷基準依圖示）決定垂直距離，而非單純以波峰或波谷擇一量測，以確保與其他天花板類型之垂直距離規定具一致基準。</p>
+
+      <h4><span class="clause-ref">2.5.4.3.3.3</span>保溫層／帆布支撐層存在時之量測</h4>
+      <p>若天花板底面下方設有乙烯基帆布型支撐層，或礦棉／玻璃棉毯狀保溫層等類似隔熱系統（<b>反射式天花板不適用本條</b>），則撒水頭（感熱元件中心線）與天花板之垂直距離，應以撒水頭感熱元件中心線至保溫層／支撐層底面之距離為準量測，而非量至結構天花板本身底面。</p>
+
+      <h4><span class="clause-ref">2.5.4.3.3.4</span>撒水頭感熱元件垂直位置基準</h4>
+      <p>除該用途專用資料表另有規定外，儲存型撒水頭感熱元件中心線應安裝於天花板底面下方之下列範圍內；適用之撒水頭種類須先依 Table 2.5.4.3.1.1 依天花板高度判定。</p>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭類型</th><th>平滑天花板（Smooth Ceilings）</th><th>非平滑天花板（Non-Smooth Ceilings）</th></tr></thead>
+        <tbody>
+          <tr><td>延伸涵蓋型（Extended-Coverage），K &gt; 25.2EC (360EC)</td><td>2 in.–12 in. (50–300 mm)</td><td>4 in.–12 in. (100–300 mm)</td></tr>
+          <tr><td>快速反應標準涵蓋型 K11.2 (K160)</td><td>2 in.–12 in. (50–300 mm)</td><td>4 in.–12 in. (100–300 mm)</td></tr>
+          <tr><td>標準反應標準涵蓋型 K14.0 (K200) 及 K16.8 (K240)</td><td>2 in.–13 in. (50–325 mm)</td><td>4 in.–13 in. (100–325 mm)</td></tr>
+          <tr><td>快速反應標準涵蓋型 K &gt; 19.6 (280)</td><td>2 in.–17 in. (50–425 mm)</td><td>4 in.–17 in. (100–425 mm)</td></tr>
+        </tbody>
+      </table>
+      <p>換言之，非平滑天花板（如波浪金屬浪板等）之最小垂直距離門檻較平滑天花板高（4 in. 對 2 in.），但同一撒水頭種類之最大垂直距離上限相同；實際可用之最大距離仍須先依 Table 2.5.4.3.1.1 確認該天花板高度下允許之撒水頭種類。</p>
+
+      <h3><span class="clause-ref">2.5.4.3.4</span>天花板坡度對無阻礙構造儲存型撒水頭安裝之影響</h3>
+      <p><span class="clause-ref">2.5.4.3.4.1</span> 對非平直天花板，坡度應以分析點之切線（point of tangency）為基準判定。依天花板坡度大小，適用下列處理原則：</p>
+      <table class="clause-table">
+        <thead><tr><th>天花板坡度</th><th>處理原則</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 1:12 (5°)</td><td>坡度不影響撒水頭安裝規定，依一般規則安裝即可</td></tr>
+          <tr><td>&ge; 1:12 (5°) 且 &lt; 2:12 (10°)</td><td>撒水頭應安裝於屋脊下方 3 ft (0.9 m) 以內（詳 Fig. 2.5.4.3.4.1(b)），撒水頭偏向板可採平行天花板或平行地板</td></tr>
+          <tr><td>&ge; 2:12 (10°) 且 &le; 4:12 (18.5°)</td><td>屋脊下方 3 ft (0.9 m) 以內，撒水頭偏向板須平行地板；若為貨架儲存乾式系統，可另採選項 1 或選項 5</td></tr>
+          <tr><td>&gt; 4:12 (18.5°)</td><td>僅選項 1（設置平頂假天花板）與選項 2（貨架內撒水頭覆蓋全部儲存高度，限濕式系統）可行；乾式系統則搭配選項 1 與選項 5</td></tr>
+        </tbody>
+      </table>
+      <p><span class="clause-ref">2.5.4.3.4.2</span> 坡度 &gt; 4:12 (18.5°) 或貨架儲存乾式／濕式系統時，可採用之對應選項如下：</p>
+      <ul class="steps">
+        <li><b>選項 1</b>：於原天花板下方設置平整、連續之不燃假天花板，並於假天花板下方另外加裝依用途危害與假天花板高度設計之撒水頭；假天花板與屋脊間應保持 &ge; 15 ft (4.6 m) 之最小淨高。</li>
+        <li><b>選項 2</b>：若天花板撒水系統為<b>濕式管系</b>且儲存採貨架方式，依用途專用資料表設置貨架內撒水頭，使貨架內最上層撒水頭以上不再留有儲存物。</li>
+        <li><b>選項 3</b>：將天花板撒水頭安裝於屋脊下方（依 Fig. 2.5.4.3.4.1(b)），偏向板平行地板，並將天花板撒水頭設計面積由用途專用資料表所定值<b>放大 50%</b>。</li>
+        <li><b>選項 4</b>：天花板撒水頭安裝於屋脊下方，偏向板平行地板；除最靠近屋脊之撒水頭仍採正常間距外，其餘天花板撒水頭改採 <b>4 ft × 4 ft (1.2 m × 1.2 m)</b> 之間距安裝。</li>
+        <li><b>選項 5</b>：若天花板撒水系統為<b>乾式管系</b>且儲存採貨架方式，依用途專用資料表設置貨架內撒水頭，使貨架內最上層撒水頭以上儲存物不超過 5 ft (1.5 m)；同時將天花板撒水頭設計面積放大 50%，並將天花板撒水頭安裝於屋脊下方，偏向板平行地板。</li>
+      </ul>
+      <p><span class="clause-ref">2.5.4.3.4.3</span> 採用選項 1 之平整連續假天花板時，應使用最小 22 規（0.7 mm）金屬薄板或類似不燃材料製作，並妥善固定使其能承受至少 3 lb/ft² (14.6 kg/m²) 之最小上舉風壓；次佳但可接受之替代方案為最小 3/8 in. (10 mm) 夾板（或類似材料）。</p>
+
+      <h3><span class="clause-ref">2.5.4.4</span>有阻礙天花板構造下儲存型撒水頭之水平／垂直定位</h3>
+      <p><span class="clause-ref">2.5.4.4.1</span> 撒水頭間之直線距離應沿天花板坡面量測，而非以自地面觀察之視角量測。</p>
+      <p><span class="clause-ref">2.5.4.4.2</span> 依原文流程圖判定有阻礙天花板構造下撒水頭之建議水平與垂直位置，其判斷邏輯摘要如下：</p>
+      <ul class="steps">
+        <li>天花板坡度 &gt; 4:12 (18.5°)：應依 2.5.4.3.4.2 選項 1 設置假天花板</li>
+        <li>實心天花板結構構材深度 &gt; 24 in. (600 mm)：應於有阻礙構造形成之<b>每一通道（channel）</b>內裝設撒水頭</li>
+        <li>結構構材深度 &le; 24 in. 且坡度 &lt; 1:12 (5°)：若構材深度 &lt; 18 in. (450 mm)，可採「正常水平間距／調整垂直間距」安裝；否則應依 Fig. 2.5.4.4.5 進行通道阻塞（channel-blocking）後，再採「正常水平間距／調整垂直間距」安裝</li>
+        <li>坡度 &lt; 2:12 (10°) 且構材深度 &le; 24 in.：若構材深度 &lt; 12 in. (300 mm)，可採「正常水平間距／調整垂直間距」；否則須先通道阻塞後再採用該間距方式</li>
+        <li>其餘情形（構材深度 &lt; 18 in. 且與天花板坡度垂直者）：通道阻塞後採「正常水平間距／調整垂直間距」；若構材與坡度不垂直，或深度 &ge; 18 in.，則應於每一通道內裝設撒水頭</li>
+      </ul>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>上述流程圖僅為判斷邏輯之文字摘要，實際結構構材深度、坡度與是否垂直於坡度方向之交互判斷條件較為複雜，正式設計應直接查閱原文 Fig. 2.5.4.4.2 逐項核對，避免因摘要簡化而誤判應採「每通道裝設」或「通道阻塞」方案。</div>
+      </div>
+
+      <h4><span class="clause-ref">2.5.4.4.3</span>每一通道內裝設撒水頭（Install Sprinklers in Every Channel）</h4>
+      <ul class="steps alpha">
+        <li><b>水平間距</b>：依用途專用資料表所示直線間距，決定各通道內撒水頭之最小／最大水平間距；若資料表未提供，採 Table 2.5.4.3.1.1 之數值。若天花板結構構材有開口，應視需要於通道間錯開（stagger）撒水頭水平位置，以符合最小直線間距要求。</li>
+        <li><b>垂直間距</b>：依 2.5.4.3.3 所定距離，決定各通道內撒水頭天花板下方之最小／最大垂直位置。</li>
+        <li><b>撒水系統設計（密度／面積法）</b>：
+          <ol style="margin-top:6px;">
+            <li>若用途專用資料表未另行指定，每一配水支管上動作撒水頭數，係取設計面積之平方根乘以適用之形狀係數（shape factor），再除以通道內撒水頭之直線間距求得；計算結果非整數時採一般四捨五入法。</li>
+            <li>納入水力分析之天花板撒水頭數量，係將所定之需求設計面積除以該天花板撒水頭之最大允許面積間距求得；計算結果非整數時採一般四捨五入法。</li>
+            <li>最遠端天花板撒水頭所需最小流量，係將所定之需求放水密度乘以該天花板撒水頭之最大允許面積間距求得。</li>
+          </ol>
+        </li>
+      </ul>
+
+      <h4><span class="clause-ref">2.5.4.4.4</span>正常水平間距／調整垂直間距（Normal Horizontal Spacing / Adjusted Vertical Spacing）</h4>
+      <ul class="steps alpha">
+        <li><b>水平間距</b>：依用途專用資料表所示直線與面積間距決定；若未提供則採 Table 2.5.4.3.1.1 之數值。</li>
+        <li><b>垂直間距</b>：依 2.5.4.3.3 所定距離決定天花板下方最小／最大垂直位置。惟若實心結構構材之深度使 2.5.4.3.3 之規定無法實現，應將撒水頭感熱元件安裝於<b>實心天花板結構構材底面下方不超過 6 in. (150 mm)</b> 之平面上（詳 Fig. 2.5.4.4.4）。</li>
+      </ul>
+      <table class="clause-table">
+        <thead><tr><th>天花板坡度</th><th>實心結構構材深度上限</th><th>感熱元件距構材底面上限</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 2:12 (10°)</td><td>&lt; 24 in. (600 mm)</td><td>&lt; 6 in. (150 mm)</td></tr>
+          <tr><td>&lt; 4:12 (18.5°)</td><td>&lt; 18 in. (450 mm)</td><td>&lt; 6 in. (150 mm)</td></tr>
+        </tbody>
+      </table>
+
+      <h4><span class="clause-ref">2.5.4.4.5</span>通道阻塞（Channel-Blocking）後採正常水平間距／調整垂直間距</h4>
+      <ul class="steps alpha">
+        <li><b>水平間距</b>：同 2.5.4.4.4 A 項，依用途專用資料表或 Table 2.5.4.3.1.1 決定。</li>
+        <li><b>垂直間距</b>：同 2.5.4.4.4 B 項；深度受限時，感熱元件安裝於實心構材底面下方不超過 6 in. (150 mm) 之平面上。</li>
+        <li><b>通道阻塞</b>：應將實心天花板結構構材形成之通道<b>全深度</b>阻塞（詳 Fig. 2.5.4.4.5），且每一通道阻塞後之最大容積限制為：
+          <ul style="margin-top:4px;">
+            <li>天花板坡度 &le; 2:12 (10°)：<b>400 ft³ (11.3 m³)</b></li>
+            <li>天花板坡度 &gt; 2:12 (10°) 但 &le; 4:12 (18.5°)：<b>300 ft³ (8.5 m³)</b></li>
+          </ul>
+        </li>
+      </ul>
+      <p>進行全深度通道阻塞時，天花板底面與結構構材頂部之間（如波浪金屬浪板屋頂所形成者）若存在高度 &le; 4 in. (100 mm) 之開放空隙，<b>不需要</b>另行填塞。</p>
+
+      <h4><span class="clause-ref">2.5.4.4.6–2.5.4.4.9</span>有阻礙構造下之牆面距離、坡度與偏向板方向</h4>
+      <ul class="steps">
+        <li><span class="clause-ref">2.5.4.4.6</span> 儲存型撒水頭與牆面（垂直於牆面量測）及牆角之水平距離，比照 2.5.4.3.2（Fig. 2.5.4.3.2）辦理。</li>
+        <li><span class="clause-ref">2.5.4.4.7</span> 天花板坡度超過 1:12 (5°) 時，撒水頭應設置於屋脊 3 ft (0.9 m) 以內（依 Fig. 2.5.4.3.4.1(b)）。</li>
+        <li><span class="clause-ref">2.5.4.4.8</span> 天花板坡度不超過 2:12 (10°) 時，撒水頭偏向板可採平行天花板或平行地板。</li>
+        <li><span class="clause-ref">2.5.4.4.9</span> 天花板坡度超過 2:12 (10°) 時，撒水頭偏向板須平行地板。</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.5.4.5</span>天花板層儲存型撒水頭放水型態之阻礙物判定</h3>
+
+      <h4><span class="clause-ref">2.5.4.5.1</span>一般性判定原則</h4>
+      <p><span class="clause-ref">2.5.4.5.1.1</span> 完全位於「棋盤格區域」（checkerboard area，依標準涵蓋型撒水頭 Fig. 2.5.4.5.1.1(a) 或延伸涵蓋型撒水頭 Fig. 2.5.4.5.1.1(b) 所定義之相鄰撒水頭間非重疊區域）內之物體，<b>不構成</b>對撒水頭放水型態之阻礙。</p>
+      <p><span class="clause-ref">2.5.4.5.1.2</span> 若物體並非完全落於棋盤格區域內，應依下列各節規定，進一步判定該物體是否構成不可接受之放水阻礙。</p>
+
+      <h4><span class="clause-ref">2.5.4.5.2</span>天花板結構構材及鄰近類似物體</h4>
+      <ul class="steps">
+        <li><span class="clause-ref">2.5.4.5.2.1</span> 若垂直斷面開口率<b>低於 70%</b> 之天花板結構構材（如工字梁）延伸出棋盤格區域範圍，應將撒水頭配置於該結構構材<b>兩側</b>，並依 Fig. 2.5.4.5.2.1(b) 定位：撒水頭距結構構材中心線之水平距離 H 應小於該撒水頭最大允許直線間距之 50%；撒水頭與結構構材水平距離應 &gt; 12 in. (300 mm)；結構構材本身寬度應 &lt; 2 ft (0.6 m)（依 Table 2.5.4.5.4.1 進一步核對）。</li>
+        <li><span class="clause-ref">2.5.4.5.2.2</span> 垂直斷面開口率<b>達 70% 以上</b>之天花板結構構材，不構成撒水頭放水型態之阻礙。</li>
+        <li><span class="clause-ref">2.5.4.5.2.3</span> 若結構構材開口率達 70% 以上，但與標準涵蓋型撒水頭之水平距離小於 12 in. (300 mm)，或與延伸涵蓋型撒水頭之水平距離小於 18 in. (450 mm)，則該結構構材上之交叉支撐（cross-bracing）等組件應同時符合：(A) 寬度不超過 3 in. (75 mm)；且 (B) 與撒水頭之最小水平距離為該組件寬度之 3 倍以上。</li>
+        <li><span class="clause-ref">2.5.4.5.2.4</span> 若無法符合 2.5.4.5.2.3 之條件，應將標準涵蓋型撒水頭移位，使其與最近之天花板結構構材水平距離至少 12 in. (300 mm)；延伸涵蓋型撒水頭則至少 18 in. (450 mm)。</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.5.4.5.3</span>天花板撒水頭下方之個別物體與群組物體</h4>
+      <ul class="steps">
+        <li><span class="clause-ref">2.5.4.5.3.1</span> 物體與同尺寸或更大之相鄰物體，水平距離達其自身寬度 3 倍以上者，可視為分析用之「個別物體（individual object）」。</li>
+        <li><span class="clause-ref">2.5.4.5.3.2</span> 若物體與同尺寸或更大之相鄰物體間水平距離<b>小於較小物體寬度之 3 倍</b>，應將二者視為「群組物體（grouped object）」。</li>
+        <li><span class="clause-ref">2.5.4.5.3.3</span> 群組物體之整體寬度為構成該群組之各物體寬度<b>總和</b>，物體間之開放空隙<b>不需納入</b>寬度計算。</li>
+      </ul>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>範例（Fig. 2.5.4.5.3.1）：物體 A 寬 2 in. (50 mm)，與物體 B 相距 12 in. (300 mm)，因 12 in. &gt; 3×2 in.，故 A 為個別物體；物體 B（18 in./450 mm）與物體 C（24 in./600 mm）相距 12 in.，因 12 in. &lt; 3×18 in.，故 B、C 應視為群組物體，合計寬度為 18 in. + 24 in. = <b>42 in. (1050 mm)</b>。</div>
+      </div>
+
+      <h4><span class="clause-ref">2.5.4.5.4</span>寬度 2 ft (0.6 m) 以下、位於天花板撒水頭下方及儲存物上方之物體</h4>
+      <p><span class="clause-ref">2.5.4.5.4.1</span> 凡符合 Table 2.5.4.5.4.1 所定位置關係之物體，不視為對儲存型撒水頭放水型態之不可接受阻礙。物體寬度應以其<b>最小尺寸</b>、於平行地板之平面上量測。（Table 2.5.4.5.4.1 依物體寬度、與撒水頭水平距離及垂直位置關係列出容許組合，正式設計請查閱原文表格數據。）</p>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚫</div>
+        <div>本節（2.5.4.3–2.5.4.5）僅摘錄水平／垂直定位與阻礙物判定之文字規則與關鍵數值，原文含大量圖示（Fig. 2.5.4.3.2、2.5.4.3.3.1–4、2.5.4.3.4.1–2、2.5.4.4.2、2.5.4.4.4–5、2.5.4.5.1.1–2.5.4.5.3.1 等）與 Table 2.5.4.5.4.1 完整容許尺寸表，正式撒水頭佈置與阻礙物核可判斷務必對照原文圖表逐項確認，不可僅依本摘要施作。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s254c">
+      <div class="section-header">
+        <div class="section-num danger">2.5.4</div>
+        <h2>儲存型撒水頭（三）：其餘阻礙物與安裝規則</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>承前節（個別物件／群組物件的判定原則）：兩物件間水平淨距 <b>小於 3 倍較小物件寬度</b>者，應視為同一「群組物件（Grouped Object）」合併計算寬度；群組物件之總寬度為各物件寬度之總和，物件間之空隙不計入（<span class="clause-ref">2.5.4.5.3.2–2.5.4.5.3.3</span>）。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.4.5.4</span>寬度 2 ft (0.6 m) 以內物件位於天花板儲存型撒水頭下方且在儲存物上方時之阻礙</h3>
+      <p><span class="clause-ref">2.5.4.5.4.1</span> 物件之寬度以其「最小尺寸」並在平行於地板之平面上量測。符合下表（Table 2.5.4.5.4.1）者，不視為對撒水頭放水造成不可接受之阻礙：</p>
+      <table class="clause-table">
+        <thead><tr><th>物件最小尺寸寬度，in. (mm)</th><th>撒水頭至物件最近邊緣之水平距離，in. (mm)</th><th>可接受準則</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2">≤ 0.75 (20)*</td><td>&lt; 6 (150)</td><td>物件須在撒水頭垂直下方至少 4 in. (100 mm) 處，方為可接受之水平距離</td></tr>
+          <tr><td>≥ 6 (150)</td><td>與撒水頭之距離即為可接受</td></tr>
+          <tr><td rowspan="2">≤ 1.5 (38)*</td><td>&lt; 6 (150)</td><td>物件須在撒水頭垂直下方至少 12 in. (300 mm) 處，方為可接受之水平距離</td></tr>
+          <tr><td>≥ 6 (150)</td><td>與撒水頭之距離即為可接受</td></tr>
+          <tr><td rowspan="2">≤ 2 (50)*</td><td>&lt; 6 (150)</td><td>物件須在撒水頭垂直下方至少 24 in. (600 mm) 處，方為可接受之水平距離</td></tr>
+          <tr><td>≥ 6 (150)</td><td>與撒水頭之距離即為可接受</td></tr>
+          <tr><td rowspan="2">≤ 6 (150)*</td><td>&lt; 6 (150)</td><td>物件過於靠近撒水頭，須至少移至水平距撒水頭 6 in. (150 mm) 外</td></tr>
+          <tr><td>≥ 6 (150)</td><td>與撒水頭之距離即為可接受</td></tr>
+          <tr><td rowspan="2">≤ 12 (300)</td><td>&lt; 12 (300)</td><td>物件過於靠近撒水頭，須移至符合水平距撒水頭至少 12 in. (300 mm) 之規定</td></tr>
+          <tr><td>≥ 12 (300)</td><td>水平距離可接受，但物件須另位於儲存物頂部以上至少 18 in. (450 mm) 處</td></tr>
+          <tr><td rowspan="2">≤ 24 (600)</td><td>&lt; 12 (300)</td><td>物件過於靠近撒水頭，須移至符合水平距撒水頭至少 12 in. (300 mm) 之規定</td></tr>
+          <tr><td>≥ 12 (300)</td><td>水平距離可接受，但物件須另位於儲存物頂部以上至少 36 in. (900 mm) 處</td></tr>
+          <tr><td>&gt; 24 (600)</td><td colspan="2">依 <span class="clause-ref">2.5.4.5.5</span>（寬度超過 2 ft 物件）辦理</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.9em;color:var(--muted)">* 若天花板撒水頭為向上型（upright），請另見 <span class="clause-ref">2.5.4.5.4.2</span>。</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>向上型撒水頭之例外（<span class="clause-ref">2.5.4.5.4.2</span>）</h4>
+          <p>寬度不超過 4 in. (100 mm) 之物件，不視為對向上型儲存撒水頭放水之不可接受阻礙。因此，向上型撒水頭可用以替代受阻之向下型（pendent）撒水頭，惟須同時符合：</p>
+          <ul class="steps alpha">
+            <li>除方向外，向上型撒水頭與原向下型撒水頭其餘屬性相同</li>
+            <li>該向上型撒水頭適用於防護該用途危害</li>
+            <li>物件最大寬度為 4 in. (100 mm)</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>延伸間距（<span class="clause-ref">2.5.4.5.4.3</span>）</h4>
+          <p>若依 Table 2.5.4.3.1.1 設置撒水頭仍無法使物件符合 Table 2.5.4.5.4.1 之規定，得將撒水頭之線性間距在該表最大線性間距基礎上再延伸最多 <b>1 ft (0.3 m)</b>，以避免對撒水頭放水造成阻礙。此延伸間距可重複多次使用，但每次延伸皆須緊鄰符合 Table 2.5.4.3.1.1 規定之間距配置。</p>
+        </div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.4.5.4.4–2.5.4.5.4.6</span>無法避免阻礙時：於物件下方加設補充撒水頭（適用寬度 ≤2 ft 物件）</h3>
+      <p>若 <span class="clause-ref">2.5.4.5.4.1–2.5.4.5.4.3</span> 之準則仍無法避免對天花板撒水頭放水造成不可接受阻礙，應於阻礙物下方加設補充撒水頭（supplemental sprinklers），並依下列原則安裝：</p>
+      <ul class="steps alpha">
+        <li>將補充撒水頭定位在阻礙物投影範圍內之垂直面上，並盡量貼近阻礙物底面</li>
+        <li>阻礙物為<b>平整且實心</b>者：補充撒水頭最大允許間距為 <b>8 ft (2.4 m)</b></li>
+        <li>阻礙物<b>非平整或非實心</b>者：補充撒水頭最大允許間距為 <b>4 ft (1.2 m)</b></li>
+        <li>阻礙物非平整或非實心，但其正下方已加裝與阻礙物同投影面積之平整連續水平隔板者：補充撒水頭最大允許間距可放寬為 <b>8 ft (2.4 m)</b>（隔板規格見下）</li>
+        <li>阻礙物位於儲存貨架上方者：可改於貨架頂層所有通道空間交會處，設置與天花板撒水頭屬性相同之補充撒水頭作為貨架內撒水頭，做為可接受之防護方式</li>
+      </ul>
+      <p><span class="clause-ref">2.5.4.5.4.5</span> 補充撒水頭之設計方式：<b>(A)</b> 免另行設計者，可直接沿用天花板撒水頭之型式作為補充撒水頭，並以不小於天花板系統最大支管管徑之管徑供水；<b>(B)</b> 或改以阻礙物底面作為「假想天花板高度」，依用途別資料表就該高度查得建議設計密度／壓力，並將該區最遠 2 支補充撒水頭納入設計（此設計不須與天花板系統做水力平衡）。</p>
+      <p><span class="clause-ref">2.5.4.5.4.6</span> 加設水平隔板時，應使用最小 22 號規格 (0.7 mm) 鋼板或同等不燃材料，並固定牢靠以能承受至少 <b>3 lb/ft² (14.6 kg/m²)</b> 之上舉風壓；次佳但可接受之替代材料為最小 3/8 in. (10 mm) 厚之合板（或同等材料）。</p>
+
+      <h3><span class="clause-ref">2.5.4.5.5</span>寬度超過 2 ft (0.6 m) 物件之補充撒水頭設計與安裝</h3>
+      <p><span class="clause-ref">2.5.4.5.5.1</span> 個別或群組物件寬度超過 2 ft (0.6 m) 者，應依下列規定於阻礙物下方設計並安裝補充撒水頭。</p>
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div><span class="clause-ref">2.5.4.5.5.2</span> 同時符合下列三項條件時，補充撒水頭設計視為可接受，<b>免與天花板撒水頭系統做水力平衡</b>，亦免併入天花板系統設計計算：<b>(A)</b> 補充撒水頭由濕式（或同等）系統供水；<b>(B)</b> 供水管徑不小於天花板系統之支管管徑；<b>(C)</b> 補充撒水頭與天花板撒水頭屬性相同——允許之屬性差異包括：天花板為標準反應型時補充撒水頭可為快速反應型、補充撒水頭 K 值大於天花板撒水頭、或補充撒水頭之公稱動作溫度低於天花板撒水頭。</div>
+      </div>
+      <p><span class="clause-ref">2.5.4.5.5.3</span> 未符合上述條件時，補充撒水頭之供水管徑設計依下列方式決定：<b>(A)</b> 以阻礙物底部作為「天花板高度」，自用途別資料表查得對應補充撒水頭屬性之建議壓力或密度；<b>(B)</b> 將受影響區域內之補充撒水頭（最多 4 支）納入設計面積——若由二條以上支管供水，亦可以兩條支管、每條 2 支之方式計入 4 支設計；<b>(C)</b> 補充撒水頭所需流量與壓力，免與天花板系統做水力平衡。</p>
+
+      <p><span class="clause-ref">2.5.4.5.5.4</span> 補充撒水頭之安裝規定如下：</p>
+      <table class="clause-table">
+        <thead><tr><th>阻礙物型式與寬度</th><th>補充撒水頭最大允許間距</th></tr></thead>
+        <tbody>
+          <tr><td>平整實心，寬度 &gt;2 ft (0.6 m) 且 ≤10 ft (3.0 m)</td><td>10 ft (3.0 m)</td></tr>
+          <tr><td>平整實心，寬度 &gt;10 ft (3.0 m)</td><td>依該撒水頭於無阻礙天花板構造下之線性與面積間距準則辦理</td></tr>
+          <tr><td>非平整或非實心，寬度 &gt;2 ft (0.6 m)</td><td>線性間距 ≤4 ft (1.2 m)；面積間距 ≤16 ft² (1.5 m²)；並使補充撒水頭水平距阻礙物任一邊緣 ≤2 ft (0.6 m)</td></tr>
+          <tr><td>非平整或非實心，寬度 &gt;2 ft 且 ≤10 ft，其下已加裝同投影面積之平整實心水平隔板</td><td>10 ft (3.0 m)</td></tr>
+          <tr><td>非平整或非實心，寬度 &gt;10 ft，其下已加裝同投影面積之平整實心水平隔板</td><td>依無阻礙天花板構造之線性與面積間距準則辦理</td></tr>
+        </tbody>
+      </table>
+      <p>補充撒水頭應安裝於盡量貼近阻礙物底面之垂直面上，並水平配置於阻礙物投影範圍內（<span class="clause-ref">2.5.4.5.5.4(A)(B)</span>）。<span class="clause-ref">2.5.4.5.5.4(H)</span> 阻礙物寬度不超過 4 ft (1.2 m) 且位於儲存貨架上方者，可改為在貨架頂層所有通道空間交會處（含面向通道與縱向通道）加裝天花板等級撒水頭作為貨架內撒水頭，並以與天花板系統支管相同管徑供水，作為可接受之防護方式。<span class="clause-ref">2.5.4.5.5.5</span> 水平隔板規格與 <span class="clause-ref">2.5.4.5.4.6</span> 相同：最小 22 號規格 (0.7 mm) 鋼板或同等不燃材料，須能承受至少 3 lb/ft² (14.6 kg/m²) 上舉風壓，次佳替代材料為最小 3/8 in. (10 mm) 合板。</p>
+
+      <h3><span class="clause-ref">2.5.4.5.6–2.5.4.5.8</span>開放格柵天花板、夾層與走道之阻礙</h3>
+      <table class="clause-table">
+        <thead><tr><th>構造類型</th><th>規定重點</th></tr></thead>
+        <tbody>
+          <tr><td>開放格柵天花板<br><span class="clause-ref">2.5.4.5.6.1</span></td><td>儲存型撒水頭防護區域內，<b>禁止</b>安裝開放格柵天花板</td></tr>
+          <tr><td>開放格柵夾層<br><span class="clause-ref">2.5.4.5.7</span></td><td>應盡量避免採用開放格柵夾層，改採實心樓板並依 2.5.1.4 於樓板下方設置撒水頭。如無法避免，樓板下方應設置：160°F (70°C) 公稱動作溫度、快速反應型儲存撒水頭並附加水盾；線性間距 ≤4 ft (1.2 m)、面積間距 ≤16 ft² (1.5 m²)；設計比照夾層下方為實心樓板時之用途危害設計。此系統免與天花板系統做水力平衡</td></tr>
+          <tr><td>開放格柵走道<br><span class="clause-ref">2.5.4.5.8</span></td><td>應盡量避免採用，改採實心走道並依 2.5.1.5 於下方設置撒水頭。符合下列情形之一者，走道下方撒水頭得予省略：<b>(1)</b> 走道開孔率 ≥70% 且下方不會有儲存物或其他可燃物；或走道鄰接貨架儲存但火災時貨品不致溢流至走道上；<b>(2)</b> 走道鄰接貨架儲存，且該貨架同層已設有面撒水頭。無法省略時，應於走道下方設置：160°F (70°C) 公稱動作溫度、快速反應型儲存撒水頭並附加水盾，其 K 值、涵蓋型式與方向須與天花板撒水頭相同；最大線性間距 8 ft (2.4 m)；供水支管管徑與天花板系統相同。若走道鄰接已設貨架內撒水頭防護之貨架，亦可改採與該貨架內撒水頭相同之撒水頭與設計。依此安裝者，走道下方系統免與天花板系統做水力平衡</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="clause-ref">2.5.4.5.9</span>輸送機（Conveyors）造成之阻礙</h3>
+      <p>是否須於輸送機下方加設補充撒水頭，依 Fig. 2.5.4.5.9 判斷流程決定，其判斷邏輯如下：</p>
+      <table class="clause-table">
+        <thead><tr><th>判斷條件</th><th>結果</th></tr></thead>
+        <tbody>
+          <tr><td>輸送機下方區域是否無可燃物？</td><td>是 → 免於輸送機下方加設補充撒水頭；否 → 續下一步判斷</td></tr>
+          <tr><td>輸送機是否為滾筒式（roller type）？</td><td>是 → 續判斷「滾筒間縫隙是否小於滾筒直徑」；否（皮帶式）→ 續下一步判斷</td></tr>
+          <tr><td>（滾筒式）滾筒間縫隙 &lt; 滾筒直徑？</td><td>是 → 應依 2.5.4.5 於輸送機下方設置快速反應型補充撒水頭</td></tr>
+          <tr><td>輸送機皮帶是否為格柵型（grid type）？</td><td>是 → 續判斷「格柵開孔率是否 &gt;70%」；否（實心皮帶）→ 應依 2.5.4.5 設置快速反應型補充撒水頭</td></tr>
+          <tr><td>（格柵型）開孔率 &gt;70%？</td><td>是 → 免加設補充撒水頭；否 → 應依 2.5.4.5 設置快速反應型補充撒水頭</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>原文以流程圖（Fig. 2.5.4.5.9）呈現前述判斷邏輯，本表為其文字化整理；「滾筒間縫隙 ≥ 滾筒直徑」分支之對應結果原圖未以獨立文字方塊標示，實務判斷仍應對照原圖確認。</div>
+      </div>
+
+      <h3><span class="clause-ref">2.5.4.6</span>貨架內撒水頭定位之一般準則</h3>
+      <ul class="steps">
+        <li><span class="clause-ref">2.5.4.6.1</span> 所有貨架內撒水頭皆應設置於貨架儲存結構之範圍內</li>
+        <li><span class="clause-ref">2.5.4.6.2</span> 面撒水頭（face sprinklers）應：(A) 位於貨架儲存結構範圍內，且 (B) 水平距貨架面不超過 18 in. (450 mm)</li>
+        <li><span class="clause-ref">2.5.4.6.3</span> 單排貨架、深度 ≤4 ft (1.2 m) 者，貨架內撒水頭得設置於貨架結構範圍外，惟須同時符合：不須設面撒水頭；貨架水平距牆面 ≤12 in. (300 mm)；貨架內撒水頭水平距貨架結構 ≤6 in. (150 mm)；水平偏移橫向通道空間交會點 ≤3 in. (75 mm)；且撒水頭偏向貨架直立柱之一側</li>
+        <li><span class="clause-ref">2.5.4.6.4</span> 單排貨架、深度 &gt;4 ft (1.2 m) 者，貨架內撒水頭得設置於結構範圍外，惟須：已沿貨架通道側設置面撒水頭；貨架水平距牆面 ≤12 in. (300 mm)；貨架內撒水頭水平距貨架結構 ≤6 in. (150 mm)；水平偏移橫向通道空間交會點 ≤3 in. (75 mm)</li>
+        <li><span class="clause-ref">2.5.4.6.5</span> 雙排貨架僅於縱向通道空間設置貨架內撒水頭者，撒水頭應偏向直立柱之一側，且水平偏移橫向通道空間交會點不超過 3 in. (75 mm)</li>
+        <li><span class="clause-ref">2.5.4.6.6</span> 每一設置貨架內撒水頭之層架高度，撒水頭洩水盤應位於滿載儲存物頂部垂直上方至少 6 in. (150 mm) 處，並在貨架水平支撐構件下方或齊平處；若無法保留 6 in. (150 mm) 淨空，應於所有通道空間交會處（面向通道與縱向通道）皆設置貨架內撒水頭</li>
+        <li><span class="clause-ref">2.5.4.6.7</span> 面撒水頭若水平偏移貨架水平支撐構件（與通道平行者）至少 3 in. (75 mm)，得設置於該支撐構件上方</li>
+        <li><span class="clause-ref">2.5.4.6.8</span> 貨架內撒水頭與其配管之佈置，應同時避免物料搬運作業造成損壞，並確保放水不受阻礙——例如雙排貨架可於面側設置兩支水平支撐構件，但在設置貨架內撒水頭之層架縱向通道空間僅設一支水平支撐構件；面撒水頭宜配置於距支撐構件水平 3–18 in. (75–450 mm)、洩水盤距最近支撐構件底面 ≤3 in. (75 mm) 處，縱向通道之貨架內撒水頭洩水盤則宜與最近支撐構件底面齊平或略低。安裝前應逐一確認貨架內撒水頭之預定位置，兼顧防止物料搬運損壞與放水暢通</li>
+      </ul>
+    </div>
+
+    <div class="section" id="s255">
+      <div class="section-header">
+        <div class="section-num muted">2.5.5</div>
+        <h2>特殊防護撒水頭</h2>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本節原文條列極簡短，主要以指向其他章節／用途別資料表之形式呈現，並非另訂一套獨立之特殊防護撒水頭安裝規則；下列內容已逐條忠實呈現原文。原文本節四項子條款之編號於 PDF 中列印為「2.5.1–2.5.4」（與本資料表 2.5.1–2.5.4 等既有章節編號重複，應為原文排版之誤植，實質內容仍對應 2.5.5 之子條款），本頁依原文列印之編號原樣呈現。</div>
+      </div>
+      <ul class="steps">
+        <li><span class="clause-ref">2.5.1</span>（原文列印編號，見上方說明）關於特殊防護撒水頭（Special Protection Sprinklers）之構造、用途與防護準則，應查閱對應之<b>用途別資料表（occupancy-specific data sheet）</b></li>
+        <li><span class="clause-ref">2.5.2</span> 若用途別資料表未另行規定，應依本資料表 <b>2.2 節</b>，依防護區域之環境溫度決定可採用之撒水系統型式（如濕式或乾式）</li>
+        <li><span class="clause-ref">2.5.3</span> 適用之撒水系統配件應依本資料表 <b>2.3 節</b>辦理</li>
+        <li><span class="clause-ref">2.5.4</span> 撒水系統配管、接續、吊架與抗震支撐之安裝建議，應依本資料表 <b>2.4 節</b>辦理</li>
+      </ul>
+    </div>
+
+    <div class="section" id="s26">
+      <div class="section-header">
+        <div class="section-num">2.6</div>
+        <h2>圖說審查（Plan Review of Sprinkler Systems）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.6.1</span>圖說審查一般建議</h3>
+      <p><span class="clause-ref">2.6.1.1</span> 撒水系統設計應依相關用途別資料表（occupancy-specific data sheet）辦理，並依 <b>Data Sheet 3-0《消防系統水力學》</b>執行水力計算分析。<span class="clause-ref">2.6.1.2</span> 於任何撒水系統安裝開始前，應將一套工作圖（working drawings）、撒水系統水力計算書、規範書及其他 2.6.2–2.6.5 節所述之必要文件，送交 FM 指定代表審查並取得核可。<span class="clause-ref">2.6.1.3</span> 任何修訂後之工作圖、水力計算書、規範書及其他必要文件，亦應於安裝開始前送交 FM 指定代表審查核可。<span class="clause-ref">2.6.1.4</span> 應提供一套完整之竣工圖（as built drawings）、撒水系統水力分析、規範書及必要文件予業主及／或客戶留存。</p>
+
+      <h3><span class="clause-ref">2.6.2</span>工作圖</h3>
+      <p><span class="clause-ref">2.6.2.1</span> 送審之工作圖應包含 2.6.2.2–2.6.2.5 節所列資訊。</p>
+
+      <h4>比例配置圖（Site Plan，<span class="clause-ref">2.6.2.2</span>）應標示：</h4>
+      <ul class="steps alpha">
+        <li>廠區可用之水源；如水源包含消防泵浦房、消防泵浦、儲水槽等設施，應一併標示相關資訊</li>
+        <li>所有地下給水總管及其控制閥</li>
+        <li>所有消防栓及其控制閥</li>
+        <li>任何消防車連結口（fire service pumper connections）</li>
+        <li>其他相關消防設備（如逆止閥等）</li>
+        <li>設置撒水防護之建築物本體</li>
+        <li>該建築物 100 ft (30 m) 範圍內之其他建築物</li>
+        <li>方向指標（direction arrow）</li>
+        <li>水源測試有效點與撒水系統立管基座間之所有高程差</li>
+      </ul>
+
+      <h4>平面圖（Plan View，<span class="clause-ref">2.6.2.3</span>）應標示：</h4>
+      <ul class="steps alpha">
+        <li>水力分析所用之所有節點（nodes）</li>
+        <li>撒水系統所依據之設計</li>
+        <li>撒水系統所需之流量與壓力，以及流量壓力計算所依據之參考點</li>
+        <li>圖上每一撒水頭之 SIN、K 值及公稱動作溫度</li>
+        <li>2.1.4.4 節所列撒水系統所有元件，並適當標註</li>
+        <li>室內消防栓箱及／或壁式消防栓之配管與出口</li>
+        <li>撒水頭之線性間距</li>
+        <li>撒水頭與牆面之水平距離</li>
+        <li>任何排煙／排熱口或動力排氣口相對於所有撒水頭之位置</li>
+        <li>該用途場所預期環境溫度低於 40°F (4°C) 或高於 130°F (54°C) 之區域位置</li>
+      </ul>
+
+      <h4>剖面圖（Sectional View，<span class="clause-ref">2.6.2.4–2.6.2.5</span>）應標示：</h4>
+      <ul class="steps alpha">
+        <li>撒水頭與天花板間之垂直距離</li>
+        <li>確認符合 2.5.2.5（下垂/直立式）、2.5.3.5（側牆式）、2.5.4.5（儲存型）等節之障礙物相關建議</li>
+        <li>若平面圖上已提供障礙物詳細資訊及天花板與撒水頭間之垂直距離，得省略比例剖面圖</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.3</span>撒水系統水力分析</h3>
+      <p><span class="clause-ref">2.6.3.1</span> 除相關用途別資料表另有建議外，應依 <b>Data Sheet 3-0</b> 之建議以水力分析證明所提撒水系統可提供該用途別資料表所定之設計放水量與延時。<span class="clause-ref">2.6.3.2</span> 撒水系統水力分析所需之額外文件，詳 2.6.5 節。</p>
+
+      <h3><span class="clause-ref">2.6.4</span>規範書</h3>
+      <p><span class="clause-ref">2.6.4.1</span> 應送審 2.6.4.2–2.6.4.12 節所述之規範書。規範書應涵蓋以下項目：</p>
+      <ul class="steps">
+        <li>任何可燃構造，以及設有排煙／排熱口與（或）開放格柵天花板、夾層、走道之區域（<span class="clause-ref">2.6.4.2</span>）</li>
+        <li>各撒水防護區域之用途；儲存用途另須檢附 <b>FM999C</b> 表（FM 承包商撒水系統水力分析證明書）（<span class="clause-ref">2.6.4.3</span>）</li>
+        <li>環境溫度預期低於 40°F (4°C) 或高於 130°F (54°C) 區域之用途詳情（<span class="clause-ref">2.6.4.4</span>）</li>
+        <li>若場所位於 50 年至 500 年地震帶（依 <b>Data Sheet 1-2《地震》</b>定義），標示其 Year Zone 分級及所採耐震防護措施（<span class="clause-ref">2.6.4.5</span>）</li>
+        <li>供應撒水系統之水源詳細規範，含泵浦房、消防泵浦、儲水槽等資訊；既有水源之流量試驗資料須為 12 個月內；新設消防泵浦須檢附特性曲線並依 <b>Data Sheet 3-7《消防泵浦》</b>辦理；新設儲水槽須證明其容量並符合 <b>Data Sheet 3-2《消防用水槽》</b>之建議（<span class="clause-ref">2.6.4.6</span>）</li>
+        <li>撒水系統各元件之詳細規範，包括撒水頭、自動控制閥、快速開啟裝置、配管、管接頭、支撐組件、控制閥與減壓閥、逆止閥與逆流防止器、水流警報裝置、壓力表、消防車連結口、排水閥、release閥（洩壓閥）等（<span class="clause-ref">2.6.4.7</span>）</li>
+        <li>乾式、預動式或冷凍區型撒水系統之加壓氣體介質詳細規範（<span class="clause-ref">2.6.4.8</span>）</li>
+        <li>防凍液系統所用防凍液詳細規範，及防護區域預期最低環境溫度（<span class="clause-ref">2.6.4.9</span>）</li>
+        <li>預動式、冷凍區型、真空式或水霧（deluge）系統之動作元件詳細規範及其動作順序（<span class="clause-ref">2.6.4.10</span>）</li>
+        <li>撒水系統所設連鎖裝置（interlocks）之詳細規範及其動作方式（<span class="clause-ref">2.6.4.11</span>）</li>
+        <li>撒水系統警報監控地點之詳細規範（<span class="clause-ref">2.6.4.12</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.5</span>應備文件</h3>
+      <p><span class="clause-ref">2.6.5.1</span> 應提交 2.6.5.2–2.6.5.5 節所列文件供審查核可：</p>
+      <ul class="steps">
+        <li>由安裝承包商完成「自動撒水系統測試」章節之前所有欄位之 <b>FM85A</b> 表（FM 承包商材料與測試證明書），詳附錄 C 表單範本（<span class="clause-ref">2.6.5.2</span>）</li>
+        <li>已完成之 <b>FM999C</b> 表（FM 承包商水力分析證明書），詳附錄 C（<span class="clause-ref">2.6.5.3</span>）</li>
+        <li>證明乾式、預動式、冷凍區型、真空式或水霧型撒水系統之預期輸水時間符合最大時間限制之文件（<span class="clause-ref">2.6.5.4</span>）</li>
+        <li>收到 FM 圖說審查意見後，應提出修訂送審資料或書面回覆，說明將如何處理 FM 之審查建議（<span class="clause-ref">2.6.5.5</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.6.6</span>安排 FM 現場驗收</h3>
+      <p>應聯絡當地 FM 現場服務單位安排現場驗收訪視。FM 現場服務單位將依安裝類型、防護危害等級、安裝規模及地震帶等因素，決定所需見證之現場檢查與測試範圍。</p>
+    </div>
+
+    <div class="section" id="s27">
+      <div class="section-header">
+        <div class="section-num">2.7</div>
+        <h2>系統驗收測試（Sprinkler System Acceptance Tests）</h2>
+      </div>
+
+      <h3><span class="clause-ref">2.7.1</span>驗收測試一般建議</h3>
+      <p>任何新設撒水系統於投入使用前，均應執行驗收測試。</p>
+
+      <h3><span class="clause-ref">2.7.2</span>建議之驗收測試文件</h3>
+      <ul class="steps">
+        <li>確認依 2.6 節建議送審之所有工作圖與規範書均已送出、經審查並獲 FM 接受（<span class="clause-ref">2.7.2.1</span>）</li>
+        <li>確認 FM 圖說審查函所列所有未決建議事項已依 FM 滿意方式處理完畢（<span class="clause-ref">2.7.2.2</span>）</li>
+        <li>確認安裝承包商已完成 <b>FM85A</b> 表所有必要欄位，且已將副本留交 FM 指定代表（<span class="clause-ref">2.7.2.3</span>）</li>
+        <li>若因安裝快接式管件而於撒水配管上開孔，須以書面確認所有開孔切屑（coupons）均已自配管內部移除；承包商得於 FM85A 表上書面確認，或另以書面函件聲明（<span class="clause-ref">2.7.2.4</span>）</li>
+        <li>確認安裝承包商已完成 <b>FM999C</b> 表所有必要欄位，且已將副本留交 FM 指定代表（<span class="clause-ref">2.7.2.5</span>）</li>
+      </ul>
+
+      <h3><span class="clause-ref">2.7.3</span>驗收測試建議項目</h3>
+
+      <h4><span class="clause-ref">2.7.3.1</span>水源與地下管路測試</h4>
+      <p>以全流量測試確認撒水系統實際可用水源不低於送審核可工作圖所載水源條件（<span class="clause-ref">2.7.3.1.1</span>）；依 <b>Data Sheet 3-10《私設消防水管及連接》</b>對所有地下配管進行水壓試驗，滲漏量應符合該資料表之限值並記錄於測試證明書（<span class="clause-ref">2.7.3.1.2</span>）。</p>
+
+      <h4><span class="clause-ref">2.7.3.2</span>撒水系統水壓試驗</h4>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value">200 psi</div><div class="stat-label">(13.8 bar) — 新設撒水系統最低水壓試驗壓力</div></div>
+        <div class="stat-card"><div class="stat-value">+50 psi</div><div class="stat-label">(3.5 bar) — 若靜壓超過 150 psi (10.3 bar)，試驗壓力為靜壓再加 50 psi</div></div>
+        <div class="stat-card"><div class="stat-value green">2 小時</div><div class="stat-label">試驗持續時間，期間不得有壓力損失</div></div>
+      </div>
+      <p><span class="clause-ref">2.7.3.2.1</span> 所有承受系統工作壓力之內部撒水配管及其附屬配件均應納入測試範圍；壓力損失可由監測壓力表判讀或目視觀察確認；測試壓力應由設於受測系統（或部分系統）最低高程點之壓力表讀取。<span class="clause-ref">2.7.3.2.2</span> 既有系統改裝時，僅需對改裝部分進行水壓試驗；惟若改裝部分無法單獨隔離（如移位之配管分支），則應以系統正常靜壓對整個系統進行至少 2 小時之水壓試驗。<span class="clause-ref">2.7.3.2.3</span> 若既有系統唯一之變更為更換撒水頭，則免除水壓試驗。<span class="clause-ref">2.7.3.2.4</span> 寒冷氣候無法以水進行測試時，得依 2.7.3.2.7 節進行臨時氣密（pneumatic）洩漏測試。<span class="clause-ref">2.7.3.2.5</span> 為降低配管破裂造成嚴重水損之可能性，測試期間得以小型泵浦維持壓力，同時保持撒水系統主控制閥關閉。</p>
+
+      <p><span class="clause-ref">2.7.3.2.6</span> 水壓試驗時應特別注意下列配管與元件：</p>
+      <ul class="steps alpha">
+        <li>差動式乾式閥（Differential Dry-Pipe Valve）：水壓試驗期間應使乾式閥之瓣（clapper）維持離座狀態，以避免損壞</li>
+        <li>消防車連結口：應對外部消防車連結口與消防車進水管逆止閥之間的配管進行水壓試驗</li>
+        <li>聚丁烯管（Polybutylene Pipe）：初次加壓時會發生膨脹，壓力表讀數下降未必代表洩漏；壓力下降幅度不應超過製造商規範與認證登記標準</li>
+        <li>水霧（Deluge）撒水頭：測試前於撒水頭接頭處裝設堵頭，測試完成後更換為開放式撒水頭；或於測試完成後移除撒水頭之動作元件</li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div><span class="clause-ref">2.7.3.2.7</span> 除標準水壓試驗外，所有乾式、預動式、冷凍區型或真空式撒水系統，應另以 <b>40 psi (2.8 bar)</b> 進行氣密洩漏測試，最短持續時間為 <b>24 小時</b>。若 24 小時內壓力損失超過 <b>1½ psi (0.1 bar)</b>，應予修正；此 1½ psi/24 小時之洩漏限值係指全系統所有洩漏點之綜合效應，而非個別洩漏點。</div>
+      </div>
+      <p><span class="clause-ref">2.7.3.2.8</span> 撒水系統防護區域環境溫度可能低於 32°F (0°C) 者，應於該空間可能之最低公稱溫度下進行氣密洩漏測試。<span class="clause-ref">2.7.3.2.9</span> 採用 CPVC 等硬質熱塑性配管之撒水系統不得進行氣密測試，一律以水進行測試，並自系統中最高及最遠之撒水頭排放管內空氣。<span class="clause-ref">2.7.3.2.10</span> 測試堵板（test blanks）應附有塗漆凸耳並清楚可辨識其存在，且應編號並建立紀錄制度，確保安裝承包商於施工完成後移除。<span class="clause-ref">2.7.3.2.11</span> 水壓試驗時不得使用添加劑、矽酸鈉等腐蝕性化學藥劑、鹽水或其他化學品來止漏。<span class="clause-ref">2.7.3.2.12</span> 應妥善規劃水壓試驗用水之處置。</p>
+
+      <h4><span class="clause-ref">2.7.3.3</span>乾式、預動式、冷凍區型、真空式或水霧型系統之測試</h4>
+      <p><span class="clause-ref">2.7.3.3.1</span> 除沖洗與水壓試驗外，應安排安裝承包商於驗收前對乾式、預動式、冷凍區型、真空式或水霧型撒水系統進行動作測試（trip test），並由業主代表見證。<span class="clause-ref">2.7.3.3.2</span> 應參照相關用途別資料表是否有補充之動作測試建議，例如 <b>Data Sheet 7-93N《飛機庫》</b>對驗收測試有非常specific之規定。<span class="clause-ref">2.7.3.3.3</span> 對於消音室（見 <b>Data Sheet 1-53《消音室》</b>）等全流量驗收測試可能造成損害疑慮之特殊場所，或水可能結凍之冷凍庫，應盡量於引入高價值內容物前，或於冷凍庫降至操作溫度前完成驗收測試。</p>
+      <p><span class="clause-ref">2.7.3.3.4</span> 動作測試應於所有水源（含消防泵浦）投入運作、所有撒水系統控制閥全開且系統設定為正常運作狀態下進行，測試方式如下：</p>
+      <ul class="steps alpha">
+        <li><b>乾式系統</b>：以開啟末端查驗閥（inspector's test connection）方式使乾式閥動作（若系統設計基於一個以上最遠撒水頭動作，則使用末端查驗閥組件）；量測乾式閥動作壓力，以及查驗閥處壓力上升至並維持系統最低設計壓力所需之時間，並記錄於 FM85A 表</li>
+        <li><b>預動式系統</b>（含預動式、冷凍區型、真空式）：先啟動感熱或感煙動作裝置使系統動作（感熱器以加熱方式測試，感煙偵測以核准之模擬煙霧發生器測試；濕式或乾式導引撒水頭則以熔動撒水頭或開啟導引管線查驗接頭測試）；非連鎖型與單連鎖型系統經此即動作；雙連鎖型系統則須再開啟末端查驗閥（組件）方使系統動作；非連鎖型系統應重複僅開啟末端查驗閥之測試以確認兩種方式均可動作；非連鎖型與雙連鎖型系統應量測系統閥動作壓力及查驗閥處壓力上升時間，並記錄於 FM85A 表</li>
+        <li><b>水霧（deluge）與暴露防護撒水系統</b>：除預動式系統測試程序外，應依製造商說明測試水霧閥之自動動作；如設有手動與遠端遙控操作，亦應測試；觀察撒水放水均勻性；以校正過之壓力表於最遠水力計算撒水頭附近量測放水壓力，確認符合設計；並確認排水至安全地點之能力充足</li>
+      </ul>
+      <p><span class="clause-ref">2.7.3.3.5</span> 測試期間亦應檢查監視設備、水流警報及消防泵浦啟動、輸送機停止、空調系統關閉等連鎖控制之動作是否正常。<span class="clause-ref">2.7.3.3.6</span> 預動式系統全流量動作測試成功後，應對各感熱／感煙迴路及手動、就地與遠端動作站分別進行額外動作測試，測試時系統控制閥應節流（throttled）。<span class="clause-ref">2.7.3.3.7</span> 動作測試成功完成後，應將系統內水排空並恢復投入使用。</p>
+
+      <h4><span class="clause-ref">2.7.3.4</span>系統元件測試</h4>
+      <ul class="steps">
+        <li>以實體操作確認所有撒水系統控制閥均處於全開位置；確認控制閥所設之防篡改警報於實體操作測試期間功能正常；控制閥實體測試之詳細建議見 <b>Data Sheet 2-81《消防安全檢查與撒水系統維護》</b>（<span class="clause-ref">2.7.3.4.1</span>）</li>
+        <li>確認撒水系統警報均可傳送至警報控制盤及警報監控站（若有設置）；如設有局部警報，應確認其功能正常（<span class="clause-ref">2.7.3.4.2</span>）</li>
+        <li>開啟主排水閥並保持開啟直到系統壓力穩定，執行 <b>2 in. (50 mm) 主排水測試</b>，記錄靜壓與餘壓並登載於 FM85A 表（<span class="clause-ref">2.7.3.4.3</span>）</li>
+        <li>確認由撒水系統動作所觸發之任何連鎖裝置功能正常（<span class="clause-ref">2.7.3.4.4</span>）</li>
+        <li>若設有逆流防止裝置，應以正向流量測試確保其運作正常，測試流量至少應等於撒水系統需求量（含適用之消防栓用水量）（<span class="clause-ref">2.7.3.4.5</span>）</li>
+        <li>若設有減壓閥，應於安裝完成後測試其在有流量與無流量狀態下之運作，確認裝置於最大及正常入口壓力下均能適當調節出口壓力；將每一減壓閥之流量測試結果（含靜壓、餘壓之進出口壓力與流量）記錄於 FM85A 表（<span class="clause-ref">2.7.3.4.6</span>）</li>
+        <li>若尚未依 2.7.2.4 節提供切屑移除之書面文件，應於系統驗收並投入使用前，對所有撒水配管進行完整沖洗，並以目視檢查確認所有開孔切屑均已移除（含檢查是否卡於較小口徑配管內）（<span class="clause-ref">2.7.3.4.7</span>）</li>
+      </ul>
+
+      <h4><span class="clause-ref">2.7.3.5</span>撒水系統最終目視審查</h4>
+      <ul class="steps">
+        <li>目視審查撒水系統配管配置是否依已審查核可之工作圖安裝完成；任何與工作圖之偏離事項均應列明並經 FM 認可（<span class="clause-ref">2.7.3.5.1</span>）</li>
+        <li>已安裝乾式、預動式、冷凍區型或真空式撒水系統者，確認撒水配管坡度及任何所需之輔助排水裝置均已提供（<span class="clause-ref">2.7.3.5.2</span>）</li>
+        <li>確認每一撒水系統均依 2.5.1.13 節建議提供備用撒水頭櫃（<span class="clause-ref">2.7.3.5.3</span>）</li>
+        <li>確認所有設備銘牌（identification tags）均已於需要處提供（<span class="clause-ref">2.7.3.5.4</span>）</li>
+        <li>驗收測試完成並將適當文件提交 FM 指定代表後，確認撒水系統各面向（含所有警報與連鎖裝置）均已投入使用（<span class="clause-ref">2.7.3.5.5</span>）</li>
+      </ul>
+    </div>
+
+    <div class="section" id="s28">
+      <div class="section-header">
+        <div class="section-num">2.8</div>
+        <h2>操作與維護（Operation and Maintenance）</h2>
+      </div>
+      <p>撒水頭與撒水系統之操作與維護指南，詳見 <b>Data Sheet 2-81《消防安全檢查與撒水系統維護》</b>（Fire Safety Inspections and Sprinkler System Maintenance）。</p>
+    </div>
+
+    <div class="section" id="s29">
+      <div class="section-header">
+        <div class="section-num">2.9</div>
+        <h2>點火源控制（Ignition Source Control）</h2>
+      </div>
+      <p><span class="clause-ref">2.9.1</span> 撒水系統安裝過程中所涉及之一切動火作業（hot work operations），均應依 <b>Data Sheet 10-3《動火作業管理》</b>（Hot Work Management）建議採取防護措施。</p>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="section-header">
+        <div class="section-num purple">3</div>
+        <h2>建議依據支持（Support for Recommendations）</h2>
+      </div>
+
+      <h3><span class="clause-ref">3.1</span>總則</h3>
+      <p><span class="clause-ref">3.1.1</span> 本資料表之消防建議係基於測試、損失經驗與工程判斷而訂定。並非所有情境均已經過測試，也並非所有可能之解決方案均已被辨識；當考量與本資料表所涵蓋方式不同之替代方案時，應審慎評估所有相關變數。</p>
+      <p><span class="clause-ref">3.1.2</span> 本資料表之建議旨在確保：</p>
+      <ul class="steps alpha">
+        <li>撒水頭能及時動作</li>
+        <li>撒水頭具備不受阻礙之放水型態</li>
+        <li>撒水系統元件能可靠運作</li>
+      </ul>
+      <p><span class="clause-ref">3.1.3</span> 本資料表之建議須與相關用途別資料表所定之設計參數一併採用，以確保撒水系統能提供足夠水量以控制或抑制火災。</p>
+
+      <h3><span class="clause-ref">3.2</span>損失歷史</h3>
+
+      <h4><span class="clause-ref">3.2.1</span>總則</h4>
+      <p><span class="clause-ref">3.2.1.1</span> 自動撒水頭已商業化應用超過百年，凡依本資料表建議安裝之撒水系統設施，其損失歷史表現優異。<span class="clause-ref">3.2.1.2</span> 工業設施發生之大型火災損失，主要原因多為缺乏撒水防護。</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-value green">25%</div><div class="stat-label">單一撒水頭動作即可控制或撲滅火災之比例（設計安裝正確之前提下）</div></div>
+        <div class="stat-card"><div class="stat-value">50%</div><div class="stat-label">3 個以下撒水頭動作即可控制或撲滅火災之比例</div></div>
+        <div class="stat-card"><div class="stat-value">75%</div><div class="stat-label">9 個以下撒水頭動作即可控制或撲滅火災之比例</div></div>
+      </div>
+      <p><span class="clause-ref">3.2.1.3</span> 以上為 FM 近 20 年損失歷史之統計結果，其他公開資料來源顯示之成效甚至更佳。<span class="clause-ref">3.2.1.4</span> 火災期間動作之撒水頭最大數量，通常遠早於消防隊到場並展開滅火行動之前即已確立；依本資料表建議設置撒水防護，往往決定消防隊到場時面對的是一場相對輕微之火災，抑或是已失控之火災。<span class="clause-ref">3.2.1.5</span> 儲存型撒水頭之損失經驗有限，惟整體表現優異，動作之撒水頭多能提供優異之滅火控制或抑制效果；儲存用途場所中，儲存型撒水頭下方之火災相較於非儲存型撒水頭下方之火災，通常延燒時間較短、規模較小，動作撒水頭數量亦較少。</p>
+
+      <h4><span class="clause-ref">3.2.2</span>損失案例</h4>
+
+      <h4>3.2.2.1 撒水系統安裝中之動火作業損失案例</h4>
+      <p>某雞肉加工廠因承包商焊接作業引發火災。該區域撒水系統正在安裝中，尚未投入使用。火災延燒至以纖維玻璃強化塑膠包覆之聚苯乙烯牆體隔熱材，並進一步延燒至噴塗於搭接式鋼構屋頂之聚氨酯隔熱材，造成約 <b>28,000 ft² (2,600 m²)</b> 屋頂坍塌。火勢並延燒至維修廠房、馬達控制中心及瓦楞紙箱儲存區，坍塌區內設備嚴重受損。承包商於距可燃隔熱材 <b>4 in. (100 mm)</b> 範圍內進行焊接作業；廠內動火許可制度未被遵循，未設置火場監視人員，亦未備置滅火器。</p>
+
+      <h4>3.2.2.2 新設撒水系統尚未接通水源即遭縱火之案例</h4>
+      <p>某光纖電纜製造廠發生火災，研判最可能原因為縱火。起火區域約 <b>7,500 ft² (700 m²)</b>，原料（主要為塑膠粒）以貨架儲存至 <b>13 ft (3.9 m)</b> 高度，該區屋頂與牆體為塑膠隔熱三明治板構造。該區已安裝撒水防護，惟因消防泵浦工程尚未完工而未投入使用。火災期間該區屋頂與牆體均告坍塌，鄰接區域之生產設備及在製品受損，鄰接建物亦因相通門戶未關閉而遭受嚴重煙損。儘管因盜警與煙霧警報動作而使火警偵測甚為迅速，付費消防隊之到場應變仍延遲超過 20 分鐘。</p>
+
+      <h4>3.2.2.3 高樓建築設有撒水防護但火災未涵蓋起火區域之案例</h4>
+      <p>某包含 2,900 間客房、賭場、會議廳與購物區之大型複合式建築發生火災，經查係一名員工縱火所致。該員工於複合建築內四個不同區域縱火。其中一起火災起源於三棟 30 層建築之一棟第 8 樓，因該區域未設撒水防護，火勢經電梯大廳窗簾延燒，並穿越破裂之大片窗戶蔓延至第 28 樓，最終被延伸至混凝土帷幕牆外至少 <b>5 ft (1.5 m)</b> 之混凝土樓板所阻止。受影響樓層之地毯、乙烯基牆面材與木質客房門均遭受嚴重火損；至少 7 間客房因住客離開時未關門而內部遭焚毀；受災棟中約 50% 客房及所有走廊均遭嚴重煙損，另一棟建築部分區域亦受煙損波及。其餘三處起火區域中，一處位於設有撒水防護之制服儲存室，火災開啟一只撒水頭即獲控制；另兩處火災則因可燃物有限而自行熄滅。整棟複合建築因而須關閉約三週，惟起火之客房棟（含約 900 間受損客房）關閉時間則長得多。</p>
+
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div>上述案例共通點：撒水防護<b>尚未完工投入使用</b>或<b>未涵蓋起火區域</b>時，火災損失規模明顯擴大；相對地，已投入使用之撒水防護（如制服儲存室案例）僅需單一撒水頭動作即可控制火勢，印證第 3.1 節所述「及時動作、無阻礙放水、元件可靠運作」三項建議目標之重要性。</div>
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div class="section-num muted">4</div>
+        <h2>參考文獻（References）</h2>
+      </div>
+      <p>本章列出本資料表內文引用之 FM 資料表及其他機構出版品，僅供查閱參照之用。</p>
+
+      <h3><span class="clause-ref">4.1</span>FM 出版品</h3>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Data Sheet 1 系列（一般防護）</h4>
+          <ul class="steps">
+            <li>1-2 地震（Earthquakes）</li>
+            <li>1-12 天花板與隱蔽空間</li>
+            <li>1-20 建築物外部火災曝露防護</li>
+            <li>1-31 panel roof系統</li>
+            <li>1-44 損害限制構造（Damage-Limiting Construction）</li>
+            <li>1-53 消音室（Anechoic Chambers）</li>
+            <li>1-57 建築用塑膠材料</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>Data Sheet 2、3 系列（撒水／水源）</h4>
+          <ul class="steps">
+            <li>2-1 自動撒水系統之腐蝕</li>
+            <li>2-8 水系消防系統之耐震防護</li>
+            <li>2-81 消防安全檢查與撒水系統維護</li>
+            <li>3-0 消防系統水力學</li>
+            <li>3-1、3-2、3-4、3-6 消防用水槽／蓄水池系列</li>
+            <li>3-7 消防泵浦</li>
+            <li>3-10 私設消防水管及連接</li>
+            <li>3-11 消防流量壓力調節裝置</li>
+            <li>3-26 非儲存撒水場所消防用水需求</li>
+            <li>3-29 消防用水源可靠度</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>Data Sheet 5、7、8、9、10 系列</h4>
+          <ul class="steps">
+            <li>5-40 火警警報系統</li>
+            <li>5-48 自動火災偵測</li>
+            <li>7-14 化學工廠消防</li>
+            <li>7-93 飛機庫</li>
+            <li>8-1 商品分類</li>
+            <li>8-9 第 1、2、3、4 類及塑膠商品之儲存</li>
+            <li>9-1 財產監督管理</li>
+            <li>9-18 防凍害防護</li>
+            <li>10-3 動火作業管理</li>
+          </ul>
+        </div>
+      </div>
+      <p><span class="clause-ref">4.1</span> 另可參考 <b>The Approval Guide</b>（FM Approvals 線上認證資源）。</p>
+
+      <h3><span class="clause-ref">4.2</span>其他機構出版品</h3>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>美國焊接協會（AWS，<span class="clause-ref">4.2.1</span>）</h4>
+          <ul class="steps">
+            <li>AWS B2.1《焊接程序與人員資格鑑定規範》</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>美國材料與試驗協會（ASTM，<span class="clause-ref">4.2.2</span>）</h4>
+          <ul class="steps">
+            <li>ASTM A.17.1 電梯與電扶梯安全規範</li>
+            <li>ASTM E84 建材表面燃燒特性標準試驗方法</li>
+            <li>ASTM E136 材料於 750°C 立式管爐中之行為標準試驗方法</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="appA">
+      <div class="section-header">
+        <div class="section-num muted">A</div>
+        <h2>附錄 A：名詞解釋（Glossary of Terms）</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本附錄為 DS 2-0 原文 Appendix A 之名詞解釋（原文約 190 餘則，按英文字母排序）。以下依主題重新分組整理，優先完整收錄本資料書正文各章節實際引用之撒水頭種類、天花板構造、儲存、系統元件等關鍵術語；較次要或極少被正文引用之行政性、測試性、荷重性用語則彙整於末段「其他名詞」表中，以精簡條列方式呈現而非逐條翻譯全文定義。每一詞條均保留英文原名，便於與原文對照查閱。</div>
+      </div>
+
+      <h3>一、撒水頭種類與元件相關（Sprinkler Types &amp; Components）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Automatic Sprinkler<br>自動撒水頭</td><td>自動撒水之消防設備，主要由撒水頭框架（frame）、噴口蓋（orifice cap）、熱感應元件（thermal sensing element）與迴水板（deflector）四大部件組成；閉鎖型（closed-type）撒水頭具備噴口蓋與熱感應元件，開放型（open-type，如齊放式系統用）則無此二者。</td></tr>
+          <tr><td>Sprinkler Deflector／Frame／Frame Arm／Orifice<br>迴水板／框架／框架臂／噴口</td><td>迴水板：將水導向防護區域之部件；框架：連接撒水頭與配管並容納噴口之部件；框架臂：連接迴水板與框架、決定迴水板與噴口間距之部件；噴口：水由此排出之開孔部件。</td></tr>
+          <tr><td>Orifice Cap／Thermal Sensing Element<br>噴口蓋／熱感應元件</td><td>噴口蓋：閉鎖型撒水頭中覆蓋噴口、阻止排水直到熱感應元件動作之部件；熱感應元件：受熱減弱後致噴口蓋脫落、使水得以流出之感溫部件。</td></tr>
+          <tr><td>Standard-Spray Automatic Sprinkler<br>標準噴灑型撒水頭</td><td>迴水板設計為將幾乎全部水量導向下方防護區域之撒水頭，自 1953 年起為主流型式；FM 術語中屬 Nonstorage（非儲存用）撒水頭，非 FM 術語中常稱 CMDA（Control Mode Density/Area，控制模式密度／面積型）撒水頭。</td></tr>
+          <tr><td>Old-Style Automatic Sprinkler<br>舊式撒水頭</td><td>1953 年前製造之撒水頭，設計為將 40%–60% 水量向上噴出以撲滅天花板處火勢。</td></tr>
+          <tr><td>Conventional Automatic Sprinkler<br>傳統型撒水頭</td><td>與標準噴灑型撒水頭元件相似，惟迴水板設計為 40% 以上水量以向上軌跡排出。</td></tr>
+          <tr><td>Extended Coverage Automatic Sprinkler<br>延伸涵蓋型撒水頭</td><td>依所防護用途，其保護面積大於標準型撒水頭者。</td></tr>
+          <tr><td>Concealed Automatic Sprinkler<br>隱藏型撒水頭</td><td>安裝於平滑天花板下方，撒水頭本體（含動作機構）完全隱藏於一片與天花板齊平之蓋板（concealing plate）上方之撒水頭。</td></tr>
+          <tr><td>Recessed Automatic Sprinkler<br>凹嵌型撒水頭</td><td>除連接配管之部分外，本體大部分嵌於凹陷外罩內，噴口面高於天花板面（或牆面）之撒水頭。</td></tr>
+          <tr><td>Flush Automatic Sprinkler<br>齊平型撒水頭</td><td>除熱感應元件外，本體幾乎全部安裝於天花板下平面之上方之撒水頭。</td></tr>
+          <tr><td>Dry-Type Automatic Sprinkler（含 Dry-Pendent／Dry-Sidewall／Dry-Upright）<br>乾式撒水頭（乾式吊式／側壁式／直立式）</td><td>由撒水頭與延伸管（extension nipple）永久連接組成之總成，延伸管入口端設有防止水進入之封閉裝置，直到撒水頭動作為止；依延伸管末端撒水頭方向分為吊式、側壁式、直立式三種，常用於防凍區域。</td></tr>
+          <tr><td>Pendent Automatic Sprinkler<br>吊式（下垂式）撒水頭</td><td>水流垂直向下經噴口射向迴水板，再由迴水板導向下方防護區域；迴水板設計於配管下方。</td></tr>
+          <tr><td>Upright Automatic Sprinkler<br>直立式撒水頭</td><td>水流垂直向上經噴口射向迴水板，再由迴水板導向下方防護區域；迴水板設計於配管上方。</td></tr>
+          <tr><td>Sidewall Automatic Sprinkler（Horizontal／Vertical／Wall-Mounted）<br>側壁型撒水頭（水平式／垂直式／壁掛式）</td><td>安裝於牆與天花板交界附近，將水平向外噴向鄰牆及防護區域之撒水頭；水平式噴口位於水平面、垂直式噴口位於垂直面；壁掛式沿牆面配管安裝，須特別留意動作時避免旋轉。</td></tr>
+          <tr><td>In-Rack Automatic Sprinkler<br>貨架內撒水頭</td><td>安裝於儲存貨架內部之撒水頭，又稱 rack storage 或 intermediate level 撒水頭。</td></tr>
+          <tr><td>Nonstorage／Storage Automatic Sprinkler<br>非儲存用／儲存用撒水頭</td><td>FM 依用途分類：非儲存用撒水頭適用於非儲存型場所及低至中放熱速率火災；儲存用撒水頭適用於儲存型場所及高放熱速率火災，兩者適用範圍由各用途別資料書規定。</td></tr>
+          <tr><td>Quick-Response／Standard-Response／Special-Response Automatic Sprinkler<br>快速反應型／標準反應型／特殊反應型撒水頭</td><td>依 Plunge Tunnel Test 所得反應時間指數（RTI）區分：快速反應型 RTI≤90 (ft·s)^0.5 且傳導係數 ≤1.81 (ft/s)^0.5；標準反應型 RTI 介於 145–635 (ft·s)^0.5 且傳導係數 ≤3.62 (ft/s)^0.5；介於快速與標準反應之間者為特殊反應型（目前 FM Approvals Class 2000／2008 尚未承認此分類）。</td></tr>
+          <tr><td>Response Time Index (RTI)<br>反應時間指數</td><td>代表撒水頭對熱敏感度、用以預測其於特定氣體溫度與流速下反應時間之數值，RTI = τ×(u)^0.5（τ為感熱元件時間常數，u 為氣體流速）。</td></tr>
+          <tr><td>K-Factor<br>K 係數（排放係數）</td><td>代表撒水頭噴口尺寸與特定壓力下預期流量關係之數值，K=Q/√P（Q 為流量 gpm/Lpm，P 為噴口壓力 psi/bar），單位為 gpm/psi^0.5（Lpm/bar^0.5）。</td></tr>
+          <tr><td>Automatic Sprinkler Temperature Rating／Nominal Temperature Rating<br>撒水頭溫度額定／標稱溫度額定</td><td>熱感應元件動作之溫度；標稱溫度額定代表一小範圍固定溫度（例如標稱 160°F/70°C 通常代表實際額定介於 155–165°F/68–74°C），誤差約為標示值 ±4%。</td></tr>
+          <tr><td>Orientation<br>撒水頭方向</td><td>描述撒水頭迴水板相對防護區域之安裝方向，包括吊式（pendent）、側壁式（sidewall）、直立式（upright）。</td></tr>
+          <tr><td>Most Remote Sprinkler<br>最遠端撒水頭</td><td>系統中若全部撒水頭同時放水，可獲得壓力最小之撒水頭。</td></tr>
+          <tr><td>Spare Automatic Sprinklers<br>備用撒水頭</td><td>存放於現場明顯標示之專用箱櫃內之撒水頭，供既有撒水頭動作或損壞後即時更換之用。</td></tr>
+          <tr><td>Special Protection Sprinklers<br>特殊防護撒水頭</td><td>用於防護特殊非一般房間型環境之撒水頭，例如無響室、可燃隱蔽空間、內部風管、冷卻水塔、油浸式變壓器、建物外牆及窗簷等。</td></tr>
+          <tr><td>Spray Nozzle<br>噴頭（灑水噴嘴）</td><td>與撒水頭類似之消防設備，惟通常無噴口蓋與迴水板，以高速噴出無氣泡之噴霧狀水型。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>二、天花板構造與阻礙評估相關（Ceiling Construction &amp; Obstruction）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Obstructed Ceiling Construction<br>阻礙型天花板構造</td><td>天花板結構組合，會阻礙自起火點起、以天花板槽（ceiling channel）為中心之熱氣向四鄰近撒水頭均勻擴散；例如垂直深度大於 4 in.（100 mm）之實心或半實心（開口率&lt;70%）構材（如檁條、大梁、混凝土 T 梁、工字梁），且構材間水平距離小於等於該撒水頭最小容許間距者。</td></tr>
+          <tr><td>Unobstructed Ceiling Construction<br>無阻礙型天花板構造</td><td>天花板結構組合，可使熱氣自起火點以天花板槽為中心、及時均勻擴散至四鄰近撒水頭；包括：構材垂直深度 ≤4 in.（100 mm）者；構材開口率 ≥70% 者；或天花板槽構材間水平距離大於該撒水頭最小容許間距（即槽內可容納兩排撒水頭）者。不符合上述任一情形者，一般即歸類為阻礙型天花板構造。</td></tr>
+          <tr><td>Ceiling Channel／Channel Bay<br>天花板槽／槽間</td><td>天花板槽：由實心或半實心（開口率&lt;70%）構材（如檁條、大梁、混凝土 T 梁、工字梁）圍出、垂直深度大於 4 in.（100 mm）之天花板區塊，其邊界為緊貼天花板下緣、與天花板面垂直間隙 ≤4 in. 之構材；槽間：由主、次要天花板結構構材所形成之空間。</td></tr>
+          <tr><td>Channel-Blocking<br>槽間阻隔（防火分隔）</td><td>於阻礙型天花板構造內，以耐火等級不低於原構造材料之材料，垂直於並貫穿構材全深度安裝，藉此侷限火災熱氣於一定體積範圍內之方法。</td></tr>
+          <tr><td>Ceiling Pocket<br>天花板凹穴</td><td>位於較低天花板上方、標高較高之有界天花板區域，屬建築造型特徵之一。</td></tr>
+          <tr><td>Ceiling Slope／Pitch<br>天花板坡度／坡度角</td><td>天花板（或撒水管）相對地板升高所形成之夾角，本資料書以坡度比與角度雙重表示。</td></tr>
+          <tr><td>Flat Smooth／Smooth／Non-Smooth Ceiling Construction<br>平滑天花板構造／平滑天花板／非平滑天花板構造</td><td>平滑天花板構造：無起伏、凹陷或突出且與地板平行安裝之天花板；平滑天花板：表面平整規則、無凹凸之天花板；非平滑天花板構造：具有起伏、凹陷或突出之天花板。</td></tr>
+          <tr><td>Solid Ceiling<br>實心天花板</td><td>為使其下方撒水頭能及時動作，天花板應大致無開口，惟允許有限開口：單一開口 ≤4 ft²（0.4 m²）且與最近開口至少相距 5 ft（1.5 m），或每 100 ft²（9.3 m²）範圍內累計開口 ≤30 ft²（2.8 m²）。</td></tr>
+          <tr><td>Open-Grid Ceiling／Mezzanine／Walkway；Solid Mezzanine／Walkway<br>開放格柵天花板／夾層／走道；實心夾層／走道</td><td>開放格柵型：由至少 70% 均勻開口構成之天花板／夾層／走道；未達 70% 開口率者則為實心夾層／走道。</td></tr>
+          <tr><td>Continuous／Non-Continuous Object<br>連續型／非連續型障礙物</td><td>就阻礙評估而言：水平長度大於該天花板撒水頭最大容許水平間距一半者為連續型障礙物；長度小於等於一半者為非連續型障礙物。</td></tr>
+          <tr><td>Individual／Grouped Obstruction<br>個別障礙物／集合障礙物</td><td>個別障礙物：與鄰近物體有足夠間距，可獨立進行阻礙評估而不必考慮鄰近物；集合障礙物：兩個以上相鄰物體於阻礙評估上視為單一物體合併評估。</td></tr>
+          <tr><td>Flat, Solid, Horizontal Barrier<br>平面實心水平屏障</td><td>安裝於構成不可接受阻礙之物體下方、與地板（或非平面／非實心物體下緣）平行之屏障，尺寸與被阻礙物相同，其下應設置補充撒水頭。</td></tr>
+          <tr><td>Supplemental Sprinkler<br>補充撒水頭</td><td>因物體位置與尺寸對天花板層撒水頭噴灑型態造成不可接受阻礙時，安裝於該物體下方之撒水頭。</td></tr>
+          <tr><td>Flat, Continuous, False Ceiling<br>平面連續假天花板</td><td>與樓地板平行、安裝於主天花板或屋頂下方一定垂直距離之實心連續副天花板，其下依規定裝設撒水頭；用以因應過大淨空、過大氣流速度、過大天花板坡度或熱氣流經排氣口逸散等會不利天花板層撒水頭效能之情形。</td></tr>
+          <tr><td>Draft Curtain<br>防煙垂壁（擋煙板）</td><td>與天花板垂直安裝之實心連續材料，用以阻止火災熱氣水平擴散超過垂壁範圍；除本標準或用途別資料書另有明確要求外，一般不建議用於已設有撒水防護之建築物。</td></tr>
+          <tr><td>Class 1 Construction／Limited-Combustible Construction<br>第1類構造／有限可燃構造</td><td>牆壁與天花板構造由暴露於火場時僅釋放有限燃料量之材料構成，包括 FM Approved 第1類牆／天花板／屋頂組件（含防火處理木材）；非塑膠天花板板材依 ASTM E84 測得火焰延燒指數（FSI）≤25 者，於撒水防護目的上可視為有限可燃。</td></tr>
+          <tr><td>Noncombustible／Combustible Construction<br>不燃構造／可燃構造</td><td>不燃構造：材料暴露於火場時不會釋放顯著燃料量，包括 FM Approved 第1類不燃芯金屬板或不燃隔熱鋼承板屋頂組件，以及依 ASTM E136 通過測試之材料（如混凝土、磚、玻璃面或無面石膏板）；可燃構造：無法歸類為不燃或有限可燃構造、可能導致自我延燒火災之牆／天花板構造，須提供撒水防護。</td></tr>
+          <tr><td>Combustible／Noncombustible Solid Structural Members<br>可燃／不燃實心結構構材</td><td>可燃實心結構構材：無開口但不符合 ASTM E136（750°C 垂直管爐試驗）之天花板結構構材；不燃實心結構構材：無開口且符合該標準之構材。</td></tr>
+          <tr><td>Structural Member<br>結構構材</td><td>支撐屋頂、樓板或夾層之整體構造材料，通常呈垂直配置，例如樑、混凝土 T 梁、大梁、格柵、檁條與桁架。</td></tr>
+          <tr><td>Bar Joist Chord／Bridging<br>格柵弦材（翼緣）／橫撐</td><td>弦材：格柵頂、底部支撐腹板之部分（俗稱翼緣），通常由兩片背對背角鋼構成；橫撐：通常為鋼製角鐵，垂直附著於格柵底弦、用以增加格柵抵抗屋頂風力之側向強度之結構構材（亦稱 Wind Bracing）。</td></tr>
+          <tr><td>Boards on Joists<br>格柵鋪板構造</td><td>由緊密排列木格柵（通常為 2 in.×4 in. 或以上）支撐之木質天花板或樓板鋪面構造。</td></tr>
+          <tr><td>C-Shaped／Z-Shaped Steel Secondary Roof Member (Purlin)<br>C型／Z型鋼製次要屋頂構材（檁條）</td><td>厚約 0.058–0.120 in.（1.5–3.0 mm）之薄壁冷軋成型鋼製次要構材（直接支撐屋面板），斷面呈 C 字或 Z 字形，深度通常 8–11.5 in.（200–290 mm），範圍可達 6.5–14.5 in.（165–368 mm）。</td></tr>
+          <tr><td>Section Properties of the Members<br>構材斷面性質</td><td>次要屋頂構材（如檁條）依斷面積、慣性矩、斷面模數與迴轉半徑定義之性質；實際承載能力應以考慮局部挫屈之有效斷面性質為準。</td></tr>
+          <tr><td>Concrete Tee Construction<br>混凝土 T 梁構造</td><td>由預力混凝土構成、斷面呈英文字母 T 形之天花板或樓板構造。</td></tr>
+          <tr><td>Vertical Distance<br>垂直距離</td><td>撒水頭熱感應元件中心線至天花板下緣最高處之垂直距離。</td></tr>
+          <tr><td>End Wall／Mounting Wall／Opposing Wall<br>端牆／安裝牆／對牆</td><td>端牆：側壁型撒水頭最近、通常與其迴水板呈 90° 且非位於其後方之牆；安裝牆：側壁撒水頭所安裝之牆面；對牆：與安裝牆相對之房間另一側牆面。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>三、儲存與貨架相關（Storage &amp; Racks）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Storage Arrangement<br>儲存配置方式</td><td>儲存商品之維持方式，常見型式包括平面堆置（solid-piled）、棧板化（palletized）、層架（shelf）、格箱（bin-box）、活動層架單元、固定式貨架與可攜式貨架。</td></tr>
+          <tr><td>Storage-Type Occupancy／Nonstorage-Type Occupancy<br>儲存型用途／非儲存型用途</td><td>儲存型：內容物為可燃或不燃材料且以儲存配置方式維持，面積至少 200 ft²（18.5 m²），塑膠級以上（含易燃液／氣體、捲紙、橡膠輪胎等）商品最低堆高 5 ft（1.5 m），纖維素級以下商品最低堆高 10 ft（3.0 m）；非儲存型：內容物未以儲存配置方式維持者。</td></tr>
+          <tr><td>Storage Automatic Sprinkler<br>儲存用撒水頭</td><td>FM 分類為適用於防護儲存型用途及／或用途別資料書允許之其他高放熱速率火災之撒水頭。</td></tr>
+          <tr><td>Highest Hazard Commodity<br>最高危害商品</td><td>就儲存配置中之商品而言，預期於固定時間內釋放最高熱量之商品；FM 建議撒水系統應能依此最高危害商品進行防護設計。</td></tr>
+          <tr><td>Flue Space<br>通風道空間（火道間隙）</td><td>儲存配置中兩相鄰商品間之垂直空隙。</td></tr>
+          <tr><td>Longitudinal Flue Space／Transverse Flue Space<br>縱向通風道空間／橫向通風道空間</td><td>縱向：儲存配置中材料間、與裝載走道平行之垂直空隙，常見於儲存貨架；橫向：與裝載走道垂直之垂直空隙，亦常見於儲存貨架。二者皆為抑制火勢垂直／水平蔓延之關鍵留空。</td></tr>
+          <tr><td>Blocked Flue Space<br>受阻通風道空間</td><td>未垂直對齊、或過於狹窄致熱氣無法及時上竄之通風道空間；會促成下方水平延燒並阻礙撒水穿透商品垂直面，導致火勢異常擴大。</td></tr>
+          <tr><td>Belt-Type／Roller-Type／Solid-Type Conveyor<br>皮帶式／滾筒式／實心式輸送機</td><td>分別以實心橡膠皮帶、圓柱滾筒或實心移動平台輸送產品之輸送系統；依其寬度或滾筒間距，可能構成對撒水排放型態之阻礙（詳 2.5.2.5.9／2.5.4.5.9）。</td></tr>
+          <tr><td>Walkway<br>走道（高架通道）</td><td>供人員通行使用之高架通道，本資料書中預期不堆置儲存物或機械設備，寬度通常不超過 10 ft（3.0 m）。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>四、系統類型與控制閥相關（System Types &amp; Control Valves）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Automatic Sprinkler System<br>自動撒水系統</td><td>連接撒水頭之整合式地上配管網路，至少應設一個系統控制閥、系統壓力表、系統排水閥及水流警報啟動裝置；若連接可靠自動水源且能滿足該用途別資料書所定流量、壓力與延時要求，則視為提供「適當（Adequate）」防護。</td></tr>
+          <tr><td>Wet-Pipe Sprinkler System<br>濕式撒水系統</td><td>位於系統立管基準點下游、平時充滿水之撒水系統管段。</td></tr>
+          <tr><td>Dry-Pipe Sprinkler System／Dry-Pipe Valve<br>乾式撒水系統／乾式閥</td><td>系統：位於乾式閥下游、平時以加壓氣體（通常為空氣或氮氣等惰性氣體）維持乾式閥關閉之系統，撒水頭動作後系統壓力下降至無法維持閥門關閉時，乾式閥開啟（跳脫）使水進入系統；乾式閥：利用下游氣體壓力頂住上游水壓之自動水控制閥，並附有警報與低壓警報裝置。</td></tr>
+          <tr><td>Deluge Sprinkler System／Deluge Valve<br>齊放式撒水系統／齊放閥</td><td>系統：位於齊放閥下游、配備開放型撒水頭（已移除熱感應元件與噴口蓋）之系統；齊放閥：平時阻擋水通過，經自動偵測系統啟動後開啟放水之自動水控制閥。</td></tr>
+          <tr><td>Preaction Sprinkler System／Preaction Valve<br>預動式撒水系統／預動閥</td><td>系統：位於預動閥下游、配備閉鎖型撒水頭之系統，依動作邏輯分為單連鎖（single-interlock）、雙連鎖（double-interlock）與非連鎖（non-interlock）型，另涵蓋冷凍區用（refrigerated-area）與真空式（vacuum）系統；預動閥：平時阻擋水通過，須經偵測系統啟動或下游壓降等條件後開啟之自動水控制閥。</td></tr>
+          <tr><td>Non-Interlock／Single-Interlock／Double-Interlock Preaction System<br>非連鎖式／單連鎖式／雙連鎖式預動系統</td><td>非連鎖式：撒水頭動作或偵測系統啟動任一條件即開啟預動閥；單連鎖式：僅偵測系統啟動即開啟；雙連鎖式：須撒水頭動作及偵測系統啟動兩條件同時具備方開啟，常見於電氣或雙重防護要求場所。</td></tr>
+          <tr><td>Refrigerated-Area Sprinkler System<br>冷凍區撒水系統</td><td>屬雙連鎖型預動式系統，須撒水頭動作及熱型偵測系統均啟動方開啟，用於極低溫冷凍庫場所。</td></tr>
+          <tr><td>Vacuum Sprinkler System<br>真空式撒水系統</td><td>位於預動閥下游、配備閉鎖型撒水頭並維持負壓之系統，可依非連鎖、單連鎖或雙連鎖方式配置。</td></tr>
+          <tr><td>Antifreeze Solution Sprinkler System<br>防凍液撒水系統</td><td>系統內介質為防凍劑與水混合溶液之撒水系統。</td></tr>
+          <tr><td>Exposure-Protection Sprinkler System<br>暴露防護撒水系統</td><td>專門設計用以保護建築物或物體，使其免受來自外部（非本體）火災波及之撒水系統。</td></tr>
+          <tr><td>Grid-Type Sprinkler System；Near Main／Far Main<br>格狀型撒水系統；近主管／遠主管</td><td>格狀系統：分支管網路連接至至少兩條主管（通常為近主管與遠主管），使任一動作撒水頭可獲得雙向水流供應；近主管：連接進水主管並供水予分支管者；遠主管：位於分支管相對於近主管另一側之主管。</td></tr>
+          <tr><td>Reliable Automatic Water Supply／Reliable Gas Supply／Reliable Heat Source<br>可靠自動水源／可靠氣體供應／可靠熱源</td><td>可靠自動水源：依 DS 3-10（私設消防給水管與接管）安裝維護、能持續供應足量水量之水源；可靠氣體供應：供乾式或預動式系統充氣、隨時可用之氣源，若仰賴電力則須有獨立備援電源或緊急發電機支援；可靠熱源：即使斷電亦能持續提供足夠熱量、防止系統任何部位結凍之熱源。</td></tr>
+          <tr><td>Dry Inert Gas Supply／Nitrogen Generator<br>乾式惰性氣體供應／氮氣產生器</td><td>乾式惰性氣體供應：用於乾式、預動式等系統之氣體介質，須不含會導致配管腐蝕或阻塞（如冰、鏽垢）之水氣，可採 FM Approved 氮氣產生器或可將空氣除濕至低於環境溫度露點 20°F（11°C）之再生式空氣乾燥機；氮氣產生器：連接於乾式或預動式系統、產生加壓氮氣以降低管內腐蝕之機械裝置。</td></tr>
+          <tr><td>Automatic System Valve／Sprinkler System's System Valve<br>自動系統閥／系統閥</td><td>用以阻擋水進入預動、齊放或類似系統，直到經電氣、氣動或水力訊號釋放裝置自動釋放為止之閥門（通常為單片或多片拍門式，以閂鎖、槓桿或水壓差固定拍門）；系統閥泛指立管上連接水流警報裝置、壓力表與排水閥之自動閥（濕式為報警逆止閥、乾式為乾式閥等）。</td></tr>
+          <tr><td>Alarm Check Valve<br>報警逆止閥</td><td>通常安裝於系統立管、具備水流通過時提供警報通知功能之逆止閥。</td></tr>
+          <tr><td>Check Valve<br>逆止閥</td><td>允許水單向流動、於循環壓力條件下阻止逆向水流之閥門。</td></tr>
+          <tr><td>Control Valve／Indicating Control Valve／Wall Post Indicator Valve<br>控制閥／指示型控制閥／壁掛式柱型指示閥</td><td>控制閥：通常為閘閥或蝶閥型式、人工操作以控制供水之消防閥；指示型控制閥：附開關狀態視覺指示裝置者；壁掛式柱型指示閥：經由設於牆體對側操作把手人工操作，並附靶示指示器可透過柱體開口觀察開關狀態之人工操作消防閘閥。</td></tr>
+          <tr><td>Drain Valve<br>排水閥</td><td>通常為 2 in.（50 mm）、安裝於立管、供系統排水及驗證立管水流之人工操作閥門與配管總成。</td></tr>
+          <tr><td>Pressure Reducing Valve／Pressure Relief Valve<br>減壓閥／釋壓閥</td><td>減壓閥：自動裝置，將下游水壓控制於預設可接受水準，可為直動式或先導式隔膜球型閥；釋壓閥：對系統內壓力上升快速反應並洩壓至大氣之自動閥，目的在維持系統壓力於預設值（通常 175 psi/12.1 bar）以下。</td></tr>
+          <tr><td>Pressure Gauge<br>壓力表</td><td>安裝於系統上、量測水或其他介質作用於配管內壁壓力之裝置。</td></tr>
+          <tr><td>Waterflow Alarm／Tamper Alarm<br>水流警報／閥門擅動警報</td><td>水流警報：安裝於系統上，於一個以上撒水頭動作時提供警報之裝置；閥門擅動警報：安裝於人工操作控制閥上，於閥桿未處於正確位置（全開或全關）時提供警報之裝置。</td></tr>
+          <tr><td>Bypass Test Connection／Inspector's Test Connection<br>旁通測試接頭／檢驗測試接頭</td><td>旁通測試接頭：由配管、逆止閥（如需要）與人工 90° 轉閥組成，接於系統閥供水側、可啟動水流裝置，用以測試水流警報而毋須讓水流經系統閥；檢驗測試接頭：通常裝於系統水力最遠端，含人工控制閥、排水配管及不大於系統內最小撒水頭噴口之光滑抗蝕孔口，用以測試水流警報機構。</td></tr>
+          <tr><td>Trip Test／Trip Time<br>跳脫測試／跳脫時間</td><td>跳脫測試：驗證配備自動系統閥之系統其(a)閥門功能正常、(b)系統壓力於容許時間內達成、(c)偵測與啟動元件正常動作、(d)連鎖裝置正常運作之測試；跳脫時間：自最遠端撒水頭開啟至自動系統閥開啟放水之時間間隔（秒）。</td></tr>
+          <tr><td>Water Delivery Time／Water Travel Time<br>送水時間／水行進時間</td><td>送水時間：跳脫時間加水行進時間之總和，即自最遠端撒水頭開啟至該撒水頭壓力達到或超過設計壓力之時間間隔；水行進時間：自水控制閥開啟至最遠端撒水頭壓力達到或超過設計壓力之時間間隔。</td></tr>
+          <tr><td>Intermediate Chamber／Priming Water／Back Drainage<br>中間室／充水（灌水）／回流積水</td><td>中間室：乾式閥內氣室與水室拍門間（或單片拍門雙閥座間）之空間，正常關閉時經自動排水閥通大氣以偵測滲漏，閥門跳脫時該室進水並關閉排水閥；充水：施加於自動系統閥拍門上方以防止橡膠等元件乾裂失效之水；回流積水：主排水閥關閉後，可能積存於控制閥拍門上方之水。</td></tr>
+          <tr><td>Accelerator／Exhauster／Restriction Orifice／Anti-Flooding Device／Actuating Component<br>加速器／排氣器／限流孔／防淹裝置／啟動元件</td><td>加速器：安裝於乾式閥、藉降低拍門兩側壓差以縮短水控制閥開啟時間之快開裝置；排氣器：安裝於乾式系統配管內、藉將氣體洩放至大氣以縮短開啟時間之快開裝置（因易堵塞已不建議新設）；限流孔：加速器內分隔兩氣壓室之孔口，容許緩慢壓差平衡但於快速壓差（如撒水頭動作）時失衡觸發加速器動作；防淹裝置：加速器組件，防止水或異物進入加速器；啟動元件：用以啟動系統自動水控制閥之任一元件（如加速器）。</td></tr>
+          <tr><td>Quick-Opening Device<br>快開裝置</td><td>安裝於自動水控制閥或系統內、用以縮短系統跳脫時間（可能亦縮短水行進時間）之自動裝置。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>五、配管、五金與水力計算相關（Piping, Hardware &amp; Hydraulics）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Branch Line／Cross Main／Feed Main<br>分支管／橫主管／進水主管</td><td>分支管：供水予撒水頭或撒水頭總成之配管網路；橫主管：樹枝型系統中供水予分支管之配管網路；進水主管：連接系統立管至供應分支管之主管間之配管網路。</td></tr>
+          <tr><td>Riser Nipple／Arm-Over／Return Bend／Drop Nipple／Sprig<br>立管短管／臂接管／回彎管／落水短管／升水短管</td><td>立管短管：連接主管與分支管之垂直短管；臂接管：連接分支管與偏離分支管水平安裝之撒水頭之配管與管件組合（通常含彎頭）；回彎管：連接分支管頂部與撒水頭或供水管之配管與管件組合，常用於生水源系統以避免落水短管內沉積物堆積；落水短管：連接分支管與其正下方撒水頭之管段；升水短管：連接分支管與其正上方撒水頭之管段（本資料書已不再要求使用升水短管）。</td></tr>
+          <tr><td>Sprinkler System Riser／Base of Riser<br>系統立管／立管基準點</td><td>系統立管：連接系統水源（通常為地下配水管網）至系統進水主管之垂直配管網路，附有水流警報裝置、壓力表與排水閥，另設釋壓閥及消防栓接口；立管基準點：分析系統需求與可用水源之參考點，通常位於系統控制閥前方樓地板高度處。</td></tr>
+          <tr><td>Sprinkler System Piping／Components／Pipe Connections／Strainer<br>系統配管／元件／管路接續／過濾器</td><td>系統配管：由管、接頭與管件組成，將水由立管基準點送至各撒水頭之整體管路；系統元件：構成系統之各項材料與產品（含撒水頭、配管、自動水控制閥、逆止閥、壓力表等）；管路接續：接頭、管件、法蘭或焊接等連接方式；過濾器：防止砂礫、石塊、樹葉等異物流入系統之裝置，小 K 係數撒水頭系統通常須設置。</td></tr>
+          <tr><td>Fitting／Coupling／One-Piece Reducing Fitting<br>管件／管接頭／單體變徑管件</td><td>管件：依標準化尺寸製造之配管相關產品；管接頭：用以連接兩個以上系統元件之接頭；單體變徑管件：連接兩種不同管徑之管件。</td></tr>
+          <tr><td>Grooved Pipe／Threaded Pipe／Plain-End Pipe／CPVC Pipe／Schedule Pipe<br>溝槽管／螺紋管／平端管／CPVC 管／管壁等級（Schedule）管</td><td>溝槽管：管端經加工滾壓或切削出標準溝槽、以溝槽式接頭連接之管；螺紋管：管端經加工標準螺紋、以螺紋管件連接之管；平端管：管端未經加工、須以專用管件連接之管；CPVC 管：以氯化聚氯乙烯製成之塑膠撒水管；Schedule 管：依管壁厚度分級之管材等級。</td></tr>
+          <tr><td>Butt-Welded／Coupon／Burrs (or Fins)<br>對接焊接／沖切片（開孔廢料）／毛邊（飛邊）</td><td>對接焊接：兩管端不重疊、以合格焊接方式接合之連接方式；沖切片：於焊接系統開孔時切除之管壁圓形廢料；毛邊：管子加工後殘留、須於連接前去除之銳邊突出物。</td></tr>
+          <tr><td>Pipe Hanger／Pipe Hanger Fastener／Hanging and Bracing Pipe Support<br>管路吊架／吊架固定件／吊掛與斜撐支撐總成</td><td>管路吊架：附著於撒水管之支撐部件；吊架固定件：如錨栓、膨脹護套、混凝土嵌件、爆炸驅動式固定件或螺紋頭螺絲等垂直安裝、提供建物結構錨固之支撐元件；吊掛與斜撐支撐總成：由固定件、中間連接元件（如螺紋鋼棒）與吊架組成、用以自建物結構支撐撒水管之機械總成。</td></tr>
+          <tr><td>Expansion Anchor／Chemical (Resin) Anchor／Shield Anchor／Undercut Fastener／Explosive-Driven Fastener／Insert<br>膨脹錨栓／化學（樹脂）錨栓／護套式錨栓／底切式錨栓／爆炸驅動式固定件／嵌件</td><td>各類混凝土固定件：膨脹錨栓以栓緊螺栓、凸輪或半軟件擴張或撐開硬化鋼塞方式固定；化學錨栓以環氧樹脂等化學藥劑固定；護套式錨栓為膨脹護套加拉桿螺栓之兩件式固定件；底切式錨栓為單體螺栓加膨脹套筒，嵌入預鑽倒錐孔；爆炸驅動式固定件以動力工具高壓嵌入結構體；嵌件為垂直打入混凝土結構構材、供吊架錨固之固定件。</td></tr>
+          <tr><td>Powder-Actuated Tool／Powder-Actuated Fastener System (PAFS)<br>火藥驅動工具／火藥驅動固定系統</td><td>火藥驅動工具：用以將爆炸驅動式固定件嵌入結構鋼或混凝土之特殊裝置；火藥驅動固定系統：由工具、火藥筒與固定件組成，以火藥筒驅動固定件嵌入固定點之系統。</td></tr>
+          <tr><td>Equivalent Length／Pipe Roughness (C Factor)<br>等效長度／管壁粗糙度（C 係數）</td><td>等效長度：水力計算中代表管件壓損之管段長度（與該管件摩擦損失相當之直管長度）；管壁粗糙度：管內壁對水流之阻力量測值，用於系統水力計算之摩擦損失計算。</td></tr>
+          <tr><td>Hazen-Williams Method／Darcy-Weisbach Method<br>Hazen-Williams 公式／Darcy-Weisbach 公式</td><td>Hazen-Williams 公式：依流量、內徑及粗糙係數計算摩擦損失之方法，適用於流速不超過 30 ft/s（9.0 m/s）之水系統（詳 DS 3-0）；Darcy-Weisbach 公式：依內徑、平均流速、管材與液體黏度計算摩擦損失之方法，適用於任何系統，惟非水基介質或流速超過 30 ft/s（9.1 m/s）之系統應使用此法。</td></tr>
+          <tr><td>Node<br>節點</td><td>水力計算工作圖上設置之參考點，代表預期動作之撒水頭、管徑或粗糙度變化點、流量變化點，或如立管基準點等需參照之位置。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>六、其他名詞（試驗、荷重、水源、行政與感測等）</h3>
+      <table class="clause-table">
+        <thead><tr><th>用語</th><th>中文定義</th></tr></thead>
+        <tbody>
+          <tr><td>Authority Having Jurisdiction (AHJ)<br>主管機關</td><td>負責執行本資料書要求之個人或組織；於 FM 而言，係指所屬 Operations Center 指派之現場工程代表（Field Engineering representative）。</td></tr>
+          <tr><td>FM Approved／Approval Guide<br>FM 認證／認證指南</td><td>FM Approved：產品經測試符合特定認證標準並列於 Approval Guide 者；Approval Guide：FM Approvals 線上出版之設備、材料與服務認證指南（www.approvalguide.com）。</td></tr>
+          <tr><td>Data Sheet／Occupancy-Specific Data Sheet<br>資料書／用途別資料書</td><td>資料書：為降低火災、天然災害與電機設備故障造成之財產損失風險而制定之工程指引；用途別資料書：針對特定用途危害之資料書，共分 15 個系列（如 Series 2＝撒水系統安裝指引、Series 8＝儲存防護指引等）。</td></tr>
+          <tr><td>Acceptance Test／Load-Supporting Test<br>驗收試驗／載重支撐試驗</td><td>驗收試驗：對系統（或其特定部分）進行測試，以確認其功能符合 AHJ 要求；載重支撐試驗：對配管支撐系統進行測試，確認其安裝妥適並能支撐充水後管路之預期載重。</td></tr>
+          <tr><td>Effective Point of Water Supply Test<br>水源測試有效點</td><td>水源配管網路中，水流試驗結果適用之參考點；自壓力表（測試時無水流經）沿配管往水源方向回溯，至測試流動水與供應該壓力表靜水壓之非流動水交會之點，若與壓力表間存在高程差，須於靜壓與餘壓數值中一併修正。</td></tr>
+          <tr><td>Potable／Non-Potable Water Supply<br>可飲用／非可飲用水源</td><td>依公共衛生主管機關規定，適於／不適於人類飲用之水源。</td></tr>
+          <tr><td>Yard Main<br>院區主管（地下配水幹管）</td><td>位於受防護設施產權範圍內、供水予撒水系統之地下配管網路。</td></tr>
+          <tr><td>Dead Load／Live Load／Collateral Load／Point Load<br>靜載重／活載重／附加載重／集中載重</td><td>靜載重：構造材料、建築裝修與固定設備之重量（綠屋頂系統應含全部組合含生長介質、屋面材料與積水）；活載重：使用期間因使用與居住產生之可變載重（屋頂活載重含人員、可移動維護材料設備等）；附加載重：懸掛於屋頂／天花板下方物體（如配管、風管、設備）產生之靜載重；集中載重：於連接點傳遞至建物結構之單一總重量值。</td></tr>
+          <tr><td>Ultimate Strength／Yield Strength<br>極限強度／降伏強度</td><td>極限強度：材料破壞時之載重值；降伏強度：材料開始產生塑性變形（卸載後無法恢復原狀）之載重值。</td></tr>
+          <tr><td>Lightweight Concrete／Structural Concrete<br>輕質混凝土／結構混凝土</td><td>輕質混凝土：單位重小於 115 lb/ft³（1,840 kg/m³）之混凝土；結構混凝土：單位重大於等於 115 lb/ft³（1,840 kg/m³）之混凝土。</td></tr>
+          <tr><td>Earthquake Zone Designation<br>地震帶劃分</td><td>FM 地震帶依 50 年、100 年、250 年、500 年及超過 500 年地震重現期距劃分，詳 DS 1-2（地震）。</td></tr>
+          <tr><td>Damage-Limiting Construction<br>損害侷限型構造</td><td>兼具耐壓與洩壓功能之天花板／牆體構造，使爆燃型爆炸產生之內部壓力得以安全洩放至指定外部區域，詳 DS 1-44。</td></tr>
+          <tr><td>Pressure-Resistant Wall<br>耐壓牆</td><td>經專門設計建造以抵抗爆燃型爆炸內部壓力變形之牆體，通常與洩壓型牆體或天花板搭配使用，避免爆炸起源室遭受嚴重損害。</td></tr>
+          <tr><td>Gravity／Mechanical／Mechanically-Operated Heat/Smoke Vent；Natural Draft Exhaust Vent；Ridge Vent<br>重力式／機械式排煙口；自然通風排氣口；屋脊通風口</td><td>重力式排煙口：無須機械輔助（如風扇）即可讓火災熱氣／煙排出之天花板裝置，具自動或手動開啟蓋板；機械式排煙口：以機械方式（如風扇）輔助排煙者；自然通風排氣口：以自然對流排除下方空氣之裝置；屋脊通風口：安裝於屋頂脊線之排氣口。此類自動操作排煙裝置一般不建議用於已設撒水防護之建築物（建議採手動操作模式）。</td></tr>
+          <tr><td>Plastic Skylight<br>塑膠採光罩</td><td>以半透明塑膠材料覆蓋、供日光進入下方區域之屋頂開口。</td></tr>
+          <tr><td>Flame Detection／Line-Type Detection<br>火焰偵測／線型偵測</td><td>火焰偵測：對火災產生之紅外線、可見光或紫外線輻射（或特定閃爍頻率範圍）敏感之偵測方式，屬視線型裝置，通常於視野內約 1 秒或更短時間內反應；線型偵測：沿特定路徑連續偵測之型式（詳 DS 5-48）。</td></tr>
+          <tr><td>Interlock<br>連鎖</td><td>於系統警報狀態發生時，令室內氣流或輸送帶運轉等一般運作功能中斷或改變之配置方式。</td></tr>
+          <tr><td>Corrosive Environment／High-Temperature Environment／Low-Temperature Environment<br>腐蝕性環境／高溫環境／低溫環境</td><td>腐蝕性環境：足以造成系統金屬元件腐蝕損害之環境；高溫環境：預期環境溫度將升高超過 200°F（95°C）者；低溫環境：預期環境溫度將降至 40°F（4°C）以下者。</td></tr>
+          <tr><td>Ferrous Material<br>含鐵材料</td><td>主要成分為鐵之材料。</td></tr>
+          <tr><td>Demand Area／Design Area<br>需求面積／設計面積</td><td>依所防護商品危害及水力設計程序所定之預期撒水動作面積，兩詞可互用。</td></tr>
+          <tr><td>Area Spacing／Linear Spacing<br>面積間距／線性間距</td><td>面積間距：單一撒水頭防護之面積部分，計算式為 Area spacing = S×L（S 為同一分支管上鄰近撒水頭間距，L 為鄰近分支管上撒水頭間距）；線性間距：以防護區域衡量之撒水頭間水平距離。</td></tr>
+          <tr><td>Fire Control／Fire Suppression／Fire Extinguishment<br>火勢控制／火勢抑制／滅火</td><td>火勢控制：燃燒商品與撒水排放間達成平衡，使天花板層溫度不再上升且水平延燒已被阻止之狀態；火勢抑制：已達火勢控制條件，且燃燒商品大部分垂直表面之火焰已撲滅，熱釋放率顯著降低；滅火：燃燒商品所有表面溫度已降至該商品著火點以下之狀態。</td></tr>
+          <tr><td>Flashover<br>閃燃</td><td>因熱輻射回饋，使室內或區域內所有暴露可燃物幾乎同時、由地板至天花板全面點燃之現象。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="appB">
+      <div class="section-header">
+        <div class="section-num muted">B</div>
+        <h2>附錄 B：文件修訂歷史</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>本附錄之目的在於記錄本資料表每次發行時所做的變更。請注意：表中所列之條文編號係對應<b>該發行日期版本當時</b>之編號，不同版本間之條文編號未必相同。</div>
+      </div>
+
+      <table class="clause-table">
+        <thead><tr><th>版本／日期</th><th>修訂重點</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>2026 年 4 月<br>（Interim revision）</td>
+            <td>A. 更新 2.5.1.1.2 節撒水頭最小設計壓力（依最新測試結果），並納入所有 FM Approved 撒水頭之最小設計壓力；B. 修訂 Table 2.5.4.5.4.1（鄰近天花板撒水頭之障礙物可接受位置指南），釐清該表第三欄之指引；C. 將 2.5.4.5.5 節中適用於「最大尺寸不超過 2 ft (0.6 m)」障礙物之指引，整併移至 2.5.4.5.4 節；D. 更新 2.4.1.1.5.2 節，說明 FM Approved 減徑軋延（stretch-reduced mill）製鋼管安裝時，無須考量焊道相對於地板之對正方向。</td>
+          </tr>
+          <tr>
+            <td>2025 年 4 月<br>（Interim revision）</td>
+            <td>更新天花板凹穴（ceiling pocket）內建議設置撒水頭之準則；並進行編輯性修訂以更清楚呈現本資料表建議事項。</td>
+          </tr>
+          <tr>
+            <td>2024 年 1 月<br>（Interim revision）</td>
+            <td>A. 新增「補充撒水頭（supplemental sprinkler）」用語，指為補償天花板撒水頭放水受阻而於障礙物下方加裝之撒水頭，並容許其與受阻天花板撒水頭採不同屬性設計安裝；B. 更新各類管接頭撒水管路之建議最小管壁厚度；C. 將塑膠採光罩、屋脊通風口與天花板自然排煙口相關之天花板撒水頭建議，修訂並移至各該類天花板撒水頭專屬章節；D. 將撒水頭最小建議設計壓力之規定移入本資料表；E. 非儲存用途上方之滾輪式輸送機不再視為天花板撒水頭之不可接受障礙物；F. 進行編輯性修訂以更清楚呈現本資料表建議事項。</td>
+          </tr>
+          <tr>
+            <td>2023 年 7 月<br>（Interim revision）</td>
+            <td>依最新測試結果修訂 Figure 2.5.1.3.1，並依非儲存／儲存用途分列為 Figure 2.5.1.3.1(a)（非儲存）與 2.5.1.3.1(b)（儲存）；同時更新附錄 A，就重力式排煙／排熱窗與機械式排煙窗補充明確定義。</td>
+          </tr>
+          <tr>
+            <td>2021 年 10 月<br>（Full revision）</td>
+            <td>A. 納入原 Data Sheet 8-29《冷藏倉儲》之撒水頭安裝建議；B. 納入原 Data Sheet 1-23《防火分隔與開口防護》大部分撒水／水霧防護建議；C. 重新編排本資料表架構，使其更貼近撒水系統承裝商實際決定安裝方式之思考順序；D. 依最新測試結果更新受阻天花板構造之指引；E. 依最新測試結果更新天花板相關指引；F. 依最新測試結果更新撒水頭下方可能造成放水受阻物體之指引；G. 修訂撒水管路吊架與抗震斜撐之指引；H. 刪除「內核心放水型態（inner core discharge pattern）」與「傘型放水型態（umbrella discharge pattern）」等用語；I. 新增流程圖協助使用者導向本資料表適當章節；J. 進行大量編輯性修訂。</td>
+          </tr>
+          <tr>
+            <td>2020 年 10 月<br>（Interim revision）</td>
+            <td>釐清 Table 5（第 3 類危險等級非儲存用天花板下垂型與直立型撒水頭間距）之內容，並修訂 Figures 8、9、15、16、31 及 32。</td>
+          </tr>
+          <tr>
+            <td>2018 年 1 月<br>（Interim revision）</td>
+            <td>A. 納入真空式（vacuum-type）撒水系統（新近取得 Approved 資格）之安裝要求指引；B. 依 Data Sheet 3-26《非儲存用途防火保護》最新變更，更新非儲存撒水頭之天花板間距要求；C. 修訂 2.1.3.2.3 節與 2.2.3.3 節用語，將「大於 90°」與「小於或等於 90°」改為「大於或等於 90°」與「小於 90°」。</td>
+          </tr>
+          <tr>
+            <td>2014 年 1 月<br>（Correction）</td>
+            <td>修正 Table 24（管路吊架間最大距離）之內容。</td>
+          </tr>
+          <tr>
+            <td>2011 年 4 月</td>
+            <td>就撒水系統面積限制之指引（2.4.1.6 節《撒水系統最大保護面積》）進一步釐清。</td>
+          </tr>
+          <tr>
+            <td>2011 年 1 月</td>
+            <td>修訂 Tables 3、4、5、17 及 2.4.1.6、2.4.3.7、2.5.2.4 各節。</td>
+          </tr>
+          <tr>
+            <td>2010 年 3 月</td>
+            <td>本文件首次發行。</td>
+          </tr>
+          <tr>
+            <td>2010 年 1 月<br>（Advanced Copy）</td>
+            <td>本文件首次發行（先行版），取代並整併原 Data Sheet 2-2、2-7、2-8N 涵蓋之下列主題：開放格柵式夾層／走道下方之撒水頭；各類天花板撒水頭可接受之天花板坡度；天花板排煙／排熱窗及其他排氣開口；各撒水系統之最大建議保護面積（2.4.1.6 節）；乾式撒水系統要求（2.4.3 節）；防凍液系統要求（2.4.7 節）；各撒水系統建議備品撒水頭數量；天花板撒水頭之容許線性與面積間距；儲存用途撒水頭（天花板與貨架內）障礙物指引（2.2.3.5 節）；撒水管路支撐指引，含混凝土錨栓現場測試（2.5.4 節）。另同時：不再引用任何地方法規；受阻天花板撒水頭之補償撒水頭不再需納入水力計算；不再使用「控制模式密度面積（CMDA）」「控制模式特定應用（CMSA）」「抑制模式（Suppression Mode）」等用語，改採「儲存（Storage）」「非儲存（Nonstorage）」「特殊防護（Special Protection）」分類（定義見附錄 A）；「個別物體（individual object）」障礙物定義修訂：潛在障礙物與最近物體間之水平距離門檻由「超過 6 倍」改為「超過 3 倍」物體最小尺寸。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>本資料表歷次修訂多與<b>最新實尺度測試結果</b>直接相關（如 2026 年 4 月版之最小設計壓力、2021 年 10 月全面改版之受阻天花板構造與吊架斜撐指引），使用本站摘要時應以最新版本內容為準，並留意條文編號可能隨版本異動；如涉及既有系統合規性判斷，應查核原始出版品之發行日期。</div>
+      </div>
+    </div>
+
+
+    <div class="section" id="appC">
+      <div class="section-header">
+        <div class="section-num muted">C</div>
+        <h2>附錄 C：表單</h2>
+      </div>
+
+      <p>本資料表 2.6.5 節（送審文件）與 2.7 節（撒水系統驗收測試）要求承裝商提交並完成兩份 FM 專用表單：<b>FM85A</b> 與 <b>FM999C</b>，其正式表格內容附於附錄 C 各頁（原始 PDF 為掃描表單頁面，本站僅摘要其用途與應記載內容，不重製表單版面）。</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>FM85A — FM 承裝商材料與測試證明書<br><span style="font-size:12px;color:var(--muted);">FM Contractor's Material and Test Certificate for Automatic Sprinkler Systems</span></h4>
+          <ul class="steps">
+            <li><b>提交時機</b>：送審階段（2.6.5.2 節）須由安裝承裝商完成「撒水系統測試」章節<i>之前</i>的所有欄位並提交；驗收測試階段（2.7.2.3 節）須完成全部欄位，並留一份予 FM 指定代表</li>
+            <li><b>用途</b>：作為承裝商對所用材料、施工方式與各項測試結果之正式書面證明，供 FM 審查與存檔</li>
+            <li><b>可用於記載管路開孔（coupon）移除確認</b>：若因安裝快速接頭而於管路上切割開孔，承裝商可在本表上書面確認所有切割下來的內襯圓片（coupon）皆已自管內移除（2.7.2.4 節）</li>
+            <li><b>記載之驗收測試數據</b>包括：乾式管系統動作測試（乾式閥動作壓力與到達最小設計壓力之時間，2.7.3.3.4.A）、預動式／雙聯鎖等系統動作測試（2.7.3.3.4.B）、2 in.(50 mm) 主排水閥測試之靜態與殘壓值（2.7.3.4.3 節）、以及各減壓閥（pressure-reducing valve）流量測試之進／出口靜壓與殘壓與流量（2.7.3.4.6 節）</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>FM999C — FM 承裝商水力分析證明書<br><span style="font-size:12px;color:var(--muted);">FM Contractor's Hydraulic Analysis Certificate for Automatic Sprinkler Systems</span></h4>
+          <ul class="steps">
+            <li><b>提交時機</b>：送審階段（2.6.5.3 節）由承裝商完成後提交；驗收測試階段（2.7.2.5 節）須確認所有必填欄位皆已完成，並留一份予 FM 指定代表</li>
+            <li><b>用途</b>：記錄撒水系統之水力計算分析結果，供 FM 於審圖與驗收時核對設計密度／面積、水力最遠端撒水頭壓力與水源供水能力是否相符</li>
+            <li><b>與儲存用途之關聯</b>：2.6.4.3 節指出，儲存用途保護區之用途規格說明應參照本表單填寫</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">ℹ️</div>
+        <div>驗收測試（2.7 節）除上述兩份表單外，尚涵蓋：水源與地下管路之全流量測試與水壓測試（2.7.3.1 節）；撒水系統水壓測試，一般為 200 psi (13.8 bar) 或高於系統靜壓 50 psi (3.5 bar)（兩者取高者）維持 2 小時不得洩壓（2.7.3.2 節）；乾式／預動式／冷藏區／真空式系統另須以 40 psi (2.8 bar) 進行 24 小時氣密測試，洩漏不得超過 1½ psi (0.1 bar)（2.7.3.2.7 節）；各類系統之動作（trip）測試（2.7.3.3 節）；控制閥、警報、連鎖裝置、主排水閥、逆止回流防止器與減壓閥等組件測試（2.7.3.4 節）；以及最終目視覆核（2.7.3.5 節），包括確認管路依核准圖施工、備品撒水頭櫃已設置、設備標示牌齊全等。FM85A 與 FM999C 即為串連這一整套審查與驗收流程的正式書面紀錄。</div>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div><b>對台灣工程實務之提醒</b>：FM85A／FM999C 為 FM Global 專屬表單格式，僅適用於採 FM Global 損失預防標準進行審查、驗收之保險客戶案場；若專案僅需符合 NFPA 13 或我國消防法規，通常改採當地主管機關或保險公司指定之驗收表單，惟其記載項目（材料規格、水壓測試、動作測試、主排水測試等）與 FM85A／FM999C 之精神大致相通，可作為文件完整性之對照檢核清單。</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  內容整理自 FM Global Property Loss Prevention Data Sheets, Data Sheet 2-0 — Installation Guidelines for Automatic Sprinklers（使用者提供之完整原文 PDF）。
+  本頁為條文重點之中文摘要與整理，依原文條款編號對照，非官方逐字翻譯；正式合規判斷請以 FM Global 官方原文及授權文件為準。
+  ｜© Factory Mutual Insurance Company，原文版權所有。
+</footer>
+
+</body>
+</html>
