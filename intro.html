@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>半導體廠消防系統速成班 — 給不熟悉消防的同仁</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3350;
+      --accent: #4f8ef7;
+      --accent2: #7c5cbf;
+      --accent3: #e05c5c;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --text: #e4e6f0;
+      --muted: #8b92b3;
+      --tag-bg: #1e3a5f;
+      --tag-text: #70b3ff;
+      --warn-bg: #3a2010;
+      --warn-text: #f0a060;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Helvetica Neue', '蘋方-繁', 'PingFang TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0d1b3e 0%, #1a2a5e 50%, #0d1b3e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(79,142,247,0.12) 0%, transparent 70%);
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(79,142,247,0.15);
+      border: 1px solid rgba(79,142,247,0.4);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+      position: relative;
+    }
+    .header h1 span { color: var(--accent); }
+    .header-sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+      position: relative;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+    .meta-item strong { color: var(--text); }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    /* ── TOC Sidebar ── */
+    .toc {
+      width: 250px;
+      flex-shrink: 0;
+      padding: 28px 0 28px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .toc-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+    .toc a {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 8px;
+      border-left: 2px solid transparent;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toc a:hover { color: var(--accent); border-left-color: var(--accent); background: rgba(79,142,247,0.06); }
+    .toc a.sub { padding-left: 18px; font-size: 12px; }
+    .toc a.pending { opacity: 0.45; font-style: italic; }
+
+    /* ── Main Content ── */
+    main {
+      flex: 1;
+      min-width: 0;
+      padding: 28px 32px 60px;
+    }
+
+    /* ── Section ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 26px;
+      height: 26px;
+      padding: 0 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .section-num.danger { background: var(--accent3); }
+    .section-num.purple { background: var(--accent2); }
+    .section-num.green  { background: var(--green); }
+    .section-num.yellow { background: var(--yellow); }
+    .section-num.muted  { background: var(--muted); }
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 22px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3.warn { color: var(--accent3); }
+    h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 14px 0 6px;
+    }
+    p { color: var(--muted); margin-bottom: 8px; }
+    .clause-ref {
+      font-family: 'SF Mono', monospace;
+      font-size: 10.5px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 12px 0;
+    }
+    th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(46,51,80,0.5);
+      vertical-align: top;
+      color: var(--text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td strong { color: #fff; }
+    td code {
+      background: rgba(79,142,247,0.12);
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .clause-table td:first-child:nth-last-child(2) { width: 92px; }
+
+    /* ── Highlight Boxes ── */
+    .callout {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .callout-icon { flex-shrink: 0; font-size: 18px; line-height: 1.6; }
+    .callout.info  { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.25); }
+    .callout.warn  { background: var(--warn-bg); border: 1px solid rgba(240,160,96,0.35); color: var(--warn-text); }
+    .callout.danger{ background: rgba(224,92,92,0.08); border: 1px solid rgba(224,92,92,0.3); }
+    .callout.green { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.3); }
+    .callout b { color: #fff; }
+
+    /* ── Stat Cards ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .stat-value.red { color: var(--accent3); }
+    .stat-value.green { color: var(--green); }
+    .stat-value.yellow { color: var(--yellow); }
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+    }
+    .tag.green { background: rgba(63,185,80,0.15); color: var(--green); }
+    .tag.red   { background: rgba(224,92,92,0.15); color: var(--accent3); }
+    .tag.yellow{ background: rgba(210,153,34,0.15); color: var(--yellow); }
+
+    /* ── Priority Box ── */
+    .priority-list {
+      counter-reset: priority;
+      list-style: none;
+    }
+    .priority-list li {
+      counter-increment: priority;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(46,51,80,0.4);
+    }
+    .priority-list li:last-child { border-bottom: none; }
+    .priority-list li::before {
+      content: counter(priority);
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .priority-list li .p-title { font-weight: 700; color: #fff; font-size: 14px; }
+    .priority-list li .p-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Step List ── */
+    /* Hanging-indent layout (not flex): flex on <li> would treat every inline
+       tag inside it (<code>, <b>, <strong>) as a separate flex item and
+       shatter the text into shrunken columns. Absolute-positioned markers
+       keep plain block/inline flow so wrapping behaves normally at any width. */
+    .steps {
+      list-style: none;
+    }
+    .steps li {
+      position: relative;
+      padding: 8px 0 8px 22px;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .steps li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: var(--accent);
+    }
+    .steps li > ul {
+      margin-top: 6px;
+    }
+    .steps.alpha { counter-reset: alpha; }
+    .steps.alpha li::before {
+      content: counter(alpha, upper-alpha) '.';
+      counter-increment: alpha;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Two columns ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .col-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .col-card h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+
+    /* ── Related Standards ── */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .std-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .std-id {
+      background: rgba(79,142,247,0.15);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .std-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    /* ── Pending outline ── */
+    .pending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pending-item {
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .pending-item strong { color: var(--text); font-size: 13px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* ── Mobile Nav (hidden on desktop) ── */
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav a {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 11px 12px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .mobile-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Mobile Responsive ── */
+    @media (max-width: 768px) {
+      .toc { display: none; }
+      .mobile-nav { display: block; }
+      .layout { display: block; }
+      .section { scroll-margin-top: 56px; }
+
+      .header { padding: 24px 16px 20px; }
+      .header h1 { font-size: 19px; }
+      .header-sub { font-size: 12px; }
+      .header-meta { gap: 8px; }
+      .meta-item { font-size: 11px; padding: 4px 8px; }
+
+      main { padding: 14px 12px 48px; }
+
+      .section { padding: 18px 14px; border-radius: 10px; margin-bottom: 14px; }
+      h2 { font-size: 15px; }
+      h3 { font-size: 13px; margin: 16px 0 6px; }
+
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      th, td { padding: 8px 10px; font-size: 12.5px; white-space: normal; word-break: break-word; }
+      .clause-table td:first-child:nth-last-child(2) { width: 72px; }
+
+      .callout { padding: 12px 14px; font-size: 13px; gap: 10px; }
+      .callout-icon { font-size: 16px; }
+
+      .stat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-value { font-size: 22px; }
+      .stat-label { font-size: 10.5px; }
+      .stat-card { padding: 12px; }
+
+      .two-col { grid-template-columns: 1fr; gap: 10px; }
+
+      .standards-grid, .pending-grid { grid-template-columns: 1fr; gap: 8px; }
+
+      .priority-list li { gap: 10px; padding: 10px 0; }
+      .priority-list li .p-title { font-size: 13px; }
+      .priority-list li .p-desc { font-size: 12px; }
+
+      .steps li { font-size: 13px; }
+
+      footer { font-size: 11px; padding: 16px 12px; }
+    }
+
+    @media (max-width: 380px) {
+      .header h1 { font-size: 16px; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .toc { display: none; }
+      .mobile-nav { display: none; }
+      main { padding: 0; }
+      .section { break-inside: avoid; }
+      body { background: #fff; color: #111; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">Fire Safety 101 · 消防新手包</div>
+  <h1>半導體廠消防系統 <span>速成班</span></h1>
+  <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
+  <div class="header-meta">
+    <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
+    <div class="meta-item">📌 <strong>定位</strong>：觀念入門，非法規逐條解讀</div>
+    <div class="meta-item">🗓 <strong>整理日期</strong>：2026-07-08</div>
+    <div class="meta-item">👤 <strong>整理者</strong>：騏佑（TSMC 消防工程師）</div>
+    <div class="meta-item">🔗 <a href="index.html" style="color:var(--accent);text-decoration:none;">深入版：FM Global DS 7-7 半導體廠整理 →</a></div>
+    <div class="meta-item">🔗 <a href="nfpa13.html" style="color:var(--accent);text-decoration:none;">深入版：NFPA 13 撒水系統整理 →</a></div>
+    <div class="meta-item">🔗 <a href="ds20.html" style="color:var(--accent);text-decoration:none;">深入版：FM Global DS 2-0 撒水系統安裝準則整理 →</a></div>
+  </div>
+</div>
+
+<!-- 手機版頂部導覽（桌機隱藏） -->
+<nav class="mobile-nav">
+  <a href="#s0">為何要懂</a>
+  <a href="#s1">廠區風險</a>
+  <a href="#s2">系統全貌</a>
+  <a href="#s3">偵測</a>
+  <a href="#s4">警報</a>
+  <a href="#s5">撒水</a>
+  <a href="#s6">氣體滅火</a>
+  <a href="#s7">特殊防護</a>
+  <a href="#s8">被動防火</a>
+  <a href="#s9">消防用水</a>
+  <a href="#s10">排煙正壓</a>
+  <a href="#s11">緊急應變</a>
+  <a href="#s12">常見迷思</a>
+  <a href="#s13">名詞速查</a>
+</nav>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">目錄</div>
+    <a href="#s0">為什麼要懂這個</a>
+    <a href="#s1">廠區火災風險哪裡來</a>
+    <a href="#s2">消防系統全貌（一張圖）</a>
+    <a href="#s3">火警偵測系統</a>
+    <a href="#s4">警報與通報系統</a>
+    <a href="#s5">自動撒水系統</a>
+    <a href="#s6">氣體滅火系統</a>
+    <a href="#s7">特殊氣體／化學品防護</a>
+    <a href="#s8">被動式防火</a>
+    <a href="#s9">消防用水系統</a>
+    <a href="#s10">排煙與正壓系統</a>
+    <a href="#s11">緊急應變基本動作</a>
+    <a href="#s12">常見迷思澄清</a>
+    <a href="#s13">名詞速查表</a>
+    <a href="#s14">想更深入？延伸閱讀</a>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <!-- s0 -->
+    <div class="section" id="s0">
+      <div class="section-header">
+        <div class="section-num">0</div>
+        <h2>為什麼要懂這個</h2>
+      </div>
+      <p>你不需要變成消防工程師，但廠區裡幾乎每個角落都有消防系統在默默運作——機台上方的撒水頭、無塵室天花板裡的偵煙管路、氣體櫃旁的偵測器、走廊上的手動報警按鈕。這些系統平常看不見，一旦誤解就可能在關鍵時刻做錯決定（例如誤觸警報後自己關掉、或看到氣體滅火房間警示燈還走進去）。</p>
+      <div class="callout info">
+        <div class="callout-icon">🎯</div>
+        <div>這份速成班的目標很單純：讓你看到消防設備時知道「這是做什麼用的」、「為什麼會這樣設計」、「警報響的時候我該怎麼反應」。不涉及法規條文與設計計算，那些留給文末的深入版文件。</div>
+      </div>
+    </div>
+
+    <!-- s1 -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <div class="section-num danger">1</div>
+        <h2>廠區火災風險哪裡來</h2>
+      </div>
+      <p>半導體廠的火災風險跟一般辦公大樓完全不是同一個等級，主要來自四個地方：</p>
+      <ul class="steps">
+        <li><strong>製程氣體</strong>：矽甲烷（Silane）遇空氣會自燃、氫氣極易燃且爆炸範圍寬，這類氣體從鋼瓶／管路到機台全程都要防護</li>
+        <li><strong>製程化學品</strong>：自燃性與易燃性液體、強酸強鹼，外洩不只是火災風險，也是人身安全風險</li>
+        <li><strong>可燃構造材料</strong>：機台外殼、無塵室風管、洗滌塔（scrubber）大量使用塑膠材質，一旦起火燃燒快、發煙量大</li>
+        <li><strong>資產高度集中</strong>：一個 Fab 裡動輒數十億台幣的機台與在製品（WIP）擠在同一個防火區劃內，小火也可能造成巨額損失與停產</li>
+      </ul>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>正因為風險特殊，半導體廠的消防系統設計比一般建築物「敏感」很多——反應要更快（早期偵測）、但同時也要避免「反應過度」（例如無尘室裡的水損失往往比火損失更貴），這也是後面很多設計選擇背後的邏輯。</div>
+      </div>
+    </div>
+
+    <!-- s2 -->
+    <div class="section" id="s2">
+      <div class="section-header">
+        <div class="section-num purple">2</div>
+        <h2>消防系統全貌（一張圖看懂）</h2>
+      </div>
+      <p>把消防系統想成人體的防禦機制：<strong>偵測</strong>是神經（感覺到異常）、<strong>警報</strong>是大腦（發出訊號）、<strong>抑制／滅火</strong>是免疫反應（撲滅威脅）、<strong>被動防火</strong>是皮膚（阻止蔓延），四者環環相扣，缺一不可。</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">👃 偵測</div>
+          <div class="stat-label">Detect｜第一時間發現異常</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value red">🔔 警報</div>
+          <div class="stat-label">Alert｜通知人員與系統</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value green">💧 抑制</div>
+          <div class="stat-label">Suppress｜滅火或控制火勢</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value yellow">🧱 圍阻</div>
+          <div class="stat-label">Contain｜阻止蔓延到其他區域</div>
+        </div>
+      </div>
+      <h3>典型的動作順序</h3>
+      <ul class="steps alpha">
+        <li>偵測器（煙、火焰、溫度或氣體）偵測到異常，送訊號給火警受信總機（FACP）</li>
+        <li>受信總機顯示發生區域（Zone），現場警報器（蜂鳴器＋閃燈）動作，廣播系統啟動</li>
+        <li>若確認為真實火警，相關撒水區域或氣體滅火區域啟動抑制動作；製程端可能連動緊急遮斷（ESD）關閉氣體／電力供應</li>
+        <li>防火門、防火閘門等被動防火設施發揮作用，把火煙侷限在單一防火區劃內</li>
+        <li>人員依疏散路線撤離至集合點，消防隊或緊急應變小組（ERT）到場處理</li>
+      </ul>
+    </div>
+
+    <!-- s3 -->
+    <div class="section" id="s3">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>火警偵測系統</h2>
+      </div>
+      <p>不同的偵測原理，反應速度跟適用場所差很多，半導體廠通常會混合使用好幾種：</p>
+      <table class="clause-table">
+        <thead><tr><th>偵測器類型</th><th>原理</th><th>常見位置</th><th>特點</th></tr></thead>
+        <tbody>
+          <tr><td>局部式偵煙器</td><td>光電式偵測煙粒濃度</td><td>辦公室、走廊、一般空間</td><td>成本低，但反應相對慢</td></tr>
+          <tr><td><code>VESDA</code>／吸氣式極早期偵煙</td><td>主動抽氣到偵測器分析煙粒</td><td>無塵室天花板、機台內部、高架地板下</td><td>極早期偵測（ppm 等級），半導體廠標準配備</td></tr>
+          <tr><td>火焰偵測器（UV/IR）</td><td>偵測火焰特定光譜輻射</td><td>易燃氣體／液體處理區</td><td>反應最快（秒級），用於高危害區域</td></tr>
+          <tr><td>定溫／差溫式熱感應器</td><td>溫度達到閾值或上升速率</td><td>易生煙誤報區、廚房</td><td>不易誤報，但反應較慢</td></tr>
+          <tr><td>可燃氣體偵測器（<code>LEL</code>）</td><td>偵測氣體濃度佔爆炸下限百分比</td><td>氣體鋼瓶櫃、供氣管路</td><td>火災前預警，常連動自動遮斷閥</td></tr>
+          <tr><td>毒性氣體偵測器</td><td>偵測 ppm 濃度</td><td>特氣站、洗滌塔（scrubber）</td><td>保護人員為主，非直接防火，但常與消防系統連動</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div>半導體廠大量使用 <code>VESDA</code> 的原因：無塵室氣流大、換氣量高，煙一產生就被快速稀釋，一般點式偵煙器根本來不及偵測到足夠濃度。VESDA 主動抽氣濃縮分析，才能在煙還很淡的階段就發現異常。</div>
+      </div>
+    </div>
+
+    <!-- s4 -->
+    <div class="section" id="s4">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>警報與通報系統</h2>
+      </div>
+      <ul class="steps">
+        <li><strong>火警受信總機（FACP）</strong>：所有偵測器與手動報警機的訊號匯集處，會顯示是哪個防護分區（Zone）發出警報</li>
+        <li><strong>現場警報器</strong>：蜂鳴器＋閃光燈（horn/strobe），讓在場人員第一時間知道要注意</li>
+        <li><strong>廣播系統</strong>：播放疏散指示或現況說明，避免恐慌或誤判</li>
+        <li><strong>手動報警機／緊急電話</strong>：走廊上常見的紅色按鈕，任何人發現火災都可以直接按下通報，不需要等偵測器動作</li>
+        <li><strong>與廠務系統連動</strong>：受信總機常會連動 BMS／EMCS，自動執行停送風、關閉防火閘門等動作</li>
+      </ul>
+      <div class="callout warn">
+        <div class="callout-icon">🚫</div>
+        <div>警報響起時，<b>絕對不能自己擅自解除或復歸</b>。就算你確定是誤報，也要依照廠內 SOP 通報負責單位確認後再處理，擅自關閉可能讓真正的火警訊號被忽略。</div>
+      </div>
+    </div>
+
+    <!-- s5 -->
+    <div class="section" id="s5">
+      <div class="section-header">
+        <div class="section-num green">5</div>
+        <h2>自動撒水系統</h2>
+      </div>
+      <p>撒水系統是最常見的滅火手段，但半導體廠因為怕水損，會依區域特性選用不同類型：</p>
+      <table class="clause-table">
+        <thead><tr><th>類型</th><th>原理</th><th>常見位置</th><th>為什麼選這個</th></tr></thead>
+        <tbody>
+          <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
+          <tr><td>預動式（Pre-Action）</td><td>需先有偵測訊號＋撒水頭動作，兩者都成立才放水進管</td><td>無塵室、機台區、資料機房</td><td>避免管路意外破裂就直接漏水，降低誤動作水損</td></tr>
+          <tr><td>密閉式（Deluge）</td><td>管路無水，一旦動作該區所有撒水頭同時開放放水</td><td>高危害易燃液體處理區</td><td>需要瞬間大面積覆蓋撲滅的場所</td></tr>
+          <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>Stocker、高架儲存倉儲區</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
+        </tbody>
+      </table>
+      <div class="callout green">
+        <div class="callout-icon">✅</div>
+        <div>常見迷思先破解：撒水頭是<b>個別動作</b>的（除了密閉式系統），只有真的被高溫觸發的那一顆才會出水，不是整個區域的頭一次全開。</div>
+      </div>
+    </div>
+
+    <!-- s6 -->
+    <div class="section" id="s6">
+      <div class="section-header">
+        <div class="section-num purple">6</div>
+        <h2>氣體滅火系統</h2>
+      </div>
+      <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房：</p>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>潔淨氣體（Clean Agent）</h4>
+          <p style="margin:0;">如 FM-200、Novec 1230、Inergen。滅火後幾乎不留殘留物，不傷精密電子設備，是機台內部與電氣室的主流選擇。</p>
+        </div>
+        <div class="col-card">
+          <h4>二氧化碳（CO₂）</h4>
+          <p style="margin:0;">滅火效果強、成本較低，但放電時會使空間<b>氧氣濃度驟降</b>，對人體有致命風險，通常用於無人常駐的密閉空間。</p>
+        </div>
+      </div>
+      <div class="callout danger">
+        <div class="callout-icon">☠️</div>
+        <div>氣體滅火系統放電前一定會有<b>警示燈與警報聲</b>預告倒數，這是全廠最容易致命的消防設備之一：<b>看到警示動作絕對不能進入或停留</b>，即使只是想「進去看一下」。CO₂ 放電後空間會缺氧，短時間內就可能昏迷。</div>
+      </div>
+    </div>
+
+    <!-- s7 -->
+    <div class="section" id="s7">
+      <div class="section-header">
+        <div class="section-num yellow">7</div>
+        <h2>特殊氣體／化學品防護</h2>
+      </div>
+      <p>這一塊嚴格說是「製程安全」與「消防」的交界，但同仁最常在這裡跟消防系統打交道：</p>
+      <ul class="steps">
+        <li><strong>氣體鋼瓶櫃</strong>：獨立偵測（可燃／毒性氣體）＋自動關閉閥（excess flow valve），異常時自動切斷氣體供應，不需要人為介入</li>
+        <li><strong>排氣管路與洗滌塔（Scrubber）</strong>：管路內部設有偵測與撒水，防止可燃氣體殘留物在風管內起火延燒</li>
+        <li><strong>緊急遮斷（ESD, Emergency Shutdown）</strong>：幾乎每個 Bay 都有的手動按鈕，按下後會切斷該區氣體或電力供應，是最後一道人為防線，平常要知道位置在哪</li>
+      </ul>
+      <div class="callout info">
+        <div class="callout-icon">🔗</div>
+        <div>想了解製程氣體／化學品的完整危害邏輯，可以參考文末連結的 FM Global DS 7-7 深入版整理。</div>
+      </div>
+    </div>
+
+    <!-- s8 -->
+    <div class="section" id="s8">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <h2>被動式防火</h2>
+      </div>
+      <p>消防系統不是只有「噴水撲滅」，更關鍵的是<b>把火煙圍住不讓它擴大</b>，這部分平常最容易被忽略：</p>
+      <ul class="steps">
+        <li><strong>防火區劃（Compartmentation）</strong>：用具防火時效的牆、樓板把建築物切成多個獨立區塊，火災發生時損害侷限在單一區劃內</li>
+        <li><strong>防火填塞（Firestop）</strong>：管線、電纜穿越防火牆的孔洞，若沒有適當填塞，等於在防火牆上開了一個洞，火煙會直接竄流到隔壁區域</li>
+        <li><strong>防火閘門（Fire Damper）</strong>：裝在空調風管內，火警時自動關閉，阻止火煙透過風管系統擴散到其他樓層或區域</li>
+        <li><strong>防火門</strong>：平常保持關閉或以電磁釋放器控制常開，火警訊號一到就自動釋放關閉</li>
+      </ul>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div>最常見的破壞方式是「工程臨時打洞後沒回填」——管線施工、線路增設後，如果沒有把防火填塞做回去，整道防火牆等於失效。看到牆上或樓板上有未填塞的孔洞，請通報，不要覺得「反正只是個小洞」。</div>
+      </div>
+    </div>
+
+    <!-- s9 -->
+    <div class="section" id="s9">
+      <div class="section-header">
+        <div class="section-num green">9</div>
+        <h2>消防用水系統</h2>
+      </div>
+      <p>撒水系統跟室內外消防栓要有水、有壓力才能發揮作用，背後靠這一套系統撐著：</p>
+      <table class="clause-table">
+        <thead><tr><th>組件</th><th>功能</th></tr></thead>
+        <tbody>
+          <tr><td>消防蓄水池</td><td>儲存足夠撲滅設計火災情境所需的水量，容量依廠區風險等級計算</td></tr>
+          <tr><td>消防主泵浦（電動／柴油）</td><td>系統動作時提供足夠流量與壓力，柴油泵浦作為停電時的備援</td></tr>
+          <tr><td>維壓泵（Jockey Pump）</td><td>平時維持管路壓力，補償微小漏損，避免主泵浦頻繁啟停</td></tr>
+          <tr><td>室內／室外消防栓</td><td>供人員或消防隊接水線灌救使用</td></tr>
+          <tr><td>送水口（Siamese Connection）</td><td>消防車可在此接管加壓，補充建築物內的消防用水系統</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- s10 -->
+    <div class="section" id="s10">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2>排煙與正壓系統</h2>
+      </div>
+      <ul class="steps">
+        <li><strong>排煙／排煙風機</strong>：火警時將煙排出，維持疏散路徑與待救援空間的能見度</li>
+        <li><strong>空調連動停止</strong>：避免空調系統把煙從起火區帶到其他樓層或區域</li>
+        <li><strong>正壓加壓（樓梯間、緊急昇降機）</strong>：對疏散路徑灌入新鮮空氣加壓，防止外部濃煙侵入，讓人員可以安全通行</li>
+      </ul>
+      <p>這些動作幾乎都是火警訊號一觸發就自動執行，不需要人員操作，但了解原理有助於理解「為什麼火警時某些門會突然關起來、某些風扇會突然啟動」。</p>
+    </div>
+
+    <!-- s11 -->
+    <div class="section" id="s11">
+      <div class="section-header">
+        <div class="section-num danger">11</div>
+        <h2>緊急應變基本動作</h2>
+      </div>
+      <p>不管你負責什麼職務，聽到火警警報時，記住這個順序：</p>
+      <ol class="priority-list">
+        <li>
+          <div>
+            <div class="p-title">確認</div>
+            <div class="p-desc">留意廣播與現場警報內容，不要自行判斷「應該是誤報」而忽略</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="p-title">處置（若受過訓練）</div>
+            <div class="p-desc">若你的職務有對應 SOP（例如按下 ESD、關閉手邊設備），依訓練內容執行；沒有受過訓練就不要自行嘗試操作消防／製程設備</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="p-title">疏散</div>
+            <div class="p-desc">依標示的疏散路線前進，不要使用電梯，不要逆向而行</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="p-title">集合</div>
+            <div class="p-desc">前往指定集合點清點人數，讓負責人確認全員到齊</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="p-title">配合</div>
+            <div class="p-desc">配合消防隊或緊急應變小組（ERT）指示，不要擅自返回廠區</div>
+          </div>
+        </li>
+      </ol>
+      <div class="callout info">
+        <div class="callout-icon">📍</div>
+        <div>每個人平常就該知道的三件事：<b>自己所在區域的逃生路線在哪、集合點在哪、最近的滅火器與手動報警按鈕在哪</b>。這三件事花不到五分鐘記，但關鍵時刻能救命。</div>
+      </div>
+    </div>
+
+    <!-- s12 -->
+    <div class="section" id="s12">
+      <div class="section-header">
+        <div class="section-num yellow">12</div>
+        <h2>常見迷思澄清</h2>
+      </div>
+      <table class="clause-table">
+        <thead><tr><th>迷思</th><th>事實</th></tr></thead>
+        <tbody>
+          <tr><td>撒水警報響 = 全區撒水頭一起噴水</td><td>只有被高溫實際觸發的那一顆撒水頭會動作（密閉式 Deluge 系統除外）</td></tr>
+          <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，CO₂ 等氣體放電會使空間缺氧，短時間內足以致命</td></tr>
+          <tr><td>確定是誤報就自己關掉警報</td><td>一律依 SOP 通報負責單位確認後才能復歸，不可擅自解除</td></tr>
+          <tr><td>滅火器什麼火都能用</td><td>要依火災類型（普通固體 A／易燃液體 B／電氣 C／金屬 D／油脂 K）選對滅火器，電氣與化學火災不可用水</td></tr>
+          <tr><td>消防設備出狀況只歸消防人員管</td><td>製程區的緊急關閥、ESD 往往需要現場人員第一時間配合執行，不是等消防隊來才處理</td></tr>
+          <tr><td>牆上小孔洞沒填塞沒差</td><td>防火填塞（Firestop）沒做好，整道防火區劃等於破功，火煙會直接竄流</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- s13 -->
+    <div class="section" id="s13">
+      <div class="section-header">
+        <div class="section-num muted">13</div>
+        <h2>名詞速查表</h2>
+      </div>
+      <table class="clause-table">
+        <tbody>
+          <tr><td><code>FACP</code></td><td>火警受信總機，所有偵測與報警訊號的匯集與顯示中樞</td></tr>
+          <tr><td><code>VESDA / ASD</code></td><td>吸氣式極早期偵煙系統，主動抽氣分析煙粒濃度</td></tr>
+          <tr><td><code>Wet Pipe</code></td><td>濕式撒水系統，管路平時充滿水</td></tr>
+          <tr><td><code>Pre-Action</code></td><td>預動式撒水系統，需偵測＋撒水頭動作雙重確認才放水進管</td></tr>
+          <tr><td><code>Deluge</code></td><td>密閉式撒水系統，動作時該區所有撒水頭同時開放</td></tr>
+          <tr><td><code>ESFR</code></td><td>早期抑制快速反應型撒水頭，用於高架儲存等高火載量場所</td></tr>
+          <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
+          <tr><td><code>Clean Agent</code></td><td>潔淨氣體滅火藥劑，如 FM-200、Novec 1230、Inergen，滅火後無殘留</td></tr>
+          <tr><td><code>LEL</code></td><td>爆炸下限（Lower Explosive Limit），可燃氣體偵測器常以此百分比顯示濃度</td></tr>
+          <tr><td><code>Excess Flow Valve</code></td><td>超流量自動遮斷閥，管路流量異常升高時自動關閉</td></tr>
+          <tr><td><code>ESD</code></td><td>緊急遮斷（Emergency Shutdown），手動或自動切斷氣體／電力供應</td></tr>
+          <tr><td><code>Fire Damper</code></td><td>防火閘門，裝於空調風管內，火警時自動關閉阻止煙流擴散</td></tr>
+          <tr><td><code>Firestop</code></td><td>防火填塞，封堵管線穿越防火區劃的孔洞</td></tr>
+          <tr><td><code>Siamese Connection</code></td><td>送水口，供消防車接管加壓補水</td></tr>
+          <tr><td><code>Jockey Pump</code></td><td>維壓泵，平時維持消防管路壓力</td></tr>
+          <tr><td><code>Zone</code></td><td>防護分區，火警受信總機顯示異常發生位置的最小單位</td></tr>
+          <tr><td><code>ERT</code></td><td>緊急應變小組（Emergency Response Team）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- s14 -->
+    <div class="section" id="s14">
+      <div class="section-header">
+        <div class="section-num muted">14</div>
+        <h2>想更深入？延伸閱讀</h2>
+      </div>
+      <p>這份速成班只涵蓋觀念，若想了解實際法規條文、設計準則與計算依據，可參考同系列的深入整理：</p>
+      <div class="standards-grid">
+        <div class="std-card">
+          <div class="std-id">DS 7-7</div>
+          <div class="std-desc"><a href="index.html" style="color:var(--accent);text-decoration:none;">半導體製造廠損失預防重點整理</a> — 廠區整體風險與防護建議</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">NFPA 13</div>
+          <div class="std-desc"><a href="nfpa13.html" style="color:var(--accent);text-decoration:none;">自動撒水系統安裝標準重點整理</a> — 撒水系統設計規範全解</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">DS 2-0</div>
+          <div class="std-desc"><a href="ds20.html" style="color:var(--accent);text-decoration:none;">自動撒水系統安裝準則重點整理</a> — FM Global 撒水系統安裝準則</div>
+        </div>
+        <div class="std-card">
+          <div class="std-id">OSH</div>
+          <div class="std-desc"><a href="https://beartechnician.github.io/osh-manager/" style="color:var(--accent);text-decoration:none;">職業安全衛生管理員教育訓練整理</a></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  本頁為半導體廠消防系統的觀念性入門整理，供內部教育訓練使用，非法規逐條解讀；正式合規判斷請以相關法規、FM Global／NFPA 官方原文及廠內 SOP 為準。
+</footer>
+
+</body>
+</html>
