@@ -563,16 +563,19 @@
   <a href="#s1">廠區風險</a>
   <a href="#s2">系統全貌</a>
   <a href="#s3">偵測</a>
-  <a href="#s4">警報</a>
+  <a href="#s4">警報/FCP</a>
   <a href="#s5">撒水</a>
-  <a href="#s6">氣體滅火</a>
-  <a href="#s7">特殊防護</a>
-  <a href="#s8">被動防火</a>
-  <a href="#s9">消防用水</a>
-  <a href="#s10">排煙正壓</a>
-  <a href="#s11">緊急應變</a>
-  <a href="#s12">常見迷思</a>
-  <a href="#s13">名詞速查</a>
+  <a href="#s6">泡沫/水霧</a>
+  <a href="#s7">氣體滅火</a>
+  <a href="#s8">特殊防護</a>
+  <a href="#s9">被動防火</a>
+  <a href="#s10">消防用水</a>
+  <a href="#s11">閥件操作</a>
+  <a href="#s12">排煙正壓</a>
+  <a href="#s13">故障排除</a>
+  <a href="#s14">緊急應變</a>
+  <a href="#s15">常見迷思</a>
+  <a href="#s16">名詞速查</a>
 </nav>
 
 <div class="layout">
@@ -584,17 +587,20 @@
     <a href="#s1">廠區火災風險哪裡來</a>
     <a href="#s2">消防系統全貌（一張圖）</a>
     <a href="#s3">火警偵測系統</a>
-    <a href="#s4">警報與通報系統</a>
+    <a href="#s4">警報系統與 FCP 架構</a>
     <a href="#s5">自動撒水系統</a>
-    <a href="#s6">氣體滅火系統</a>
-    <a href="#s7">特殊氣體／化學品防護</a>
-    <a href="#s8">被動式防火</a>
-    <a href="#s9">消防用水系統</a>
-    <a href="#s10">排煙與正壓系統</a>
-    <a href="#s11">緊急應變基本動作</a>
-    <a href="#s12">常見迷思澄清</a>
-    <a href="#s13">名詞速查表</a>
-    <a href="#s14">想更深入？延伸閱讀</a>
+    <a href="#s6">泡沫系統與水霧系統</a>
+    <a href="#s7">氣體滅火系統</a>
+    <a href="#s8">特殊氣體／化學品防護</a>
+    <a href="#s9">被動式防火</a>
+    <a href="#s10">消防用水系統</a>
+    <a href="#s11">水系統閥件操作</a>
+    <a href="#s12">排煙與正壓系統</a>
+    <a href="#s13">現場常見故障排除</a>
+    <a href="#s14">緊急應變基本動作</a>
+    <a href="#s15">常見迷思澄清</a>
+    <a href="#s16">名詞速查表</a>
+    <a href="#s17">想更深入？延伸閱讀</a>
   </nav>
 
   <!-- Main -->
@@ -659,7 +665,7 @@
       </div>
       <h3>典型的動作順序</h3>
       <ul class="steps alpha">
-        <li>偵測器（煙、火焰、溫度或氣體）偵測到異常，送訊號給火警受信總機（FACP）</li>
+        <li>偵測器（煙、火焰、溫度或氣體）偵測到異常，送訊號給火警受信總機（<code>FCP</code>）</li>
         <li>受信總機顯示發生區域（Zone），現場警報器（蜂鳴器＋閃燈）動作，廣播系統啟動</li>
         <li>若確認為真實火警，相關撒水區域或氣體滅火區域啟動抑制動作；製程端可能連動緊急遮斷（ESD）關閉氣體／電力供應</li>
         <li>防火門、防火閘門等被動防火設施發揮作用，把火煙侷限在單一防火區劃內</li>
@@ -695,14 +701,21 @@
     <div class="section" id="s4">
       <div class="section-header">
         <div class="section-num">4</div>
-        <h2>警報與通報系統</h2>
+        <h2>警報系統與 FCP 架構</h2>
       </div>
       <ul class="steps">
-        <li><strong>火警受信總機（FACP）</strong>：所有偵測器與手動報警機的訊號匯集處，會顯示是哪個防護分區（Zone）發出警報</li>
+        <li><strong>火警受信總機（<code>FCP</code>, Fire Control Panel）</strong>：所有偵測器與手動報警機的訊號匯集處，會顯示異常發生的位置</li>
         <li><strong>現場警報器</strong>：蜂鳴器＋閃光燈（horn/strobe），讓在場人員第一時間知道要注意</li>
         <li><strong>廣播系統</strong>：播放疏散指示或現況說明，避免恐慌或誤判</li>
         <li><strong>手動報警機／緊急電話</strong>：走廊上常見的紅色按鈕，任何人發現火災都可以直接按下通報，不需要等偵測器動作</li>
-        <li><strong>與廠務系統連動</strong>：受信總機常會連動 BMS／EMCS，自動執行停送風、關閉防火閘門等動作</li>
+        <li><strong>與廠務系統連動</strong>：<code>FCP</code> 常會連動 BMS／EMCS，自動執行停送風、關閉防火閘門等動作</li>
+      </ul>
+      <h3>廠區常見架構：定址式系統＋模組</h3>
+      <p>廠區的 <code>FCP</code> 系統常見是「定址式（Addressable）」而不是傳統的傳統式（Conventional）：</p>
+      <ul class="steps">
+        <li><strong>定址式（Addressable）</strong>：每一顆偵測器、每一個手動報警機都有獨立位址，掛在同一條迴路（Loop）上。<code>FCP</code> 可以直接顯示「哪一顆」裝置動作，而不是只顯示到分區（Zone）範圍，故障排除跟起火點定位精準很多</li>
+        <li><strong>監視模組（Monitor Module）</strong>：有些設備本身不是定址式裝置，例如水流指示器、閥件的限位開關（tamper switch）、可燃氣體偵測器的乾接點訊號，需要透過監視模組把這些訊號「翻譯」成定址迴路可以辨識的訊號，才能被 <code>FCP</code> 看到</li>
+        <li><strong>控制模組（Control Module）</strong>：反過來，當 <code>FCP</code> 需要對外下達動作指令時（例如釋放防火門電磁閂、停止空調風車），透過控制模組輸出繼電器訊號驅動這些非定址式設備</li>
       </ul>
       <div class="callout warn">
         <div class="callout-icon">🚫</div>
@@ -720,22 +733,44 @@
       <table class="clause-table">
         <thead><tr><th>類型</th><th>原理</th><th>常見位置</th><th>為什麼選這個</th></tr></thead>
         <tbody>
-          <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
-          <tr><td>預動式（Pre-Action）</td><td>需先有偵測訊號＋撒水頭動作，兩者都成立才放水進管</td><td>無塵室、機台區、資料機房</td><td>避免管路意外破裂就直接漏水，降低誤動作水損</td></tr>
-          <tr><td>密閉式（Deluge）</td><td>管路無水，一旦動作該區所有撒水頭同時開放放水</td><td>高危害易燃液體處理區</td><td>需要瞬間大面積覆蓋撲滅的場所</td></tr>
+          <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭本身有感溫元件，受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
+          <tr><td>開放式（Deluge）</td><td>撒水頭本身<b>沒有感溫元件</b>（平時開放），管路平常無水；由獨立的偵測系統觸發「一齊開放閥（Deluge Valve）」，閥一開，水同時流向該區<b>所有</b>撒水頭，形成全區一齊放射</td><td>高危害易燃液體處理區、特殊氣體鋼瓶棚</td><td>需要瞬間大面積同時覆蓋，來不及等撒水頭逐顆被感溫觸發的高危害場所</td></tr>
           <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>Stocker、高架儲存倉儲區</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
         </tbody>
       </table>
       <div class="callout green">
         <div class="callout-icon">✅</div>
-        <div>常見迷思先破解：撒水頭是<b>個別動作</b>的（除了密閉式系統），只有真的被高溫觸發的那一顆才會出水，不是整個區域的頭一次全開。</div>
+        <div>常見迷思先破解：撒水頭是<b>個別動作</b>的——濕式與 ESFR 系統的撒水頭各自有感溫元件，只有真的被高溫觸發的那一顆才會出水；只有<b>開放式（Deluge）</b>系統例外，它的撒水頭本身沒有感溫元件，是靠獨立偵測系統觸發一齊開放閥後，全區撒水頭才會同時放射。</div>
       </div>
     </div>
 
     <!-- s6 -->
     <div class="section" id="s6">
       <div class="section-header">
-        <div class="section-num purple">6</div>
+        <div class="section-num yellow">6</div>
+        <h2>泡沫系統與水霧系統</h2>
+      </div>
+      <p>除了一般清水撒水，還有兩種依滅火機制設計的水系統，用在清水撒水效果不好、或水損風險考量不同的場所：</p>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>泡沫系統（Foam System）</h4>
+          <p style="margin:0;">泡沫濃縮液與水依比例混合，經泡沫產生裝置打入空氣形成泡沫，覆蓋在液面上<b>隔絕氧氣與可燃蒸氣</b>，同時降溫抑制回燃。針對易燃液體火災效果遠優於清水（清水直接噴在油品表面反而可能助長火勢擴散）。常見型式：固定式泡沫產生器、泡沫射水槍、泡沫消防栓。常見位置：油槽區、化學品／溶劑倉儲、發電機油槽周邊。</p>
+        </div>
+        <div class="col-card">
+          <h4>水霧系統（Water Mist System）</h4>
+          <p style="margin:0;">以高壓將水噴成極細霧滴，同時達到<b>降溫、窒息（細水霧瞬間氣化成水蒸氣排擠氧氣）、遮蔽輻射熱</b>三種效果。用水量遠低於一般撒水系統，水損風險較低，介於「一般撒水」與「氣體滅火」之間。常見位置：電氣室、發電機房、渦輪機、電纜溝、資料機房等怕水損但仍需要主動抑制的場所。</p>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">🧭</div>
+        <div>簡單的選擇邏輯：一般可燃固體 → <b>撒水系統</b>；易燃液體表面火 → <b>泡沫系統</b>；怕水損但需要主動抑制的電氣設備 → <b>水霧系統</b>；完全不能有任何水損的密閉精密空間 → <b>氣體滅火系統</b>（見下一節）。</div>
+      </div>
+    </div>
+
+    <!-- s7 -->
+    <div class="section" id="s7">
+      <div class="section-header">
+        <div class="section-num purple">7</div>
         <h2>氣體滅火系統</h2>
       </div>
       <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房：</p>
@@ -755,10 +790,10 @@
       </div>
     </div>
 
-    <!-- s7 -->
-    <div class="section" id="s7">
+    <!-- s8 -->
+    <div class="section" id="s8">
       <div class="section-header">
-        <div class="section-num yellow">7</div>
+        <div class="section-num yellow">8</div>
         <h2>特殊氣體／化學品防護</h2>
       </div>
       <p>這一塊嚴格說是「製程安全」與「消防」的交界，但同仁最常在這裡跟消防系統打交道：</p>
@@ -773,10 +808,10 @@
       </div>
     </div>
 
-    <!-- s8 -->
-    <div class="section" id="s8">
+    <!-- s9 -->
+    <div class="section" id="s9">
       <div class="section-header">
-        <div class="section-num">8</div>
+        <div class="section-num">9</div>
         <h2>被動式防火</h2>
       </div>
       <p>消防系統不是只有「噴水撲滅」，更關鍵的是<b>把火煙圍住不讓它擴大</b>，這部分平常最容易被忽略：</p>
@@ -792,10 +827,10 @@
       </div>
     </div>
 
-    <!-- s9 -->
-    <div class="section" id="s9">
+    <!-- s10 -->
+    <div class="section" id="s10">
       <div class="section-header">
-        <div class="section-num green">9</div>
+        <div class="section-num green">10</div>
         <h2>消防用水系統</h2>
       </div>
       <p>撒水系統跟室內外消防栓要有水、有壓力才能發揮作用，背後靠這一套系統撐著：</p>
@@ -811,10 +846,35 @@
       </table>
     </div>
 
-    <!-- s10 -->
-    <div class="section" id="s10">
+    <!-- s11 -->
+    <div class="section" id="s11">
       <div class="section-header">
-        <div class="section-num">10</div>
+        <div class="section-num muted">11</div>
+        <h2>水系統閥件操作</h2>
+      </div>
+      <p>水系統平常要保持在正確的「監視狀態」，閥件位置一旦被意外改變，可能整個區域的撒水保護就默默失效而沒人發現：</p>
+      <table class="clause-table">
+        <thead><tr><th>閥件</th><th>功能</th></tr></thead>
+        <tbody>
+          <tr><td><code>ACV</code>／查驗閥（Alarm Check Valve）</td><td>裝在濕式撒水系統立管上，內建止回閥＋遲滯室（retard chamber）＋壓力開關／水流警報器。撒水頭出水時觸發警報訊號送給 <code>FCP</code>；遲滯室的作用是過濾掉單純水鎚、壓力波動造成的誤報，只有持續穩定水流才會觸發警報</td></tr>
+          <tr><td>OS&amp;Y 閘閥（Outside Screw &amp; Yoke）</td><td>系統主要遮斷閥，閥桿露在閥體外側，從露出長度就能直接判斷全開或全閉。正常運轉時必須維持<b>全開</b>並上鎖／裝設監視開關（tamper switch），非預期關閉會送出故障訊號給 <code>FCP</code></td></tr>
+          <tr><td>蝶閥（Butterfly Valve）</td><td>功能同 OS&amp;Y 閘閥，四分之一圈開關，同樣需配置監視開關監控閥位</td></tr>
+          <tr><td>PIV 標示閥（Post Indicator Valve）</td><td>埋在地下消防水管的遮斷閥，透過地面上的指示桿顯示 OPEN／SHUT，常見於室外消防管線的分段閥</td></tr>
+          <tr><td>水流指示器（Flow Switch）</td><td>偵測特定分區管路是否有水流通過，判斷是「哪一區」的撒水頭動作，訊號送到 <code>FCP</code> 顯示對應位置</td></tr>
+          <tr><td>壓力開關（Pressure Switch）</td><td>偵測系統壓力異常（過高／過低），例如 ACV／Deluge Valve 動作時的壓力變化，送出訊號給 <code>FCP</code></td></tr>
+          <tr><td>試驗放水閥（Test &amp; Drain Valve）</td><td>功能測試與維護用，定期開啟驗證水流警報與泵浦連動是否正常，維修前也用它排空管路存水</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <div class="callout-icon">🔒</div>
+        <div>水系統閥件平常要維持「監視狀態」（全開＋受 <code>FCP</code> 監控）。任何人都不能未經授權關閉這些閥件；若維修必須關閥，要先報備並啟動替代性防護措施（如加派巡邏、暫停該區高風險作業），因為關閥期間該分區等於<b>完全沒有撒水保護</b>。</div>
+      </div>
+    </div>
+
+    <!-- s12 -->
+    <div class="section" id="s12">
+      <div class="section-header">
+        <div class="section-num">12</div>
         <h2>排煙與正壓系統</h2>
       </div>
       <ul class="steps">
@@ -825,10 +885,59 @@
       <p>這些動作幾乎都是火警訊號一觸發就自動執行，不需要人員操作，但了解原理有助於理解「為什麼火警時某些門會突然關起來、某些風扇會突然啟動」。</p>
     </div>
 
-    <!-- s11 -->
-    <div class="section" id="s11">
+    <!-- s13 -->
+    <div class="section" id="s13">
       <div class="section-header">
-        <div class="section-num danger">11</div>
+        <div class="section-num muted">13</div>
+        <h2>現場常見故障排除</h2>
+      </div>
+      <p>以下是同仁最常遇到、也最需要第一時間判斷的三種現場異常，不是要你取代消防專業維修，而是讓你知道「異常是什麼原因造成的」、「該找誰、該先做什麼」：</p>
+
+      <h3>漏水查修</h3>
+      <ul class="steps alpha">
+        <li>先確認漏水位置與範圍：是撒水頭本身、管路接頭，還是閥件本體滲漏</li>
+        <li>檢查該分區的水流指示器／壓力開關是否同時有異常訊號，判斷是管路真的破損，還是單純表面凝結水</li>
+        <li>找到對應「受影響分區」的隔離閥（OS&amp;Y／蝶閥）關閉，<b>不要</b>關到上游主閥，避免波及其他分區的保護</li>
+        <li>立即通報消防／廠務負責單位：關閥期間該分區暫時失去撒水保護，需要啟動替代性防護措施（如加派巡邏、暫停高風險作業）</li>
+        <li>開啟試驗放水閥排空積水，進行維修</li>
+        <li>修復後依 SOP 試水，確認 ACV 警報／水流訊號正常，才能重新開啟隔離閥並解除替代措施</li>
+      </ul>
+
+      <h3>電系統故障查修</h3>
+      <p><code>FCP</code> 常見的故障訊號類型：斷路（open circuit）、短路、接地故障（ground fault）、迴路通訊中斷（loop communication fault）、電源異常（市電中斷／備用電池故障）。</p>
+      <ul class="steps alpha">
+        <li>先讀取 <code>FCP</code> 面板顯示的故障內容與位址（哪個迴路、哪個裝置位址、哪個模組）</li>
+        <li>依故障類型現場檢查對應迴路配線或裝置：斷路／短路通常是配線鬆脫或裝置本體損壞</li>
+        <li>接地故障需用絕緣電阻計分段量測，逐段隔離找出接地點，不要盲目整條迴路重測</li>
+        <li>電源類故障先檢查充電器與備用電池狀況，電池老化是最常見原因</li>
+        <li>修復後確認 <code>FCP</code> 故障訊號清除，並執行迴路測試（walk test）確認裝置恢復正常通訊</li>
+      </ul>
+
+      <h3>VESDA 高／低氣流查修</h3>
+      <p><code>VESDA</code> 會持續監控取樣管路的氣流流量，流量異常會觸發「低氣流（Low Flow）」或「高氣流（High Flow）」故障：</p>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>低氣流常見原因</h4>
+          <p style="margin:0;">取樣孔或管路積塵阻塞、集塵過濾網堵塞、抽氣風扇（aspirator）老化衰退</p>
+        </div>
+        <div class="col-card">
+          <h4>高氣流常見原因</h4>
+          <p style="margin:0;">取樣管破裂、接頭鬆脫、端蓋脫落，造成額外空氣被吸入稀釋樣本</p>
+        </div>
+      </div>
+      <ul class="steps alpha">
+        <li>從 <code>VESDA</code> 主機面板確認故障類型與對應的取樣管路分區</li>
+        <li>目視檢查該分區管路：接頭是否鬆脫、端蓋是否脫落、取樣孔是否有異物阻塞</li>
+        <li>檢查、清潔或更換集塵過濾網（低氣流最常見的原因）</li>
+        <li>用煙氣測試或流量測試工具逐點驗證取樣孔反應是否正常</li>
+        <li>修復後務必重新執行「氣流基準學習（re-learn／re-baseline）」，讓系統重新記錄正常氣流基準值，避免之後誤判</li>
+      </ul>
+    </div>
+
+    <!-- s14 -->
+    <div class="section" id="s14">
+      <div class="section-header">
+        <div class="section-num danger">14</div>
         <h2>緊急應變基本動作</h2>
       </div>
       <p>不管你負責什麼職務，聽到火警警報時，記住這個順序：</p>
@@ -870,46 +979,55 @@
       </div>
     </div>
 
-    <!-- s12 -->
-    <div class="section" id="s12">
+    <!-- s15 -->
+    <div class="section" id="s15">
       <div class="section-header">
-        <div class="section-num yellow">12</div>
+        <div class="section-num yellow">15</div>
         <h2>常見迷思澄清</h2>
       </div>
       <table class="clause-table">
         <thead><tr><th>迷思</th><th>事實</th></tr></thead>
         <tbody>
-          <tr><td>撒水警報響 = 全區撒水頭一起噴水</td><td>只有被高溫實際觸發的那一顆撒水頭會動作（密閉式 Deluge 系統除外）</td></tr>
+          <tr><td>撒水警報響 = 全區撒水頭一起噴水</td><td>濕式與 ESFR 系統只有被高溫實際觸發的那一顆撒水頭會動作；只有<b>開放式（Deluge）</b>系統例外，撒水頭本身無感溫元件，靠偵測系統觸發一齊開放閥後才會全區同時放射</td></tr>
           <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，CO₂ 等氣體放電會使空間缺氧，短時間內足以致命</td></tr>
           <tr><td>確定是誤報就自己關掉警報</td><td>一律依 SOP 通報負責單位確認後才能復歸，不可擅自解除</td></tr>
           <tr><td>滅火器什麼火都能用</td><td>要依火災類型（普通固體 A／易燃液體 B／電氣 C／金屬 D／油脂 K）選對滅火器，電氣與化學火災不可用水</td></tr>
           <tr><td>消防設備出狀況只歸消防人員管</td><td>製程區的緊急關閥、ESD 往往需要現場人員第一時間配合執行，不是等消防隊來才處理</td></tr>
           <tr><td>牆上小孔洞沒填塞沒差</td><td>防火填塞（Firestop）沒做好，整道防火區劃等於破功，火煙會直接竄流</td></tr>
+          <tr><td>水系統閥件關一下應該沒差，等一下再開就好</td><td>閥件關閉期間該分區完全沒有撒水保護，未經授權關閥、或關閥後忘記復歸都是重大風險，必須依 SOP 報備並啟動替代防護措施</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- s13 -->
-    <div class="section" id="s13">
+    <!-- s16 -->
+    <div class="section" id="s16">
       <div class="section-header">
-        <div class="section-num muted">13</div>
+        <div class="section-num muted">16</div>
         <h2>名詞速查表</h2>
       </div>
       <table class="clause-table">
         <tbody>
-          <tr><td><code>FACP</code></td><td>火警受信總機，所有偵測與報警訊號的匯集與顯示中樞</td></tr>
+          <tr><td><code>FCP</code></td><td>火警受信總機（Fire Control Panel），所有偵測與報警訊號的匯集與顯示中樞</td></tr>
+          <tr><td><code>Addressable</code></td><td>定址式系統，每個裝置有獨立位址，FCP 可精準定位到單一裝置而非只到分區</td></tr>
+          <tr><td>監視模組／控制模組</td><td>Monitor Module／Control Module，讓非定址式裝置的訊號／控制指令可以掛上定址迴路</td></tr>
           <tr><td><code>VESDA / ASD</code></td><td>吸氣式極早期偵煙系統，主動抽氣分析煙粒濃度</td></tr>
-          <tr><td><code>Wet Pipe</code></td><td>濕式撒水系統，管路平時充滿水</td></tr>
-          <tr><td><code>Pre-Action</code></td><td>預動式撒水系統，需偵測＋撒水頭動作雙重確認才放水進管</td></tr>
-          <tr><td><code>Deluge</code></td><td>密閉式撒水系統，動作時該區所有撒水頭同時開放</td></tr>
+          <tr><td><code>Wet Pipe</code></td><td>濕式撒水系統，管路平時充滿水，撒水頭本身有感溫元件</td></tr>
+          <tr><td><code>Deluge</code></td><td>開放式撒水系統，撒水頭本身無感溫元件，由偵測系統觸發一齊開放閥後全區同時放射</td></tr>
           <tr><td><code>ESFR</code></td><td>早期抑制快速反應型撒水頭，用於高架儲存等高火載量場所</td></tr>
           <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
+          <tr><td>泡沫系統</td><td>Foam System，泡沫覆蓋液面隔絕氧氣與可燃蒸氣，用於易燃液體火災</td></tr>
+          <tr><td>水霧系統</td><td>Water Mist System，高壓細水霧，兼具降溫、窒息、遮蔽輻射熱，水損風險低於一般撒水</td></tr>
           <tr><td><code>Clean Agent</code></td><td>潔淨氣體滅火藥劑，如 FM-200、Novec 1230、Inergen，滅火後無殘留</td></tr>
           <tr><td><code>LEL</code></td><td>爆炸下限（Lower Explosive Limit），可燃氣體偵測器常以此百分比顯示濃度</td></tr>
           <tr><td><code>Excess Flow Valve</code></td><td>超流量自動遮斷閥，管路流量異常升高時自動關閉</td></tr>
           <tr><td><code>ESD</code></td><td>緊急遮斷（Emergency Shutdown），手動或自動切斷氣體／電力供應</td></tr>
           <tr><td><code>Fire Damper</code></td><td>防火閘門，裝於空調風管內，火警時自動關閉阻止煙流擴散</td></tr>
           <tr><td><code>Firestop</code></td><td>防火填塞，封堵管線穿越防火區劃的孔洞</td></tr>
+          <tr><td><code>ACV</code></td><td>Alarm Check Valve／查驗閥，濕式系統立管上的止回閥＋警報裝置，出水時觸發警報訊號</td></tr>
+          <tr><td>OS&amp;Y ／蝶閥</td><td>系統主要遮斷閥，正常應維持全開並受監視開關（tamper switch）監控</td></tr>
+          <tr><td><code>PIV</code></td><td>Post Indicator Valve／標示閥，埋在地下消防水管的遮斷閥，地面指示桿顯示開關狀態</td></tr>
+          <tr><td>水流指示器</td><td>Flow Switch，偵測分區管路水流，用於判斷哪一區撒水頭動作</td></tr>
+          <tr><td>試驗放水閥</td><td>Test &amp; Drain Valve，功能測試與排空管路存水用</td></tr>
           <tr><td><code>Siamese Connection</code></td><td>送水口，供消防車接管加壓補水</td></tr>
           <tr><td><code>Jockey Pump</code></td><td>維壓泵，平時維持消防管路壓力</td></tr>
           <tr><td><code>Zone</code></td><td>防護分區，火警受信總機顯示異常發生位置的最小單位</td></tr>
@@ -918,10 +1036,10 @@
       </table>
     </div>
 
-    <!-- s14 -->
-    <div class="section" id="s14">
+    <!-- s17 -->
+    <div class="section" id="s17">
       <div class="section-header">
-        <div class="section-num muted">14</div>
+        <div class="section-num muted">17</div>
         <h2>想更深入？延伸閱讀</h2>
       </div>
       <p>這份速成班只涵蓋觀念，若想了解實際法規條文、設計準則與計算依據，可參考同系列的深入整理：</p>
