@@ -796,14 +796,15 @@
       </div>
 
       <h3>系統配置示意圖：從 ACV 到末端查驗閥</h3>
-      <p>以濕式系統最常見的配置為例，水從 ACV 出發、立管往上、轉水平接各撒水頭，最遠端的末端查驗閥再透過試驗排水管線拉回 ACV 附近，方便一個人就能完成流水試驗：</p>
+      <p>以濕式系統最常見的配置為例：水從 ACV 出發、立管往上、轉水平接各撒水頭，最遠端的末端查驗閥再透過試驗排水管線拉回 ACV／主排水閥附近，方便一個人就能完成流水試驗。ACV 周邊部件（遲滯室、水力警鈴、壓力開關、主排水閥）的相對位置參考 Viking 等廠牌的標準配管圖：警報接口設在<b>閥體側邊</b>，主排水閥則是從閥體<b>上方系統側</b>另外接出，跟警報管路是分開的兩條路徑：</p>
       <div class="diagram-wrap">
-        <div class="diagram-title">濕式撒水系統配置示意圖</div>
-        <svg viewBox="0 0 980 600" xmlns="http://www.w3.org/2000/svg">
+        <div class="diagram-title">濕式撒水系統配置示意圖（含 ACV 標準配管）</div>
+        <svg viewBox="0 0 980 700" xmlns="http://www.w3.org/2000/svg">
           <style>
             .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
             .pipe-test{stroke:var(--yellow);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 9;}
             .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            .wall{stroke:var(--border);stroke-width:3;fill:none;stroke-dasharray:5 4;}
             .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
             .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
             .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
@@ -811,92 +812,108 @@
             .marker circle{fill:var(--accent);}
             .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
             .head-body{fill:var(--green);stroke:var(--green);}
+            .bulb{fill:var(--accent3);}
             .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
           </style>
 
-          <!-- 水源進水 -->
-          <line x1="20" y1="480" x2="95" y2="480" class="pipe"/>
-          <text x="18" y="460" class="lbl">水源／消防泵浦</text>
+          <!-- 水源進水，轉90度往上 -->
+          <line x1="20" y1="660" x2="140" y2="660" class="pipe"/>
+          <text x="18" y="640" class="lbl">水源／消防泵浦</text>
+          <line x1="140" y1="660" x2="140" y2="596" class="pipe"/>
 
-          <!-- OS&Y 主閥 (bowtie gate valve) -->
-          <polygon points="100,468 100,492 118,480" class="valve-body"/>
-          <polygon points="136,468 136,492 118,480" class="valve-body"/>
-          <line x1="118" y1="468" x2="118" y2="450" class="thin"/>
-          <circle cx="118" cy="444" r="6" class="valve-body"/>
-          <g class="marker"><circle cx="118" cy="420" r="11"/><text x="118" y="421">1</text></g>
-          <line x1="136" y1="480" x2="205" y2="480" class="pipe"/>
+          <!-- OS&Y 主閥（垂直閘閥，常開） -->
+          <polygon points="128,556 152,556 140,570" class="valve-body"/>
+          <polygon points="128,584 152,584 140,570" class="valve-body"/>
+          <line x1="152" y1="570" x2="170" y2="570" class="thin"/>
+          <circle cx="176" cy="570" r="6" class="valve-body"/>
+          <g class="marker"><circle cx="108" cy="570" r="11"/><text x="108" y="571">1</text></g>
+          <line x1="140" y1="556" x2="140" y2="467" class="pipe"/>
 
-          <!-- ACV 本體 -->
-          <circle cx="235" cy="480" r="27" class="comp"/>
-          <polygon points="223,470 223,490 245,480" fill="var(--accent)"/>
-          <g class="marker"><circle cx="235" cy="430" r="11"/><text x="235" y="431">2</text></g>
+          <!-- ACV 本體（垂直，水流由下往上） -->
+          <circle cx="140" cy="440" r="27" class="comp"/>
+          <polygon points="128,452 152,452 140,428" fill="var(--accent)"/>
+          <g class="marker"><circle cx="93" cy="440" r="11"/><text x="93" y="441">2</text></g>
 
-          <!-- 遲滯室 -->
-          <line x1="215" y1="503" x2="200" y2="522" class="thin"/>
-          <circle cx="192" cy="532" r="15" class="comp"/>
-          <g class="marker"><circle cx="192" cy="565" r="11"/><text x="192" y="566">3</text></g>
+          <!-- 主排水閥：從閥體上方（系統側）接出，跟警報管路分開 -->
+          <line x1="140" y1="400" x2="80" y2="400" class="thin"/>
+          <polygon points="53,388 77,388 65,400" class="valve-body"/>
+          <polygon points="53,412 77,412 65,400" class="valve-body"/>
+          <line x1="65" y1="412" x2="65" y2="585" class="thin"/>
+          <polygon points="55,585 75,585 65,600" fill="var(--muted)"/>
+          <text x="42" y="618" class="lbl">洩水</text>
+          <g class="marker"><circle cx="65" cy="365" r="11"/><text x="65" y="366">6</text></g>
 
-          <!-- 水流警報器/水鐘 -->
-          <line x1="177" y1="532" x2="120" y2="532" class="thin"/>
-          <path d="M 100 522 a 20 20 0 0 0 0 20 l 8 -6 l 0 -8 z" class="comp"/>
-          <g class="marker"><circle cx="100" cy="565" r="11"/><text x="100" y="566">4</text></g>
+          <!-- 警報接口（閥體側邊）→ 遲滯室 -->
+          <line x1="167" y1="440" x2="224" y2="440" class="thin"/>
+          <circle cx="240" cy="440" r="16" class="comp"/>
+          <g class="marker"><circle cx="240" cy="403" r="11"/><text x="240" y="404">3</text></g>
 
-          <!-- 壓力開關 -> FCP -->
-          <line x1="255" y1="460" x2="270" y2="435" class="thin"/>
-          <rect x="262" y="415" width="16" height="16" class="comp"/>
-          <g class="marker"><circle cx="270" cy="395" r="11"/><text x="270" y="396">5</text></g>
-          <line x1="270" y1="415" x2="270" y2="375" class="thin" stroke-dasharray="3 3"/>
-          <rect x="240" y="345" width="60" height="28" rx="4" class="fcp-box"/>
-          <text x="270" y="363" text-anchor="middle" class="lbl-strong">FCP</text>
+          <!-- 遲滯室 → 壓力開關（往上）與水力警鈴（續往右） -->
+          <line x1="256" y1="440" x2="460" y2="440" class="thin"/>
+          <line x1="300" y1="440" x2="300" y2="405" class="thin"/>
+          <rect x="292" y="389" width="16" height="16" class="comp"/>
+          <g class="marker"><circle cx="300" cy="366" r="11"/><text x="300" y="367">5</text></g>
+          <line x1="300" y1="389" x2="300" y2="340" class="thin" stroke-dasharray="3 3"/>
+          <rect x="265" y="310" width="70" height="28" rx="4" class="fcp-box"/>
+          <text x="300" y="328" text-anchor="middle" class="lbl-strong">FCP</text>
 
-          <!-- 主排水閥 -->
-          <line x1="255" y1="503" x2="270" y2="522" class="thin"/>
-          <polygon points="262,532 278,532 270,548" class="valve-body"/>
-          <line x1="270" y1="548" x2="270" y2="565" class="thin"/>
-          <text x="248" y="582" class="lbl">洩水</text>
-          <g class="marker"><circle cx="300" cy="540" r="11"/><text x="300" y="541">6</text></g>
+          <!-- 戶外牆與水力警鈴/水鐘（裝於室外） -->
+          <line x1="420" y1="410" x2="420" y2="472" class="wall"/>
+          <text x="393" y="398" class="lbl">戶外牆</text>
+          <path d="M 455 428 a 18 18 0 0 0 0 24 l 10 -7 l 0 -10 z" class="comp"/>
+          <g class="marker"><circle cx="470" cy="403" r="11"/><text x="470" y="404">4</text></g>
 
-          <!-- 立管 Riser -->
-          <line x1="235" y1="453" x2="235" y2="120" class="pipe"/>
-          <g class="marker"><circle cx="210" cy="290" r="11"/><text x="210" y="291">7</text></g>
-          <text x="150" y="296" class="lbl">立管（Riser）</text>
+          <!-- 立管 Riser（ACV 頂端直上，主排水閥於途中側接） -->
+          <line x1="140" y1="413" x2="140" y2="120" class="pipe"/>
+          <g class="marker"><circle cx="108" cy="270" r="11"/><text x="108" y="271">7</text></g>
+          <text x="30" y="275" class="lbl">立管（Riser）</text>
 
           <!-- 轉水平 / 幹管 Cross Main -->
-          <line x1="235" y1="120" x2="800" y2="120" class="pipe"/>
-          <g class="marker"><circle cx="500" cy="95" r="11"/><text x="500" y="96">8</text></g>
-          <text x="420" y="80" class="lbl">十字主管／幹管（Cross Main）</text>
+          <line x1="140" y1="120" x2="800" y2="120" class="pipe"/>
+          <g class="marker"><circle cx="470" cy="95" r="11"/><text x="470" y="96">8</text></g>
+          <text x="390" y="80" class="lbl">十字主管／幹管（Cross Main）</text>
 
-          <!-- 支管與撒水頭 -->
+          <!-- 支管與撒水頭（含感熱玻璃球） -->
           <g>
-            <line x1="330" y1="120" x2="330" y2="175" class="pipe"/>
-            <circle cx="330" cy="180" r="7" class="head-body"/>
-            <line x1="322" y1="187" x2="318" y2="205" class="thin"/>
-            <line x1="330" y1="188" x2="330" y2="208" class="thin"/>
-            <line x1="338" y1="187" x2="342" y2="205" class="thin"/>
+            <line x1="330" y1="120" x2="330" y2="172" class="pipe"/>
+            <circle cx="330" cy="176" r="4" class="bulb"/>
+            <circle cx="330" cy="184" r="7" class="head-body"/>
+            <line x1="322" y1="191" x2="318" y2="209" class="thin"/>
+            <line x1="330" y1="192" x2="330" y2="212" class="thin"/>
+            <line x1="338" y1="191" x2="342" y2="209" class="thin"/>
           </g>
           <g>
-            <line x1="450" y1="120" x2="450" y2="175" class="pipe"/>
-            <circle cx="450" cy="180" r="7" class="head-body"/>
-            <line x1="442" y1="187" x2="438" y2="205" class="thin"/>
-            <line x1="450" y1="188" x2="450" y2="208" class="thin"/>
-            <line x1="458" y1="187" x2="462" y2="205" class="thin"/>
+            <line x1="450" y1="120" x2="450" y2="172" class="pipe"/>
+            <circle cx="450" cy="176" r="4" class="bulb"/>
+            <circle cx="450" cy="184" r="7" class="head-body"/>
+            <line x1="442" y1="191" x2="438" y2="209" class="thin"/>
+            <line x1="450" y1="192" x2="450" y2="212" class="thin"/>
+            <line x1="458" y1="191" x2="462" y2="209" class="thin"/>
           </g>
           <g>
-            <line x1="570" y1="120" x2="570" y2="175" class="pipe"/>
-            <circle cx="570" cy="180" r="7" class="head-body"/>
-            <line x1="562" y1="187" x2="558" y2="205" class="thin"/>
-            <line x1="570" y1="188" x2="570" y2="208" class="thin"/>
-            <line x1="578" y1="187" x2="582" y2="205" class="thin"/>
+            <line x1="570" y1="120" x2="570" y2="172" class="pipe"/>
+            <circle cx="570" cy="176" r="4" class="bulb"/>
+            <circle cx="570" cy="184" r="7" class="head-body"/>
+            <line x1="562" y1="191" x2="558" y2="209" class="thin"/>
+            <line x1="570" y1="192" x2="570" y2="212" class="thin"/>
+            <line x1="578" y1="191" x2="582" y2="209" class="thin"/>
           </g>
           <g>
-            <line x1="690" y1="120" x2="690" y2="175" class="pipe"/>
-            <circle cx="690" cy="180" r="7" class="head-body"/>
-            <line x1="682" y1="187" x2="678" y2="205" class="thin"/>
-            <line x1="690" y1="188" x2="690" y2="208" class="thin"/>
-            <line x1="698" y1="187" x2="702" y2="205" class="thin"/>
+            <line x1="690" y1="120" x2="690" y2="172" class="pipe"/>
+            <circle cx="690" cy="176" r="4" class="bulb"/>
+            <circle cx="690" cy="184" r="7" class="head-body"/>
+            <line x1="682" y1="191" x2="678" y2="209" class="thin"/>
+            <line x1="690" y1="192" x2="690" y2="212" class="thin"/>
+            <line x1="698" y1="191" x2="702" y2="209" class="thin"/>
           </g>
-          <g class="marker"><circle cx="330" cy="235" r="11"/><text x="330" y="236">9</text></g>
-          <text x="358" y="240" class="lbl">支管＋撒水頭（各自獨立感溫動作）</text>
+
+          <!-- 自動感熱動作示意（以第一顆頭為例） -->
+          <path d="M 330 214 q -10 -14 0 -26 q 10 12 0 26 z" fill="var(--accent3)" opacity="0.85"/>
+          <line x1="330" y1="214" x2="330" y2="192" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="2 3"/>
+          <polygon points="330,192 325,200 335,200" fill="var(--accent3)"/>
+          <g class="marker"><circle cx="330" cy="256" r="11"/><text x="330" y="257">9</text></g>
+          <text x="400" y="250" class="lbl">感熱玻璃球達動作溫度即自動破裂出水</text>
+          <text x="400" y="268" class="lbl">（每顆撒水頭獨立感熱，非全區連動）</text>
 
           <!-- 末端查驗閥 -->
           <polygon points="788,108 788,132 806,120" class="valve-body"/>
@@ -904,26 +921,26 @@
           <g class="marker"><circle cx="806" cy="85" r="11"/><text x="806" y="86">10</text></g>
           <text x="650" y="60" class="lbl">末端查驗閥（孔徑等同一顆撒水頭）</text>
 
-          <!-- 試驗排水管線 拉回 ACV -->
+          <!-- 試驗排水管線 拉回 ACV/主排水閥附近 -->
           <line x1="806" y1="132" x2="806" y2="525" class="pipe-test"/>
-          <line x1="806" y1="525" x2="320" y2="525" class="pipe-test"/>
-          <polygon points="320,525 336,517 336,533" fill="var(--yellow)"/>
-          <g class="marker"><circle cx="560" cy="545" r="11"/><text x="560" y="546">11</text></g>
-          <text x="430" y="562" class="lbl">試驗排水管線 → 拉回 ACV 排水漏斗附近（單人可同時確認流量與警報）</text>
+          <line x1="806" y1="525" x2="175" y2="525" class="pipe-test"/>
+          <polygon points="175,525 191,517 191,533" fill="var(--yellow)"/>
+          <g class="marker"><circle cx="530" cy="545" r="11"/><text x="530" y="546">11</text></g>
+          <text x="370" y="562" class="lbl">試驗排水管線 → 拉回 ACV／主排水閥附近（單人可同時確認流量與警報）</text>
         </svg>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；黃色虛線＝末端查驗閥的試驗排水管線</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；紅點＝撒水頭感熱玻璃球；虛線牆＝室內外分界；黃色虛線＝末端查驗閥的試驗排水管線</div>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span>OS&amp;Y 閘閥（主控制閥，常開＋監視開關）</li>
-          <li><span class="dnum">2</span>ACV 查驗逆止閥（Alarm Check Valve）</li>
+          <li><span class="dnum">2</span>ACV 查驗逆止閥（Alarm Check Valve），警報接口設於閥體側邊</li>
           <li><span class="dnum">3</span>遲滯室（Retard Chamber，過濾水鎚誤報）</li>
-          <li><span class="dnum">4</span>水流警報器／水鐘（Water Motor Gong）</li>
+          <li><span class="dnum">4</span>水力警鈴／水鐘（Water Motor Gong，裝設於室外牆面）</li>
           <li><span class="dnum">5</span>壓力開關（Pressure Switch，訊號送 FCP）</li>
-          <li><span class="dnum">6</span>主排水閥（Main Drain Valve）</li>
+          <li><span class="dnum">6</span>主排水閥（Main Drain Valve，自閥體上方系統側另接，非警報管路）</li>
           <li><span class="dnum">7</span>立管（Riser）</li>
           <li><span class="dnum">8</span>十字主管／幹管（Cross Main）</li>
-          <li><span class="dnum">9</span>支管與撒水頭（Branch Line + Sprinkler Heads）</li>
+          <li><span class="dnum">9</span>支管與撒水頭（內含感熱玻璃球，達動作溫度即個別自動破裂出水）</li>
           <li><span class="dnum">10</span>末端查驗閥（Inspector's Test Valve）</li>
-          <li><span class="dnum">11</span>試驗排水管線，拉回 ACV 排水漏斗附近，方便單人測試</li>
+          <li><span class="dnum">11</span>試驗排水管線，拉回 ACV／主排水閥附近，方便單人測試</li>
         </ol>
       </div>
     </div>
@@ -989,6 +1006,14 @@
           <text x="300" y="245" text-anchor="middle" class="lbl">比例混合裝置</text>
           <line x1="335" y1="200" x2="470" y2="200" class="pipe"/>
 
+          <!-- 偵測系統觸發（自動，非人工） -->
+          <circle cx="450" cy="55" r="15" fill="var(--surface2)" stroke="var(--accent3)" stroke-width="2"/>
+          <path d="M 450 46 q -6 8 0 16 q 6 -8 0 -16 z" fill="var(--accent3)"/>
+          <g class="marker"><circle cx="415" cy="55" r="11"/><text x="415" y="56">7</text></g>
+          <text x="470" y="51" class="lbl">偵測系統觸發（自動開放，非人工操作）</text>
+          <line x1="458" y1="66" x2="494" y2="184" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <polygon points="494,184 486,177 496,171" fill="var(--accent3)"/>
+
           <!-- 控制閥 -->
           <polygon points="478,188 478,212 496,200" class="valve-body"/>
           <polygon points="514,188 514,212 496,200" class="valve-body"/>
@@ -1017,6 +1042,7 @@
           <li><span class="dnum">4</span>控制閥（一齊開放閥／區域閥）</li>
           <li><span class="dnum">5</span>泡沫產生裝置（Foam Maker／泡沫射水槍）</li>
           <li><span class="dnum">6</span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</li>
+          <li><span class="dnum">7</span>偵測系統（VESDA／火焰偵測器等）觸發控制閥自動開放，非人工操作</li>
         </ol>
       </div>
 
@@ -1050,6 +1076,14 @@
           <g class="marker"><circle cx="260" cy="155" r="11"/><text x="260" y="156">2</text></g>
           <text x="215" y="255" class="lbl">蓄壓／增壓裝置</text>
           <line x1="285" y1="207" x2="390" y2="207" class="pipe"/>
+
+          <!-- 偵測系統觸發（自動，非人工） -->
+          <circle cx="360" cy="55" r="15" fill="var(--surface2)" stroke="var(--accent3)" stroke-width="2"/>
+          <path d="M 360 46 q -6 8 0 16 q 6 -8 0 -16 z" fill="var(--accent3)"/>
+          <g class="marker"><circle cx="325" cy="55" r="11"/><text x="325" y="56">7</text></g>
+          <text x="380" y="51" class="lbl">偵測系統觸發（自動開放，非人工操作）</text>
+          <line x1="368" y1="66" x2="410" y2="192" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <polygon points="410,192 402,185 412,179" fill="var(--accent3)"/>
 
           <!-- 分區控制閥 -->
           <polygon points="398,195 398,219 416,207" class="valve-body"/>
@@ -1096,6 +1130,7 @@
           <li><span class="dnum">4</span>高壓配水管路（管徑較一般撒水系統小）</li>
           <li><span class="dnum">5</span>水霧噴頭（微米級細水霧，降溫＋窒息＋遮蔽輻射熱）</li>
           <li><span class="dnum">6</span>保護對象（電氣室、發電機房、渦輪機等怕水損場所）</li>
+          <li><span class="dnum">7</span>偵測系統（VESDA／火焰偵測器等）觸發分區控制閥自動開放，非人工操作</li>
         </ol>
       </div>
     </div>
@@ -1106,20 +1141,27 @@
         <div class="section-num purple">7</div>
         <h2>氣體滅火系統</h2>
       </div>
-      <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房：</p>
+      <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房。<b>本廠氣體滅火系統統一採用 <code>IG-541</code>（惰性氣體）</b>，不是化學型潔淨氣體（如 FM-200、Novec 1230），也不是 CO₂，同仁看到氣體滅火鋼瓶／警示牌時可以直接認出來。</p>
       <div class="two-col">
         <div class="col-card">
-          <h4>潔淨氣體（Clean Agent）</h4>
-          <p style="margin:0;">如 FM-200、Novec 1230、Inergen。滅火後幾乎不留殘留物，不傷精密電子設備，是機台內部與電氣室的主流選擇。</p>
+          <h4><code>IG-541</code> 是什麼</h4>
+          <p style="margin:0;">由氮氣（N₂）52%、氬氣（Ar）40%、二氧化碳（CO₂）8% 混合而成的惰性氣體滅火藥劑（商品名常見為 Inergen，屬同一種配方）。三種成分都是空氣本來就有的氣體，滅火後<b>不留任何殘留物</b>、不導電、不會分解出腐蝕性或毒性副產物，對機台與精密電子設備友善。</p>
         </div>
         <div class="col-card">
-          <h4>二氧化碳（CO₂）</h4>
-          <p style="margin:0;">滅火效果強、成本較低，但放電時會使空間<b>氧氣濃度驟降</b>，對人體有致命風險，通常用於無人常駐的密閉空間。</p>
+          <h4>滅火原理：稀釋氧氣，不是降溫</h4>
+          <p style="margin:0;">放射後 <code>IG-541</code> 會把防護區域的氧氣濃度從約 20.9% 降到約 12–13%，低於一般燃燒所需濃度，火自然熄滅。這跟撒水／水霧的「降溫」機制完全不同，也跟 CO₂ 那種會把氧氣壓到人體無法呼吸程度的做法不一樣——但濃度仍明顯低於正常空氣，<b>對人體還是有風險</b>，一樣要嚴格禁止進入。</p>
         </div>
       </div>
+      <h3>動作流程：偵測 → 預警延遲 → 放射</h3>
+      <ul class="steps alpha">
+        <li>該區偵測器（通常是雙偵測器連動，如兩組煙偵測器或煙＋熱偵測器都動作）確認火警，送訊號給氣體滅火控制盤</li>
+        <li>控制盤啟動<b>預警警報</b>（警示燈＋警報聲），同時開始放電延遲倒數（常見 30–60 秒），讓區域內人員有時間撤離</li>
+        <li>若有人員仍在區內、確認是誤報或需要更多時間，可按下<b>延遲／中止按鈕（Abort Switch）</b>暫停倒數，放開後才會繼續倒數；<b>Abort Switch 不能防止放電，只能爭取多一點撤離時間</b></li>
+        <li>倒數結束、確認人員已撤離後，鋼瓶閥自動開啟，<code>IG-541</code> 經管路與噴頭放射入防護區域</li>
+      </ul>
       <div class="callout danger">
         <div class="callout-icon">☠️</div>
-        <div>氣體滅火系統放電前一定會有<b>警示燈與警報聲</b>預告倒數，這是全廠最容易致命的消防設備之一：<b>看到警示動作絕對不能進入或停留</b>，即使只是想「進去看一下」。CO₂ 放電後空間會缺氧，短時間內就可能昏迷。</div>
+        <div>聽到<b>預警警報</b>（放電前的警示燈與警報聲）一律立即撤離，不要留下來看、也不要進去查看設備。放電後的區域氧氣濃度偏低，<b>絕對不能進入或停留</b>，需等現場確認通風換氣完成、氧氣濃度回復正常，才能由受過訓練的人員進入。</div>
       </div>
     </div>
 
@@ -1189,7 +1231,7 @@
       <table class="clause-table">
         <thead><tr><th>閥件</th><th>功能</th></tr></thead>
         <tbody>
-          <tr><td><code>ACV</code>／查驗閥（Alarm Check Valve）</td><td>裝在濕式撒水系統立管上，內建止回閥＋遲滯室（retard chamber）＋壓力開關／水流警報器。撒水頭出水時觸發警報訊號送給 <code>FCP</code>；遲滯室的作用是過濾掉單純水鎚、壓力波動造成的誤報，只有持續穩定水流才會觸發警報</td></tr>
+          <tr><td><code>ACV</code>／查驗閥（Alarm Check Valve）</td><td>裝在濕式撒水系統立管上，內建止回閥＋遲滯室（retard chamber）＋壓力開關／水力警鈴。撒水頭出水時觸發警報訊號送給 <code>FCP</code>；遲滯室的作用是過濾掉單純水鎚、壓力波動造成的誤報，只有持續穩定水流才會觸發警報</td></tr>
           <tr><td>OS&amp;Y 閘閥（Outside Screw &amp; Yoke）</td><td>系統主要遮斷閥，閥桿露在閥體外側，從露出長度就能直接判斷全開或全閉。正常運轉時必須維持<b>全開</b>並上鎖／裝設監視開關（tamper switch），非預期關閉會送出故障訊號給 <code>FCP</code></td></tr>
           <tr><td>蝶閥（Butterfly Valve）</td><td>功能同 OS&amp;Y 閘閥，四分之一圈開關，同樣需配置監視開關監控閥位</td></tr>
           <tr><td>PIV 標示閥（Post Indicator Valve）</td><td>埋在地下消防水管的遮斷閥，透過地面上的指示桿顯示 OPEN／SHUT，常見於室外消防管線的分段閥</td></tr>
@@ -1322,7 +1364,8 @@
         <thead><tr><th>迷思</th><th>事實</th></tr></thead>
         <tbody>
           <tr><td>撒水警報響 = 全區撒水頭一起噴水</td><td>濕式與 ESFR 系統只有被高溫實際觸發的那一顆撒水頭會動作；只有<b>開放式（Deluge）</b>系統例外，撒水頭本身無感溫元件，靠偵測系統觸發一齊開放閥後才會全區同時放射</td></tr>
-          <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，CO₂ 等氣體放電會使空間缺氧，短時間內足以致命</td></tr>
+          <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，本廠 <code>IG-541</code> 放電會使空間氧氣濃度大幅降低，一樣不能進入或停留</td></tr>
+          <tr><td>氣體滅火系統按下 Abort Switch 就不會放電</td><td>Abort Switch 只能暫停倒數、爭取撤離時間，放開後倒數會繼續，不是取消放電</td></tr>
           <tr><td>確定是誤報就自己關掉警報</td><td>一律依 SOP 通報負責單位確認後才能復歸，不可擅自解除</td></tr>
           <tr><td>滅火器什麼火都能用</td><td>要依火災類型（普通固體 A／易燃液體 B／電氣 C／金屬 D／油脂 K）選對滅火器，電氣與化學火災不可用水</td></tr>
           <tr><td>消防設備出狀況只歸消防人員管</td><td>製程區的緊急關閥、ESD 往往需要現場人員第一時間配合執行，不是等消防隊來才處理</td></tr>
@@ -1350,7 +1393,8 @@
           <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
           <tr><td>泡沫系統</td><td>Foam System，泡沫覆蓋液面隔絕氧氣與可燃蒸氣，用於易燃液體火災</td></tr>
           <tr><td>水霧系統</td><td>Water Mist System，高壓細水霧，兼具降溫、窒息、遮蔽輻射熱，水損風險低於一般撒水</td></tr>
-          <tr><td><code>Clean Agent</code></td><td>潔淨氣體滅火藥劑，如 FM-200、Novec 1230、Inergen，滅火後無殘留</td></tr>
+          <tr><td><code>IG-541</code></td><td>惰性氣體滅火藥劑（N₂ 52%／Ar 40%／CO₂ 8%，商品名 Inergen），本廠氣體滅火系統統一採用，靠稀釋氧氣滅火，滅火後無殘留</td></tr>
+          <tr><td>Abort Switch</td><td>延遲／中止按鈕，按住可暫停放電倒數爭取撤離時間，放開後倒數繼續，不能取消放電</td></tr>
           <tr><td><code>LEL</code></td><td>爆炸下限（Lower Explosive Limit），可燃氣體偵測器常以此百分比顯示濃度</td></tr>
           <tr><td><code>Excess Flow Valve</code></td><td>超流量自動遮斷閥，管路流量異常升高時自動關閉</td></tr>
           <tr><td><code>ESD</code></td><td>緊急遮斷（Emergency Shutdown），手動或自動切斷氣體／電力供應</td></tr>
