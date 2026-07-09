@@ -955,7 +955,7 @@
       <div class="two-col">
         <div class="col-card">
           <h4>泡沫系統（Foam System）</h4>
-          <p style="margin:0;">泡沫濃縮液與水依比例混合，經泡沫產生裝置打入空氣形成泡沫，覆蓋在液面上<b>隔絕氧氣與可燃蒸氣</b>，同時降溫抑制回燃。針對易燃液體火災效果遠優於清水（清水直接噴在油品表面反而可能助長火勢擴散）。常見型式：固定式泡沫產生器、泡沫射水槍、泡沫消防栓。常見位置：油槽區、化學品／溶劑倉儲、發電機油槽周邊。<b>本廠泡沫系統為手動啟動</b>，沒有自動偵測連動，也沒有獨立的加壓泵浦——跟撒水系統共用同一顆消防泵浦，由人員現場開啟控制閥才會出泡沫。</p>
+          <p style="margin:0;">泡沫濃縮液與水依比例混合成泡沫溶液，經噴頭打入空氣形成泡沫，覆蓋在液面上<b>隔絕氧氣與可燃蒸氣</b>，同時降溫抑制回燃。針對易燃液體火災效果遠優於清水（清水直接噴在油品表面反而可能助長火勢擴散）。<b>本廠以泡沫噴頭（Foam Sprinkler）為主</b>，外型跟一般撒水頭類似，但設計上能把泡沫溶液均勻打入空氣、覆蓋整個防護面積。常見位置：油槽區、化學品／溶劑倉儲、發電機油槽周邊。<b>本廠泡沫系統為手動啟動</b>，沒有自動偵測連動，也沒有獨立的加壓泵浦——跟撒水系統共用同一顆消防泵浦，由人員現場開啟控制閥才會出泡沫。</p>
         </div>
         <div class="col-card">
           <h4>水霧系統（Water Mist System）</h4>
@@ -968,7 +968,7 @@
       </div>
 
       <h3>泡沫系統配置示意圖（手動啟動）</h3>
-      <p>本廠泡沫系統的重點有兩個：一是「比例混合」——泡沫原液要依固定比例跟水混合成泡沫溶液，再經泡沫產生裝置打入空氣才會變成泡沫；二是<b>手動啟動、共用同一顆消防泵浦</b>，沒有感知撒水頭、電磁閥這類自動觸發裝置，火警時要由人員到現場開啟控制閥：</p>
+      <p>本廠泡沫系統的重點有兩個：一是「比例混合」——泡沫原液要依固定比例跟水混合成泡沫溶液，再經泡沫噴頭打入空氣才會變成泡沫；二是<b>手動啟動、共用同一顆消防泵浦</b>，沒有感知撒水頭、電磁閥這類自動觸發裝置，火警時要由人員到現場開啟控制閥：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">泡沫系統配置示意圖（手動啟動，與撒水系統共用泵浦）</div>
         <svg viewBox="0 0 980 340" xmlns="http://www.w3.org/2000/svg">
@@ -1015,28 +1015,48 @@
           <text x="500" y="130" class="lbl">手動控制閥</text>
           <text x="500" y="146" class="lbl">（現場人員開啟，無自動觸發）</text>
           <text x="466" y="225" text-anchor="middle" class="lbl">控制閥</text>
-          <line x1="484" y1="180" x2="600" y2="180" class="pipe"/>
+          <line x1="484" y1="180" x2="650" y2="180" class="pipe"/>
+          <line x1="650" y1="180" x2="650" y2="110" class="pipe"/>
+          <line x1="650" y1="110" x2="870" y2="110" class="pipe"/>
 
-          <!-- 泡沫產生裝置 -->
-          <polygon points="600,165 600,195 635,180" class="comp"/>
-          <g class="marker"><circle cx="615" cy="140" r="11"/><text x="615" y="141">5</text></g>
-          <text x="617" y="225" text-anchor="middle" class="lbl">泡沫產生裝置</text>
-          <line x1="635" y1="180" x2="700" y2="180" class="pipe"/>
+          <!-- 泡沫噴頭（多顆，非單一泡沫產生裝置） -->
+          <g>
+            <line x1="730" y1="110" x2="730" y2="132" class="pipe"/>
+            <circle cx="730" cy="138" r="7" class="head-body"/>
+            <line x1="722" y1="145" x2="718" y2="163" class="thin"/>
+            <line x1="730" y1="146" x2="730" y2="166" class="thin"/>
+            <line x1="738" y1="145" x2="742" y2="163" class="thin"/>
+          </g>
+          <g>
+            <line x1="800" y1="110" x2="800" y2="132" class="pipe"/>
+            <circle cx="800" cy="138" r="7" class="head-body"/>
+            <line x1="792" y1="145" x2="788" y2="163" class="thin"/>
+            <line x1="800" y1="146" x2="800" y2="166" class="thin"/>
+            <line x1="808" y1="145" x2="812" y2="163" class="thin"/>
+          </g>
+          <g>
+            <line x1="870" y1="110" x2="870" y2="132" class="pipe"/>
+            <circle cx="870" cy="138" r="7" class="head-body"/>
+            <line x1="862" y1="145" x2="858" y2="163" class="thin"/>
+            <line x1="870" y1="146" x2="870" y2="166" class="thin"/>
+            <line x1="878" y1="145" x2="882" y2="163" class="thin"/>
+          </g>
+          <g class="marker"><circle cx="730" cy="85" r="11"/><text x="730" y="86">5</text></g>
+          <text x="750" y="90" class="lbl">泡沫噴頭（多顆，覆蓋整個液面）</text>
 
           <!-- 儲槽與泡沫覆蓋 -->
-          <rect x="710" y="100" width="200" height="150" rx="4" class="tank"/>
-          <rect x="710" y="210" width="200" height="40" class="liquid"/>
-          <path d="M 710 198 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 l 0 12 l -200 0 z" class="foam"/>
-          <g class="marker"><circle cx="810" cy="80" r="11"/><text x="810" y="81">6</text></g>
-          <text x="730" y="70" class="lbl">泡沫覆蓋液面（隔絕氧氣與可燃蒸氣）</text>
-          <text x="760" y="235" class="lbl-strong" fill="var(--text)">易燃液體</text>
+          <rect x="690" y="170" width="220" height="110" rx="4" class="tank"/>
+          <rect x="690" y="240" width="220" height="40" class="liquid"/>
+          <path d="M 690 228 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 l 0 12 l -220 0 z" class="foam"/>
+          <g class="marker"><circle cx="800" cy="195" r="11"/><text x="800" y="196">6</text></g>
+          <text x="565" y="270" class="lbl-strong" fill="var(--text)">易燃液體</text>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span>消防泵浦：與撒水系統共用同一顆，沒有另外的加壓泵浦</li>
           <li><span class="dnum">2</span>泡沫原液儲槽（Foam Concentrate Tank）</li>
           <li><span class="dnum">3</span>比例混合裝置（Proportioner）</li>
           <li><span class="dnum">4</span>手動控制閥：火警時由現場人員開啟，沒有感知撒水頭、電磁閥等自動觸發裝置</li>
-          <li><span class="dnum">5</span>泡沫產生裝置（Foam Maker／泡沫射水槍）</li>
+          <li><span class="dnum">5</span>泡沫噴頭（Foam Sprinkler）：泡沫溶液經噴頭打入空氣形成泡沫，多顆覆蓋整個液面，非單一集中式泡沫產生裝置</li>
           <li><span class="dnum">6</span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</li>
         </ol>
       </div>
