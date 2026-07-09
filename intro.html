@@ -803,20 +803,20 @@
       <p>以濕式系統最常見的配置為例：水從 ACV 出發、立管往上、轉水平接各撒水頭。末端查驗閥（孔徑等同一顆撒水頭，用來模擬撒水頭動作、驗證流量與警報）<b>就裝在 ACV 旁邊</b>，靠一條從最遠端拉回來的試驗管線供水，不用爬到天花板遠端也能一個人完成測試。ACV 周邊部件（遲滯室、水力警鈴、壓力開關、主排水閥）的相對位置參考 Viking 等廠牌的標準配管圖：警報接口設在<b>閥體側邊</b>，主排水閥則是從閥體<b>上方系統側</b>另外接出，跟警報管路是分開的兩條路徑：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">濕式撒水系統配置示意圖（含 ACV 標準配管）</div>
-        <svg viewBox="0 0 1040 700" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg1" viewBox="0 0 1040 700" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            .pipe-test{stroke:var(--yellow);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 9;}
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
-            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
-            .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            .head-body{fill:var(--green);stroke:var(--green);}
-            .bulb{fill:var(--accent3);}
-            .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
+            #dg1 .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            #dg1 .pipe-test{stroke:var(--yellow);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 9;}
+            #dg1 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg1 .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
+            #dg1 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg1 .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
+            #dg1 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg1 .marker circle{fill:var(--accent);}
+            #dg1 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg1 .head-body{fill:var(--green);stroke:var(--green);}
+            #dg1 .bulb{fill:var(--accent3);}
+            #dg1 .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
           </style>
 
           <!-- 水源進水，轉90度往上 -->
@@ -955,7 +955,7 @@
       <div class="two-col">
         <div class="col-card">
           <h4>泡沫系統（Foam System）</h4>
-          <p style="margin:0;">泡沫濃縮液與水依比例混合成泡沫溶液，經噴頭打入空氣形成泡沫，覆蓋在液面上<b>隔絕氧氣與可燃蒸氣</b>，同時降溫抑制回燃。針對易燃液體火災效果遠優於清水（清水直接噴在油品表面反而可能助長火勢擴散）。<b>本廠以泡沫噴頭（Foam Sprinkler）為主</b>，外型跟一般撒水頭類似，但設計上能把泡沫溶液均勻打入空氣、覆蓋整個防護面積。常見位置：油槽區、化學品／溶劑倉儲、發電機油槽周邊。控制閥跟開放式撒水系統一樣，具備<b>感知撒水頭、電磁閥、手動啟動</b>三種觸發路徑，也沒有獨立的加壓泵浦——跟撒水系統共用同一顆消防泵浦。</p>
+          <p style="margin:0;">泡沫濃縮液與水依比例混合成泡沫溶液，經噴頭打入空氣形成泡沫，覆蓋在液面上<b>隔絕氧氣與可燃蒸氣</b>，同時降溫抑制回燃。針對易燃液體火災效果遠優於清水（清水直接噴在油品表面反而可能助長火勢擴散）。<b>本廠以泡沫噴頭（Foam Sprinkler）為主</b>，外型跟一般撒水頭類似，但設計上能把泡沫溶液均勻打入空氣、覆蓋整個防護面積。常見位置：油槽區、化學品／溶劑倉儲、發電機油槽周邊。控制閥跟開放式撒水系統一樣，具備<b>感知撒水頭、電磁閥、手動啟動</b>三種觸發路徑，也沒有獨立的加壓泵浦——跟撒水系統共用同一顆消防泵浦，泡沫原液儲槽採<b>皮囊式（Bladder Tank）</b>，靠水壓擠壓皮囊排出原液，不需要另外的原液泵。</p>
         </div>
         <div class="col-card">
           <h4>水霧系統（Water Mist System）</h4>
@@ -971,21 +971,21 @@
       <p>本廠泡沫系統的重點有三個：一是「比例混合」——泡沫原液要依固定比例跟水混合成泡沫溶液，再經泡沫噴頭打入空氣才會變成泡沫；二是<b>共用同一顆消防泵浦</b>，沒有獨立加壓；三是控制閥一樣有<b>感知撒水頭／電磁閥／手動啟動</b>三種觸發路徑，任一觸發即可開閥：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">泡沫系統配置示意圖（與撒水系統共用泵浦）</div>
-        <svg viewBox="0 0 980 420" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg2" viewBox="0 0 980 445" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
-            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
-            .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            .tank{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
-            .liquid{fill:var(--accent2);opacity:0.35;}
-            .foam{fill:var(--text);opacity:0.5;}
-            .head-body{fill:var(--green);stroke:var(--green);}
-            .bulb{fill:var(--accent3);}
+            #dg2 .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            #dg2 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg2 .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
+            #dg2 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg2 .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
+            #dg2 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg2 .marker circle{fill:var(--accent);}
+            #dg2 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg2 .tank{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
+            #dg2 .liquid{fill:var(--accent2);opacity:0.35;}
+            #dg2 .foam{fill:var(--text);opacity:0.5;}
+            #dg2 .head-body{fill:var(--green);stroke:var(--green);}
+            #dg2 .bulb{fill:var(--accent3);}
           </style>
 
           <!-- 消防泵浦：與撒水系統共用同一顆 -->
@@ -995,12 +995,15 @@
           <text x="30" y="305" class="lbl">消防泵浦（與撒水系統共用）</text>
           <line x1="114" y1="260" x2="250" y2="260" class="pipe"/>
 
-          <!-- 泡沫原液儲槽 -->
-          <rect x="260" y="330" width="60" height="60" rx="6" class="tank"/>
-          <line x1="268" y1="343" x2="312" y2="343" class="thin"/>
+          <!-- 泡沫原液儲槽（皮囊式）：水壓擠壓皮囊排出原液，不需另設原液泵 -->
+          <line x1="200" y1="260" x2="200" y2="340" class="pipe"/>
+          <line x1="200" y1="340" x2="255" y2="340" class="pipe"/>
+          <rect x="255" y="320" width="70" height="75" rx="8" class="tank"/>
+          <rect x="268" y="330" width="44" height="55" rx="10" fill="var(--accent2)" opacity="0.25" stroke="var(--accent2)" stroke-width="1.5"/>
+          <line x1="290" y1="333" x2="290" y2="382" stroke="var(--muted)" stroke-width="2" stroke-dasharray="2 3"/>
           <g class="marker"><circle cx="290" cy="405" r="11"/><text x="290" y="406">2</text></g>
-          <text x="235" y="370" class="lbl">泡沫原液</text>
-          <line x1="290" y1="330" x2="290" y2="288" class="pipe"/>
+          <text x="235" y="422" class="lbl">泡沫原液儲槽（皮囊式）</text>
+          <line x1="290" y1="320" x2="290" y2="288" class="pipe"/>
 
           <!-- 比例混合裝置 -->
           <polygon points="290,235 325,260 290,285 255,260" class="comp"/>
@@ -1081,7 +1084,7 @@
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span>消防泵浦：與撒水系統共用同一顆，沒有另外的加壓泵浦</li>
-          <li><span class="dnum">2</span>泡沫原液儲槽（Foam Concentrate Tank）</li>
+          <li><span class="dnum">2</span>泡沫原液儲槽（皮囊式 Bladder Tank）：水壓從外側擠壓橡膠皮囊，原液經中央有孔管排出，不需另外設置原液泵浦</li>
           <li><span class="dnum">3</span>比例混合裝置（Proportioner）</li>
           <li><span class="dnum">4</span>控制閥（一齊開放閥）：感知撒水頭／電磁閥／手動啟動任一觸發即開閥</li>
           <li><span class="dnum">5</span>泡沫噴頭（Foam Sprinkler）：泡沫溶液經噴頭打入空氣形成泡沫，多顆覆蓋整個液面，非單一集中式泡沫產生裝置</li>
@@ -1096,18 +1099,18 @@
       <p>水霧系統靠高壓把水打成微米級細霧，管徑比一般撒水系統小很多，噴頭也不是感溫式而是依區域控制閥統一動作：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">水霧系統配置示意圖</div>
-        <svg viewBox="0 0 980 380" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg3" viewBox="0 0 980 380" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .pipe{stroke:var(--accent);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
-            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
-            .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;}
-            .equip{fill:var(--surface2);stroke:var(--accent3);stroke-width:2;}
+            #dg3 .pipe{stroke:var(--accent);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            #dg3 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg3 .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
+            #dg3 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg3 .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
+            #dg3 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg3 .marker circle{fill:var(--accent);}
+            #dg3 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg3 .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;}
+            #dg3 .equip{fill:var(--surface2);stroke:var(--accent3);stroke-width:2;}
           </style>
 
           <!-- 高壓泵浦機組 -->
@@ -1228,17 +1231,17 @@
       <p>前面兩張圖都畫到「感知撒水頭／電磁閥／手動啟動」三條路徑匯入控制閥——這一節參考 Viking 等廠牌的標準說明方式，畫出閥體<b>裡面</b>到底發生什麼事，為什麼這三種觸發方式都能把閥打開。左右兩張圖是<b>同一顆閥</b>的兩種狀態，元件編號相同，只有位置／顏色不同：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">一齊開放閥運作原理：平時關閉 vs. 動作開放</div>
-        <svg viewBox="0 0 1040 560" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg4" viewBox="0 0 1040 560" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .valve-body{fill:none;stroke:var(--border);stroke-width:2.5;}
-            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
-            .titleA{fill:var(--muted);font-size:15px;font-weight:700;font-family:inherit;}
-            .titleB{fill:var(--green);font-size:15px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg4 .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            #dg4 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg4 .valve-body{fill:none;stroke:var(--border);stroke-width:2.5;}
+            #dg4 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg4 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            #dg4 .titleA{fill:var(--muted);font-size:15px;font-weight:700;font-family:inherit;}
+            #dg4 .titleB{fill:var(--green);font-size:15px;font-weight:700;font-family:inherit;}
+            #dg4 .marker circle{fill:var(--accent);}
+            #dg4 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
           </style>
 
           <!-- 分隔線 -->
@@ -1366,17 +1369,17 @@
       <p>從鋼瓶到防護區域的完整路徑：偵測器交叉確認火警 → 控制盤啟動預警與倒數 → 倒數結束促動鋼瓶閥 → 藥劑經管路與噴頭放射入防護區域：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">氣體滅火系統架構示意圖</div>
-        <svg viewBox="0 0 1040 460" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg5" viewBox="0 0 1040 460" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
-            .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            .room{fill:none;stroke:var(--accent3);stroke-width:2;}
-            .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;}
+            #dg5 .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            #dg5 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg5 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg5 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            #dg5 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg5 .marker circle{fill:var(--accent);}
+            #dg5 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg5 .room{fill:none;stroke:var(--accent3);stroke-width:2;}
+            #dg5 .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;}
           </style>
 
           <!-- 鋼瓶組：主鋼瓶＋副鋼瓶（副鋼瓶靠氣壓連動管觸發，非各自接控制盤） -->
@@ -1528,17 +1531,17 @@
       <p>被動式防火的重點都在同一件事：<b>牆、樓板上的每一個穿越點，都要恢復原本的防火時效</b>。以下是三種常見穿越點的正確做法，跟一個最常見的錯誤示範：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">防火區劃穿越點示意圖</div>
-        <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+        <svg id="dg6" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
           <style>
-            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .pipe{stroke:var(--accent);stroke-width:8;fill:none;stroke-linecap:round;}
-            .duct{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
-            .wall{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
-            .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
-            .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
-            .marker circle{fill:var(--accent);}
-            .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            .room{fill:var(--muted);font-size:12px;font-family:inherit;opacity:0.7;}
+            #dg6 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg6 .pipe{stroke:var(--accent);stroke-width:8;fill:none;stroke-linecap:round;}
+            #dg6 .duct{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
+            #dg6 .wall{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
+            #dg6 .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
+            #dg6 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg6 .marker circle{fill:var(--accent);}
+            #dg6 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg6 .room{fill:var(--muted);font-size:12px;font-family:inherit;opacity:0.7;}
           </style>
 
           <!-- 防火區劃牆（貫穿全高） -->
@@ -1557,14 +1560,18 @@
           <text x="580" y="60" class="lbl-strong">防火填塞（Firestop）</text>
           <text x="580" y="78" class="lbl">管線縫隙填滿防火材料，恢復牆體時效</text>
 
-          <!-- Row 2：防火閘門 -->
+          <!-- Row 2：防火閘門（簾幕式，熔片熔解後靠重力／彈簧下降封閉風管） -->
           <rect x="220" y="125" width="560" height="34" class="duct"/>
           <rect x="455" y="125" width="10" height="34" fill="var(--accent3)"/>
+          <line x1="457" y1="131" x2="463" y2="131" stroke="var(--surface)" stroke-width="1"/>
+          <line x1="457" y1="137" x2="463" y2="137" stroke="var(--surface)" stroke-width="1"/>
+          <line x1="457" y1="143" x2="463" y2="143" stroke="var(--surface)" stroke-width="1"/>
+          <line x1="457" y1="149" x2="463" y2="149" stroke="var(--surface)" stroke-width="1"/>
           <line x1="465" y1="125" x2="475" y2="159" class="thin"/>
           <circle cx="470" cy="142" r="4" fill="var(--yellow)"/>
           <g class="marker"><circle cx="540" cy="110" r="12"/><text x="540" y="111">2</text></g>
-          <text x="580" y="115" class="lbl-strong">防火閘門（Fire Damper）</text>
-          <text x="580" y="133" class="lbl">火警時感溫熔片動作，風管內閘門自動關閉</text>
+          <text x="580" y="115" class="lbl-strong">防火閘門（Fire Damper，簾幕式）</text>
+          <text x="580" y="133" class="lbl">感溫熔片約 74°C 熔解，簾幕靠重力／彈簧下降封閉風管</text>
 
           <!-- Row 3：防火門 -->
           <rect x="440" y="185" width="60" height="80" fill="none" stroke="var(--border)" stroke-width="2"/>
