@@ -790,6 +790,10 @@
           <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>Stocker、高架儲存倉儲區</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
         </tbody>
       </table>
+      <div class="callout warn">
+        <div class="callout-icon">📏</div>
+        <div>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>。除了撒水頭型式，同仁最需要注意的是<b>撒水頭下方必須保持至少 45 公分的淨空間</b>——貨架、料架、WIP 或任何物品都不能堆到距離撒水頭 45 公分以內，否則會擋住噴灑角度，火警時水噴不到該擋住的區域，等於局部失去保護。看到 Stocker 區堆貨快頂到撒水頭，要主動反映。</div>
+      </div>
       <div class="callout green">
         <div class="callout-icon">✅</div>
         <div>常見迷思先破解：撒水頭是<b>個別動作</b>的——濕式與 ESFR 系統的撒水頭各自有感溫元件，只有真的被高溫觸發的那一顆才會出水；只有<b>開放式（Deluge）</b>系統例外，它的撒水頭本身沒有感溫元件，是靠獨立偵測系統觸發一齊開放閥後，全區撒水頭才會同時放射。</div>
@@ -804,7 +808,6 @@
             .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
             .pipe-test{stroke:var(--yellow);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 9;}
             .thin{stroke:var(--muted);stroke-width:2;fill:none;}
-            .wall{stroke:var(--border);stroke-width:3;fill:none;stroke-dasharray:5 4;}
             .valve-body{fill:var(--surface);stroke:var(--border);stroke-width:2;}
             .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
             .lbl{fill:var(--muted);font-size:13px;font-family:inherit;}
@@ -848,20 +851,19 @@
           <circle cx="240" cy="440" r="16" class="comp"/>
           <g class="marker"><circle cx="240" cy="403" r="11"/><text x="240" y="404">3</text></g>
 
-          <!-- 遲滯室 → 壓力開關（往上）與水力警鈴（續往右） -->
-          <line x1="256" y1="440" x2="460" y2="440" class="thin"/>
-          <line x1="300" y1="440" x2="300" y2="405" class="thin"/>
-          <rect x="292" y="389" width="16" height="16" class="comp"/>
-          <g class="marker"><circle cx="300" cy="366" r="11"/><text x="300" y="367">5</text></g>
-          <line x1="300" y1="389" x2="300" y2="340" class="thin" stroke-dasharray="3 3"/>
-          <rect x="265" y="310" width="70" height="28" rx="4" class="fcp-box"/>
-          <text x="300" y="328" text-anchor="middle" class="lbl-strong">FCP</text>
+          <!-- 遲滯室 → 壓力開關（往上） -->
+          <line x1="240" y1="424" x2="240" y2="405" class="thin"/>
+          <rect x="232" y="389" width="16" height="16" class="comp"/>
+          <g class="marker"><circle cx="240" cy="366" r="11"/><text x="240" y="367">5</text></g>
+          <line x1="240" y1="389" x2="240" y2="340" class="thin" stroke-dasharray="3 3"/>
+          <rect x="205" y="310" width="70" height="28" rx="4" class="fcp-box"/>
+          <text x="240" y="328" text-anchor="middle" class="lbl-strong">FCP</text>
 
-          <!-- 戶外牆與水力警鈴/水鐘（裝於室外） -->
-          <line x1="420" y1="410" x2="420" y2="472" class="wall"/>
-          <text x="393" y="398" class="lbl">戶外牆</text>
-          <path d="M 455 428 a 18 18 0 0 0 0 24 l 10 -7 l 0 -10 z" class="comp"/>
-          <g class="marker"><circle cx="470" cy="403" r="11"/><text x="470" y="404">4</text></g>
+          <!-- 水力警鈴/水鐘：就近裝設於 ACV／遲滯室旁邊，非戶外 -->
+          <line x1="240" y1="456" x2="240" y2="480" class="thin"/>
+          <line x1="240" y1="480" x2="270" y2="480" class="thin"/>
+          <path d="M 275 468 a 18 18 0 0 1 0 24 l -10 -7 l 0 -10 z" class="comp"/>
+          <g class="marker"><circle cx="300" cy="480" r="11"/><text x="300" y="481">4</text></g>
 
           <!-- 立管 Riser（ACV 頂端直上，主排水閥於途中側接） -->
           <line x1="140" y1="413" x2="140" y2="120" class="pipe"/>
@@ -928,12 +930,12 @@
           <g class="marker"><circle cx="530" cy="545" r="11"/><text x="530" y="546">11</text></g>
           <text x="370" y="562" class="lbl">試驗排水管線 → 拉回 ACV／主排水閥附近（單人可同時確認流量與警報）</text>
         </svg>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；紅點＝撒水頭感熱玻璃球；虛線牆＝室內外分界；黃色虛線＝末端查驗閥的試驗排水管線</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；紅點＝撒水頭感熱玻璃球；黃色虛線＝末端查驗閥的試驗排水管線</div>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span>OS&amp;Y 閘閥（主控制閥，常開＋監視開關）</li>
           <li><span class="dnum">2</span>ACV 查驗逆止閥（Alarm Check Valve），警報接口設於閥體側邊</li>
           <li><span class="dnum">3</span>遲滯室（Retard Chamber，過濾水鎚誤報）</li>
-          <li><span class="dnum">4</span>水力警鈴／水鐘（Water Motor Gong，裝設於室外牆面）</li>
+          <li><span class="dnum">4</span>水力警鈴／水鐘（Water Motor Gong，就近裝設於 ACV／遲滯室旁邊）</li>
           <li><span class="dnum">5</span>壓力開關（Pressure Switch，訊號送 FCP）</li>
           <li><span class="dnum">6</span>主排水閥（Main Drain Valve，自閥體上方系統側另接，非警報管路）</li>
           <li><span class="dnum">7</span>立管（Riser）</li>
@@ -1006,16 +1008,8 @@
           <text x="300" y="245" text-anchor="middle" class="lbl">比例混合裝置</text>
           <line x1="335" y1="200" x2="470" y2="200" class="pipe"/>
 
-          <!-- 三種啟動方式：感知撒水頭／電磁閥／手動啟動，任一觸發即可開閥 -->
-          <line x1="400" y1="25" x2="400" y2="60" class="thin"/>
-          <circle cx="400" cy="63" r="3" class="bulb"/>
-          <circle cx="400" cy="69" r="5" class="head-body"/>
-          <line x1="394" y1="76" x2="391" y2="88" class="thin"/>
-          <line x1="400" y1="77" x2="400" y2="90" class="thin"/>
-          <line x1="406" y1="76" x2="409" y2="88" class="thin"/>
-          <line x1="400" y1="90" x2="400" y2="155" class="thin"/>
-          <g class="marker"><circle cx="368" cy="63" r="11"/><text x="368" y="64">7</text></g>
-          <text x="350" y="18" class="lbl">感知撒水頭</text>
+          <!-- 三種啟動方式：感知撒水頭（拉到現場保護對象上方）／電磁閥／手動啟動，任一觸發即可開閥 -->
+          <line x1="430" y1="70" x2="430" y2="145" class="thin"/>
 
           <rect x="486" y="90" width="20" height="20" rx="3" class="comp"/>
           <path d="M 489 96 h 14 M 489 100 h 14 M 489 104 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
@@ -1053,6 +1047,18 @@
           <g class="marker"><circle cx="850" cy="100" r="11"/><text x="850" y="101">6</text></g>
           <text x="770" y="90" class="lbl">泡沫覆蓋液面（隔絕氧氣與可燃蒸氣）</text>
           <text x="800" y="255" class="lbl-strong" fill="var(--text)">易燃液體</text>
+
+          <!-- 感知撒水頭：拉到現場（保護對象上方），非裝在閥室旁 -->
+          <line x1="900" y1="15" x2="900" y2="38" class="thin"/>
+          <circle cx="900" cy="41" r="3" class="bulb"/>
+          <circle cx="900" cy="47" r="5" class="head-body"/>
+          <line x1="894" y1="54" x2="891" y2="64" class="thin"/>
+          <line x1="900" y1="55" x2="900" y2="66" class="thin"/>
+          <line x1="906" y1="54" x2="909" y2="64" class="thin"/>
+          <line x1="900" y1="66" x2="900" y2="70" class="thin"/>
+          <line x1="900" y1="70" x2="430" y2="70" class="thin"/>
+          <g class="marker"><circle cx="900" cy="20" r="11"/><text x="900" y="21">7</text></g>
+          <text x="795" y="25" class="lbl">感知撒水頭</text>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span>消防泵浦／水源</li>
@@ -1061,7 +1067,7 @@
           <li><span class="dnum">4</span>控制閥（一齊開放閥／區域閥）</li>
           <li><span class="dnum">5</span>泡沫產生裝置（Foam Maker／泡沫射水槍）</li>
           <li><span class="dnum">6</span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</li>
-          <li><span class="dnum">7</span>感知撒水頭（氣動／液壓觸發，動作時洩壓觸動控制閥）</li>
+          <li><span class="dnum">7</span>感知撒水頭（裝在保護對象上方現場，非閥室旁；氣動／液壓觸發，經長距離導管線洩壓觸動控制閥）</li>
           <li><span class="dnum">8</span>電磁閥（受 <code>FCP</code> 訊號啟動）</li>
           <li><span class="dnum">9</span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</li>
         </ol>
@@ -1098,16 +1104,8 @@
           <text x="215" y="255" class="lbl">蓄壓／增壓裝置</text>
           <line x1="285" y1="207" x2="390" y2="207" class="pipe"/>
 
-          <!-- 三種啟動方式：感知撒水頭／電磁閥／手動啟動，任一觸發即可開閥 -->
-          <line x1="340" y1="10" x2="340" y2="42" class="thin"/>
-          <circle cx="340" cy="45" r="3" class="bulb"/>
-          <circle cx="340" cy="51" r="5" class="head-body"/>
-          <line x1="334" y1="58" x2="331" y2="70" class="thin"/>
-          <line x1="340" y1="59" x2="340" y2="72" class="thin"/>
-          <line x1="346" y1="58" x2="349" y2="70" class="thin"/>
-          <line x1="340" y1="72" x2="340" y2="145" class="thin"/>
-          <g class="marker"><circle cx="308" cy="48" r="11"/><text x="308" y="49">7</text></g>
-          <text x="290" y="8" class="lbl">感知撒水頭</text>
+          <!-- 三種啟動方式：感知撒水頭（拉到現場保護對象上方）／電磁閥／手動啟動，任一觸發即可開閥 -->
+          <line x1="340" y1="70" x2="340" y2="145" class="thin"/>
 
           <rect x="406" y="75" width="20" height="20" rx="3" class="comp"/>
           <path d="M 409 81 h 14 M 409 85 h 14 M 409 89 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
@@ -1161,6 +1159,18 @@
 
           <rect x="470" y="220" width="380" height="90" rx="6" class="equip"/>
           <g class="marker"><circle cx="660" cy="335" r="11"/><text x="660" y="336">6</text></g>
+
+          <!-- 感知撒水頭：拉到現場（保護對象上方），非裝在閥室旁 -->
+          <line x1="760" y1="15" x2="760" y2="38" class="thin"/>
+          <circle cx="760" cy="41" r="3" class="bulb"/>
+          <circle cx="760" cy="47" r="5" class="head-body"/>
+          <line x1="754" y1="54" x2="751" y2="64" class="thin"/>
+          <line x1="760" y1="55" x2="760" y2="66" class="thin"/>
+          <line x1="766" y1="54" x2="769" y2="64" class="thin"/>
+          <line x1="760" y1="66" x2="760" y2="70" class="thin"/>
+          <line x1="760" y1="70" x2="340" y2="70" class="thin"/>
+          <g class="marker"><circle cx="760" cy="20" r="11"/><text x="760" y="21">7</text></g>
+          <text x="655" y="25" class="lbl">感知撒水頭</text>
           <text x="560" y="270" class="lbl-strong">保護對象（電氣室／發電機等）</text>
         </svg>
         <ol class="diagram-legend">
@@ -1170,10 +1180,106 @@
           <li><span class="dnum">4</span>高壓配水管路（管徑較一般撒水系統小）</li>
           <li><span class="dnum">5</span>水霧噴頭（微米級細水霧，降溫＋窒息＋遮蔽輻射熱）</li>
           <li><span class="dnum">6</span>保護對象（電氣室、發電機房、渦輪機等怕水損場所）</li>
-          <li><span class="dnum">7</span>感知撒水頭（氣動／液壓觸發，動作時洩壓觸動控制閥）</li>
+          <li><span class="dnum">7</span>感知撒水頭（裝在保護對象上方現場，非閥室旁；氣動／液壓觸發，經導管線洩壓觸動控制閥）</li>
           <li><span class="dnum">8</span>電磁閥（受 <code>FCP</code> 訊號啟動）</li>
           <li><span class="dnum">9</span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</li>
         </ol>
+      </div>
+
+      <h3>一齊開放閥（Deluge Valve）運作原理</h3>
+      <p>前面兩張圖都畫到「感知撒水頭／電磁閥／手動啟動」三條路徑匯入控制閥——這一節說明閥體<b>裡面</b>到底發生什麼事，為什麼這三種觸發方式都能把閥打開：</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">一齊開放閥運作原理：平時關閉 vs. 動作開放</div>
+        <svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            .valve-body{fill:none;stroke:var(--border);stroke-width:2.5;}
+            .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            .lbl-strong{fill:var(--text);font-size:13.5px;font-weight:700;font-family:inherit;}
+            .titleA{fill:var(--muted);font-size:14px;font-weight:700;font-family:inherit;}
+            .titleB{fill:var(--green);font-size:14px;font-weight:700;font-family:inherit;}
+            .pressurized{fill:var(--accent);opacity:0.32;}
+            .empty{fill:none;}
+          </style>
+
+          <!-- 分隔線 -->
+          <line x1="480" y1="20" x2="480" y2="400" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+          <!-- ══════ Panel A：平時關閉 ══════ -->
+          <text x="180" y="30" text-anchor="middle" class="titleA">平時：關閉狀態</text>
+
+          <line x1="180" y1="45" x2="180" y2="75" class="thin"/>
+          <text x="180" y="42" text-anchor="middle" class="lbl" fill="var(--muted)"></text>
+          <text x="255" y="65" class="lbl">系統側（乾，無水）</text>
+
+          <rect x="120" y="75" width="120" height="215" rx="10" class="valve-body"/>
+          <rect x="126" y="81" width="108" height="94" class="empty"/>
+          <rect x="126" y="196" width="108" height="88" fill="var(--accent)" opacity="0.32"/>
+          <rect x="120" y="177" width="120" height="14" fill="var(--muted)"/>
+          <text x="255" y="185" class="lbl">隔膜（關閉，坐於閥座封住通道）</text>
+
+          <line x1="180" y1="290" x2="180" y2="330" class="pipe"/>
+          <text x="180" y="345" text-anchor="middle" class="lbl">供水（設計壓力，常時有壓）</text>
+
+          <!-- 隔膜室（有壓） -->
+          <rect x="250" y="95" width="46" height="55" rx="6" class="comp"/>
+          <rect x="253" y="98" width="40" height="49" fill="var(--accent)" opacity="0.32"/>
+          <text x="273" y="90" text-anchor="middle" class="lbl">隔膜室</text>
+          <line x1="250" y1="120" x2="234" y2="120" class="thin"/>
+          <line x1="273" y1="150" x2="273" y2="220" class="thin"/>
+          <line x1="273" y1="220" x2="234" y2="220" class="thin"/>
+          <line x1="258" y1="214" x2="266" y2="226" stroke="var(--muted)" stroke-width="2"/>
+          <line x1="266" y1="214" x2="258" y2="226" stroke="var(--muted)" stroke-width="2"/>
+          <text x="298" y="235" class="lbl">補壓節流孔</text>
+
+          <line x1="296" y1="115" x2="330" y2="115" class="thin"/>
+          <rect x="330" y="105" width="18" height="20" class="valve-body"/>
+          <text x="358" y="119" class="lbl">感知撒水頭／電磁閥／</text>
+          <text x="358" y="134" class="lbl">手動閥（均未動作）</text>
+
+          <text x="180" y="378" text-anchor="middle" class="lbl-strong">隔膜室有壓，壓住隔膜 → 閥關閉</text>
+
+          <!-- ══════ Panel B：動作開放 ══════ -->
+          <text x="660" y="30" text-anchor="middle" class="titleB">動作時：開放狀態</text>
+
+          <line x1="660" y1="45" x2="660" y2="75" class="pipe"/>
+          <polygon points="652,50 668,50 660,38" fill="var(--accent)"/>
+          <text x="735" y="65" class="lbl">系統側（水流向撒水頭／</text>
+          <text x="735" y="80" class="lbl">泡沫產生裝置等）</text>
+
+          <rect x="600" y="75" width="120" height="215" rx="10" class="valve-body"/>
+          <rect x="606" y="81" width="108" height="94" fill="var(--accent)" opacity="0.32"/>
+          <rect x="606" y="196" width="108" height="88" fill="var(--accent)" opacity="0.32"/>
+          <rect x="640" y="100" width="40" height="14" fill="var(--muted)" opacity="0.5"/>
+          <line x1="630" y1="107" x2="650" y2="107" stroke="var(--accent)" stroke-width="2"/>
+          <polygon points="644,98 656,98 650,90" fill="var(--accent)"/>
+          <text x="735" y="105" class="lbl">隔膜（頂開，通道開放）</text>
+
+          <line x1="660" y1="290" x2="660" y2="330" class="pipe"/>
+          <polygon points="652,295 668,295 660,283" fill="var(--accent)"/>
+          <text x="660" y="345" text-anchor="middle" class="lbl">供水（設計壓力，常時有壓）</text>
+
+          <!-- 隔膜室（洩壓，空） -->
+          <rect x="730" y="95" width="46" height="55" rx="6" class="comp" stroke-dasharray="4 3"/>
+          <text x="753" y="90" text-anchor="middle" class="lbl">隔膜室（洩壓）</text>
+          <line x1="730" y1="120" x2="714" y2="120" class="thin"/>
+          <line x1="753" y1="150" x2="753" y2="220" class="thin" stroke-dasharray="3 3"/>
+          <line x1="753" y1="220" x2="714" y2="220" class="thin" stroke-dasharray="3 3"/>
+          <line x1="738" y1="214" x2="746" y2="226" stroke="var(--muted)" stroke-width="2"/>
+          <line x1="746" y1="214" x2="738" y2="226" stroke="var(--muted)" stroke-width="2"/>
+          <text x="778" y="235" class="lbl">補壓跟不上洩壓速度</text>
+
+          <line x1="776" y1="115" x2="810" y2="115" stroke="var(--accent3)" stroke-width="2" stroke-dasharray="3 3"/>
+          <polygon points="810,110 822,115 810,120" fill="var(--accent3)"/>
+          <rect x="828" y="105" width="18" height="20" fill="var(--accent3)" opacity="0.25" stroke="var(--accent3)" stroke-width="2"/>
+          <text x="778" y="145" class="lbl">感知撒水頭／電磁閥／</text>
+          <text x="778" y="160" class="lbl">手動閥任一個動作 → 洩壓</text>
+
+          <text x="660" y="378" text-anchor="middle" class="titleB">隔膜室洩壓 → 供水頂開隔膜 → 開閥</text>
+        </svg>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">核心原理：隔膜室平時靠水壓「壓住」隔膜使閥保持關閉；感知撒水頭、電磁閥、手動閥三種觸發方式，做的都是同一件事——讓隔膜室洩壓。只要洩壓，供水側壓力就會頂開隔膜，水流向系統側，三者達到的效果完全相同，差別只在「用什麼方式洩壓」。</div>
       </div>
     </div>
 
@@ -1431,6 +1537,7 @@
           <tr><td><code>Deluge</code></td><td>開放式撒水系統，撒水頭本身無感溫元件，由偵測系統觸發一齊開放閥後全區同時放射</td></tr>
           <tr><td><code>ESFR</code></td><td>早期抑制快速反應型撒水頭，用於高架儲存等高火載量場所</td></tr>
           <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
+          <tr><td><code>K8</code></td><td>撒水頭 K 因數（K-factor），代表出水口流量特性，本廠 Stocker 採用 K8 撒水頭，下方需保持 45 公分淨空間</td></tr>
           <tr><td>泡沫系統</td><td>Foam System，泡沫覆蓋液面隔絕氧氣與可燃蒸氣，用於易燃液體火災</td></tr>
           <tr><td>水霧系統</td><td>Water Mist System，高壓細水霧，兼具降溫、窒息、遮蔽輻射熱，水損風險低於一般撒水</td></tr>
           <tr><td><code>IG-541</code></td><td>惰性氣體滅火藥劑（N₂ 52%／Ar 40%／CO₂ 8%，商品名 Inergen），靠稀釋氧氣滅火，滅火後無殘留，本廠用於一般機台／控制室等場所</td></tr>
