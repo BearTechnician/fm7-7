@@ -719,7 +719,7 @@
       <ul class="steps alpha">
         <li>偵測器（煙、火焰、溫度或氣體）偵測到異常，送訊號給火警受信總機（<code>FCP</code>）</li>
         <li>受信總機顯示發生區域（Zone），現場警報器（蜂鳴器＋閃燈）動作，廣播系統啟動</li>
-        <li>若確認為真實火警，相關撒水區域或氣體滅火區域啟動抑制動作；製程端可能連動緊急遮斷（ESD）關閉氣體／電力供應</li>
+        <li>若確認為真實火警，相關撒水區域或氣體滅火區域啟動抑制動作；製程端可能連動緊急關斷（EMO）關閉氣體／電力供應</li>
         <li>防火門、防火閘門等被動防火設施發揮作用，把火煙侷限在單一防火區劃內</li>
         <li>人員依疏散路線撤離至集合點，消防隊或緊急應變小組（ERT）到場處理</li>
       </ul>
@@ -1006,18 +1006,37 @@
           <text x="300" y="245" text-anchor="middle" class="lbl">比例混合裝置</text>
           <line x1="335" y1="200" x2="470" y2="200" class="pipe"/>
 
-          <!-- 偵測系統觸發（自動，非人工） -->
-          <circle cx="450" cy="55" r="15" fill="var(--surface2)" stroke="var(--accent3)" stroke-width="2"/>
-          <path d="M 450 46 q -6 8 0 16 q 6 -8 0 -16 z" fill="var(--accent3)"/>
-          <g class="marker"><circle cx="415" cy="55" r="11"/><text x="415" y="56">7</text></g>
-          <text x="470" y="51" class="lbl">偵測系統觸發（自動開放，非人工操作）</text>
-          <line x1="458" y1="66" x2="494" y2="184" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <polygon points="494,184 486,177 496,171" fill="var(--accent3)"/>
+          <!-- 三種啟動方式：感知撒水頭／電磁閥／手動啟動，任一觸發即可開閥 -->
+          <line x1="400" y1="25" x2="400" y2="60" class="thin"/>
+          <circle cx="400" cy="63" r="3" class="bulb"/>
+          <circle cx="400" cy="69" r="5" class="head-body"/>
+          <line x1="394" y1="76" x2="391" y2="88" class="thin"/>
+          <line x1="400" y1="77" x2="400" y2="90" class="thin"/>
+          <line x1="406" y1="76" x2="409" y2="88" class="thin"/>
+          <line x1="400" y1="90" x2="400" y2="155" class="thin"/>
+          <g class="marker"><circle cx="368" cy="63" r="11"/><text x="368" y="64">7</text></g>
+          <text x="350" y="18" class="lbl">感知撒水頭</text>
+
+          <rect x="486" y="90" width="20" height="20" rx="3" class="comp"/>
+          <path d="M 489 96 h 14 M 489 100 h 14 M 489 104 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
+          <line x1="496" y1="110" x2="496" y2="155" class="thin"/>
+          <line x1="530" y1="55" x2="502" y2="89" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <g class="marker"><circle cx="460" cy="100" r="11"/><text x="460" y="101">8</text></g>
+          <text x="510" y="80" class="lbl">電磁閥</text>
+          <text x="505" y="48" class="lbl">FCP 訊號</text>
+
+          <circle cx="600" cy="118" r="9" fill="none" stroke="var(--accent3)" stroke-width="3"/>
+          <line x1="600" y1="127" x2="600" y2="155" class="thin"/>
+          <g class="marker"><circle cx="630" cy="100" r="11"/><text x="630" y="101">9</text></g>
+          <text x="605" y="60" class="lbl">手動啟動</text>
+
+          <line x1="400" y1="155" x2="600" y2="155" class="thin"/>
+          <line x1="496" y1="155" x2="496" y2="188" class="pipe"/>
 
           <!-- 控制閥 -->
           <polygon points="478,188 478,212 496,200" class="valve-body"/>
           <polygon points="514,188 514,212 496,200" class="valve-body"/>
-          <g class="marker"><circle cx="496" cy="160" r="11"/><text x="496" y="161">4</text></g>
+          <g class="marker"><circle cx="540" cy="225" r="11"/><text x="540" y="226">4</text></g>
           <text x="496" y="245" text-anchor="middle" class="lbl">控制閥</text>
           <line x1="514" y1="200" x2="640" y2="200" class="pipe"/>
 
@@ -1042,7 +1061,9 @@
           <li><span class="dnum">4</span>控制閥（一齊開放閥／區域閥）</li>
           <li><span class="dnum">5</span>泡沫產生裝置（Foam Maker／泡沫射水槍）</li>
           <li><span class="dnum">6</span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</li>
-          <li><span class="dnum">7</span>偵測系統（VESDA／火焰偵測器等）觸發控制閥自動開放，非人工操作</li>
+          <li><span class="dnum">7</span>感知撒水頭（氣動／液壓觸發，動作時洩壓觸動控制閥）</li>
+          <li><span class="dnum">8</span>電磁閥（受 <code>FCP</code> 訊號啟動）</li>
+          <li><span class="dnum">9</span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</li>
         </ol>
       </div>
 
@@ -1077,18 +1098,37 @@
           <text x="215" y="255" class="lbl">蓄壓／增壓裝置</text>
           <line x1="285" y1="207" x2="390" y2="207" class="pipe"/>
 
-          <!-- 偵測系統觸發（自動，非人工） -->
-          <circle cx="360" cy="55" r="15" fill="var(--surface2)" stroke="var(--accent3)" stroke-width="2"/>
-          <path d="M 360 46 q -6 8 0 16 q 6 -8 0 -16 z" fill="var(--accent3)"/>
-          <g class="marker"><circle cx="325" cy="55" r="11"/><text x="325" y="56">7</text></g>
-          <text x="380" y="51" class="lbl">偵測系統觸發（自動開放，非人工操作）</text>
-          <line x1="368" y1="66" x2="410" y2="192" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <polygon points="410,192 402,185 412,179" fill="var(--accent3)"/>
+          <!-- 三種啟動方式：感知撒水頭／電磁閥／手動啟動，任一觸發即可開閥 -->
+          <line x1="340" y1="10" x2="340" y2="42" class="thin"/>
+          <circle cx="340" cy="45" r="3" class="bulb"/>
+          <circle cx="340" cy="51" r="5" class="head-body"/>
+          <line x1="334" y1="58" x2="331" y2="70" class="thin"/>
+          <line x1="340" y1="59" x2="340" y2="72" class="thin"/>
+          <line x1="346" y1="58" x2="349" y2="70" class="thin"/>
+          <line x1="340" y1="72" x2="340" y2="145" class="thin"/>
+          <g class="marker"><circle cx="308" cy="48" r="11"/><text x="308" y="49">7</text></g>
+          <text x="290" y="8" class="lbl">感知撒水頭</text>
+
+          <rect x="406" y="75" width="20" height="20" rx="3" class="comp"/>
+          <path d="M 409 81 h 14 M 409 85 h 14 M 409 89 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
+          <line x1="416" y1="95" x2="416" y2="145" class="thin"/>
+          <line x1="450" y1="40" x2="422" y2="74" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <g class="marker"><circle cx="380" cy="85" r="11"/><text x="380" y="86">8</text></g>
+          <text x="426" y="70" class="lbl">電磁閥</text>
+          <text x="425" y="33" class="lbl">FCP 訊號</text>
+
+          <circle cx="490" cy="100" r="9" fill="none" stroke="var(--accent3)" stroke-width="3"/>
+          <line x1="490" y1="109" x2="490" y2="145" class="thin"/>
+          <g class="marker"><circle cx="520" cy="85" r="11"/><text x="520" y="86">9</text></g>
+          <text x="495" y="45" class="lbl">手動啟動</text>
+
+          <line x1="340" y1="145" x2="490" y2="145" class="thin"/>
+          <line x1="416" y1="145" x2="416" y2="195" class="pipe"/>
 
           <!-- 分區控制閥 -->
           <polygon points="398,195 398,219 416,207" class="valve-body"/>
           <polygon points="434,195 434,219 416,207" class="valve-body"/>
-          <g class="marker"><circle cx="416" cy="167" r="11"/><text x="416" y="168">3</text></g>
+          <g class="marker"><circle cx="455" cy="225" r="11"/><text x="455" y="226">3</text></g>
           <text x="375" y="250" class="lbl">分區控制閥</text>
 
           <!-- 高壓配水管路 -->
@@ -1130,7 +1170,9 @@
           <li><span class="dnum">4</span>高壓配水管路（管徑較一般撒水系統小）</li>
           <li><span class="dnum">5</span>水霧噴頭（微米級細水霧，降溫＋窒息＋遮蔽輻射熱）</li>
           <li><span class="dnum">6</span>保護對象（電氣室、發電機房、渦輪機等怕水損場所）</li>
-          <li><span class="dnum">7</span>偵測系統（VESDA／火焰偵測器等）觸發分區控制閥自動開放，非人工操作</li>
+          <li><span class="dnum">7</span>感知撒水頭（氣動／液壓觸發，動作時洩壓觸動控制閥）</li>
+          <li><span class="dnum">8</span>電磁閥（受 <code>FCP</code> 訊號啟動）</li>
+          <li><span class="dnum">9</span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</li>
         </ol>
       </div>
     </div>
@@ -1141,15 +1183,15 @@
         <div class="section-num purple">7</div>
         <h2>氣體滅火系統</h2>
       </div>
-      <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房。<b>本廠氣體滅火系統統一採用 <code>IG-541</code>（惰性氣體）</b>，不是化學型潔淨氣體（如 FM-200、Novec 1230），也不是 CO₂，同仁看到氣體滅火鋼瓶／警示牌時可以直接認出來。</p>
+      <p>凡是怕水損、需要保護精密設備或密閉空間的場所，會改用氣體滅火系統，常見於機台內部、地板下夾層（sub-fab）、控制室、資料機房。<b>本廠氣體滅火系統有 <code>IG-541</code>（惰性氣體）與 <code>CO₂</code> 兩種</b>，不是化學型潔淨氣體（如 FM-200、Novec 1230）。兩種怎麼分辨、危險程度差在哪，同仁要清楚：</p>
       <div class="two-col">
         <div class="col-card">
-          <h4><code>IG-541</code> 是什麼</h4>
-          <p style="margin:0;">由氮氣（N₂）52%、氬氣（Ar）40%、二氧化碳（CO₂）8% 混合而成的惰性氣體滅火藥劑（商品名常見為 Inergen，屬同一種配方）。三種成分都是空氣本來就有的氣體，滅火後<b>不留任何殘留物</b>、不導電、不會分解出腐蝕性或毒性副產物，對機台與精密電子設備友善。</p>
+          <h4><code>IG-541</code>（惰性氣體）</h4>
+          <p style="margin:0;">由氮氣（N₂）52%、氬氣（Ar）40%、二氧化碳（CO₂）8% 混合而成（商品名常見為 Inergen）。靠<b>稀釋氧氣</b>滅火，放射後把區域氧氣濃度從約 20.9% 降到約 12–13%，濃度仍明顯低於正常空氣、對人體有風險，但設計上讓人員還能在短時間內完成撤離，不會像 CO₂ 那樣立即致命。滅火後不留殘留物，對精密設備友善。</p>
         </div>
         <div class="col-card">
-          <h4>滅火原理：稀釋氧氣，不是降溫</h4>
-          <p style="margin:0;">放射後 <code>IG-541</code> 會把防護區域的氧氣濃度從約 20.9% 降到約 12–13%，低於一般燃燒所需濃度，火自然熄滅。這跟撒水／水霧的「降溫」機制完全不同，也跟 CO₂ 那種會把氧氣壓到人體無法呼吸程度的做法不一樣——但濃度仍明顯低於正常空氣，<b>對人體還是有風險</b>，一樣要嚴格禁止進入。</p>
+          <h4><code>CO₂</code>（二氧化碳）</h4>
+          <p style="margin:0;">滅火效果強、成本較低，但放射後會把氧氣濃度壓到人體<b>無法呼吸</b>的程度，短時間內即可致命，是全廠危險性最高的滅火系統之一。只用於平常<b>無人員常駐</b>的密閉空間或特定設備內部，防護區域外一定有明顯警示牌與連鎖裝置，禁止在警示動作時進入。</p>
         </div>
       </div>
       <h3>動作流程：偵測 → 預警延遲 → 放射</h3>
@@ -1157,11 +1199,11 @@
         <li>該區偵測器（通常是雙偵測器連動，如兩組煙偵測器或煙＋熱偵測器都動作）確認火警，送訊號給氣體滅火控制盤</li>
         <li>控制盤啟動<b>預警警報</b>（警示燈＋警報聲），同時開始放電延遲倒數（常見 30–60 秒），讓區域內人員有時間撤離</li>
         <li>若有人員仍在區內、確認是誤報或需要更多時間，可按下<b>延遲／中止按鈕（Abort Switch）</b>暫停倒數，放開後才會繼續倒數；<b>Abort Switch 不能防止放電，只能爭取多一點撤離時間</b></li>
-        <li>倒數結束、確認人員已撤離後，鋼瓶閥自動開啟，<code>IG-541</code> 經管路與噴頭放射入防護區域</li>
+        <li>倒數結束、確認人員已撤離後，鋼瓶閥自動開啟，藥劑經管路與噴頭放射入防護區域</li>
       </ul>
       <div class="callout danger">
         <div class="callout-icon">☠️</div>
-        <div>聽到<b>預警警報</b>（放電前的警示燈與警報聲）一律立即撤離，不要留下來看、也不要進去查看設備。放電後的區域氧氣濃度偏低，<b>絕對不能進入或停留</b>，需等現場確認通風換氣完成、氧氣濃度回復正常，才能由受過訓練的人員進入。</div>
+        <div>聽到<b>預警警報</b>（放電前的警示燈與警報聲）一律立即撤離，不要留下來看、也不要進去查看設備。放電後的區域氧氣濃度偏低，<b>絕對不能進入或停留</b>，需等現場確認通風換氣完成、氧氣濃度回復正常，才能由受過訓練的人員進入。<b><code>CO₂</code> 防護區域尤其要小心</b>——氧氣濃度會被壓到人體無法呼吸的程度，比 <code>IG-541</code> 更危險，看到 <code>CO₂</code> 警示牌與連鎖裝置絕對不能解除或繞過。</div>
       </div>
     </div>
 
@@ -1175,7 +1217,7 @@
       <ul class="steps">
         <li><strong>氣體鋼瓶櫃</strong>：獨立偵測（可燃／毒性氣體）＋自動關閉閥（excess flow valve），異常時自動切斷氣體供應，不需要人為介入</li>
         <li><strong>排氣管路與洗滌塔（Scrubber）</strong>：管路內部設有偵測與撒水，防止可燃氣體殘留物在風管內起火延燒</li>
-        <li><strong>緊急遮斷（ESD, Emergency Shutdown）</strong>：幾乎每個 Bay 都有的手動按鈕，按下後會切斷該區氣體或電力供應，是最後一道人為防線，平常要知道位置在哪</li>
+        <li><strong>緊急關斷（EMO, Emergency Machine Off）</strong>：幾乎每個 Bay 都有的手動按鈕，按下後會切斷該區氣體或電力供應，是最後一道人為防線，平常要知道位置在哪</li>
       </ul>
       <div class="callout info">
         <div class="callout-icon">🔗</div>
@@ -1233,8 +1275,6 @@
         <tbody>
           <tr><td><code>ACV</code>／查驗閥（Alarm Check Valve）</td><td>裝在濕式撒水系統立管上，內建止回閥＋遲滯室（retard chamber）＋壓力開關／水力警鈴。撒水頭出水時觸發警報訊號送給 <code>FCP</code>；遲滯室的作用是過濾掉單純水鎚、壓力波動造成的誤報，只有持續穩定水流才會觸發警報</td></tr>
           <tr><td>OS&amp;Y 閘閥（Outside Screw &amp; Yoke）</td><td>系統主要遮斷閥，閥桿露在閥體外側，從露出長度就能直接判斷全開或全閉。正常運轉時必須維持<b>全開</b>並上鎖／裝設監視開關（tamper switch），非預期關閉會送出故障訊號給 <code>FCP</code></td></tr>
-          <tr><td>蝶閥（Butterfly Valve）</td><td>功能同 OS&amp;Y 閘閥，四分之一圈開關，同樣需配置監視開關監控閥位</td></tr>
-          <tr><td>PIV 標示閥（Post Indicator Valve）</td><td>埋在地下消防水管的遮斷閥，透過地面上的指示桿顯示 OPEN／SHUT，常見於室外消防管線的分段閥</td></tr>
           <tr><td>水流指示器（Flow Switch）</td><td>偵測特定分區管路是否有水流通過，判斷是「哪一區」的撒水頭動作，訊號送到 <code>FCP</code> 顯示對應位置</td></tr>
           <tr><td>壓力開關（Pressure Switch）</td><td>偵測系統壓力異常（過高／過低），例如 ACV／Deluge Valve 動作時的壓力變化，送出訊號給 <code>FCP</code></td></tr>
           <tr><td>試驗放水閥（Test &amp; Drain Valve）</td><td>功能測試與維護用，定期開啟驗證水流警報與泵浦連動是否正常，維修前也用它排空管路存水</td></tr>
@@ -1272,7 +1312,7 @@
       <ul class="steps alpha">
         <li>先確認漏水位置與範圍：是撒水頭本身、管路接頭，還是閥件本體滲漏</li>
         <li>檢查該分區的水流指示器／壓力開關是否同時有異常訊號，判斷是管路真的破損，還是單純表面凝結水</li>
-        <li>找到對應「受影響分區」的隔離閥（OS&amp;Y／蝶閥）關閉，<b>不要</b>關到上游主閥，避免波及其他分區的保護</li>
+        <li>找到對應「受影響分區」的隔離閥（OS&amp;Y 閘閥）關閉，<b>不要</b>關到上游主閥，避免波及其他分區的保護</li>
         <li>立即通報消防／廠務負責單位：關閥期間該分區暫時失去撒水保護，需要啟動替代性防護措施（如加派巡邏、暫停高風險作業）</li>
         <li>開啟試驗放水閥排空積水，進行維修</li>
         <li>修復後依 SOP 試水，確認 ACV 警報／水流訊號正常，才能重新開啟隔離閥並解除替代措施</li>
@@ -1326,7 +1366,7 @@
         <li>
           <div>
             <div class="p-title">處置（若受過訓練）</div>
-            <div class="p-desc">若你的職務有對應 SOP（例如按下 ESD、關閉手邊設備），依訓練內容執行；沒有受過訓練就不要自行嘗試操作消防／製程設備</div>
+            <div class="p-desc">若你的職務有對應 SOP（例如按下 EMO、關閉手邊設備），依訓練內容執行；沒有受過訓練就不要自行嘗試操作消防／製程設備</div>
           </div>
         </li>
         <li>
@@ -1364,11 +1404,11 @@
         <thead><tr><th>迷思</th><th>事實</th></tr></thead>
         <tbody>
           <tr><td>撒水警報響 = 全區撒水頭一起噴水</td><td>濕式與 ESFR 系統只有被高溫實際觸發的那一顆撒水頭會動作；只有<b>開放式（Deluge）</b>系統例外，撒水頭本身無感溫元件，靠偵測系統觸發一齊開放閥後才會全區同時放射</td></tr>
-          <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，本廠 <code>IG-541</code> 放電會使空間氧氣濃度大幅降低，一樣不能進入或停留</td></tr>
+          <tr><td>氣體滅火房間警示響，進去看一下應該沒關係</td><td>絕對不行，<code>IG-541</code> 與 <code>CO₂</code> 放電都會使空間氧氣濃度大幅降低，<code>CO₂</code> 更會壓到人體無法呼吸，一律不能進入或停留</td></tr>
           <tr><td>氣體滅火系統按下 Abort Switch 就不會放電</td><td>Abort Switch 只能暫停倒數、爭取撤離時間，放開後倒數會繼續，不是取消放電</td></tr>
           <tr><td>確定是誤報就自己關掉警報</td><td>一律依 SOP 通報負責單位確認後才能復歸，不可擅自解除</td></tr>
           <tr><td>滅火器什麼火都能用</td><td>要依火災類型（普通固體 A／易燃液體 B／電氣 C／金屬 D／油脂 K）選對滅火器，電氣與化學火災不可用水</td></tr>
-          <tr><td>消防設備出狀況只歸消防人員管</td><td>製程區的緊急關閥、ESD 往往需要現場人員第一時間配合執行，不是等消防隊來才處理</td></tr>
+          <tr><td>消防設備出狀況只歸消防人員管</td><td>製程區的緊急關閥、EMO 往往需要現場人員第一時間配合執行，不是等消防隊來才處理</td></tr>
           <tr><td>牆上小孔洞沒填塞沒差</td><td>防火填塞（Firestop）沒做好，整道防火區劃等於破功，火煙會直接竄流</td></tr>
           <tr><td>水系統閥件關一下應該沒差，等一下再開就好</td><td>閥件關閉期間該分區完全沒有撒水保護，未經授權關閥、或關閥後忘記復歸都是重大風險，必須依 SOP 報備並啟動替代防護措施</td></tr>
         </tbody>
@@ -1393,16 +1433,16 @@
           <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
           <tr><td>泡沫系統</td><td>Foam System，泡沫覆蓋液面隔絕氧氣與可燃蒸氣，用於易燃液體火災</td></tr>
           <tr><td>水霧系統</td><td>Water Mist System，高壓細水霧，兼具降溫、窒息、遮蔽輻射熱，水損風險低於一般撒水</td></tr>
-          <tr><td><code>IG-541</code></td><td>惰性氣體滅火藥劑（N₂ 52%／Ar 40%／CO₂ 8%，商品名 Inergen），本廠氣體滅火系統統一採用，靠稀釋氧氣滅火，滅火後無殘留</td></tr>
+          <tr><td><code>IG-541</code></td><td>惰性氣體滅火藥劑（N₂ 52%／Ar 40%／CO₂ 8%，商品名 Inergen），靠稀釋氧氣滅火，滅火後無殘留，本廠用於一般機台／控制室等場所</td></tr>
+          <tr><td><code>CO₂</code></td><td>二氧化碳滅火系統，滅火效果強但放射後空間無法呼吸，本廠僅用於平常無人常駐的密閉空間或特定設備</td></tr>
           <tr><td>Abort Switch</td><td>延遲／中止按鈕，按住可暫停放電倒數爭取撤離時間，放開後倒數繼續，不能取消放電</td></tr>
           <tr><td><code>LEL</code></td><td>爆炸下限（Lower Explosive Limit），可燃氣體偵測器常以此百分比顯示濃度</td></tr>
           <tr><td><code>Excess Flow Valve</code></td><td>超流量自動遮斷閥，管路流量異常升高時自動關閉</td></tr>
-          <tr><td><code>ESD</code></td><td>緊急遮斷（Emergency Shutdown），手動或自動切斷氣體／電力供應</td></tr>
+          <tr><td><code>EMO</code></td><td>緊急關斷（Emergency Machine Off），手動或自動切斷氣體／電力供應</td></tr>
           <tr><td><code>Fire Damper</code></td><td>防火閘門，裝於空調風管內，火警時自動關閉阻止煙流擴散</td></tr>
           <tr><td><code>Firestop</code></td><td>防火填塞，封堵管線穿越防火區劃的孔洞</td></tr>
           <tr><td><code>ACV</code></td><td>Alarm Check Valve／查驗閥，濕式系統立管上的止回閥＋警報裝置，出水時觸發警報訊號</td></tr>
-          <tr><td>OS&amp;Y ／蝶閥</td><td>系統主要遮斷閥，正常應維持全開並受監視開關（tamper switch）監控</td></tr>
-          <tr><td><code>PIV</code></td><td>Post Indicator Valve／標示閥，埋在地下消防水管的遮斷閥，地面指示桿顯示開關狀態</td></tr>
+          <tr><td>OS&amp;Y 閘閥</td><td>系統主要遮斷閥，正常應維持全開並受監視開關（tamper switch）監控</td></tr>
           <tr><td>水流指示器</td><td>Flow Switch，偵測分區管路水流，用於判斷哪一區撒水頭動作</td></tr>
           <tr><td>試驗放水閥</td><td>Test &amp; Drain Valve，功能測試與排空管路存水用</td></tr>
           <tr><td><code>Siamese Connection</code></td><td>送水口，供消防車接管加壓補水</td></tr>
