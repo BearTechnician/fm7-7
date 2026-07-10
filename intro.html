@@ -817,6 +817,8 @@
             #dg1 .head-body{fill:var(--green);stroke:var(--green);}
             #dg1 .bulb{fill:var(--accent3);}
             #dg1 .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
+            #dg1 .inst{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg1 .inst-txt{fill:var(--text);font-size:10.5px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
           </style>
 
           <!-- 水源進水，轉90度往上 -->
@@ -824,38 +826,41 @@
           <text x="18" y="640" class="lbl">水源／消防泵浦</text>
           <line x1="150" y1="660" x2="150" y2="600" class="pipe"/>
 
-          <!-- OS&Y 主閥（垂直閘閥，常開） -->
+          <!-- OS&Y 主閥（垂直閘閥，常開，P&ID：bowtie + T-handle 手動） -->
           <polygon points="138,556 162,556 150,570" class="valve-body"/>
           <polygon points="138,584 162,584 150,570" class="valve-body"/>
-          <line x1="162" y1="570" x2="182" y2="570" class="thin"/>
-          <circle cx="188" cy="570" r="6" class="valve-body"/>
+          <line x1="162" y1="570" x2="192" y2="570" class="thin"/>
+          <line x1="192" y1="562" x2="192" y2="578" class="thin" stroke-width="3"/>
           <g class="marker"><circle cx="115" cy="570" r="11"/><text x="115" y="571">1</text></g>
           <line x1="150" y1="556" x2="150" y2="468" class="pipe"/>
 
-          <!-- ACV 本體（垂直，水流由下往上） -->
-          <circle cx="150" cy="440" r="28" class="comp"/>
-          <polygon points="138,452 162,452 150,428" fill="var(--accent)"/>
+          <!-- ACV 本體（垂直止回閥，P&ID：bowtie + 流向箭頭） -->
+          <polygon points="138,452 162,452 150,468" class="valve-body"/>
+          <polygon points="138,428 162,428 150,412" class="valve-body"/>
+          <line x1="150" y1="468" x2="150" y2="412" class="valve-body" stroke-width="2"/>
+          <polygon points="142,448 158,448 150,432" fill="var(--accent2)"/>
           <g class="marker"><circle cx="100" cy="440" r="11"/><text x="100" y="441">2</text></g>
 
-          <!-- 主排水閥：從閥體上方（系統側）接出，跟警報管路分開 -->
+          <!-- 主排水閥：從閥體上方（系統側）接出，跟警報管路分開（bowtie + T-handle） -->
           <line x1="150" y1="395" x2="90" y2="395" class="thin"/>
           <polygon points="63,383 87,383 75,395" class="valve-body"/>
           <polygon points="63,407 87,407 75,395" class="valve-body"/>
           <line x1="75" y1="407" x2="75" y2="600" class="thin"/>
           <polygon points="65,600 85,600 75,615" fill="var(--muted)"/>
-          <text x="52" y="632" class="lbl">洩水</text>
-          <g class="marker"><circle cx="75" cy="358" r="11"/><text x="75" y="359">6</text></g>
+          <text x="88" y="590" class="lbl">洩水</text>
+          <g class="marker"><circle cx="43" cy="395" r="11"/><text x="43" y="396">6</text></g>
 
           <!-- 警報接口（閥體側邊）→ 遲滯室 -->
-          <line x1="178" y1="440" x2="234" y2="440" class="thin"/>
+          <line x1="162" y1="440" x2="234" y2="440" class="thin"/>
           <circle cx="250" cy="440" r="16" class="comp"/>
-          <g class="marker"><circle cx="250" cy="398" r="11"/><text x="250" y="399">3</text></g>
+          <g class="marker"><circle cx="280" cy="415" r="11"/><text x="280" y="416">3</text></g>
 
-          <!-- 遲滯室 → 壓力開關（往上） -->
+          <!-- 遲滯室 → 壓力開關（ISA 儀表泡：PS） -->
           <line x1="250" y1="424" x2="250" y2="386" class="thin"/>
-          <rect x="242" y="370" width="16" height="16" class="comp"/>
+          <circle cx="250" cy="372" r="15" class="inst"/>
+          <text x="250" y="373" class="inst-txt">PS</text>
           <g class="marker"><circle cx="205" cy="378" r="11"/><text x="205" y="379">5</text></g>
-          <line x1="250" y1="370" x2="250" y2="350" class="thin" stroke-dasharray="3 3"/>
+          <line x1="250" y1="357" x2="250" y2="348" class="thin" stroke-dasharray="3 3"/>
           <rect x="205" y="318" width="90" height="30" rx="4" class="fcp-box"/>
           <text x="250" y="337" text-anchor="middle" class="lbl-strong">FCP</text>
 
@@ -922,10 +927,13 @@
           <line x1="950" y1="152" x2="950" y2="600" class="pipe-test"/>
           <line x1="950" y1="600" x2="360" y2="600" class="pipe-test"/>
           <polygon points="360,600 376,592 376,608" fill="var(--yellow)"/>
-          <rect x="330" y="590" width="24" height="20" class="valve-body"/>
+          <polygon points="330,590 330,610 342,600" class="valve-body"/>
+          <polygon points="354,590 354,610 342,600" class="valve-body"/>
+          <line x1="342" y1="590" x2="342" y2="572" class="thin"/>
+          <line x1="334" y1="572" x2="350" y2="572" class="thin" stroke-width="3"/>
           <line x1="342" y1="610" x2="342" y2="635" class="thin"/>
           <polygon points="332,635 352,635 342,650" fill="var(--muted)"/>
-          <g class="marker"><circle cx="342" cy="562" r="11"/><text x="342" y="563">10</text></g>
+          <g class="marker"><circle cx="300" cy="562" r="11"/><text x="300" y="563">10</text></g>
           <g class="marker"><circle cx="650" cy="580" r="11"/><text x="650" y="581">11</text></g>
         </svg>
         <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；紅點＝撒水頭感熱玻璃球；黃色虛線＝末端查驗閥的試驗管線（供水來自遠端最不利點，閥體本身裝在 ACV 旁邊）</div>
@@ -1011,30 +1019,37 @@
           <text x="290" y="305" text-anchor="middle" class="lbl">比例混合裝置</text>
           <line x1="325" y1="260" x2="440" y2="260" class="pipe"/>
 
-          <!-- 控制閥 -->
+          <!-- 控制閥（一齊開放閥，P&ID：bowtie + 隔膜促動器實心三角） -->
           <polygon points="448,248 448,272 466,260" class="valve-body"/>
           <polygon points="484,248 484,272 466,260" class="valve-body"/>
+          <line x1="466" y1="248" x2="466" y2="232" class="thin"/>
+          <polygon points="458,232 474,232 466,220" fill="var(--accent2)"/>
           <g class="marker"><circle cx="510" cy="290" r="11"/><text x="510" y="291">4</text></g>
           <text x="466" y="305" text-anchor="middle" class="lbl">控制閥</text>
           <line x1="484" y1="260" x2="650" y2="260" class="pipe"/>
           <line x1="650" y1="260" x2="650" y2="190" class="pipe"/>
           <line x1="650" y1="190" x2="870" y2="190" class="pipe"/>
 
-          <!-- 電磁閥／手動啟動：集中於左側，跟感知撒水頭分開 -->
-          <rect x="370" y="195" width="20" height="20" rx="3" class="comp"/>
-          <path d="M 373 201 h 14 M 373 205 h 14 M 373 209 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
-          <line x1="380" y1="215" x2="380" y2="230" class="thin"/>
-          <line x1="340" y1="155" x2="372" y2="194" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <g class="marker"><circle cx="345" cy="205" r="11"/><text x="345" y="206">8</text></g>
-          <text x="310" y="145" class="lbl">FCP 訊號</text>
-          <text x="315" y="180" class="lbl">電磁閥</text>
+          <!-- 電磁閥／手動啟動：集中於左側，跟感知撒水頭分開（P&ID：bowtie + 菱形電磁 / T-handle 手動） -->
+          <polygon points="362,197 362,213 374,205" class="valve-body"/>
+          <polygon points="386,197 386,213 374,205" class="valve-body"/>
+          <polygon points="366,183 382,183 374,171" fill="var(--accent2)"/>
+          <line x1="374" y1="197" x2="374" y2="183" class="thin"/>
+          <line x1="374" y1="213" x2="374" y2="230" class="thin"/>
+          <line x1="340" y1="155" x2="368" y2="176" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <g class="marker"><circle cx="335" cy="205" r="11"/><text x="335" y="206">8</text></g>
+          <text x="300" y="145" class="lbl">FCP 訊號</text>
+          <text x="392" y="180" class="lbl">電磁閥</text>
 
-          <circle cx="460" cy="205" r="9" fill="none" stroke="var(--accent3)" stroke-width="3"/>
-          <line x1="460" y1="214" x2="460" y2="230" class="thin"/>
-          <g class="marker"><circle cx="490" cy="190" r="11"/><text x="490" y="191">9</text></g>
-          <text x="435" y="175" class="lbl">手動啟動</text>
+          <polygon points="452,197 452,213 464,205" class="valve-body"/>
+          <polygon points="476,197 476,213 464,205" class="valve-body"/>
+          <line x1="464" y1="197" x2="464" y2="183" class="thin"/>
+          <line x1="456" y1="183" x2="472" y2="183" class="thin" stroke-width="3"/>
+          <line x1="464" y1="213" x2="464" y2="230" class="thin"/>
+          <g class="marker"><circle cx="490" cy="183" r="11"/><text x="490" y="184">9</text></g>
+          <text x="440" y="167" class="lbl">手動啟動</text>
 
-          <line x1="380" y1="230" x2="600" y2="230" class="thin"/>
+          <line x1="374" y1="230" x2="600" y2="230" class="thin"/>
           <line x1="466" y1="230" x2="466" y2="248" class="thin"/>
 
           <!-- 感知撒水頭：拉到現場（保護對象上方），非閥室旁 -->
@@ -1126,27 +1141,34 @@
           <text x="215" y="255" class="lbl">蓄壓／增壓裝置</text>
           <line x1="285" y1="207" x2="390" y2="207" class="pipe"/>
 
-          <!-- 電磁閥／手動啟動：集中在左側，跟右側的感知撒水頭分開，避免擠在一起 -->
-          <rect x="290" y="95" width="20" height="20" rx="3" class="comp"/>
-          <path d="M 293 101 h 14 M 293 105 h 14 M 293 109 h 14" stroke="var(--accent2)" stroke-width="1.5" fill="none"/>
-          <line x1="300" y1="115" x2="300" y2="150" class="thin"/>
-          <line x1="260" y1="55" x2="292" y2="94" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <g class="marker"><circle cx="265" cy="105" r="11"/><text x="265" y="106">8</text></g>
-          <text x="230" y="45" class="lbl">FCP 訊號</text>
-          <text x="235" y="80" class="lbl">電磁閥</text>
+          <!-- 電磁閥／手動啟動：集中在左側，跟右側的感知撒水頭分開，避免擠在一起（P&ID：bowtie + 菱形電磁 / T-handle 手動） -->
+          <polygon points="288,97 288,113 300,105" class="valve-body"/>
+          <polygon points="312,97 312,113 300,105" class="valve-body"/>
+          <polygon points="292,83 308,83 300,71" fill="var(--accent2)"/>
+          <line x1="300" y1="97" x2="300" y2="83" class="thin"/>
+          <line x1="300" y1="113" x2="300" y2="150" class="thin"/>
+          <line x1="260" y1="50" x2="294" y2="70" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <g class="marker"><circle cx="255" cy="95" r="11"/><text x="255" y="96">8</text></g>
+          <text x="225" y="42" class="lbl">FCP 訊號</text>
+          <text x="315" y="75" class="lbl">電磁閥</text>
 
-          <circle cx="380" cy="105" r="9" fill="none" stroke="var(--accent3)" stroke-width="3"/>
-          <line x1="380" y1="114" x2="380" y2="150" class="thin"/>
-          <g class="marker"><circle cx="410" cy="90" r="11"/><text x="410" y="91">9</text></g>
-          <text x="355" y="78" class="lbl">手動啟動</text>
+          <polygon points="368,97 368,113 380,105" class="valve-body"/>
+          <polygon points="392,97 392,113 380,105" class="valve-body"/>
+          <line x1="380" y1="97" x2="380" y2="83" class="thin"/>
+          <line x1="372" y1="83" x2="388" y2="83" class="thin" stroke-width="3"/>
+          <line x1="380" y1="113" x2="380" y2="150" class="thin"/>
+          <g class="marker"><circle cx="410" cy="83" r="11"/><text x="410" y="84">9</text></g>
+          <text x="355" y="68" class="lbl">手動啟動</text>
 
           <line x1="300" y1="150" x2="650" y2="150" class="thin"/>
           <line x1="416" y1="150" x2="416" y2="195" class="pipe"/>
 
-          <!-- 分區控制閥 -->
+          <!-- 分區控制閥（P&ID：bowtie + 隔膜促動器實心三角，側接避開主管路） -->
           <polygon points="398,195 398,219 416,207" class="valve-body"/>
           <polygon points="434,195 434,219 416,207" class="valve-body"/>
-          <g class="marker"><circle cx="455" cy="225" r="11"/><text x="455" y="226">3</text></g>
+          <line x1="434" y1="207" x2="452" y2="207" class="thin"/>
+          <polygon points="452,199 452,215 466,207" fill="var(--accent2)"/>
+          <g class="marker"><circle cx="455" cy="230" r="11"/><text x="455" y="231">3</text></g>
           <text x="375" y="250" class="lbl">分區控制閥</text>
 
           <!-- 高壓配水管路 -->
@@ -1380,6 +1402,7 @@
             #dg5 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
             #dg5 .room{fill:none;stroke:var(--accent3);stroke-width:2;}
             #dg5 .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;}
+            #dg5 .inst-txt{fill:var(--text);font-size:10px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
           </style>
 
           <!-- 鋼瓶組：主鋼瓶＋副鋼瓶（副鋼瓶靠氣壓連動管觸發，非各自接控制盤） -->
@@ -1422,16 +1445,19 @@
           <line x1="230" y1="255" x2="230" y2="330" class="pipe"/>
           <line x1="230" y1="330" x2="650" y2="330" class="pipe"/>
 
-          <!-- 放射壓力開關（集氣管路） -->
-          <circle cx="270" cy="330" r="10" fill="var(--surface2)" stroke="var(--accent2)" stroke-width="2"/>
-          <line x1="270" y1="340" x2="270" y2="360" class="thin" stroke-dasharray="3 3"/>
+          <!-- 放射壓力開關（集氣管路，ISA 儀表泡 PS） -->
+          <circle cx="270" cy="330" r="13" fill="var(--surface2)" stroke="var(--accent2)" stroke-width="2"/>
+          <text x="270" y="331" class="inst-txt">PS</text>
+          <line x1="270" y1="343" x2="270" y2="360" class="thin" stroke-dasharray="3 3"/>
           <g class="marker"><circle cx="270" cy="378" r="12"/><text x="270" y="379">12</text></g>
 
-          <!-- 偵測器（雙迴路交叉比對） -->
-          <circle cx="360" cy="55" r="13" class="comp"/>
-          <circle cx="440" cy="55" r="13" class="comp"/>
-          <line x1="360" y1="68" x2="360" y2="112" class="thin"/>
-          <line x1="440" y1="68" x2="440" y2="112" class="thin"/>
+          <!-- 偵測器（雙迴路交叉比對，ISA 儀表泡 SD） -->
+          <circle cx="360" cy="55" r="14" class="comp"/>
+          <text x="360" y="56" class="inst-txt">SD</text>
+          <circle cx="440" cy="55" r="14" class="comp"/>
+          <text x="440" y="56" class="inst-txt">SD</text>
+          <line x1="360" y1="69" x2="360" y2="112" class="thin"/>
+          <line x1="440" y1="69" x2="440" y2="112" class="thin"/>
           <g class="marker"><circle cx="400" cy="28" r="12"/><text x="400" y="29">3</text></g>
 
           <!-- 控制盤 -->
@@ -1448,6 +1474,7 @@
           <!-- Abort Switch -->
           <line x1="550" y1="162" x2="550" y2="185" class="thin" stroke-dasharray="3 3"/>
           <rect x="536" y="185" width="28" height="20" rx="4" fill="var(--surface2)" stroke="var(--accent3)" stroke-width="2"/>
+          <text x="550" y="196" class="inst-txt" fill="var(--accent3)">AS</text>
           <g class="marker"><circle cx="550" cy="235" r="12"/><text x="550" y="236">6</text></g>
 
           <!-- 防護區域 -->
