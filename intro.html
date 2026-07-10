@@ -1419,8 +1419,8 @@
             #dg4.dv-open .dv-rel{stroke:var(--accent3);}
             #dg4 .dv-prime{transform-box:view-box;transform-origin:425px 214px;transition:transform .4s;}
             #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
-            #dg4 .dv-diaph{transform-box:view-box;transition:transform .4s;}
-            #dg4.dv-open .dv-diaph{transform:translateY(-78px);transition:transform .8s ease-out 1.3s;}
+            #dg4 .dv-diaph{transform-box:view-box;transform-origin:282px 213px;transition:transform .4s;}
+            #dg4.dv-open .dv-diaph{transform:scaleX(0.2);transition:transform .8s ease-in 1.3s;}
             #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
             #dg4.dv-open .dv-out{opacity:0.32;transition:opacity .8s 1.9s;}
             #dg4.dv-open .dv-flow{opacity:1;transition:opacity .5s 2.3s;}
@@ -1479,7 +1479,7 @@
             <text x="260" y="526">▶ 模擬觸發（洩壓開閥）</text>
           </g>
 
-          <text x="260" y="475" text-anchor="middle" class="titleA">隔膜室有壓，壓住隔膜</text>
+          <text x="260" y="475" text-anchor="middle" class="titleA">隔膜室有壓，從感知側撐住隔膜</text>
           <text x="260" y="495" text-anchor="middle" class="titleA">→ 閥關閉</text>
 
           <!-- ══════ Panel B：動作開放（x 中心 780） ══════ -->
@@ -1493,10 +1493,10 @@
           <rect x="696" y="221" width="168" height="148" fill="var(--accent)" opacity="0.32"/>
           <rect x="696" y="81" width="168" height="124" fill="var(--accent)" opacity="0.32"/>
           <rect x="696" y="205" width="168" height="16" fill="var(--accent)" opacity="0.32"/>
-          <path d="M 802 98 A 44 44 0 0 0 802 172" stroke="var(--muted)" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <path d="M 802 176 A 190 190 0 0 0 802 250" stroke="var(--muted)" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
 
           <g class="marker"><circle cx="640" cy="295" r="13"/><text x="640" y="296">1</text></g>
-          <g class="marker"><circle cx="700" cy="135" r="13"/><text x="700" y="136">2</text></g>
+          <g class="marker"><circle cx="640" cy="213" r="13"/><text x="640" y="214">2</text></g>
           <g class="marker"><circle cx="640" cy="90" r="13"/><text x="640" y="91">3</text></g>
 
           <line x1="780" y1="375" x2="780" y2="415" class="pipe"/>
@@ -1520,18 +1520,18 @@
           <text x="965" y="305" text-anchor="middle" class="lbl" fill="var(--accent3)">感知撒水頭側</text>
           <text x="965" y="322" text-anchor="middle" class="lbl" fill="var(--accent3)">（觸發，洩壓中）</text>
 
-          <text x="780" y="475" text-anchor="middle" class="titleB">隔膜室洩壓，供水頂開隔膜</text>
+          <text x="780" y="475" text-anchor="middle" class="titleB">隔膜室洩壓，隔膜坍縮讓出通道</text>
           <text x="780" y="495" text-anchor="middle" class="titleB">→ 閥開放</text>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>入口室（Inlet Chamber，<b>一次側</b>）：供水，經常保持設計壓力，兩種狀態下都一樣有壓</span></li>
-          <li><span class="dnum">2</span><span>隔膜／扣夾（Diaphragm）：平時坐於閥座封住通道；洩壓後被供水頂離閥座</span></li>
+          <li><span class="dnum">2</span><span>隔膜／扣夾（Diaphragm）：平時擋住一次側的水、封住通道；隔膜室洩壓後撐不住一次側水壓，隔膜<b>坍縮</b>讓出通道</span></li>
           <li><span class="dnum">3</span><span>出口室（Outlet Chamber，<b>二次側／系統側</b>）：通往系統側管路與撒水頭等，關閉時乾、開放時充水流動</span></li>
-          <li><span class="dnum">4</span><span>隔膜室（Priming Chamber）：從上方壓住隔膜，平時充滿壓力水；觸發後洩壓變空</span></li>
+          <li><span class="dnum">4</span><span>隔膜室（Priming Chamber）：從感知側撐住隔膜，平時充滿壓力水；觸發後洩壓變空</span></li>
           <li><span class="dnum">5</span><span>補壓節流孔＋止回閥：從供水側持續小量補壓，但補壓速度追不上觸發時的洩壓速度</span></li>
           <li><span class="dnum">6</span><span>釋放路徑（<b>感知撒水頭側</b>）：接往感知撒水頭／電磁閥／手動閥；平時關閉不動作，任一觸發即洩放隔膜室壓力</span></li>
         </ol>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">核心原理：隔膜室平時靠水壓「壓住」隔膜使閥保持關閉；感知撒水頭、電磁閥、手動閥三種觸發方式，做的都是同一件事——讓隔膜室洩壓。只要洩壓，供水側壓力就會頂開隔膜，水流向系統側，三者達到的效果完全相同，差別只在「用什麼方式洩壓」。</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">核心原理：隔膜擋住一次側的水，平時靠隔膜室（感知側）的水壓從後方撐住；感知撒水頭、電磁閥、手動閥三種觸發方式，做的都是同一件事——讓隔膜室洩壓。感知側壓力一消失，隔膜就撐不住一次側水壓而坍縮，水流過閥座到二次側，三者達到的效果完全相同，差別只在「用什麼方式洩壓」。</div>
       </div>
     </div>
 
