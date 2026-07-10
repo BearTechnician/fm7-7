@@ -458,22 +458,16 @@
       color: var(--accent);
       margin-bottom: 10px;
     }
-    .demo-btn {
-      display: inline-block;
-      margin: 4px 0 10px;
-      padding: 7px 16px;
-      font-size: 13px;
-      font-weight: 700;
-      font-family: inherit;
-      color: #fff;
-      background: var(--accent);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: filter .15s;
+    /* 圖內動畫按鈕（畫在 SVG 裡，緊鄰各自的元件） */
+    svg .svg-btn { cursor: pointer; }
+    svg .svg-btn rect { fill: var(--accent); transition: opacity .15s, fill .3s; }
+    svg .svg-btn:hover rect { opacity: .82; }
+    svg .svg-btn.on rect { fill: var(--accent3); }
+    svg .svg-btn text {
+      fill: #fff; font-size: 12.5px; font-weight: 700;
+      text-anchor: middle; dominant-baseline: central;
+      font-family: inherit; pointer-events: none;
     }
-    .demo-btn:hover { filter: brightness(1.15); }
-    .demo-btn.armed { background: var(--accent3); }
 
     .diagram-legend {
       list-style: none;
@@ -1420,6 +1414,18 @@
             #dg4 .titleB{fill:var(--green);font-size:15px;font-weight:700;font-family:inherit;}
             #dg4 .marker circle{fill:var(--accent);}
             #dg4 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            /* 一齊開放閥動畫：.dv-open 時 釋放路徑開 → 隔膜室洩壓 → 隔膜被頂開 → 出口室充水 */
+            #dg4 .dv-rel{transition:stroke .3s;}
+            #dg4.dv-open .dv-rel{stroke:var(--accent3);}
+            #dg4 .dv-prime{transform-box:view-box;transform-origin:425px 214px;transition:transform .4s;}
+            #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
+            #dg4 .dv-diaph{transform-box:view-box;transition:transform .4s;}
+            #dg4.dv-open .dv-diaph{transform:translateY(-78px);transition:transform .8s ease-out 1.3s;}
+            #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
+            #dg4.dv-open .dv-out{opacity:0.32;transition:opacity .8s 1.9s;}
+            #dg4.dv-open .dv-flow{opacity:1;transition:opacity .5s 2.3s;}
+            #dg4 .dv-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
+            #dg4.dv-open .dv-alarm{opacity:1;}
           </style>
 
           <!-- 分隔線 -->
@@ -1433,7 +1439,12 @@
 
           <rect x="170" y="75" width="180" height="300" rx="14" class="valve-body"/>
           <rect x="176" y="221" width="168" height="148" fill="var(--accent)" opacity="0.32"/>
-          <rect x="170" y="205" width="180" height="16" fill="var(--muted)"/>
+          <rect x="176" y="81" width="168" height="124" fill="var(--accent)" class="dv-out"/>
+          <rect x="170" y="205" width="180" height="16" fill="var(--muted)" class="dv-diaph"/>
+          <g class="dv-flow">
+            <line x1="260" y1="45" x2="260" y2="75" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
+            <polygon points="252,50 268,50 260,38" fill="var(--accent)"/>
+          </g>
 
           <g class="marker"><circle cx="120" cy="295" r="13"/><text x="120" y="296">1</text></g>
           <g class="marker"><circle cx="120" cy="213" r="13"/><text x="120" y="214">2</text></g>
@@ -1445,7 +1456,7 @@
 
           <!-- 隔膜室（有壓） -->
           <rect x="390" y="140" width="70" height="80" rx="8" class="comp"/>
-          <rect x="396" y="146" width="58" height="68" fill="var(--accent)" opacity="0.32"/>
+          <rect x="396" y="146" width="58" height="68" fill="var(--accent)" opacity="0.32" class="dv-prime"/>
           <g class="marker"><circle cx="462" cy="130" r="13"/><text x="462" y="131">4</text></g>
 
           <line x1="390" y1="180" x2="350" y2="180" class="thin"/>
@@ -1453,8 +1464,8 @@
 
           <line x1="425" y1="220" x2="425" y2="270" class="thin"/>
           <line x1="425" y1="270" x2="350" y2="270" class="thin"/>
-          <line x1="415" y1="263" x2="435" y2="277" stroke="var(--muted)" stroke-width="2"/>
-          <line x1="435" y1="263" x2="415" y2="277" stroke="var(--muted)" stroke-width="2"/>
+          <line x1="415" y1="263" x2="435" y2="277" stroke="var(--muted)" stroke-width="2" class="dv-rel"/>
+          <line x1="435" y1="263" x2="415" y2="277" stroke="var(--muted)" stroke-width="2" class="dv-rel"/>
           <g class="marker"><circle cx="462" cy="245" r="13"/><text x="462" y="246">5</text></g>
 
           <line x1="460" y1="165" x2="505" y2="165" class="thin"/>
@@ -1462,6 +1473,11 @@
           <g class="marker"><circle cx="462" cy="195" r="13"/><text x="462" y="196">6</text></g>
           <text x="455" y="305" text-anchor="middle" class="lbl">感知撒水頭側</text>
           <text x="455" y="322" text-anchor="middle" class="lbl">（釋放管路，平時關閉）</text>
+          <text x="435" y="345" text-anchor="middle" class="dv-alarm">任一觸發→隔膜室洩壓！</text>
+          <g class="svg-btn" data-off="▶ 模擬觸發（洩壓開閥）" data-on="↺ 復歸" onclick="dgToggle('dg4','dv-open',this)">
+            <rect x="150" y="512" width="220" height="28" rx="6"/>
+            <text x="260" y="526">▶ 模擬觸發（洩壓開閥）</text>
+          </g>
 
           <text x="260" y="475" text-anchor="middle" class="titleA">隔膜室有壓，壓住隔膜</text>
           <text x="260" y="495" text-anchor="middle" class="titleA">→ 閥關閉</text>
@@ -1580,7 +1596,26 @@
             #dg5 .room{fill:none;stroke:var(--accent3);stroke-width:2;}
             #dg5 .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.55;fill:none;}
             #dg5 .inst-txt{fill:var(--text);font-size:10px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            /* 氣體放射流程動畫：.gas-fire 時 偵測器動作 → 30s 倒數閃爍 → 放射、防護區充滿藥劑 */
+            #dg5 .g-sd{transition:stroke .3s,fill .3s;}
+            #dg5.gas-fire .g-sd{stroke:var(--accent3);fill:rgba(224,92,92,0.3);}
+            #dg5 .g-cnt{transform-box:fill-box;transform-origin:center;transition:stroke .3s;}
+            #dg5.gas-fire .g-cnt{stroke:var(--accent3);animation:g5pulse .55s ease-in-out 4 .5s;}
+            @keyframes g5pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+            #dg5 .g-haze{fill:var(--accent2);opacity:0;transition:opacity .4s;}
+            #dg5.gas-fire .g-haze{opacity:0.16;transition:opacity 1.2s 2.8s;}
+            #dg5 .mist{transition:stroke .4s,opacity .4s,stroke-width .4s;}
+            #dg5.gas-fire .mist{stroke:var(--accent2);opacity:1;stroke-width:2.5;transition:stroke .5s 2.8s,opacity .5s 2.8s,stroke-width .5s 2.8s;}
+            #dg5 .g-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
+            #dg5.gas-fire .g-alarm{opacity:1;}
           </style>
+
+          <!-- 放射流程動畫按鈕＋說明 -->
+          <g class="svg-btn" data-off="▶ 模擬放射流程" data-on="↺ 復歸" onclick="dgToggle('dg5','gas-fire',this)">
+            <rect x="60" y="58" width="150" height="28" rx="6"/>
+            <text x="135" y="72">▶ 模擬放射流程</text>
+          </g>
+          <text x="60" y="118" class="g-alarm">🔔 偵測器動作 → 倒數 30 秒 → 放射！</text>
 
           <!-- 鋼瓶組：啟動鋼瓶＋副鋼瓶（副鋼瓶靠氣壓連動管觸發，非各自接控制盤） -->
           <rect x="50" y="270" width="30" height="130" rx="10" class="comp"/>
@@ -1638,10 +1673,10 @@
 
           <!-- 偵測器：裝於防護區域內，訊號線拉回控制盤（雙迴路交叉比對，ISA 儀表泡 SD） -->
           <line x1="680" y1="150" x2="680" y2="158" class="thin"/>
-          <circle cx="680" cy="172" r="14" class="comp"/>
+          <circle cx="680" cy="172" r="14" class="comp g-sd"/>
           <text x="680" y="173" class="inst-txt">SD</text>
           <line x1="725" y1="150" x2="725" y2="158" class="thin"/>
-          <circle cx="725" cy="172" r="14" class="comp"/>
+          <circle cx="725" cy="172" r="14" class="comp g-sd"/>
           <text x="725" y="173" class="inst-txt">SD</text>
           <line x1="680" y1="150" x2="680" y2="76" class="thin" stroke-dasharray="3 3"/>
           <line x1="725" y1="150" x2="725" y2="76" class="thin" stroke-dasharray="3 3"/>
@@ -1663,7 +1698,7 @@
 
           <!-- 預警警報＋延遲倒數 -->
           <line x1="450" y1="162" x2="450" y2="185" class="thin"/>
-          <circle cx="450" cy="200" r="16" fill="var(--surface2)" stroke="var(--yellow)" stroke-width="2"/>
+          <circle cx="450" cy="200" r="16" fill="var(--surface2)" stroke="var(--yellow)" stroke-width="2" class="g-cnt"/>
           <text x="450" y="204" text-anchor="middle" class="lbl-strong" fill="var(--yellow)">30s</text>
           <g class="marker"><circle cx="450" cy="235" r="12"/><text x="450" y="236">5</text></g>
 
@@ -1676,6 +1711,7 @@
 
           <!-- 防護區域 -->
           <rect x="650" y="150" width="330" height="260" rx="8" class="room"/>
+          <rect x="655" y="155" width="320" height="250" rx="8" class="g-haze"/>
 
           <!-- 放射管路：從集氣管路接入防護區，經頂部配管分送各噴頭（噴頭避開轉角，不被管路遮擋） -->
           <line x1="650" y1="330" x2="755" y2="330" class="pipe"/>
@@ -1762,7 +1798,6 @@
       <p>被動式防火的重點都在同一件事：<b>牆、樓板上的每一個穿越點，都要恢復原本的防火時效</b>。以下是三種常見穿越點的正確做法，跟一個最常見的錯誤示範：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">防火區劃穿越點示意圖</div>
-        <button type="button" id="fd-btn" class="demo-btn" onclick="fdToggle()">▶ 模擬火警：防火門自動關閉</button>
         <svg id="dg6" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
           <style>
             #dg6 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
@@ -1785,6 +1820,15 @@
             #dg6.fd-closed .fd-magnet{stroke:var(--accent3);fill:rgba(224,92,92,.35);}
             #dg6 .fd-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:13px;font-weight:700;font-family:inherit;}
             #dg6.fd-closed .fd-alarm{opacity:1;}
+            /* 防火閘門動畫：.dmp-closed 時熔片熔解消失、簾幕自套匣落下封閉風管 */
+            #dg6 .dmp-curtain{transform-box:view-box;transform-origin:495px 215px;transform:scaleY(0);transition:transform .3s;}
+            #dg6.dmp-closed .dmp-curtain{transform:scaleY(1);transition:transform .9s cubic-bezier(.5,0,.85,.55) .55s;}
+            #dg6 .dmp-link{transition:opacity .3s;}
+            #dg6.dmp-closed .dmp-link{opacity:0;transition:opacity .4s .25s;}
+            #dg6 .dmp-ghost{transition:opacity .3s;}
+            #dg6.dmp-closed .dmp-ghost{opacity:0;transition:opacity .4s 1.2s;}
+            #dg6 .dmp-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg6.dmp-closed .dmp-alarm{opacity:1;}
           </style>
 
           <!-- ══ Row 1：管線穿牆 → 防火填塞（立面圖） ══ -->
@@ -1827,13 +1871,22 @@
           <line x1="482" y1="197" x2="508" y2="197" stroke="var(--accent3)" stroke-width="1.5"/>
           <line x1="482" y1="202" x2="508" y2="202" stroke="var(--accent3)" stroke-width="1.5"/>
           <line x1="482" y1="207" x2="508" y2="207" stroke="var(--accent3)" stroke-width="1.5"/>
-          <!-- 感溫熔片 -->
-          <circle cx="495" cy="219" r="4" fill="var(--yellow)"/>
+          <!-- 感溫熔片（動畫時熔解消失） -->
+          <circle cx="495" cy="219" r="4" fill="var(--yellow)" class="dmp-link"/>
           <line x1="560" y1="185" x2="514" y2="200" class="thin" stroke-dasharray="3 3"/>
           <!-- 簾幕下降後的關閉位置（虛線）＋下降箭頭 -->
-          <rect x="487" y="215" width="16" height="40" fill="var(--accent3)" opacity="0.18" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <line x1="535" y1="222" x2="535" y2="244" stroke="var(--accent3)" stroke-width="2"/>
-          <polygon points="529,244 541,244 535,254" fill="var(--accent3)"/>
+          <g class="dmp-ghost">
+            <rect x="487" y="215" width="16" height="40" fill="var(--accent3)" opacity="0.18" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="535" y1="222" x2="535" y2="244" stroke="var(--accent3)" stroke-width="2"/>
+            <polygon points="529,244 541,244 535,254" fill="var(--accent3)"/>
+          </g>
+          <!-- 動畫用簾幕本體：自套匣底落下填滿風管斷面 -->
+          <rect x="487" y="215" width="16" height="40" fill="var(--accent3)" opacity="0.9" class="dmp-curtain"/>
+          <text x="560" y="243" class="dmp-alarm">🔥 熔片約 74°C 熔解 → 簾幕落下！</text>
+          <g class="svg-btn" data-off="▶ 模擬火警" data-on="↺ 復歸" onclick="dgToggle('dg6','dmp-closed',this)">
+            <rect x="860" y="170" width="112" height="26" rx="6"/>
+            <text x="916" y="183">▶ 模擬火警</text>
+          </g>
 
           <text x="565" y="183" class="lbl">平時：簾幕收折在風管上方套匣內，風管保持暢通</text>
           <text x="565" y="285" class="lbl">火警：感溫熔片（黃點，約 74°C）熔解，</text>
@@ -1872,6 +1925,10 @@
           <text x="520" y="428" class="lbl">門扇自動擺回關閉位置（紅色虛線），封住門口</text>
           <text x="520" y="490" class="lbl">（無電磁釋放器的防火門，平時即應保持關閉，</text>
           <text x="520" y="508" class="lbl">不可用門擋、雜物卡住）</text>
+          <g class="svg-btn" data-off="▶ 模擬火警" data-on="↺ 復歸" onclick="dgToggle('dg6','fd-closed',this)">
+            <rect x="780" y="352" width="112" height="26" rx="6"/>
+            <text x="836" y="365">▶ 模擬火警</text>
+          </g>
 
           <line x1="40" y1="530" x2="960" y2="530" class="sep"/>
 
@@ -2131,12 +2188,13 @@
 </footer>
 
 <script>
-  function fdToggle() {
-    var svg = document.getElementById('dg6');
-    var btn = document.getElementById('fd-btn');
-    var closed = svg.classList.toggle('fd-closed');
-    btn.classList.toggle('armed', closed);
-    btn.textContent = closed ? '↺ 復歸：重新開啟防火門' : '▶ 模擬火警：防火門自動關閉';
+  function dgToggle(svgId, cls, btn) {
+    var svg = document.getElementById(svgId);
+    var on = svg.classList.toggle(cls);
+    btn.classList.toggle('on', on);
+    var label = btn.querySelector('text');
+    if (label) label.textContent = on ? (btn.dataset.on || label.textContent)
+                                      : (btn.dataset.off || label.textContent);
   }
 </script>
 </body>
