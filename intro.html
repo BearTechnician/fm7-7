@@ -1419,8 +1419,10 @@
             #dg4.dv-open .dv-rel{stroke:var(--accent3);}
             #dg4 .dv-prime{transform-box:view-box;transform-origin:425px 214px;transition:transform .4s;}
             #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
-            #dg4 .dv-diaph{transform-box:view-box;transform-origin:282px 213px;transition:transform .4s;}
-            #dg4.dv-open .dv-diaph{transform:scaleX(0.2);transition:transform .8s ease-in 1.3s;}
+            #dg4 .dv-diaph{transform-box:view-box;transform-origin:260px 206px;transition:transform .4s;}
+            #dg4.dv-open .dv-diaph{transform:scaleY(-0.55);transition:transform .8s ease-in 1.3s;}
+            #dg4 .dv-prime2{transform-box:view-box;transform-origin:260px 205px;transition:transform .4s;}
+            #dg4.dv-open .dv-prime2{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
             #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
             #dg4.dv-open .dv-out{opacity:0.32;transition:opacity .8s 1.9s;}
             #dg4.dv-open .dv-flow{opacity:1;transition:opacity .5s 2.3s;}
@@ -1438,9 +1440,16 @@
           <text x="330" y="65" class="lbl">二次側／系統側（乾）</text>
 
           <rect x="170" y="75" width="180" height="300" rx="14" class="valve-body"/>
-          <rect x="176" y="221" width="168" height="148" fill="var(--accent)" opacity="0.32"/>
-          <rect x="176" y="81" width="168" height="140" fill="var(--accent)" class="dv-out"/>
-          <path d="M 282 176 A 44 44 0 0 0 282 250" stroke="var(--muted)" stroke-width="11" fill="none" stroke-linecap="round" class="dv-diaph"/>
+          <rect x="176" y="218" width="168" height="151" fill="var(--accent)" opacity="0.32"/>
+          <rect x="176" y="81" width="168" height="137" fill="var(--accent)" class="dv-out"/>
+          <!-- 閥座：左右座板，中間為通水孔口 -->
+          <rect x="176" y="208" width="59" height="10" fill="var(--muted)"/>
+          <rect x="285" y="208" width="59" height="10" fill="var(--muted)"/>
+          <!-- 隔膜室內罩（感知側）：罩內平時充壓力水，經右側管線接隔膜室／釋放管路 -->
+          <rect x="233" y="158" width="54" height="47" fill="var(--accent)" opacity="0.32" class="dv-prime2"/>
+          <polyline points="230,208 230,155 290,155 290,208" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+          <!-- 隔膜：夾持於罩口，鼓面朝下壓在閥座孔口上；洩壓後向感知側（上）坍縮翻起 -->
+          <path d="M 233 206 A 28 28 0 0 0 287 206" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" class="dv-diaph"/>
           <g class="dv-flow">
             <line x1="260" y1="45" x2="260" y2="75" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
             <polygon points="252,50 268,50 260,38" fill="var(--accent)"/>
@@ -1459,8 +1468,7 @@
           <rect x="396" y="146" width="58" height="68" fill="var(--accent)" opacity="0.32" class="dv-prime"/>
           <g class="marker"><circle cx="462" cy="130" r="13"/><text x="462" y="131">4</text></g>
 
-          <line x1="390" y1="180" x2="350" y2="180" class="thin"/>
-          <line x1="350" y1="180" x2="350" y2="205" class="thin"/>
+          <line x1="290" y1="172" x2="390" y2="172" class="thin"/>
 
           <line x1="425" y1="220" x2="425" y2="270" class="thin"/>
           <line x1="425" y1="270" x2="350" y2="270" class="thin"/>
@@ -1490,10 +1498,13 @@
           <text x="850" y="65" class="lbl">二次側／系統側（充水）</text>
 
           <rect x="690" y="75" width="180" height="300" rx="14" class="valve-body"/>
-          <rect x="696" y="221" width="168" height="148" fill="var(--accent)" opacity="0.32"/>
-          <rect x="696" y="81" width="168" height="124" fill="var(--accent)" opacity="0.32"/>
-          <rect x="696" y="205" width="168" height="16" fill="var(--accent)" opacity="0.32"/>
-          <path d="M 802 176 A 190 190 0 0 0 802 250" stroke="var(--muted)" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <rect x="696" y="218" width="168" height="151" fill="var(--accent)" opacity="0.32"/>
+          <rect x="696" y="81" width="168" height="137" fill="var(--accent)" opacity="0.32"/>
+          <rect x="696" y="208" width="59" height="10" fill="var(--muted)"/>
+          <rect x="805" y="208" width="59" height="10" fill="var(--muted)"/>
+          <polyline points="750,208 750,155 810,155 810,208" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+          <path d="M 753 206 A 39 39 0 0 1 807 206" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.75"/>
+          <line x1="810" y1="172" x2="910" y2="172" class="thin" stroke-dasharray="3 3"/>
 
           <g class="marker"><circle cx="640" cy="295" r="13"/><text x="640" y="296">1</text></g>
           <g class="marker"><circle cx="640" cy="213" r="13"/><text x="640" y="214">2</text></g>
