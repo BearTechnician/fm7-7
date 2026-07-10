@@ -458,6 +458,23 @@
       color: var(--accent);
       margin-bottom: 10px;
     }
+    .demo-btn {
+      display: inline-block;
+      margin: 4px 0 10px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: filter .15s;
+    }
+    .demo-btn:hover { filter: brightness(1.15); }
+    .demo-btn.armed { background: var(--accent3); }
+
     .diagram-legend {
       list-style: none;
       margin-top: 14px;
@@ -1745,6 +1762,7 @@
       <p>被動式防火的重點都在同一件事：<b>牆、樓板上的每一個穿越點，都要恢復原本的防火時效</b>。以下是三種常見穿越點的正確做法，跟一個最常見的錯誤示範：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">防火區劃穿越點示意圖</div>
+        <button type="button" id="fd-btn" class="demo-btn" onclick="fdToggle()">▶ 模擬火警：防火門自動關閉</button>
         <svg id="dg6" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
           <style>
             #dg6 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
@@ -1758,6 +1776,15 @@
             #dg6 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
             #dg6 .zone{fill:var(--muted);font-size:12px;font-family:inherit;opacity:0.75;}
             #dg6 .sep{stroke:var(--border);stroke-width:1.5;stroke-dasharray:6 6;}
+            /* 防火門動畫：按鈕切換 .fd-closed，門扇繞鉸鏈(390,451)旋轉 158.2° 至關閉位置 */
+            #dg6 .fd-leaf{transform-box:view-box;transform-origin:390px 451px;transition:transform 1.8s cubic-bezier(.45,.02,.6,1) .45s;}
+            #dg6.fd-closed .fd-leaf{transform:rotate(158.2deg);}
+            #dg6 .fd-ghost{transition:opacity .5s 1.6s;}
+            #dg6.fd-closed .fd-ghost{opacity:0;transition:opacity .4s .9s;}
+            #dg6 .fd-magnet{transition:stroke .3s,fill .3s;}
+            #dg6.fd-closed .fd-magnet{stroke:var(--accent3);fill:rgba(224,92,92,.35);}
+            #dg6 .fd-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg6.fd-closed .fd-alarm{opacity:1;}
           </style>
 
           <!-- ══ Row 1：管線穿牆 → 防火填塞（立面圖） ══ -->
@@ -1826,15 +1853,20 @@
           <rect x="460" y="445" width="390" height="12" class="wall"/>
           <!-- 鉸鏈 -->
           <circle cx="390" cy="451" r="4" fill="var(--accent2)"/>
-          <!-- 門扇：平時被電磁釋放器吸住，貼在區劃 A 側牆面（常開） -->
-          <line x1="390" y1="451" x2="325" y2="425" stroke="var(--accent2)" stroke-width="6" stroke-linecap="round"/>
-          <rect x="312" y="416" width="12" height="10" fill="var(--surface2)" stroke="var(--accent2)" stroke-width="2"/>
+          <!-- 門扇：平時被電磁釋放器吸住，貼在區劃 A 側牆面（常開）；.fd-leaf 由動畫旋轉至關閉 -->
+          <g class="fd-leaf">
+            <line x1="390" y1="451" x2="325" y2="425" stroke="var(--accent2)" stroke-width="6" stroke-linecap="round"/>
+          </g>
+          <rect x="312" y="416" width="12" height="10" fill="var(--surface2)" stroke="var(--accent2)" stroke-width="2" class="fd-magnet"/>
           <line x1="290" y1="392" x2="313" y2="414" class="thin" stroke-dasharray="3 3"/>
           <text x="60" y="392" class="lbl">電磁釋放器（通電吸住門扇＝常開）</text>
+          <text x="255" y="373" class="fd-alarm">⚠ 火警訊號 → 斷電鬆開！</text>
           <!-- 關閉位置（虛線）＋擺動弧線 -->
-          <line x1="390" y1="451" x2="460" y2="451" stroke="var(--accent3)" stroke-width="4" stroke-dasharray="6 4" opacity="0.8"/>
-          <path d="M 325 425 A 70 70 0 0 1 460 451" fill="none" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
-          <polygon points="460,451 449,441 446,453" fill="var(--accent3)"/>
+          <g class="fd-ghost">
+            <line x1="390" y1="451" x2="460" y2="451" stroke="var(--accent3)" stroke-width="4" stroke-dasharray="6 4" opacity="0.8"/>
+            <path d="M 325 425 A 70 70 0 0 1 460 451" fill="none" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="460,451 449,441 446,453" fill="var(--accent3)"/>
+          </g>
 
           <text x="520" y="410" class="lbl">火警訊號一到 → 電磁釋放器斷電鬆開，</text>
           <text x="520" y="428" class="lbl">門扇自動擺回關閉位置（紅色虛線），封住門口</text>
@@ -2098,5 +2130,14 @@
   本頁為半導體廠消防系統的觀念性入門整理，供內部教育訓練使用，非法規逐條解讀；正式合規判斷請以相關法規、FM Global／NFPA 官方原文及廠內 SOP 為準。
 </footer>
 
+<script>
+  function fdToggle() {
+    var svg = document.getElementById('dg6');
+    var btn = document.getElementById('fd-btn');
+    var closed = svg.classList.toggle('fd-closed');
+    btn.classList.toggle('armed', closed);
+    btn.textContent = closed ? '↺ 復歸：重新開啟防火門' : '▶ 模擬火警：防火門自動關閉';
+  }
+</script>
 </body>
 </html>
