@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.2</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.3</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -2181,6 +2181,128 @@
           <text x="720" y="598" class="lbl">防火牆等於破功——看到請立即通報</text>
         </svg>
       </div>
+
+      <h3>AMHS Fire Shutter（防火捲門）互動示意圖</h3>
+      <p>AMHS（OHT 天車）軌道穿越防火區劃牆的開口，用 <b>Fire Shutter</b> 防護。關閉邏輯是<b>同側交叉動作（Cross-Zoning）</b>：<b>同一側兩顆偵測器都動作</b>才會關閉捲門；如果只是兩側各一顆動作，代表不能確認是哪一側的真實火警，捲門<b>不會關</b>，避免誤動作把軌道切斷。點擊下圖的偵測器模擬火警，自己試試看：</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">AMHS Fire Shutter 互動邏輯示意圖（側視圖）</div>
+        <svg id="dg8" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            #dg8 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg8 .wall{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
+            #dg8 .hatch{stroke:var(--muted);stroke-width:1;opacity:0.55;}
+            #dg8 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg8 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            #dg8 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg8 .marker circle{fill:var(--accent);}
+            #dg8 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg8 .zone{fill:var(--muted);font-size:12.5px;font-family:inherit;opacity:0.8;}
+            #dg8 .inst-txt{fill:var(--text);font-size:10.5px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;pointer-events:none;}
+            /* 可點擊偵測器 */
+            #dg8 .am-det{cursor:pointer;}
+            #dg8 .am-det circle{transition:fill .2s,stroke .2s;}
+            #dg8 .am-det:hover circle{stroke:var(--accent);}
+            #dg8 .am-det.on circle{fill:rgba(224,92,92,0.45);stroke:var(--accent3);}
+            #dg8 .am-det .det-tag{fill:var(--muted);font-size:11px;text-anchor:middle;font-family:inherit;pointer-events:none;}
+            #dg8 .am-det.on .det-tag{fill:var(--accent3);font-weight:700;}
+            /* 捲門 */
+            #dg8 .sh-curtain{transform-box:view-box;transform-origin:495px 150px;transform:scaleY(0);transition:transform 1.6s cubic-bezier(.5,0,.85,.55);}
+            #dg8.sh-closed .sh-curtain{transform:scaleY(1);}
+            #dg8 .sh-ghost{transition:opacity .4s 1s;}
+            #dg8.sh-closed .sh-ghost{opacity:0;transition:opacity .4s 1.1s;}
+            #dg8 .am-status{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg8.sh-closed .am-status{fill:var(--accent3);}
+          </style>
+
+          <!-- 狀態列＋復歸 -->
+          <text x="40" y="30" class="am-status" id="am-status">👆 點擊偵測器模擬火警：單側兩顆動作 → Shutter 關閉；兩側各一顆 → 不關閉</text>
+          <g class="svg-btn" onclick="amhsReset()">
+            <rect x="856" y="12" width="112" height="26" rx="6"/>
+            <text x="912" y="25">↺ 全部復歸</text>
+          </g>
+
+          <!-- 天花板／樓板 -->
+          <line x1="60" y1="48" x2="940" y2="48" class="thin"/>
+          <rect x="60" y="392" width="880" height="12" class="wall"/>
+
+          <!-- 防火區劃牆（開口供軌道穿越） -->
+          <rect x="470" y="48" width="50" height="102" class="wall"/>
+          <line x1="474" y1="60" x2="486" y2="48" class="hatch"/>
+          <line x1="474" y1="84" x2="504" y2="54" class="hatch"/>
+          <line x1="474" y1="108" x2="516" y2="66" class="hatch"/>
+          <line x1="478" y1="128" x2="516" y2="90" class="hatch"/>
+          <rect x="470" y="300" width="50" height="92" class="wall"/>
+          <line x1="474" y1="316" x2="490" y2="300" class="hatch"/>
+          <line x1="474" y1="340" x2="510" y2="304" class="hatch"/>
+          <line x1="474" y1="364" x2="516" y2="322" class="hatch"/>
+          <line x1="486" y1="384" x2="516" y2="354" class="hatch"/>
+          <text x="240" y="175" text-anchor="middle" class="zone">防護區劃 A</text>
+          <text x="775" y="175" text-anchor="middle" class="zone">防護區劃 B</text>
+
+          <!-- Fire Shutter 捲箱＋簾幕 -->
+          <rect x="460" y="118" width="70" height="32" fill="var(--surface)" stroke="var(--accent3)" stroke-width="2"/>
+          <line x1="468" y1="126" x2="522" y2="126" stroke="var(--accent3)" stroke-width="1.5"/>
+          <line x1="468" y1="132" x2="522" y2="132" stroke="var(--accent3)" stroke-width="1.5"/>
+          <line x1="468" y1="138" x2="522" y2="138" stroke="var(--accent3)" stroke-width="1.5"/>
+          <g class="sh-ghost">
+            <rect x="478" y="150" width="34" height="150" fill="var(--accent3)" opacity="0.15" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          </g>
+          <rect x="478" y="150" width="34" height="150" fill="var(--accent3)" opacity="0.9" class="sh-curtain"/>
+          <g class="marker"><circle cx="555" cy="132" r="11"/><text x="555" y="133">2</text></g>
+
+          <!-- OHT 軌道（穿越開口）＋吊桿＋天車 -->
+          <line x1="150" y1="48" x2="150" y2="264" class="thin"/>
+          <line x1="330" y1="48" x2="330" y2="264" class="thin"/>
+          <line x1="660" y1="48" x2="660" y2="264" class="thin"/>
+          <line x1="850" y1="48" x2="850" y2="264" class="thin"/>
+          <line x1="100" y1="266" x2="900" y2="266" stroke="var(--muted)" stroke-width="4"/>
+          <line x1="100" y1="274" x2="900" y2="274" class="thin"/>
+          <g class="marker"><circle cx="120" cy="246" r="11"/><text x="120" y="247">1</text></g>
+          <rect x="200" y="278" width="70" height="46" rx="6" class="comp"/>
+          <text x="235" y="304" text-anchor="middle" class="lbl" font-size="11.5">OHT</text>
+
+          <!-- 偵測器（可點擊）：A 側兩顆、B 側兩顆 -->
+          <g class="am-det" id="amA1" onclick="amhsToggle(this)">
+            <line x1="255" y1="48" x2="255" y2="66" class="thin"/>
+            <circle cx="255" cy="82" r="16" class="comp"/>
+            <text x="255" y="83" class="inst-txt">SD</text>
+            <text x="255" y="115" class="det-tag">A1</text>
+          </g>
+          <g class="am-det" id="amA2" onclick="amhsToggle(this)">
+            <line x1="390" y1="48" x2="390" y2="66" class="thin"/>
+            <circle cx="390" cy="82" r="16" class="comp"/>
+            <text x="390" y="83" class="inst-txt">SD</text>
+            <text x="390" y="115" class="det-tag">A2</text>
+          </g>
+          <g class="am-det" id="amB1" onclick="amhsToggle(this)">
+            <line x1="600" y1="48" x2="600" y2="66" class="thin"/>
+            <circle cx="600" cy="82" r="16" class="comp"/>
+            <text x="600" y="83" class="inst-txt">SD</text>
+            <text x="600" y="115" class="det-tag">B1</text>
+          </g>
+          <g class="am-det" id="amB2" onclick="amhsToggle(this)">
+            <line x1="735" y1="48" x2="735" y2="66" class="thin"/>
+            <circle cx="735" cy="82" r="16" class="comp"/>
+            <text x="735" y="83" class="inst-txt">SD</text>
+            <text x="735" y="115" class="det-tag">B2</text>
+          </g>
+          <g class="marker"><circle cx="322" cy="100" r="11"/><text x="322" y="101">3</text></g>
+
+          <!-- 偵測器訊號線 → 捲箱 -->
+          <line x1="255" y1="98" x2="255" y2="134" class="thin" stroke-dasharray="3 3"/>
+          <line x1="390" y1="98" x2="390" y2="134" class="thin" stroke-dasharray="3 3"/>
+          <line x1="255" y1="134" x2="460" y2="134" class="thin" stroke-dasharray="3 3"/>
+          <line x1="600" y1="98" x2="600" y2="134" class="thin" stroke-dasharray="3 3"/>
+          <line x1="735" y1="98" x2="735" y2="134" class="thin" stroke-dasharray="3 3"/>
+          <line x1="735" y1="134" x2="530" y2="134" class="thin" stroke-dasharray="3 3"/>
+        </svg>
+        <ol class="diagram-legend">
+          <li><span class="dnum">1</span><span>OHT（天車）軌道：吊掛於天花板下方，穿越防火區劃牆的開口</span></li>
+          <li><span class="dnum">2</span><span>Fire Shutter（防火捲門）：平時捲收在牆上開口處的捲箱內保持開啟，讓天車通行；關閉時簾幕下降封住開口（含軌道穿越處）</span></li>
+          <li><span class="dnum">3</span><span>偵測器：牆兩側各裝兩顆（A1/A2、B1/B2），<b>同一側兩顆都動作</b>（交叉確認）才關閉捲門；兩側各一顆動作＝無法確認單側真實火警，不關閉，避免誤動作中斷 AMHS 搬運</span></li>
+        </ol>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">點偵測器切換火警狀態（再點一次取消）：試試「A1＋A2」（會關）跟「A1＋B1」（不會關）的差別。</div>
+      </div>
     </div>
 
     <!-- s10 -->
@@ -2427,7 +2549,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.2</b></td><td>2026-07-11</td><td>遲滯室滿水動畫；警鈴／警報加音波符號；全部動畫放慢；管路改為沿線逐段變色；防火閘門加煙流測試（開＝通過、關＝被擋）</td></tr>
+          <tr><td><b>V5.3</b></td><td>2026-07-11</td><td>新增 AMHS Fire Shutter 互動示意圖：點擊偵測器模擬火警，同側兩顆動作（交叉確認）捲門才關閉，兩側各一顆不關閉</td></tr>
+          <tr><td>V5.2</td><td>2026-07-11</td><td>遲滯室滿水動畫；警鈴／警報加音波符號；全部動畫放慢；管路改為沿線逐段變色；防火閘門加煙流測試（開＝通過、關＝被擋）</td></tr>
           <tr><td>V5.1</td><td>2026-07-11</td><td>Stocker＝K8（非 ESFR）、ESFR 用於貨架／ASRS；泡沫「控制閥」正名為「一齊開放閥」；泡沫與水霧系統圖在一齊開放閥前增設 ACV</td></tr>
           <tr><td>V5.0</td><td>2026-07-11</td><td>VESDA 改為三台獨立主機（潔淨室／下迴風層／迴風道）＋機台起火煙流動畫；撒水、泡沫、水霧放射動畫；新增版本紀錄</td></tr>
           <tr><td>V4.1</td><td>2026-07-11</td><td>一齊開放閥隔膜構造多輪修正（閥座孔口、固定點間隙、感知側水、坍縮動畫）</td></tr>
@@ -2449,6 +2572,30 @@
 </footer>
 
 <script>
+  function amhsToggle(det) {
+    det.classList.toggle('on');
+    var svg = document.getElementById('dg8');
+    function on(id) { return svg.querySelector('#' + id).classList.contains('on'); }
+    var closed = (on('amA1') && on('amA2')) || (on('amB1') && on('amB2'));
+    svg.classList.toggle('sh-closed', closed);
+    var n = ['amA1','amA2','amB1','amB2'].filter(on).length;
+    var st = document.getElementById('am-status');
+    if (closed) {
+      st.textContent = '🔔 單側兩顆偵測器動作（交叉確認）→ Fire Shutter 關閉！';
+    } else if (n === 0) {
+      st.textContent = '👆 點擊偵測器模擬火警：單側兩顆動作 → Shutter 關閉；兩側各一顆 → 不關閉';
+    } else if (on('amA1') !== on('amA2') && on('amB1') !== on('amB2')) {
+      st.textContent = '⚠ 兩側各一顆動作 → 無法確認單側火警，Shutter 不關閉（防誤動作）';
+    } else {
+      st.textContent = '偵測器動作 ' + n + ' 顆，未滿足「同側兩顆」條件 → Shutter 保持開啟';
+    }
+  }
+  function amhsReset() {
+    var svg = document.getElementById('dg8');
+    svg.querySelectorAll('.am-det.on').forEach(function (g) { g.classList.remove('on'); });
+    svg.classList.remove('sh-closed');
+    document.getElementById('am-status').textContent = '👆 點擊偵測器模擬火警：單側兩顆動作 → Shutter 關閉；兩側各一顆 → 不關閉';
+  }
   function dgToggle(svgId, cls, btn) {
     var svg = document.getElementById(svgId);
     var on = svg.classList.toggle(cls);
