@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.4</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.5</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -2183,7 +2183,7 @@
       </div>
 
       <h3>AMHS Fire Shutter（防火捲門）互動示意圖</h3>
-      <p>AMHS（OHT 天車）軌道穿越防火區劃牆的開口，用 <b>Fire Shutter</b> 防護（<b>側滑式</b>：門片平時收在開口旁的收納袋，關閉時從側邊水平滑出）。關閉邏輯是<b>同側交叉動作（Cross-Zoning）</b>：<b>同一側兩顆偵測器都動作</b>才會關閉捲門；如果只是兩側各一顆動作，代表不能確認是哪一側的真實火警，捲門<b>不會關</b>，避免誤動作把軌道切斷。點擊下圖的偵測器模擬火警，自己試試看：</p>
+      <p>AMHS（OHT 天車）軌道穿越防火區劃牆的開口，用 <b>Fire Shutter</b> 防護（<b>側滑式</b>：門片平時收在牆面<b>前側</b>的收納袋，關閉時<b>由前往後</b>滑入牆面封住開口——側視圖中以「偏移＋半透明＝在前、滑回牆面＝到位」表現這個深度方向的動作）。關閉邏輯是<b>同側交叉動作（Cross-Zoning）</b>：<b>同一側兩顆偵測器都動作</b>才會關閉捲門；如果只是兩側各一顆動作，代表不能確認是哪一側的真實火警，捲門<b>不會關</b>，避免誤動作把軌道切斷。點擊下圖的偵測器模擬火警，自己試試看：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">AMHS Fire Shutter 互動邏輯示意圖（側視圖）</div>
         <svg id="dg8" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
@@ -2204,9 +2204,10 @@
             #dg8 .am-det.on circle{fill:rgba(224,92,92,0.45);stroke:var(--accent3);}
             #dg8 .am-det .det-tag{fill:var(--muted);font-size:11px;text-anchor:middle;font-family:inherit;pointer-events:none;}
             #dg8 .am-det.on .det-tag{fill:var(--accent3);font-weight:700;}
-            /* 側滑式捲門：自右側收納袋水平滑出封住開口 */
-            #dg8 .sh-panel{transform-box:view-box;transition:transform 1.8s cubic-bezier(.45,.05,.6,1);}
-            #dg8.sh-closed .sh-panel{transform:translateX(-58px);}
+            /* 側滑式捲門（深度方向）：門片平時在牆面「前側」（畫成偏移＋放大＋半透明＝靠近觀看者），
+               關閉時由前往後滑入牆面開口（縮回原位＋變實） */
+            #dg8 .sh-panel{transform-box:view-box;transform-origin:492px 170px;transform:translate(-78px,58px) scale(1.14);opacity:.7;transition:transform 1.8s cubic-bezier(.45,.05,.6,1),opacity 1.8s;}
+            #dg8.sh-closed .sh-panel{transform:none;opacity:1;}
             #dg8 .sh-ghost{transition:opacity .4s 1s;}
             #dg8.sh-closed .sh-ghost{opacity:0;transition:opacity .4s 1.3s;}
             /* OHT 平常來回移動，捲門關閉即暫停（搬運中斷） */
@@ -2242,21 +2243,21 @@
           <text x="240" y="220" text-anchor="middle" class="zone">防護區劃 A</text>
           <text x="775" y="220" text-anchor="middle" class="zone">防護區劃 B</text>
 
-          <!-- 側滑式 Fire Shutter：右側收納袋＋門片＋關閉位置虛線＋滑動方向 -->
-          <rect x="524" y="99" width="52" height="142" fill="none" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <text x="584" y="258" class="lbl" font-size="11">收納袋</text>
+          <!-- 側滑式 Fire Shutter（深度方向）：牆前側收納袋＋關閉位置虛線＋由前往後的滑入方向 -->
+          <rect x="392" y="161" width="48" height="150" fill="none" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="416" y="332" text-anchor="middle" class="lbl" font-size="11">收納袋（牆的前側）</text>
           <g class="sh-ghost">
             <rect x="472" y="105" width="40" height="130" fill="var(--accent3)" opacity="0.12" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <line x1="560" y1="88" x2="505" y2="88" stroke="var(--accent3)" stroke-width="2" stroke-dasharray="4 3"/>
-            <polygon points="505,83 505,93 494,88" fill="var(--accent3)"/>
+            <line x1="446" y1="236" x2="480" y2="198" stroke="var(--accent3)" stroke-width="2" stroke-dasharray="4 3"/>
+            <polygon points="474,193 484,201 486,190" fill="var(--accent3)"/>
           </g>
           <g class="sh-panel">
-            <rect x="530" y="105" width="40" height="130" fill="var(--accent3)" opacity="0.88"/>
-            <line x1="540" y1="110" x2="540" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
-            <line x1="550" y1="110" x2="550" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
-            <line x1="560" y1="110" x2="560" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
+            <rect x="472" y="105" width="40" height="130" fill="var(--accent3)" opacity="0.88"/>
+            <line x1="482" y1="110" x2="482" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
+            <line x1="492" y1="110" x2="492" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
+            <line x1="502" y1="110" x2="502" y2="230" stroke="var(--surface)" stroke-width="1.5"/>
           </g>
-          <g class="marker"><circle cx="612" cy="130" r="11"/><text x="612" y="131">2</text></g>
+          <g class="marker"><circle cx="416" cy="356" r="11"/><text x="416" y="357">2</text></g>
 
           <!-- OHT 軌道（拉高）＋吊桿 -->
           <line x1="150" y1="48" x2="150" y2="143" class="thin"/>
@@ -2311,7 +2312,7 @@
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>OHT（天車）軌道：吊掛於天花板下方，穿越防火區劃牆的開口；天車平時沿軌道來回搬運</span></li>
-          <li><span class="dnum">2</span><span>Fire Shutter（防火捲門，<b>側滑式</b>）：平時收納在開口旁的收納袋內保持開啟，讓天車通行；關閉時門片<b>由側邊水平滑出</b>封住開口（含軌道穿越處），天車搬運同時暫停</span></li>
+          <li><span class="dnum">2</span><span>Fire Shutter（防火捲門，<b>側滑式</b>）：門片平時收納在牆面<b>前側</b>的收納袋（半透明＝位於觀看者這一側）保持開啟；關閉時<b>由前往後</b>滑入牆面封住開口（含軌道穿越處），天車搬運同時暫停</span></li>
           <li><span class="dnum">3</span><span>偵測器：牆兩側各裝兩顆（A1/A2、B1/B2），<b>同一側兩顆都動作</b>（交叉確認）才關閉捲門；兩側各一顆動作＝無法確認單側真實火警，不關閉，避免誤動作中斷 AMHS 搬運</span></li>
         </ol>
         <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">點偵測器切換火警狀態（再點一次取消）：試試「A1＋A2」（會關）跟「A1＋B1」（不會關）的差別。捲門關閉時 OHT 立即停住（搬運中斷），復歸後恢復移動。</div>
@@ -2562,7 +2563,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.4</b></td><td>2026-07-11</td><td>AMHS Fire Shutter 改為側滑式關閉動畫；OHT 軌道拉高並新增天車來回移動動畫，捲門關閉即暫停（搬運中斷）</td></tr>
+          <tr><td><b>V5.5</b></td><td>2026-07-11</td><td>AMHS Fire Shutter 修正滑動方向：側視圖中門片為「由前往後」滑入牆面（偽 3D 深度動畫），非左右平移</td></tr>
+          <tr><td>V5.4</td><td>2026-07-11</td><td>AMHS Fire Shutter 改為側滑式關閉動畫；OHT 軌道拉高並新增天車來回移動動畫，捲門關閉即暫停（搬運中斷）</td></tr>
           <tr><td>V5.3</td><td>2026-07-11</td><td>新增 AMHS Fire Shutter 互動示意圖：點擊偵測器模擬火警，同側兩顆動作（交叉確認）捲門才關閉，兩側各一顆不關閉</td></tr>
           <tr><td>V5.2</td><td>2026-07-11</td><td>遲滯室滿水動畫；警鈴／警報加音波符號；全部動畫放慢；管路改為沿線逐段變色；防火閘門加煙流測試（開＝通過、關＝被擋）</td></tr>
           <tr><td>V5.1</td><td>2026-07-11</td><td>Stocker＝K8（非 ESFR）、ESFR 用於貨架／ASRS；泡沫「控制閥」正名為「一齊開放閥」；泡沫與水霧系統圖在一齊開放閥前增設 ACV</td></tr>
