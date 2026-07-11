@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.1</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.2</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -793,18 +793,22 @@
             @keyframes v7flick{from{transform:scale(1);}to{transform:scale(1.18);}}
             #dg7 .v-flame{transform-box:fill-box;transform-origin:center bottom;}
             #dg7 .smoke{opacity:0;offset-rotate:0deg;offset-path:path('M 375 235 C 430 255 466 285 478 328 C 488 366 478 392 505 405 L 750 418 C 792 421 812 405 815 372 L 818 235');}
-            #dg7.v-fire .smoke{animation:v7smoke 4.5s linear infinite;}
-            #dg7.v-fire .smoke.s2{animation-delay:.9s;}
-            #dg7.v-fire .smoke.s3{animation-delay:1.8s;}
+            #dg7.v-fire .smoke{animation:v7smoke 7s linear infinite;}
+            #dg7.v-fire .smoke.s2{animation-delay:1.4s;}
+            #dg7.v-fire .smoke.s3{animation-delay:2.8s;}
             @keyframes v7smoke{0%{offset-distance:0%;opacity:0;}8%{opacity:.85;}88%{opacity:.85;}100%{offset-distance:100%;opacity:0;}}
             #dg7 .v-p2,#dg7 .v-p3{transition:stroke .3s;}
-            #dg7.v-fire .v-p2{stroke:var(--yellow);transition:stroke .4s 2.4s;}
-            #dg7.v-fire .v-p3{stroke:var(--yellow);transition:stroke .4s 3.8s;}
+            #dg7.v-fire .v-p2{stroke:var(--yellow);transition:stroke .5s 3.8s;}
+            #dg7.v-fire .v-p3{stroke:var(--yellow);transition:stroke .5s 6s;}
             #dg7 .v-unit2,#dg7 .v-unit3{transition:fill .3s,stroke .3s;}
-            #dg7.v-fire .v-unit2{fill:rgba(224,92,92,0.35);stroke:var(--accent3);transition:fill .3s 2.4s,stroke .3s 2.4s;}
-            #dg7.v-fire .v-unit3{fill:rgba(224,92,92,0.35);stroke:var(--accent3);transition:fill .3s 3.8s,stroke .3s 3.8s;}
+            #dg7.v-fire .v-unit2{fill:rgba(224,92,92,0.35);stroke:var(--accent3);transition:fill .4s 3.8s,stroke .4s 3.8s;}
+            #dg7.v-fire .v-unit3{fill:rgba(224,92,92,0.35);stroke:var(--accent3);transition:fill .4s 6s,stroke .4s 6s;}
+            #dg7 .v-snd2,#dg7 .v-snd3{opacity:0;}
+            #dg7.v-fire .v-snd2{animation:v7snd 1s ease-in-out infinite 3.8s;}
+            #dg7.v-fire .v-snd3{animation:v7snd 1s ease-in-out infinite 6s;}
+            @keyframes v7snd{0%,100%{opacity:.25;}50%{opacity:1;}}
             #dg7 .v-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
-            #dg7.v-fire .v-alarm{opacity:1;transition:opacity .4s 2.4s;}
+            #dg7.v-fire .v-alarm{opacity:1;transition:opacity .4s 3.8s;}
             #dg7 .vhole{fill:var(--accent3);}
           </style>
 
@@ -909,6 +913,10 @@
           <line x1="832" y1="210" x2="832" y2="300" class="vpipe v-p3"/>
           <g class="marker"><circle cx="800" cy="180" r="11"/><text x="800" y="181">6</text></g>
           <rect x="800" y="300" width="64" height="36" rx="4" class="comp v-unit3"/>
+          <g class="v-snd3" stroke="var(--accent3)" stroke-width="2" fill="none">
+            <path d="M 786 309 a 8 8 0 0 0 0 11"/>
+            <path d="M 780 305 a 14 14 0 0 0 0 19"/>
+          </g>
           <text x="832" y="313" text-anchor="middle" class="lbl-strong" font-size="10.5">VESDA</text>
           <text x="832" y="328" text-anchor="middle" class="lbl" font-size="10">主機</text>
 
@@ -922,6 +930,10 @@
           <!-- 下迴風層採樣管的主機：裝在下迴風層內 -->
           <line x1="130" y1="385" x2="130" y2="405" class="vpipe v-p2"/>
           <rect x="95" y="405" width="70" height="40" rx="4" class="comp v-unit2"/>
+          <g class="v-snd2" stroke="var(--accent3)" stroke-width="2" fill="none">
+            <path d="M 172 415 a 8 8 0 0 1 0 11"/>
+            <path d="M 178 411 a 14 14 0 0 1 0 19"/>
+          </g>
           <text x="130" y="419" text-anchor="middle" class="lbl-strong" font-size="10.5">VESDA</text>
           <text x="130" y="435" text-anchor="middle" class="lbl" font-size="10">主機</text>
         </svg>
@@ -1008,23 +1020,30 @@
             #dg1 .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
             #dg1 .inst{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
             #dg1 .inst-txt{fill:var(--text);font-size:10.5px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
-            /* 火災出水動畫 */
+            /* 火災出水動畫（放慢版）：出水 → 水流沿管路推進 → 遲滯室慢慢滿水 → PS → FCP／水鐘 */
             #dg1 .w-flame{opacity:0;transform-box:fill-box;transform-origin:center bottom;transition:opacity .3s;}
             #dg1.w-fire .w-flame{opacity:.9;animation:w1flick .5s ease-in-out infinite alternate;}
             @keyframes w1flick{from{transform:scale(1);}to{transform:scale(1.2);}}
             #dg1 .w-bulb{transition:opacity .3s;}
-            #dg1.w-fire .w-bulb{opacity:0;transition:opacity .3s .7s;}
+            #dg1.w-fire .w-bulb{opacity:0;transition:opacity .4s 1s;}
             #dg1 .w-spray{opacity:0;transition:opacity .3s;}
-            #dg1.w-fire .w-spray{opacity:1;transition:opacity .4s .8s;}
-            #dg1 .w-pipe{transition:stroke .5s;}
-            #dg1.w-fire .w-pipe{stroke:var(--green);transition:stroke .6s 1.3s;}
+            #dg1.w-fire .w-spray{opacity:1;transition:opacity .5s 1.2s;}
+            #dg1 .w-flowline{stroke:var(--green);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .4s;}
+            #dg1.w-fire .w-flowline{stroke-dashoffset:0;transition:stroke-dashoffset 2.6s linear 2s;}
+            #dg1 .w-aline{transition:stroke .4s;}
+            #dg1.w-fire .w-aline{stroke:var(--green);transition:stroke .5s 4.6s;}
+            #dg1 .w-rcfill{transform-box:view-box;transform-origin:250px 453px;transform:scaleY(0);transition:transform .4s;}
+            #dg1.w-fire .w-rcfill{transform:scaleY(1);transition:transform 1.8s linear 5s;}
             #dg1 .w-rc,#dg1 .w-ps{transition:stroke .3s;}
-            #dg1.w-fire .w-rc{stroke:var(--accent3);transition:stroke .3s 2s;}
-            #dg1.w-fire .w-ps{stroke:var(--accent3);transition:stroke .3s 2.3s;}
+            #dg1.w-fire .w-rc{stroke:var(--accent3);transition:stroke .4s 6.8s;}
+            #dg1.w-fire .w-ps{stroke:var(--accent3);transition:stroke .4s 7.2s;}
             #dg1 .w-fcp{transition:stroke .3s;}
-            #dg1.w-fire .w-fcp{stroke:var(--accent3);transition:stroke .3s 2.6s;}
+            #dg1.w-fire .w-fcp{stroke:var(--accent3);transition:stroke .4s 7.6s;}
             #dg1 .w-gong{transition:fill .3s,stroke .3s;}
-            #dg1.w-fire .w-gong{fill:rgba(224,92,92,0.4);stroke:var(--accent3);transition:fill .3s 2.6s,stroke .3s 2.6s;}
+            #dg1.w-fire .w-gong{fill:rgba(224,92,92,0.4);stroke:var(--accent3);transition:fill .4s 7.6s,stroke .4s 7.6s;}
+            #dg1 .w-snd{opacity:0;}
+            #dg1.w-fire .w-snd{animation:w1snd 1s ease-in-out infinite 7.6s;}
+            @keyframes w1snd{0%,100%{opacity:.25;}50%{opacity:1;}}
             #dg1 .w-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
             #dg1.w-fire .w-alarm{opacity:1;}
           </style>
@@ -1049,8 +1068,8 @@
           <line x1="64" y1="678" x2="70" y2="691" class="thin"/>
           <line x1="18" y1="692" x2="86" y2="692" stroke="var(--muted)" stroke-width="2.5"/>
           <text x="100" y="686" class="lbl">消防泵浦（水源）</text>
-          <line x1="74" y1="660" x2="150" y2="660" class="pipe w-pipe"/>
-          <line x1="150" y1="660" x2="150" y2="475" class="pipe w-pipe"/>
+          <line x1="74" y1="660" x2="150" y2="660" class="pipe"/>
+          <line x1="150" y1="660" x2="150" y2="475" class="pipe"/>
 
           <!-- ACV 本體（含 OS&Y 主遮斷功能）：閥體＋閥座＋閥瓣＋流向箭頭 -->
           <rect x="128" y="400" width="44" height="75" rx="8" class="valve-body"/>
@@ -1070,8 +1089,9 @@
           <g class="marker"><circle cx="43" cy="385" r="11"/><text x="43" y="386">5</text></g>
 
           <!-- 警報接口（閥體側邊）→ 遲滯室 -->
-          <line x1="172" y1="440" x2="234" y2="440" class="thin"/>
+          <line x1="172" y1="440" x2="234" y2="440" class="thin w-aline"/>
           <circle cx="250" cy="440" r="16" class="comp w-rc"/>
+          <circle cx="250" cy="440" r="13" fill="var(--accent)" opacity="0.55" class="w-rcfill"/>
           <g class="marker"><circle cx="280" cy="415" r="11"/><text x="280" y="416">2</text></g>
 
           <!-- 遲滯室 → 壓力開關（ISA 儀表泡：PS） -->
@@ -1086,15 +1106,20 @@
           <!-- 水力警鈴/水鐘：就近裝設於 ACV／遲滯室旁邊，非戶外 -->
           <line x1="266" y1="440" x2="288" y2="440" class="thin"/>
           <path d="M 293 428 a 18 18 0 0 1 0 24 l -10 -7 l 0 -10 z" class="comp w-gong"/>
+          <g class="w-snd" stroke="var(--accent3)" stroke-width="2" fill="none">
+            <path d="M 316 434 a 9 9 0 0 1 0 12"/>
+            <path d="M 322 430 a 15 15 0 0 1 0 20"/>
+            <path d="M 328 426 a 21 21 0 0 1 0 28"/>
+          </g>
           <g class="marker"><circle cx="305" cy="398" r="11"/><text x="305" y="399">3</text></g>
 
           <!-- 立管 Riser（ACV 頂端直上，主排水閥於途中側接） -->
-          <line x1="150" y1="400" x2="150" y2="120" class="pipe w-pipe"/>
+          <line x1="150" y1="400" x2="150" y2="120" class="pipe"/>
           <g class="marker"><circle cx="112" cy="270" r="11"/><text x="112" y="271">6</text></g>
           <text x="30" y="275" class="lbl">立管</text>
 
           <!-- 轉水平 / 幹管 Cross Main -->
-          <line x1="150" y1="120" x2="950" y2="120" class="pipe w-pipe"/>
+          <line x1="150" y1="120" x2="950" y2="120" class="pipe"/>
           <g class="marker"><circle cx="520" cy="95" r="11"/><text x="520" y="96">7</text></g>
           <text x="440" y="80" class="lbl">十字主管／幹管（Cross Main）</text>
 
@@ -1108,7 +1133,7 @@
             <line x1="308" y1="191" x2="312" y2="209" class="thin"/>
           </g>
           <g>
-            <line x1="470" y1="120" x2="470" y2="172" class="pipe w-pipe"/>
+            <line x1="470" y1="120" x2="470" y2="172" class="pipe"/>
             <circle cx="470" cy="176" r="4" class="bulb w-bulb"/>
             <circle cx="470" cy="184" r="7" class="head-body"/>
             <line x1="462" y1="191" x2="458" y2="209" class="thin"/>
@@ -1154,6 +1179,9 @@
           <polygon points="332,635 352,635 342,650" fill="var(--muted)"/>
           <g class="marker"><circle cx="300" cy="562" r="11"/><text x="300" y="563">9</text></g>
           <g class="marker"><circle cx="650" cy="580" r="11"/><text x="650" y="581">10</text></g>
+
+          <!-- 水流推進線（逐段變色）：經過 ACV 處留缺口 -->
+          <path d="M 74 660 L 150 660 L 150 475 M 150 400 L 150 120 L 470 120 L 470 172" pathLength="100" class="w-flowline"/>
         </svg>
         <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">實線＝配水主管路（常時充水）；紅點＝撒水頭感熱玻璃球；黃色虛線＝末端查驗閥的試驗管線（供水來自遠端最不利點，閥體本身裝在 ACV 旁邊）</div>
         <ol class="diagram-legend">
@@ -1212,20 +1240,23 @@
             #dg2 .foam{fill:var(--text);opacity:0.5;}
             #dg2 .head-body{fill:var(--green);stroke:var(--green);}
             #dg2 .bulb{fill:var(--accent3);}
-            /* 泡沫放射動畫 */
+            /* 泡沫放射動畫（放慢版，水流沿管路逐段推進） */
             #dg2 .f-bulb{transition:opacity .3s;}
-            #dg2.foam-fire .f-bulb{opacity:0;transition:opacity .3s .3s;}
+            #dg2.foam-fire .f-bulb{opacity:0;transition:opacity .4s .8s;}
             #dg2 .f-pilot{transition:stroke .4s;}
-            #dg2.foam-fire .f-pilot{stroke:var(--yellow);transition:stroke .5s .6s;}
+            #dg2.foam-fire .f-pilot{stroke:var(--yellow);transition:stroke 1s 1.4s;}
             #dg2 .f-act{transition:fill .3s;}
-            #dg2.foam-fire .f-act{fill:var(--accent3);transition:fill .3s 1.3s;}
-            #dg2 .f-pipe1,#dg2 .f-pipe2{transition:stroke .5s;}
-            #dg2.foam-fire .f-pipe1{stroke:var(--green);transition:stroke .6s 1.8s;}
+            #dg2.foam-fire .f-act{fill:var(--accent3);transition:fill .4s 2.8s;}
+            #dg2 .f-flowline{stroke:var(--green);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .4s;}
+            #dg2.foam-fire .f-flowline{stroke-dashoffset:0;transition:stroke-dashoffset 2.4s linear 3.4s;}
+            #dg2 .f-pipe1{transition:stroke .5s;}
+            #dg2.foam-fire .f-pipe1{stroke:var(--green);transition:stroke .8s 3.8s;}
             #dg2 .f-prop{transition:stroke .4s;}
-            #dg2.foam-fire .f-prop{stroke:var(--green);transition:stroke .5s 2.2s;}
-            #dg2.foam-fire .f-pipe2{stroke:var(--green);transition:stroke .6s 2.6s;}
+            #dg2.foam-fire .f-prop{stroke:var(--green);transition:stroke .6s 4s;}
+            #dg2 .f-pipe2{transition:stroke .5s;}
+            #dg2.foam-fire .f-pipe2{stroke:var(--green);transition:stroke .6s 5.6s;}
             #dg2 .f-foam{transform-box:view-box;transform-origin:800px 320px;}
-            #dg2.foam-fire .f-foam{animation:f2grow 1.6s ease-out 3.2s backwards;}
+            #dg2.foam-fire .f-foam{animation:f2grow 2s ease-out 6s backwards;}
             @keyframes f2grow{from{transform:scaleY(0.12);}to{transform:scaleY(1);}}
             #dg2 .f-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
             #dg2.foam-fire .f-alarm{opacity:1;}
@@ -1246,7 +1277,7 @@
           <line x1="52" y1="296" x2="128" y2="296" stroke="var(--muted)" stroke-width="2.5"/>
           <g class="marker"><circle cx="90" cy="220" r="11"/><text x="90" y="221">1</text></g>
           <text x="30" y="305" class="lbl">消防泵浦（與撒水系統共用）</text>
-          <line x1="114" y1="260" x2="250" y2="260" class="pipe f-pipe1"/>
+          <line x1="114" y1="260" x2="250" y2="260" class="pipe"/>
 
           <!-- 泡沫原液儲槽（皮囊式）：水壓擠壓皮囊排出原液，不需另設原液泵 -->
           <line x1="200" y1="260" x2="200" y2="340" class="pipe f-pipe1"/>
@@ -1262,7 +1293,7 @@
           <polygon points="290,235 325,260 290,285 255,260" class="comp f-prop"/>
           <g class="marker"><circle cx="290" cy="210" r="11"/><text x="290" y="211">3</text></g>
           <text x="290" y="305" text-anchor="middle" class="lbl">比例混合裝置</text>
-          <line x1="325" y1="260" x2="440" y2="260" class="pipe f-pipe1"/>
+          <line x1="325" y1="260" x2="440" y2="260" class="pipe"/>
           <!-- ACV：設於一齊開放閥前（上游） -->
           <rect x="382" y="240" width="34" height="40" rx="6" class="valve-body"/>
           <line x1="399" y1="244" x2="399" y2="276" stroke="var(--muted)" stroke-width="3"/>
@@ -1278,9 +1309,9 @@
           <polygon points="458,232 474,232 466,220" fill="var(--accent2)" class="f-act"/>
           <g class="marker"><circle cx="510" cy="290" r="11"/><text x="510" y="291">4</text></g>
           <text x="466" y="305" text-anchor="middle" class="lbl">一齊開放閥</text>
-          <line x1="484" y1="260" x2="650" y2="260" class="pipe f-pipe2"/>
-          <line x1="650" y1="260" x2="650" y2="190" class="pipe f-pipe2"/>
-          <line x1="650" y1="190" x2="870" y2="190" class="pipe f-pipe2"/>
+          <line x1="484" y1="260" x2="650" y2="260" class="pipe"/>
+          <line x1="650" y1="260" x2="650" y2="190" class="pipe"/>
+          <line x1="650" y1="190" x2="870" y2="190" class="pipe"/>
 
           <!-- 電磁閥／手動啟動：集中於左側，跟感知撒水頭分開（P&ID：bowtie + 菱形電磁 / T-handle 手動） -->
           <polygon points="362,197 362,213 374,205" class="valve-body"/>
@@ -1365,6 +1396,9 @@
           <path d="M 690 308 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 q 12 -14 24 0 l 0 12 l -220 0 z" class="foam f-foam"/>
           <g class="marker"><circle cx="800" cy="275" r="11"/><text x="800" y="276">6</text></g>
           <text x="565" y="350" class="lbl-strong" fill="var(--text)">易燃液體</text>
+
+          <!-- 水流推進線（逐段變色）：經過比例混合裝置／ACV／一齊開放閥處留缺口 -->
+          <path d="M 114 260 L 250 260 M 325 260 L 380 260 M 418 260 L 446 260 M 486 260 L 650 260 L 650 190 L 870 190" pathLength="100" class="f-flowline"/>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>消防泵浦：與撒水系統共用同一顆，沒有另外的加壓泵浦</span></li>
@@ -1398,18 +1432,19 @@
             #dg3 .equip{fill:var(--surface2);stroke:var(--accent3);stroke-width:2;}
             #dg3 .head-body{fill:var(--green);stroke:var(--green);}
             #dg3 .bulb{fill:var(--accent3);}
-            /* 水霧放射動畫 */
+            /* 水霧放射動畫（放慢版，水流沿管路逐段推進） */
             #dg3 .m-bulb{transition:opacity .3s;}
-            #dg3.mist-fire .m-bulb{opacity:0;transition:opacity .3s .3s;}
+            #dg3.mist-fire .m-bulb{opacity:0;transition:opacity .4s .8s;}
             #dg3 .m-pilot{transition:stroke .4s;}
-            #dg3.mist-fire .m-pilot{stroke:var(--yellow);transition:stroke .5s .6s;}
+            #dg3.mist-fire .m-pilot{stroke:var(--yellow);transition:stroke 1s 1.4s;}
             #dg3 .m-act{transition:fill .3s;}
-            #dg3.mist-fire .m-act{fill:var(--accent3);transition:fill .3s 1.3s;}
-            #dg3 .m-pipe1,#dg3 .m-pipe2{transition:stroke .5s;}
-            #dg3.mist-fire .m-pipe1{stroke:var(--green);transition:stroke .6s 1.8s;}
-            #dg3.mist-fire .m-pipe2{stroke:var(--green);transition:stroke .6s 2.5s;}
+            #dg3.mist-fire .m-act{fill:var(--accent3);transition:fill .4s 2.8s;}
+            #dg3 .m-flowline{stroke:var(--green);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .4s;}
+            #dg3.mist-fire .m-flowline{stroke-dashoffset:0;transition:stroke-dashoffset 2.4s linear 3.4s;}
+            #dg3 .m-pipe2{transition:stroke .5s;}
+            #dg3.mist-fire .m-pipe2{stroke:var(--green);transition:stroke .6s 5.6s;}
             #dg3 .mist{transition:stroke .4s,opacity .4s,stroke-width .4s;}
-            #dg3.mist-fire .mist{stroke:var(--accent2);opacity:1;stroke-width:2.5;transition:stroke .5s 3s,opacity .5s 3s,stroke-width .5s 3s;}
+            #dg3.mist-fire .mist{stroke:var(--accent2);opacity:1;stroke-width:2.5;transition:stroke .6s 6s,opacity .6s 6s,stroke-width .6s 6s;}
             #dg3 .m-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
             #dg3.mist-fire .m-alarm{opacity:1;}
           </style>
@@ -1429,7 +1464,7 @@
           <line x1="52" y1="296" x2="128" y2="296" stroke="var(--muted)" stroke-width="2.5"/>
           <g class="marker"><circle cx="90" cy="220" r="11"/><text x="90" y="221">1</text></g>
           <text x="30" y="305" class="lbl">消防泵浦（與撒水系統共用）</text>
-          <line x1="114" y1="260" x2="448" y2="260" class="pipe m-pipe1"/>
+          <line x1="114" y1="260" x2="448" y2="260" class="pipe"/>
           <!-- ACV：設於一齊開放閥前（上游） -->
           <rect x="382" y="240" width="34" height="40" rx="6" class="valve-body"/>
           <line x1="399" y1="244" x2="399" y2="276" stroke="var(--muted)" stroke-width="3"/>
@@ -1445,9 +1480,9 @@
           <polygon points="458,232 474,232 466,220" fill="var(--accent2)" class="m-act"/>
           <g class="marker"><circle cx="510" cy="290" r="11"/><text x="510" y="291">2</text></g>
           <text x="466" y="305" text-anchor="middle" class="lbl">一齊開放閥</text>
-          <line x1="484" y1="260" x2="650" y2="260" class="pipe m-pipe2"/>
-          <line x1="650" y1="260" x2="650" y2="190" class="pipe m-pipe2"/>
-          <line x1="650" y1="190" x2="870" y2="190" class="pipe m-pipe2"/>
+          <line x1="484" y1="260" x2="650" y2="260" class="pipe"/>
+          <line x1="650" y1="260" x2="650" y2="190" class="pipe"/>
+          <line x1="650" y1="190" x2="870" y2="190" class="pipe"/>
           <g class="marker"><circle cx="620" cy="230" r="11"/><text x="620" y="231">3</text></g>
 
           <!-- 電磁閥／手動啟動（P&ID：bowtie + 電磁促動 / T-handle 手動） -->
@@ -1528,6 +1563,9 @@
           <rect x="660" y="275" width="250" height="105" rx="6" class="equip"/>
           <text x="785" y="325" text-anchor="middle" class="lbl-strong">發電機房／主變電站</text>
           <g class="marker"><circle cx="785" cy="350" r="11"/><text x="785" y="351">5</text></g>
+
+          <!-- 水流推進線（逐段變色）：經過 ACV／一齊開放閥處留缺口 -->
+          <path d="M 114 260 L 380 260 M 418 260 L 446 260 M 486 260 L 650 260 L 650 190 L 870 190" pathLength="100" class="m-flowline"/>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>消防泵浦：與撒水系統共用廠區同一顆，沒有專用高壓泵浦、也沒有蓄壓／增壓裝置</span></li>
@@ -1561,16 +1599,16 @@
             #dg4 .dv-rel{transition:stroke .3s;}
             #dg4.dv-open .dv-rel{stroke:var(--accent3);}
             #dg4 .dv-prime{transform-box:view-box;transform-origin:425px 214px;transition:transform .4s;}
-            #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
+            #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 2s ease-out .6s;}
             #dg4 .dv-diaph{transform-box:view-box;transform-origin:260px 183px;transition:transform .4s;}
-            #dg4.dv-open .dv-diaph{transform:scaleY(0.12);transition:transform .8s ease-in 1.3s;}
+            #dg4.dv-open .dv-diaph{transform:scaleY(0.12);transition:transform 1.4s ease-in 3s;}
             #dg4 .dv-prime2{transform-box:view-box;transform-origin:260px 183px;transition:transform .4s;}
-            #dg4.dv-open .dv-prime2{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
+            #dg4.dv-open .dv-prime2{transform:scaleY(0.05);transition:transform 2s ease-out .6s;}
             #dg4 .dv-prime3{opacity:0.32;transition:opacity .4s;}
-            #dg4.dv-open .dv-prime3{opacity:0;transition:opacity .9s ease-out .5s;}
+            #dg4.dv-open .dv-prime3{opacity:0;transition:opacity 1.8s ease-out .7s;}
             #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
-            #dg4.dv-open .dv-out{opacity:0.32;transition:opacity .8s 1.9s;}
-            #dg4.dv-open .dv-flow{opacity:1;transition:opacity .5s 2.3s;}
+            #dg4.dv-open .dv-out{opacity:0.32;transition:opacity 1.4s 4.6s;}
+            #dg4.dv-open .dv-flow{opacity:1;transition:opacity .8s 5.6s;}
             #dg4 .dv-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
             #dg4.dv-open .dv-alarm{opacity:1;}
           </style>
@@ -1759,25 +1797,28 @@
             #dg5 .g-sd{transition:stroke .3s,fill .3s;}
             #dg5.gas-fire .g-sd{stroke:var(--accent3);fill:rgba(224,92,92,0.3);}
             #dg5 .g-cnt{transform-box:fill-box;transform-origin:center;transition:stroke .3s;}
-            #dg5.gas-fire .g-cnt{stroke:var(--accent3);animation:g5pulse .55s ease-in-out 4 .5s;}
+            #dg5.gas-fire .g-cnt{stroke:var(--accent3);animation:g5pulse .7s ease-in-out 5 .6s;}
             @keyframes g5pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+            #dg5 .g-snd{opacity:0;}
+            #dg5.gas-fire .g-snd{animation:g5snd 1s ease-in-out infinite .6s;}
+            @keyframes g5snd{0%,100%{opacity:.25;}50%{opacity:1;}}
             #dg5 .g-sig,#dg5 .g-hose{transition:stroke .3s;}
-            #dg5.gas-fire .g-sig{stroke:var(--accent3);transition:stroke .4s 2.8s;}
-            #dg5.gas-fire .g-hose{stroke:var(--accent3);transition:stroke .4s 3.5s;}
+            #dg5.gas-fire .g-sig{stroke:var(--accent3);transition:stroke .6s 4.4s;}
+            #dg5.gas-fire .g-hose{stroke:var(--accent3);transition:stroke .6s 5.2s;}
             #dg5 .g-act1,#dg5 .g-act2{transition:fill .3s,stroke .3s;}
-            #dg5.gas-fire .g-act1{fill:rgba(224,92,92,0.45);stroke:var(--accent3);transition:fill .3s 3.2s,stroke .3s 3.2s;}
-            #dg5.gas-fire .g-act2{fill:rgba(224,92,92,0.45);stroke:var(--accent3);transition:fill .3s 3.8s,stroke .3s 3.8s;}
-            #dg5 .g-pipe1,#dg5 .g-pipe2{transition:stroke .5s;}
-            #dg5.gas-fire .g-pipe1{stroke:var(--green);transition:stroke .6s 4.1s;}
+            #dg5.gas-fire .g-act1{fill:rgba(224,92,92,0.45);stroke:var(--accent3);transition:fill .4s 4.9s,stroke .4s 4.9s;}
+            #dg5.gas-fire .g-act2{fill:rgba(224,92,92,0.45);stroke:var(--accent3);transition:fill .4s 5.9s,stroke .4s 5.9s;}
+            #dg5 .g-flow1,#dg5 .g-flow2{stroke:var(--green);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .4s;}
+            #dg5.gas-fire .g-flow1{stroke-dashoffset:0;transition:stroke-dashoffset 1.6s linear 6.6s;}
             #dg5 .g-ps{transition:stroke .3s;}
-            #dg5.gas-fire .g-ps{stroke:var(--accent3);transition:stroke .3s 4.4s;}
+            #dg5.gas-fire .g-ps{stroke:var(--accent3);transition:stroke .4s 8.3s;}
             #dg5 .g-sel{transition:stroke .3s,fill .3s;}
-            #dg5.gas-fire .g-sel{stroke:var(--green);fill:rgba(74,222,128,0.22);transition:stroke .4s 4.7s,fill .4s 4.7s;}
-            #dg5.gas-fire .g-pipe2{stroke:var(--green);transition:stroke .6s 5.1s;}
+            #dg5.gas-fire .g-sel{stroke:var(--green);fill:rgba(74,222,128,0.22);transition:stroke .5s 8.9s,fill .5s 8.9s;}
+            #dg5.gas-fire .g-flow2{stroke-dashoffset:0;transition:stroke-dashoffset 1.4s linear 9.6s;}
             #dg5 .g-haze{fill:var(--accent2);opacity:0;transition:opacity .4s;}
-            #dg5.gas-fire .g-haze{opacity:0.16;transition:opacity 1.2s 5.6s;}
+            #dg5.gas-fire .g-haze{opacity:0.16;transition:opacity 1.5s 11s;}
             #dg5 .mist{transition:stroke .4s,opacity .4s,stroke-width .4s;}
-            #dg5.gas-fire .mist{stroke:var(--accent2);opacity:1;stroke-width:2.5;transition:stroke .5s 5.6s,opacity .5s 5.6s,stroke-width .5s 5.6s;}
+            #dg5.gas-fire .mist{stroke:var(--accent2);opacity:1;stroke-width:2.5;transition:stroke .6s 11s,opacity .6s 11s,stroke-width .6s 11s;}
             #dg5 .g-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:12.5px;font-weight:700;font-family:inherit;}
             #dg5.gas-fire .g-alarm{opacity:1;}
           </style>
@@ -1789,6 +1830,10 @@
           </g>
           <text x="60" y="110" class="g-alarm">🔔 偵測器動作 → 倒數 30s</text>
           <text x="60" y="132" class="g-alarm">→ 啟動鋼瓶 → 選擇閥 → 放射！</text>
+
+          <!-- 藥劑推進線（逐段變色）：PS／選擇閥處留缺口 -->
+          <path d="M 149 255 L 230 255 L 230 330 L 255 330 M 285 330 L 462 330" pathLength="100" class="g-flow1"/>
+          <path d="M 498 330 L 755 330 L 755 165 L 940 165" pathLength="100" class="g-flow2"/>
 
           <!-- 鋼瓶組：啟動鋼瓶＋副鋼瓶（副鋼瓶靠氣壓連動管觸發，非各自接控制盤） -->
           <rect x="50" y="270" width="30" height="130" rx="10" class="comp"/>
@@ -1826,10 +1871,10 @@
           <g class="marker"><circle cx="35" cy="258" r="12"/><text x="35" y="259">11</text></g>
 
           <!-- 鋼瓶組主管路 -->
-          <line x1="149" y1="255" x2="230" y2="255" class="pipe g-pipe1"/>
-          <line x1="230" y1="255" x2="230" y2="330" class="pipe g-pipe1"/>
-          <line x1="230" y1="330" x2="465" y2="330" class="pipe g-pipe1"/>
-          <line x1="495" y1="330" x2="650" y2="330" class="pipe g-pipe2"/>
+          <line x1="149" y1="255" x2="230" y2="255" class="pipe"/>
+          <line x1="230" y1="255" x2="230" y2="330" class="pipe"/>
+          <line x1="230" y1="330" x2="465" y2="330" class="pipe"/>
+          <line x1="495" y1="330" x2="650" y2="330" class="pipe"/>
 
           <!-- 選擇閥：多防護區共用鋼瓶組時，把藥劑導向起火的那一區 -->
           <polygon points="462,318 462,342 480,330" fill="var(--surface)" stroke="var(--border)" stroke-width="2" class="g-sel"/>
@@ -1874,6 +1919,11 @@
           <line x1="450" y1="162" x2="450" y2="185" class="thin"/>
           <circle cx="450" cy="200" r="16" fill="var(--surface2)" stroke="var(--yellow)" stroke-width="2" class="g-cnt"/>
           <text x="450" y="204" text-anchor="middle" class="lbl-strong" fill="var(--yellow)">30s</text>
+          <g class="g-snd" stroke="var(--yellow)" stroke-width="2" fill="none">
+            <path d="M 472 194 a 9 9 0 0 1 0 12"/>
+            <path d="M 478 190 a 15 15 0 0 1 0 20"/>
+            <path d="M 484 186 a 21 21 0 0 1 0 28"/>
+          </g>
           <g class="marker"><circle cx="450" cy="235" r="12"/><text x="450" y="236">5</text></g>
 
           <!-- Abort Switch：接回控制盤右側 -->
@@ -1888,9 +1938,9 @@
           <rect x="655" y="155" width="320" height="250" rx="8" class="g-haze"/>
 
           <!-- 放射管路：從集氣管路接入防護區，經頂部配管分送各噴頭（噴頭避開轉角，不被管路遮擋） -->
-          <line x1="650" y1="330" x2="755" y2="330" class="pipe g-pipe2"/>
-          <line x1="755" y1="330" x2="755" y2="165" class="pipe g-pipe2"/>
-          <line x1="755" y1="165" x2="940" y2="165" class="pipe g-pipe2"/>
+          <line x1="650" y1="330" x2="755" y2="330" class="pipe"/>
+          <line x1="755" y1="330" x2="755" y2="165" class="pipe"/>
+          <line x1="755" y1="165" x2="940" y2="165" class="pipe"/>
           <g>
             <line x1="800" y1="165" x2="800" y2="188" class="thin"/>
             <path d="M 785 198 L 800 228 L 815 198" class="mist"/>
@@ -1986,21 +2036,28 @@
             #dg6 .zone{fill:var(--muted);font-size:12px;font-family:inherit;opacity:0.75;}
             #dg6 .sep{stroke:var(--border);stroke-width:1.5;stroke-dasharray:6 6;}
             /* 防火門動畫：按鈕切換 .fd-closed，門扇繞鉸鏈(390,451)旋轉 158.2° 至關閉位置 */
-            #dg6 .fd-leaf{transform-box:view-box;transform-origin:390px 451px;transition:transform 1.8s cubic-bezier(.45,.02,.6,1) .45s;}
+            #dg6 .fd-leaf{transform-box:view-box;transform-origin:390px 451px;transition:transform 3s cubic-bezier(.45,.02,.6,1) .6s;}
             #dg6.fd-closed .fd-leaf{transform:rotate(158.2deg);}
             #dg6 .fd-ghost{transition:opacity .5s 1.6s;}
-            #dg6.fd-closed .fd-ghost{opacity:0;transition:opacity .4s .9s;}
+            #dg6.fd-closed .fd-ghost{opacity:0;transition:opacity .5s 2.6s;}
             #dg6 .fd-magnet{transition:stroke .3s,fill .3s;}
             #dg6.fd-closed .fd-magnet{stroke:var(--accent3);fill:rgba(224,92,92,.35);}
             #dg6 .fd-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:13px;font-weight:700;font-family:inherit;}
             #dg6.fd-closed .fd-alarm{opacity:1;}
             /* 防火閘門動畫：.dmp-closed 時熔片熔解消失、簾幕自套匣落下封閉風管 */
             #dg6 .dmp-curtain{transform-box:view-box;transform-origin:495px 215px;transform:scaleY(0);transition:transform .3s;}
-            #dg6.dmp-closed .dmp-curtain{transform:scaleY(1);transition:transform .9s cubic-bezier(.5,0,.85,.55) .55s;}
+            #dg6.dmp-closed .dmp-curtain{transform:scaleY(1);transition:transform 1.6s cubic-bezier(.5,0,.85,.55) .8s;}
             #dg6 .dmp-link{transition:opacity .3s;}
-            #dg6.dmp-closed .dmp-link{opacity:0;transition:opacity .4s .25s;}
+            #dg6.dmp-closed .dmp-link{opacity:0;transition:opacity .5s .4s;}
             #dg6 .dmp-ghost{transition:opacity .3s;}
-            #dg6.dmp-closed .dmp-ghost{opacity:0;transition:opacity .4s 1.2s;}
+            #dg6.dmp-closed .dmp-ghost{opacity:0;transition:opacity .5s 2.2s;}
+            /* 煙流測試：閘門開＝煙穿過風管；閘門關＝煙到簾幕處被擋下 */
+            #dg6 .dmp-smk{opacity:0;offset-rotate:0deg;offset-path:path('M 140 235 L 830 235');}
+            #dg6.dmp-smoke .dmp-smk{animation:d6smk 4.5s linear infinite;}
+            #dg6.dmp-smoke .dmp-smk.k2{animation-delay:1.5s;}
+            #dg6.dmp-smoke .dmp-smk.k3{animation-delay:3s;}
+            #dg6.dmp-closed .dmp-smk{offset-path:path('M 140 235 L 474 235');animation-duration:2.6s;}
+            @keyframes d6smk{0%{offset-distance:0%;opacity:0;}10%{opacity:.85;}80%{opacity:.85;}100%{offset-distance:100%;opacity:0;}}
             #dg6 .dmp-alarm{opacity:0;transition:opacity .3s;fill:var(--accent3);font-size:13px;font-weight:700;font-family:inherit;}
             #dg6.dmp-closed .dmp-alarm{opacity:1;}
           </style>
@@ -2061,6 +2118,13 @@
             <rect x="860" y="170" width="112" height="26" rx="6"/>
             <text x="916" y="183">▶ 模擬火警</text>
           </g>
+          <g class="svg-btn" data-off="▶ 煙流測試" data-on="⏸ 停止煙流" onclick="dgToggle('dg6','dmp-smoke',this)">
+            <rect x="860" y="204" width="112" height="26" rx="6"/>
+            <text x="916" y="217">▶ 煙流測試</text>
+          </g>
+          <circle r="5" fill="#9aa4b2" class="dmp-smk k1"/>
+          <circle r="4" fill="#9aa4b2" class="dmp-smk k2"/>
+          <circle r="6" fill="#9aa4b2" class="dmp-smk k3"/>
 
           <text x="565" y="183" class="lbl">平時：簾幕收折在風管上方套匣內，風管保持暢通</text>
           <text x="565" y="285" class="lbl">火警：感溫熔片（黃點，約 74°C）熔解，</text>
@@ -2363,7 +2427,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.1</b></td><td>2026-07-11</td><td>Stocker＝K8（非 ESFR）、ESFR 用於貨架／ASRS；泡沫「控制閥」正名為「一齊開放閥」；泡沫與水霧系統圖在一齊開放閥前增設 ACV</td></tr>
+          <tr><td><b>V5.2</b></td><td>2026-07-11</td><td>遲滯室滿水動畫；警鈴／警報加音波符號；全部動畫放慢；管路改為沿線逐段變色；防火閘門加煙流測試（開＝通過、關＝被擋）</td></tr>
+          <tr><td>V5.1</td><td>2026-07-11</td><td>Stocker＝K8（非 ESFR）、ESFR 用於貨架／ASRS；泡沫「控制閥」正名為「一齊開放閥」；泡沫與水霧系統圖在一齊開放閥前增設 ACV</td></tr>
           <tr><td>V5.0</td><td>2026-07-11</td><td>VESDA 改為三台獨立主機（潔淨室／下迴風層／迴風道）＋機台起火煙流動畫；撒水、泡沫、水霧放射動畫；新增版本紀錄</td></tr>
           <tr><td>V4.1</td><td>2026-07-11</td><td>一齊開放閥隔膜構造多輪修正（閥座孔口、固定點間隙、感知側水、坍縮動畫）</td></tr>
           <tr><td>V4.0</td><td>2026-07-10</td><td>互動動畫上線：防火門、防火閘門、一齊開放閥洩壓開閥、氣體放射完整流程（含選擇閥分段）</td></tr>
