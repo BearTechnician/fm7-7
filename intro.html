@@ -1419,8 +1419,8 @@
             #dg4.dv-open .dv-rel{stroke:var(--accent3);}
             #dg4 .dv-prime{transform-box:view-box;transform-origin:425px 214px;transition:transform .4s;}
             #dg4.dv-open .dv-prime{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
-            #dg4 .dv-diaph{transform-box:view-box;transform-origin:260px 206px;transition:transform .4s;}
-            #dg4.dv-open .dv-diaph{transform:scaleY(-0.55);transition:transform .8s ease-in 1.3s;}
+            #dg4 .dv-diaph{transform-box:view-box;transform-origin:260px 208px;transition:transform .4s;}
+            #dg4.dv-open .dv-diaph{transform:translateY(-40px) scaleY(0.38);transition:transform .8s ease-in 1.3s;}
             #dg4 .dv-prime2{transform-box:view-box;transform-origin:260px 205px;transition:transform .4s;}
             #dg4.dv-open .dv-prime2{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
             #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
@@ -1448,8 +1448,8 @@
           <!-- 隔膜室內罩（感知側）：罩內平時充壓力水，經右側管線接隔膜室／釋放管路 -->
           <rect x="233" y="158" width="54" height="47" fill="var(--accent)" opacity="0.32" class="dv-prime2"/>
           <polyline points="230,208 230,155 290,155 290,208" fill="none" stroke="var(--border)" stroke-width="2.5"/>
-          <!-- 隔膜：夾持於罩口，鼓面朝下壓在閥座孔口上；洩壓後向感知側（上）坍縮翻起 -->
-          <path d="M 233 206 A 28 28 0 0 0 287 206" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" class="dv-diaph"/>
+          <!-- 隔膜：圓頂突出、邊緣抵住閥座開口四周；洩壓後坍縮壓扁、被推上罩頂，堵不住開口 -->
+          <path d="M 233 208 A 30 30 0 0 1 287 208" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" class="dv-diaph"/>
           <g class="dv-flow">
             <line x1="260" y1="45" x2="260" y2="75" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
             <polygon points="252,50 268,50 260,38" fill="var(--accent)"/>
@@ -1503,7 +1503,7 @@
           <rect x="696" y="208" width="59" height="10" fill="var(--muted)"/>
           <rect x="805" y="208" width="59" height="10" fill="var(--muted)"/>
           <polyline points="750,208 750,155 810,155 810,208" fill="none" stroke="var(--border)" stroke-width="2.5"/>
-          <path d="M 753 206 A 39 39 0 0 1 807 206" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.75"/>
+          <path d="M 753 168 A 60 60 0 0 1 807 168" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.75"/>
           <line x1="810" y1="172" x2="910" y2="172" class="thin" stroke-dasharray="3 3"/>
 
           <g class="marker"><circle cx="640" cy="295" r="13"/><text x="640" y="296">1</text></g>
