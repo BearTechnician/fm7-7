@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.0</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.1</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -976,12 +976,12 @@
         <tbody>
           <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭本身有感溫元件，受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
           <tr><td>開放式（Deluge）</td><td>撒水頭本身<b>沒有感溫元件</b>（平時開放），管路平常無水；由獨立的偵測系統觸發「一齊開放閥（Deluge Valve）」，閥一開，水同時流向該區<b>所有</b>撒水頭，形成全區一齊放射</td><td>高危害易燃液體處理區、特殊氣體鋼瓶棚</td><td>需要瞬間大面積同時覆蓋，來不及等撒水頭逐顆被感溫觸發的高危害場所</td></tr>
-          <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>Stocker、高架儲存倉儲區</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
+          <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性；<b>Stocker 用的是 K8 撒水頭，不是 ESFR</b></td></tr>
         </tbody>
       </table>
       <div class="callout warn">
         <div class="callout-icon">📏</div>
-        <div>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>。除了撒水頭型式，同仁最需要注意的是<b>撒水頭下方必須保持至少 45 公分的淨空間</b>——貨架、料架、WIP 或任何物品都不能堆到距離撒水頭 45 公分以內，否則會擋住噴灑角度，火警時水噴不到該擋住的區域，等於局部失去保護。看到 Stocker 區堆貨快頂到撒水頭，要主動反映。</div>
+        <div>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>。除了撒水頭型式，同仁最需要注意的是<b>撒水頭下方必須保持至少 45 公分的淨空間</b>——貨架、料架、WIP 或任何物品都不能堆到距離撒水頭 45 公分以內，否則會擋住噴灑角度，火警時水噴不到該擋住的區域，等於局部失去保護。</div>
       </div>
       <div class="callout green">
         <div class="callout-icon">✅</div>
@@ -1263,14 +1263,21 @@
           <g class="marker"><circle cx="290" cy="210" r="11"/><text x="290" y="211">3</text></g>
           <text x="290" y="305" text-anchor="middle" class="lbl">比例混合裝置</text>
           <line x1="325" y1="260" x2="440" y2="260" class="pipe f-pipe1"/>
+          <!-- ACV：設於一齊開放閥前（上游） -->
+          <rect x="382" y="240" width="34" height="40" rx="6" class="valve-body"/>
+          <line x1="399" y1="244" x2="399" y2="276" stroke="var(--muted)" stroke-width="3"/>
+          <rect x="401" y="248" width="7" height="24" rx="2" fill="var(--muted)"/>
+          <polygon points="388,254 388,266 397,260" fill="var(--accent2)"/>
+          <text x="399" y="298" text-anchor="middle" class="lbl" font-size="11">ACV</text>
+          <g class="marker"><circle cx="399" cy="322" r="11"/><text x="399" y="323">10</text></g>
 
-          <!-- 控制閥（一齊開放閥，P&ID：bowtie + 隔膜促動器實心三角） -->
+          <!-- 一齊開放閥（P&ID：bowtie + 隔膜促動器實心三角） -->
           <polygon points="448,248 448,272 466,260" class="valve-body"/>
           <polygon points="484,248 484,272 466,260" class="valve-body"/>
           <line x1="466" y1="248" x2="466" y2="232" class="thin"/>
           <polygon points="458,232 474,232 466,220" fill="var(--accent2)" class="f-act"/>
           <g class="marker"><circle cx="510" cy="290" r="11"/><text x="510" y="291">4</text></g>
-          <text x="466" y="305" text-anchor="middle" class="lbl">控制閥</text>
+          <text x="466" y="305" text-anchor="middle" class="lbl">一齊開放閥</text>
           <line x1="484" y1="260" x2="650" y2="260" class="pipe f-pipe2"/>
           <line x1="650" y1="260" x2="650" y2="190" class="pipe f-pipe2"/>
           <line x1="650" y1="190" x2="870" y2="190" class="pipe f-pipe2"/>
@@ -1363,12 +1370,13 @@
           <li><span class="dnum">1</span><span>消防泵浦：與撒水系統共用同一顆，沒有另外的加壓泵浦</span></li>
           <li><span class="dnum">2</span><span>泡沫原液儲槽（皮囊式 Bladder Tank）：水壓從外側擠壓橡膠皮囊，原液經中央有孔管排出，不需另外設置原液泵浦</span></li>
           <li><span class="dnum">3</span><span>比例混合裝置（Proportioner）</span></li>
-          <li><span class="dnum">4</span><span>控制閥（一齊開放閥）：感知撒水頭／電磁閥／手動啟動任一觸發即開閥</span></li>
+          <li><span class="dnum">4</span><span>一齊開放閥：感知撒水頭／電磁閥／手動啟動任一觸發即開閥</span></li>
           <li><span class="dnum">5</span><span>泡沫噴頭（Foam Sprinkler）：泡沫溶液經噴頭打入空氣形成泡沫，多顆覆蓋整個液面，非單一集中式泡沫產生裝置</span></li>
           <li><span class="dnum">6</span><span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</span></li>
-          <li><span class="dnum">7</span><span>感知撒水頭（多顆，裝在保護對象上方現場，非閥室旁；氣動／液壓觸發，經導管線洩壓觸動控制閥）</span></li>
+          <li><span class="dnum">7</span><span>感知撒水頭（多顆，裝在保護對象上方現場，非閥室旁；氣動／液壓觸發，經導管線洩壓觸動一齊開放閥）</span></li>
           <li><span class="dnum">8</span><span>電磁閥（受 <code>FCP</code> 訊號啟動）</span></li>
           <li><span class="dnum">9</span><span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</span></li>
+          <li><span class="dnum">10</span><span><code>ACV</code> 查驗逆止閥：設置於一齊開放閥<b>前（上游）</b>，為系統主遮斷閥並提供警報接口</span></li>
         </ol>
       </div>
 
@@ -1422,6 +1430,13 @@
           <g class="marker"><circle cx="90" cy="220" r="11"/><text x="90" y="221">1</text></g>
           <text x="30" y="305" class="lbl">消防泵浦（與撒水系統共用）</text>
           <line x1="114" y1="260" x2="448" y2="260" class="pipe m-pipe1"/>
+          <!-- ACV：設於一齊開放閥前（上游） -->
+          <rect x="382" y="240" width="34" height="40" rx="6" class="valve-body"/>
+          <line x1="399" y1="244" x2="399" y2="276" stroke="var(--muted)" stroke-width="3"/>
+          <rect x="401" y="248" width="7" height="24" rx="2" fill="var(--muted)"/>
+          <polygon points="388,254 388,266 397,260" fill="var(--accent2)"/>
+          <text x="399" y="298" text-anchor="middle" class="lbl" font-size="11">ACV</text>
+          <g class="marker"><circle cx="399" cy="322" r="11"/><text x="399" y="323">9</text></g>
 
           <!-- 一齊開放閥（P&ID：bowtie + 隔膜促動器實心三角） -->
           <polygon points="448,248 448,272 466,260" class="valve-body"/>
@@ -1516,13 +1531,14 @@
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>消防泵浦：與撒水系統共用廠區同一顆，沒有專用高壓泵浦、也沒有蓄壓／增壓裝置</span></li>
-          <li><span class="dnum">2</span><span>一齊開放閥（控制閥）：感知撒水頭／電磁閥／手動啟動任一觸發即開閥</span></li>
+          <li><span class="dnum">2</span><span>一齊開放閥：感知撒水頭／電磁閥／手動啟動任一觸發即開閥</span></li>
           <li><span class="dnum">3</span><span>配水管路</span></li>
           <li><span class="dnum">4</span><span>水霧噴頭：把水打成細小水滴（降溫＋稀釋氧氣＋遮蔽輻射熱）</span></li>
           <li><span class="dnum">5</span><span>保護對象：發電機房、主變電站</span></li>
           <li><span class="dnum">6</span><span>感知撒水頭（多顆，裝在保護對象上方現場，非閥室旁；動作後經導管線洩壓觸動一齊開放閥）</span></li>
           <li><span class="dnum">7</span><span>電磁閥（受 <code>FCP</code> 訊號啟動）</span></li>
           <li><span class="dnum">8</span><span>手動啟動（現場緊急手動釋放閥；三者任一觸發即可開閥）</span></li>
+          <li><span class="dnum">9</span><span><code>ACV</code> 查驗逆止閥：設置於一齊開放閥<b>前（上游）</b>，為系統主遮斷閥並提供警報接口</span></li>
         </ol>
       </div>
 
@@ -2347,7 +2363,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.0</b></td><td>2026-07-11</td><td>VESDA 改為三台獨立主機（潔淨室／下迴風層／迴風道）＋機台起火煙流動畫；撒水、泡沫、水霧放射動畫；新增版本紀錄</td></tr>
+          <tr><td><b>V5.1</b></td><td>2026-07-11</td><td>Stocker＝K8（非 ESFR）、ESFR 用於貨架／ASRS；泡沫「控制閥」正名為「一齊開放閥」；泡沫與水霧系統圖在一齊開放閥前增設 ACV</td></tr>
+          <tr><td>V5.0</td><td>2026-07-11</td><td>VESDA 改為三台獨立主機（潔淨室／下迴風層／迴風道）＋機台起火煙流動畫；撒水、泡沫、水霧放射動畫；新增版本紀錄</td></tr>
           <tr><td>V4.1</td><td>2026-07-11</td><td>一齊開放閥隔膜構造多輪修正（閥座孔口、固定點間隙、感知側水、坍縮動畫）</td></tr>
           <tr><td>V4.0</td><td>2026-07-10</td><td>互動動畫上線：防火門、防火閘門、一齊開放閥洩壓開閥、氣體放射完整流程（含選擇閥分段）</td></tr>
           <tr><td>V3.1</td><td>2026-07-10</td><td>感知撒水頭改向上型、泵浦／ACV 圖示統一、氣體系統加選擇閥與自手動切換、新增潔淨室 VESDA 採樣管配置圖</td></tr>
