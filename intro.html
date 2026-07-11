@@ -1423,6 +1423,8 @@
             #dg4.dv-open .dv-diaph{transform:scaleY(0.12);transition:transform .8s ease-in 1.3s;}
             #dg4 .dv-prime2{transform-box:view-box;transform-origin:260px 183px;transition:transform .4s;}
             #dg4.dv-open .dv-prime2{transform:scaleY(0.05);transition:transform 1s ease-out .4s;}
+            #dg4 .dv-prime3{opacity:0.32;transition:opacity .4s;}
+            #dg4.dv-open .dv-prime3{opacity:0;transition:opacity .9s ease-out .5s;}
             #dg4 .dv-out,#dg4 .dv-flow{opacity:0;transition:opacity .3s;}
             #dg4.dv-open .dv-out{opacity:0.32;transition:opacity .8s 1.9s;}
             #dg4.dv-open .dv-flow{opacity:1;transition:opacity .5s 2.3s;}
@@ -1450,7 +1452,7 @@
           <polyline points="230,183 230,130 290,130 290,183" fill="none" stroke="var(--border)" stroke-width="2.5"/>
           <!-- 隔膜：自上方固定點垂下突出、抵住一次側孔口；固定點與閥座之間留有間隙，坍縮後水由此通過 -->
           <!-- 感知側的水一路充到隔膜袋內，隨坍縮一起排掉 -->
-          <path d="M 233 183 A 27.5 27.5 0 1 0 287 183 Z" fill="var(--accent)" opacity="0.32" class="dv-diaph"/>
+          <path d="M 233 183 A 27.5 27.5 0 1 0 287 183 Z" fill="var(--accent)" class="dv-prime3"/>
           <path d="M 233 183 A 27.5 27.5 0 1 0 287 183" stroke="var(--muted)" stroke-width="8" fill="none" stroke-linecap="round" class="dv-diaph"/>
           <g class="dv-flow">
             <line x1="260" y1="45" x2="260" y2="75" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
