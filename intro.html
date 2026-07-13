@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.10</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V6.0</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -988,16 +988,98 @@
         <tbody>
           <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭本身有感溫元件，受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
           <tr><td>開放式（Deluge）</td><td>撒水頭本身<b>沒有感溫元件</b>（平時開放），管路平常無水；由獨立的偵測系統觸發「一齊開放閥（Deluge Valve）」，閥一開，水同時流向該區<b>所有</b>撒水頭，形成全區一齊放射</td><td>高危害易燃液體處理區、特殊氣體鋼瓶棚</td><td>需要瞬間大面積同時覆蓋，來不及等撒水頭逐顆被感溫觸發的高危害場所</td></tr>
-          <tr><td><code>ESFR</code>／貨架撒水頭（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加貨架撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性；<b>Stocker 用的是 K8 撒水頭，不是 ESFR</b></td></tr>
+          <tr><td><code>ESFR</code>／貨架撒水頭（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加貨架撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
         </tbody>
       </table>
-      <div class="callout warn">
-        <div class="callout-icon">📏</div>
-        <div>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>。除了撒水頭型式，同仁最需要注意的是<b>撒水頭下方必須保持至少 45 公分的淨空間</b>——貨架、料架、WIP 或任何物品都不能堆到距離撒水頭 45 公分以內，否則會擋住噴灑角度，火警時水噴不到該擋住的區域，等於局部失去保護。</div>
-      </div>
       <div class="callout green">
         <div class="callout-icon">✅</div>
         <div>常見迷思先破解：撒水頭是<b>個別動作</b>的——濕式與 ESFR 系統的撒水頭各自有感溫元件，只有真的被高溫觸發的那一顆才會出水；只有<b>開放式（Deluge）</b>系統例外，它的撒水頭本身沒有感溫元件，是靠獨立偵測系統觸發一齊開放閥後，全區撒水頭才會同時放射。</div>
+      </div>
+
+      <h3>Stocker：K8 撒水頭與 45 公分淨空間</h3>
+      <p>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>，不是 ESFR。除了撒水頭型式，同仁最需要注意的是<b>撒水頭下方（迴水板以下）必須保持至少 45 公分的淨空間</b>——貨架、料架、WIP 或任何物品都不能堆到距離撒水頭 45 公分以內，否則會擋住噴灑角度，火警時水噴不到該擋住的區域，等於局部失去保護。這個規定最常在現場被無意間破壞：庫存一多，有人會順手把貨物多疊一層，剛好就頂進了淨空間：</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">Stocker K8 撒水頭淨空間示意圖：正確 vs. 錯誤</div>
+        <svg id="dg9" viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            #dg9 .pipe{stroke:var(--accent);stroke-width:7;fill:none;stroke-linecap:round;}
+            #dg9 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg9 .bulb{fill:var(--accent3);}
+            #dg9 .head-body{fill:var(--green);stroke:var(--green);}
+            #dg9 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg9 .badbox{fill:rgba(224,92,92,0.32);stroke:var(--accent3);stroke-width:2;}
+            #dg9 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            #dg9 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg9 .marker circle{fill:var(--accent);}
+            #dg9 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg9 .zone{fill:none;stroke:var(--yellow);stroke-width:1.5;stroke-dasharray:5 4;}
+            #dg9 .mist{stroke:var(--accent);stroke-width:1.5;opacity:0.6;fill:none;}
+            #dg9 .mist-bad{stroke:var(--accent3);stroke-width:1.5;opacity:0.7;fill:none;}
+            #dg9 .sep{stroke:var(--border);stroke-width:1.5;stroke-dasharray:6 6;}
+            #dg9 .titleOK{fill:var(--green);font-size:15px;font-weight:700;text-anchor:middle;font-family:inherit;}
+            #dg9 .titleBad{fill:var(--accent3);font-size:15px;font-weight:700;text-anchor:middle;font-family:inherit;}
+          </style>
+
+          <line x1="470" y1="15" x2="470" y2="365" class="sep"/>
+
+          <!-- ══ 左：正確 ══ -->
+          <text x="230" y="24" class="titleOK">✅ 正確</text>
+          <line x1="90" y1="45" x2="370" y2="45" class="pipe"/>
+          <line x1="230" y1="45" x2="230" y2="95" class="pipe"/>
+          <circle cx="230" cy="99" r="4" class="bulb"/>
+          <circle cx="230" cy="107" r="7" class="head-body"/>
+          <line x1="222" y1="114" x2="218" y2="132" class="thin"/>
+          <line x1="230" y1="115" x2="230" y2="133" class="thin"/>
+          <line x1="238" y1="114" x2="242" y2="132" class="thin"/>
+          <g class="marker"><circle cx="168" cy="100" r="11"/><text x="168" y="101">1</text></g>
+
+          <rect x="195" y="134" width="70" height="88" class="zone"/>
+          <line x1="278" y1="134" x2="278" y2="222" class="thin"/>
+          <line x1="272" y1="134" x2="284" y2="134" class="thin"/>
+          <line x1="272" y1="222" x2="284" y2="222" class="thin"/>
+          <text x="296" y="172" class="lbl-strong">45 cm</text>
+          <text x="296" y="190" class="lbl">淨空間</text>
+          <g class="marker"><circle cx="296" cy="150" r="11"/><text x="296" y="151">2</text></g>
+
+          <path d="M230,132 L210,222 M230,132 L230,224 M230,132 L250,222" class="mist"/>
+
+          <rect x="185" y="298" width="90" height="38" class="comp"/>
+          <rect x="185" y="262" width="90" height="36" class="comp"/>
+          <rect x="185" y="228" width="90" height="34" class="comp"/>
+          <g class="marker"><circle cx="300" cy="290" r="11"/><text x="300" y="291">3</text></g>
+          <text x="230" y="360" text-anchor="middle" class="lbl">貨架／WIP，堆放高度控制在淨空間之下</text>
+
+          <!-- ══ 右：錯誤 ══ -->
+          <text x="710" y="24" class="titleBad">❌ 錯誤</text>
+          <line x1="570" y1="45" x2="850" y2="45" class="pipe"/>
+          <line x1="710" y1="45" x2="710" y2="95" class="pipe"/>
+          <circle cx="710" cy="99" r="4" class="bulb"/>
+          <circle cx="710" cy="107" r="7" class="head-body"/>
+          <line x1="702" y1="114" x2="698" y2="132" class="thin"/>
+          <line x1="710" y1="115" x2="710" y2="133" class="thin"/>
+          <line x1="718" y1="114" x2="722" y2="132" class="thin"/>
+
+          <rect x="675" y="134" width="70" height="88" class="zone"/>
+
+          <path d="M710,132 L694,188 M710,132 L710,190 M710,132 L726,188" class="mist-bad"/>
+          <text x="758" y="150" class="lbl" fill="var(--accent3)">噴灑角度被擋住</text>
+
+          <rect x="665" y="298" width="90" height="38" class="comp"/>
+          <rect x="665" y="262" width="90" height="36" class="comp"/>
+          <rect x="665" y="228" width="90" height="34" class="comp"/>
+          <rect x="665" y="190" width="90" height="38" class="badbox"/>
+          <line x1="685" y1="196" x2="725" y2="222" stroke="var(--accent3)" stroke-width="2.5"/>
+          <line x1="725" y1="196" x2="685" y2="222" stroke="var(--accent3)" stroke-width="2.5"/>
+          <g class="marker"><circle cx="805" cy="205" r="11"/><text x="805" y="206">4</text></g>
+          <text x="710" y="360" text-anchor="middle" class="lbl">多疊一層貨物，頂進淨空間，擋住噴灑角度</text>
+        </svg>
+        <ol class="diagram-legend">
+          <li><span class="dnum">1</span><span>撒水頭（K8）：本廠 Stocker 統一採用 K8 撒水頭</span></li>
+          <li><span class="dnum">2</span><span>45 cm 淨空間：撒水頭迴水板以下至少 45 公分範圍內，不得堆放任何物品，兩張圖適用同一規定</span></li>
+          <li><span class="dnum">3</span><span>正確：貨架、料架、WIP 堆放高度控制在淨空間之下，撒水噴灑角度不受阻擋</span></li>
+          <li><span class="dnum">4</span><span>錯誤：貨物多疊一層、頂進淨空間，擋住撒水頭噴灑角度，火警時該側可能完全噴不到水，等於局部失去保護</span></li>
+        </ol>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">黃色虛線＝規範要求的 45 公分淨空間邊界；紅色貨箱＝侵入淨空間的違規堆放。看到現場貨物疊到快頂住撒水頭，要主動反映降層或移開。</div>
       </div>
 
       <h3>系統配置示意圖：從 ACV 到末端查驗閥</h3>
@@ -2584,7 +2666,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.10</b></td><td>2026-07-11</td><td>泡沫、水霧系統動畫的感知撒水頭觸發時新增向上噴水的噴灑動畫（原本只有玻璃球消失，沒有噴水效果）</td></tr>
+          <tr><td><b>V6.0</b></td><td>2026-07-11</td><td>Stocker K8 撒水頭獨立成專節「Stocker：K8 撒水頭與 45 公分淨空間」，新增正確 vs. 錯誤對照示意圖；撒水頭類型表與相關文字同步調整，移除重複敘述</td></tr>
+          <tr><td>V5.10</td><td>2026-07-11</td><td>泡沫、水霧系統動畫的感知撒水頭觸發時新增向上噴水的噴灑動畫（原本只有玻璃球消失，沒有噴水效果）</td></tr>
           <tr><td>V5.9</td><td>2026-07-11</td><td>「層間撒水頭」正名為「貨架撒水頭」（撒水頭類型表＋名詞速查表）；濕式撒水圖第一顆撒水頭移除多餘的紅色火焰示意圖層，四顆撒水頭樣式統一</td></tr>
           <tr><td>V5.8</td><td>2026-07-11</td><td>氣體滅火放射動畫的藥劑管路流動顏色改為高辨識度亮青色＋發光效果，跟藍色管路本體、紅色警示元件明顯區分</td></tr>
           <tr><td>V5.7</td><td>2026-07-11</td><td>AMHS 改為 4 輛 OHT 單向循環＋跟車塞車效果；捲門加互鎖——天車通過中等駛離區域才關閉，關閉後後方排隊</td></tr>
