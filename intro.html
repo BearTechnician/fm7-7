@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.8</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V5.9</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -988,7 +988,7 @@
         <tbody>
           <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭本身有感溫元件，受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
           <tr><td>開放式（Deluge）</td><td>撒水頭本身<b>沒有感溫元件</b>（平時開放），管路平常無水；由獨立的偵測系統觸發「一齊開放閥（Deluge Valve）」，閥一開，水同時流向該區<b>所有</b>撒水頭，形成全區一齊放射</td><td>高危害易燃液體處理區、特殊氣體鋼瓶棚</td><td>需要瞬間大面積同時覆蓋，來不及等撒水頭逐顆被感溫觸發的高危害場所</td></tr>
-          <tr><td><code>ESFR</code>／層間撒水（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加層間撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性；<b>Stocker 用的是 K8 撒水頭，不是 ESFR</b></td></tr>
+          <tr><td><code>ESFR</code>／貨架撒水頭（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加貨架撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性；<b>Stocker 用的是 K8 撒水頭，不是 ESFR</b></td></tr>
         </tbody>
       </table>
       <div class="callout warn">
@@ -1157,10 +1157,6 @@
             <line x1="818" y1="191" x2="822" y2="209" class="thin"/>
           </g>
 
-          <!-- 自動感熱動作示意（以第一顆頭為例） -->
-          <path d="M 300 214 q -10 -14 0 -26 q 10 12 0 26 z" fill="var(--accent3)" opacity="0.85"/>
-          <line x1="300" y1="214" x2="300" y2="192" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="2 3"/>
-          <polygon points="300,192 295,200 305,200" fill="var(--accent3)"/>
           <g class="marker"><circle cx="300" cy="256" r="11"/><text x="300" y="257">8</text></g>
           <text x="370" y="250" class="lbl">感熱玻璃球達動作溫度即自動破裂出水</text>
           <text x="370" y="268" class="lbl">（每顆撒水頭獨立感熱，非全區連動）</text>
@@ -2519,7 +2515,7 @@
           <tr><td><code>Wet Pipe</code></td><td>濕式撒水系統，管路平時充滿水，撒水頭本身有感溫元件</td></tr>
           <tr><td><code>Deluge</code></td><td>開放式撒水系統，撒水頭本身無感溫元件，由偵測系統觸發一齊開放閥後全區同時放射</td></tr>
           <tr><td><code>ESFR</code></td><td>早期抑制快速反應型撒水頭，用於高架儲存等高火載量場所</td></tr>
-          <tr><td><code>In-Rack Sprinkler</code></td><td>層間撒水頭，裝設於高架儲存貨架的中間層</td></tr>
+          <tr><td><code>In-Rack Sprinkler</code></td><td>貨架撒水頭，裝設於高架儲存貨架的中間層</td></tr>
           <tr><td><code>K8</code></td><td>撒水頭 K 因數（K-factor），代表出水口流量特性，本廠 Stocker 採用 K8 撒水頭，下方需保持 45 公分淨空間</td></tr>
           <tr><td>泡沫系統</td><td>Foam System，泡沫覆蓋液面隔絕氧氣與可燃蒸氣，用於易燃液體火災</td></tr>
           <tr><td>水霧系統</td><td>Water Mist System，以水霧噴頭將水打成細小水滴，兼具降溫、窒息、遮蔽輻射熱，水損風險低於一般撒水；本廠使用廠區消防泵浦，經一齊開放閥控制</td></tr>
@@ -2578,7 +2574,8 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
-          <tr><td><b>V5.8</b></td><td>2026-07-11</td><td>氣體滅火放射動畫的藥劑管路流動顏色改為高辨識度亮青色＋發光效果，跟藍色管路本體、紅色警示元件明顯區分</td></tr>
+          <tr><td><b>V5.9</b></td><td>2026-07-11</td><td>「層間撒水頭」正名為「貨架撒水頭」（撒水頭類型表＋名詞速查表）；濕式撒水圖第一顆撒水頭移除多餘的紅色火焰示意圖層，四顆撒水頭樣式統一</td></tr>
+          <tr><td>V5.8</td><td>2026-07-11</td><td>氣體滅火放射動畫的藥劑管路流動顏色改為高辨識度亮青色＋發光效果，跟藍色管路本體、紅色警示元件明顯區分</td></tr>
           <tr><td>V5.7</td><td>2026-07-11</td><td>AMHS 改為 4 輛 OHT 單向循環＋跟車塞車效果；捲門加互鎖——天車通過中等駛離區域才關閉，關閉後後方排隊</td></tr>
           <tr><td>V5.6</td><td>2026-07-11</td><td>AMHS Fire Shutter 動畫改回上下開閉示意，並以文字註明現場實際為左右橫移（沿牆面水平滑動）關閉</td></tr>
           <tr><td>V5.5</td><td>2026-07-11</td><td>AMHS Fire Shutter 修正滑動方向：側視圖中門片為「由前往後」滑入牆面（偽 3D 深度動畫），非左右平移</td></tr>
