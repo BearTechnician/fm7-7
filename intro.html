@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V7.0</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V8.0</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -646,10 +646,9 @@
   <a href="#s10">消防用水</a>
   <a href="#s11">閥件操作</a>
   <a href="#s12">排煙正壓</a>
-  <a href="#s13">故障排除</a>
-  <a href="#s14">緊急應變</a>
-  <a href="#s15">常見迷思</a>
-  <a href="#s16">名詞速查</a>
+  <a href="#s13">緊急應變</a>
+  <a href="#s14">常見迷思</a>
+  <a href="#s15">名詞速查</a>
 </nav>
 
 <div class="layout">
@@ -670,11 +669,10 @@
     <a href="#s10">消防用水系統</a>
     <a href="#s11">水系統閥件操作</a>
     <a href="#s12">排煙與正壓系統</a>
-    <a href="#s13">現場常見故障排除</a>
-    <a href="#s14">緊急應變基本動作</a>
-    <a href="#s15">常見迷思澄清</a>
-    <a href="#s16">名詞速查表</a>
-    <a href="#s17">想更深入？延伸閱讀</a>
+    <a href="#s13">緊急應變基本動作</a>
+    <a href="#s14">常見迷思澄清</a>
+    <a href="#s15">名詞速查表</a>
+    <a href="#s16">想更深入？延伸閱讀</a>
   </nav>
 
   <!-- Main -->
@@ -1546,9 +1544,9 @@
             #dg2 .bulb{fill:var(--accent3);}
             /* 泡沫放射動畫（放慢版，水流沿管路逐段推進） */
             #dg2 .f-bulb{transition:opacity .3s;}
-            #dg2.foam-fire .f-bulb{opacity:0;transition:opacity .4s .8s;}
+            #dg2.head-on .f-bulb{opacity:0;transition:opacity .3s;}
             #dg2 .f-pspray{opacity:0;stroke:var(--accent);stroke-width:1.5;fill:none;transition:opacity .3s;}
-            #dg2.foam-fire .f-pspray{opacity:1;transition:opacity .4s 1s;}
+            #dg2.head-on .f-pspray{opacity:1;transition:opacity .3s .2s;}
             #dg2 .f-pilot{transition:stroke .4s;}
             #dg2.foam-fire .f-pilot{stroke:var(--yellow);transition:stroke 1s 1.4s;}
             #dg2 .f-act{transition:fill .3s;}
@@ -1574,7 +1572,7 @@
             #dg2.d1-on .sig-d1{stroke:var(--accent3);}
             #dg2.d2-on .sig-d2{stroke:var(--accent3);}
             #dg2 .e-act{transition:fill .3s;}
-            #dg2.d1-on .e-act,#dg2.d2-on .e-act{fill:var(--accent3);transition:fill .4s;}
+            #dg2.d1-on.d2-on .e-act{fill:var(--accent3);transition:fill .4s;}
           </style>
 
           <!-- 觸發狀態文字＋模擬感知撒水頭按鈕＋復歸按鈕：三種觸發路徑（感知撒水頭／手動啟動閥／FCP 偵測器）任一啟動 -->
@@ -1744,11 +1742,11 @@
           <li><span class="dnum">5</span><span>泡沫噴頭（Foam Sprinkler）：泡沫溶液經噴頭打入空氣形成泡沫，多顆覆蓋整個液面，非單一集中式泡沫產生裝置</span></li>
           <li><span class="dnum">6</span><span>泡沫覆蓋液面，隔絕氧氣與可燃蒸氣、降溫抑制回燃</span></li>
           <li><span class="dnum">7</span><span>感知撒水頭（多顆，裝在保護對象上方現場，非閥室旁；氣動／液壓觸發，經導管線洩壓觸動一齊開放閥）</span></li>
-          <li><span class="dnum">8</span><span>電磁閥（受 <code>FCP</code> 訊號啟動；點擊 <b>D1／D2 偵測器</b>模擬觸發，任一顆動作即送訊號開閥）</span></li>
+          <li><span class="dnum">8</span><span>電磁閥（受 <code>FCP</code> 訊號啟動；點擊 <b>D1／D2 偵測器</b>模擬觸發，需<b>兩顆同時動作（交叉確認）</b>才會送訊號開閥，避免單顆誤報就誤動作）</span></li>
           <li><span class="dnum">9</span><span><b>👆 可點擊：</b>手動啟動（現場緊急手動釋放閥；感知撒水頭／電磁閥／手動啟動三者任一觸發即可開閥）</span></li>
           <li><span class="dnum">10</span><span><code>ACV</code> 自動警報逆止閥：設置於一齊開放閥<b>前（上游）</b>，為系統主遮斷閥並提供警報接口</span></li>
         </ol>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：點擊「感知撒水頭觸發」按鈕、<b>手動啟動閥</b>、或任一顆 <b>FCP 偵測器（D1／D2）</b>，模擬三種觸發路徑；點「全部復歸」清除狀態</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：點擊「感知撒水頭觸發」按鈕、<b>手動啟動閥</b>、或<b>同時點擊兩顆 FCP 偵測器（D1＋D2）</b>，模擬三種觸發路徑；感知撒水頭觸發不會使手動啟動閥或電磁閥產生動作，各觸發路徑獨立顯示；點「全部復歸」清除狀態</div>
       </div>
 
       <h3>水霧系統配置示意圖</h3>
@@ -1771,9 +1769,9 @@
             #dg3 .bulb{fill:var(--accent3);}
             /* 水霧放射動畫（放慢版，水流沿管路逐段推進） */
             #dg3 .m-bulb{transition:opacity .3s;}
-            #dg3.mist-fire .m-bulb{opacity:0;transition:opacity .4s .8s;}
+            #dg3.head-on .m-bulb{opacity:0;transition:opacity .3s;}
             #dg3 .m-pspray{opacity:0;stroke:var(--accent);stroke-width:1.5;fill:none;transition:opacity .3s;}
-            #dg3.mist-fire .m-pspray{opacity:1;transition:opacity .4s 1s;}
+            #dg3.head-on .m-pspray{opacity:1;transition:opacity .3s .2s;}
             #dg3 .m-pilot{transition:stroke .4s;}
             #dg3.mist-fire .m-pilot{stroke:var(--yellow);transition:stroke 1s 1.4s;}
             #dg3 .m-act{transition:fill .3s;}
@@ -1794,7 +1792,7 @@
             #dg3.d1-on .sig-d1{stroke:var(--accent3);}
             #dg3.d2-on .sig-d2{stroke:var(--accent3);}
             #dg3 .e-act{transition:fill .3s;}
-            #dg3.d1-on .e-act,#dg3.d2-on .e-act{fill:var(--accent3);transition:fill .4s;}
+            #dg3.d1-on.d2-on .e-act{fill:var(--accent3);transition:fill .4s;}
           </style>
 
           <!-- 觸發狀態文字＋模擬感知撒水頭按鈕＋復歸按鈕：三種觸發路徑（感知撒水頭／手動啟動閥／FCP 偵測器）任一啟動 -->
@@ -1943,11 +1941,11 @@
           <li><span class="dnum">4</span><span>水霧噴頭：把水打成細小水滴（降溫＋稀釋氧氣＋遮蔽輻射熱）</span></li>
           <li><span class="dnum">5</span><span>保護對象：發電機房、主變電站</span></li>
           <li><span class="dnum">6</span><span>感知撒水頭（多顆，裝在保護對象上方現場，非閥室旁；動作後經導管線洩壓觸動一齊開放閥）</span></li>
-          <li><span class="dnum">7</span><span>電磁閥（受 <code>FCP</code> 訊號啟動；點擊 <b>D1／D2 偵測器</b>模擬觸發，任一顆動作即送訊號開閥）</span></li>
+          <li><span class="dnum">7</span><span>電磁閥（受 <code>FCP</code> 訊號啟動；點擊 <b>D1／D2 偵測器</b>模擬觸發，需<b>兩顆同時動作（交叉確認）</b>才會送訊號開閥，避免單顆誤報就誤動作）</span></li>
           <li><span class="dnum">8</span><span><b>👆 可點擊：</b>手動啟動（現場緊急手動釋放閥；感知撒水頭／電磁閥／手動啟動三者任一觸發即可開閥）</span></li>
           <li><span class="dnum">9</span><span><code>ACV</code> 自動警報逆止閥：設置於一齊開放閥<b>前（上游）</b>，為系統主遮斷閥並提供警報接口</span></li>
         </ol>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：點擊「感知撒水頭觸發」按鈕、<b>手動啟動閥</b>、或任一顆 <b>FCP 偵測器（D1／D2）</b>，模擬三種觸發路徑；點「全部復歸」清除狀態</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：點擊「感知撒水頭觸發」按鈕、<b>手動啟動閥</b>、或<b>同時點擊兩顆 FCP 偵測器（D1＋D2）</b>，模擬三種觸發路徑；感知撒水頭觸發不會使手動啟動閥或電磁閥產生動作，各觸發路徑獨立顯示；點「全部復歸」清除狀態</div>
       </div>
 
       <h3>一齊開放閥（Deluge Valve）運作原理</h3>
@@ -2761,61 +2759,141 @@
         <li><strong>正壓加壓（樓梯間、緊急昇降機）</strong>：對疏散路徑灌入新鮮空氣加壓，防止外部濃煙侵入，讓人員可以安全通行</li>
       </ul>
       <p>這些動作幾乎都是火警訊號一觸發就自動執行，不需要人員操作，但了解原理有助於理解「為什麼火警時某些門會突然關起來、某些風扇會突然啟動」。</p>
+
+      <h3>排煙與正壓系統動作示意圖</h3>
+      <p>點下面按鈕模擬火警觸發，看排煙風機、AHU 連動、疏散梯間正壓送風如何同時動作，共同維持逃生路徑的能見度與安全：</p>
+      <div class="diagram-wrap">
+        <div class="diagram-title">排煙與正壓系統動作示意圖</div>
+        <svg id="dg12" viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            #dg12 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
+            #dg12 .wall{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
+            #dg12 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
+            #dg12 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
+            #dg12 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg12 .marker circle{fill:var(--accent);}
+            #dg12 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
+            #dg12 .duct{stroke:var(--muted);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+            /* 起火與排煙／正壓動畫 */
+            #dg12 .e-flame{opacity:0;transition:opacity .3s;transform-box:fill-box;transform-origin:center bottom;}
+            #dg12.exh-fire .e-flame{opacity:1;animation:e12flick .5s ease-in-out infinite alternate;}
+            @keyframes e12flick{from{transform:scale(1);}to{transform:scale(1.18);}}
+            #dg12 .smoke{opacity:0;offset-rotate:0deg;offset-path:path('M 210 288 L 210 112 L 700 112 L 860 70');}
+            #dg12.exh-fire .smoke{animation:e12smoke 4s linear infinite;}
+            #dg12.exh-fire .smoke.s2{animation-delay:.8s;}
+            #dg12.exh-fire .smoke.s3{animation-delay:1.6s;}
+            @keyframes e12smoke{0%{offset-distance:0%;opacity:0;}8%{opacity:.85;}88%{opacity:.85;}100%{offset-distance:100%;opacity:0;}}
+            #dg12 .e-duct{transition:stroke .4s;}
+            #dg12.exh-fire .e-duct{stroke:var(--green);transition:stroke .5s .4s;}
+            #dg12 .e-fan{transition:fill .3s,stroke .3s;}
+            #dg12.exh-fire .e-fan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .7s,stroke .4s .7s;}
+            #dg12 .e-ahu{transition:opacity .3s;}
+            #dg12.exh-fire .e-ahu{opacity:0.3;transition:opacity .4s 1s;}
+            #dg12 .e-ahu-x{opacity:0;transition:opacity .3s;}
+            #dg12.exh-fire .e-ahu-x{opacity:1;transition:opacity .4s 1.2s;}
+            #dg12 .e-pfan{transition:fill .3s,stroke .3s;}
+            #dg12.exh-fire .e-pfan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .7s,stroke .4s .7s;}
+            #dg12 .e-pflow{transition:stroke .4s;}
+            #dg12.exh-fire .e-pflow{stroke:var(--green);transition:stroke .5s .9s;}
+            #dg12 .e-door{opacity:0;}
+            #dg12.exh-fire .e-door{animation:e12door 1s ease-in-out infinite 1.4s;}
+            @keyframes e12door{0%,100%{opacity:.25;}50%{opacity:1;}}
+            #dg12 .e-alarm{opacity:0;transition:opacity .3s;fill:var(--green);font-size:12.5px;font-weight:700;font-family:inherit;}
+            #dg12.exh-fire .e-alarm{opacity:1;transition:opacity .4s .7s;}
+          </style>
+
+          <!-- 起火模擬按鈕＋警示 -->
+          <g class="svg-btn" data-off="▶ 模擬火警觸發" data-on="↺ 復歸" onclick="dgToggle('dg12','exh-fire',this)">
+            <rect x="40" y="20" width="150" height="28" rx="6"/>
+            <text x="115" y="34">▶ 模擬火警觸發</text>
+          </g>
+          <text x="210" y="39" class="e-alarm">🔔 排煙風機啟動、AHU 停止、疏散梯間正壓送風同步動作！</text>
+
+          <!-- 火警樓層／房間 -->
+          <rect x="60" y="120" width="300" height="280" rx="4" class="wall"/>
+          <text x="210" y="140" text-anchor="middle" class="lbl-strong">火警樓層</text>
+          <g class="marker"><circle cx="98" cy="140" r="11"/><text x="98" y="141">1</text></g>
+
+          <!-- 起火設備＋火焰＋煙 -->
+          <rect x="160" y="290" width="100" height="60" rx="4" class="comp"/>
+          <text x="210" y="365" text-anchor="middle" class="lbl">起火設備</text>
+          <path d="M 210 286 q -9 -12 0 -24 q 9 12 0 24 z" fill="var(--accent3)" class="e-flame"/>
+          <circle r="5" fill="#9aa4b2" class="smoke s1"/>
+          <circle r="4" fill="#9aa4b2" class="smoke s2"/>
+          <circle r="6" fill="#9aa4b2" class="smoke s3"/>
+
+          <!-- 天花板排煙口 -->
+          <rect x="190" y="112" width="40" height="8" fill="var(--muted)"/>
+          <g class="marker"><circle cx="250" cy="116" r="11"/><text x="250" y="117">2</text></g>
+
+          <!-- AHU 出風口（火警時連動停止） -->
+          <circle cx="310" cy="150" r="18" class="comp e-ahu"/>
+          <text x="310" y="151" text-anchor="middle" dominant-baseline="central" font-size="15" class="e-ahu">🌀</text>
+          <line x1="298" y1="138" x2="322" y2="162" stroke="var(--accent3)" stroke-width="2.5" class="e-ahu-x"/>
+          <line x1="322" y1="138" x2="298" y2="162" stroke="var(--accent3)" stroke-width="2.5" class="e-ahu-x"/>
+          <text x="310" y="180" text-anchor="middle" class="lbl" font-size="10.5">AHU 出風口</text>
+          <g class="marker"><circle cx="345" cy="150" r="11"/><text x="345" y="151">3</text></g>
+
+          <!-- 排煙管路：由天花板排煙口 → 排煙風機 → 排至戶外 -->
+          <line x1="210" y1="112" x2="210" y2="80" class="duct e-duct"/>
+          <line x1="210" y1="80" x2="700" y2="80" class="duct e-duct"/>
+          <line x1="700" y1="80" x2="860" y2="46" class="duct e-duct"/>
+          <circle cx="700" cy="80" r="26" class="comp e-fan"/>
+          <path d="M 700 66 a 14 14 0 0 1 12 21 M 700 66 a 14 14 0 0 0 -12 21 M 700 94 a 14 14 0 0 0 12 -21" stroke="var(--accent2)" stroke-width="2" fill="none"/>
+          <text x="700" y="112" text-anchor="middle" class="lbl" font-size="10.5">排煙風機</text>
+          <g class="marker"><circle cx="660" cy="55" r="11"/><text x="660" y="56">4</text></g>
+          <text x="885" y="42" class="lbl-strong" font-size="12">排至戶外</text>
+
+          <!-- 疏散梯間（正壓） -->
+          <rect x="460" y="120" width="180" height="280" rx="4" class="wall"/>
+          <text x="550" y="140" text-anchor="middle" class="lbl-strong">疏散梯間（正壓）</text>
+          <g class="marker"><circle cx="600" cy="140" r="11"/><text x="600" y="141">6</text></g>
+
+          <!-- 正壓送風機：從戶外新鮮空氣送入梯間 -->
+          <circle cx="710" cy="250" r="22" class="comp e-pfan"/>
+          <path d="M 710 234 a 12 12 0 0 1 10 18 M 710 234 a 12 12 0 0 0 -10 18 M 710 266 a 12 12 0 0 0 10 -18" stroke="var(--accent2)" stroke-width="2" fill="none"/>
+          <text x="710" y="285" text-anchor="middle" class="lbl" font-size="10.5">正壓送風機</text>
+          <text x="710" y="300" text-anchor="middle" class="lbl" font-size="10">（戶外新鮮空氣）</text>
+          <line x1="750" y1="250" x2="800" y2="250" class="thin e-pflow"/>
+          <polygon points="796,244 796,256 806,250" fill="var(--muted)" class="e-pflow"/>
+          <line x1="688" y1="250" x2="640" y2="250" class="thin e-pflow"/>
+          <polygon points="644,244 644,256 634,250" fill="var(--muted)" class="e-pflow"/>
+          <g class="marker"><circle cx="710" cy="220" r="11"/><text x="710" y="221">7</text></g>
+
+          <!-- 走廊／逃生動線＋梯間門（加壓後門縫出風，防止濃煙滲入） -->
+          <text x="410" y="140" text-anchor="middle" class="lbl" font-size="11">走廊</text>
+          <rect x="392" y="280" width="16" height="100" rx="2" class="comp"/>
+          <g stroke="var(--green)" stroke-width="2" fill="none" class="e-door">
+            <path d="M 392 305 L 372 305"/>
+            <polygon points="376,300 376,310 366,305" fill="var(--green)"/>
+            <path d="M 392 330 L 372 330"/>
+            <polygon points="376,325 376,335 366,330" fill="var(--green)"/>
+            <path d="M 392 355 L 372 355"/>
+            <polygon points="376,350 376,360 366,355" fill="var(--green)"/>
+          </g>
+          <text x="400" y="400" text-anchor="middle" class="lbl" font-size="10.5">梯間門</text>
+          <g class="marker"><circle cx="400" cy="260" r="11"/><text x="400" y="261">5</text></g>
+
+          <!-- 逃生人員 -->
+          <text x="330" y="345" text-anchor="middle" font-size="18">🚶</text>
+        </svg>
+        <ol class="diagram-legend">
+          <li><span class="dnum">1</span><span>火警樓層：起火位置所在樓層／房間</span></li>
+          <li><span class="dnum">2</span><span>天花板排煙口：連接排煙管路，將現場的煙導引排出</span></li>
+          <li><span class="dnum">3</span><span>AHU 出風口：火警訊號連動停止，避免空調送風把煙帶到其他區域</span></li>
+          <li><span class="dnum">4</span><span>排煙風機：火警觸發後啟動，將煙抽離現場、排至屋外</span></li>
+          <li><span class="dnum">5</span><span>走廊／逃生動線：人員經此通過梯間門往安全梯疏散</span></li>
+          <li><span class="dnum">6</span><span>疏散梯間：加壓後維持正壓，外部濃煙不易侵入，人員可安全通行</span></li>
+          <li><span class="dnum">7</span><span>正壓送風機：對疏散梯間持續灌入戶外新鮮空氣加壓</span></li>
+        </ol>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：點擊「模擬火警觸發」，看排煙、AHU 連動、梯間正壓送風如何同步動作；綠色＝正常運作中的防護動作，非警報異常</div>
+      </div>
     </div>
 
     <!-- s13 -->
     <div class="section" id="s13">
       <div class="section-header">
-        <div class="section-num muted">13</div>
-        <h2>現場常見故障排除</h2>
-      </div>
-      <p>以下是同仁最常遇到、也最需要第一時間判斷的三種現場異常，不是要你取代消防專業維修，而是讓你知道「異常是什麼原因造成的」、「該找誰、該先做什麼」：</p>
-
-      <h3>漏水查修</h3>
-      <ul class="steps alpha">
-        <li>先確認漏水位置與範圍：是撒水頭本身、管路接頭，還是閥件本體滲漏</li>
-        <li>檢查該分區的水流開關／壓力開關是否同時有異常訊號，判斷是管路真的破損，還是單純表面凝結水</li>
-        <li>找到對應「受影響分區」的隔離閥關閉，<b>不要</b>關到上游主閥，避免波及其他分區的保護</li>
-        <li>立即通報消防／廠務負責單位：關閥期間該分區暫時失去撒水保護，需要啟動替代性防護措施（如加派巡邏、暫停高風險作業）</li>
-        <li>開啟末端查驗閥排空積水，進行維修</li>
-        <li>修復後依 SOP 試水，確認 ACV 警報／水流訊號正常，才能重新開啟隔離閥並解除替代措施</li>
-      </ul>
-
-      <h3>電系統故障查修</h3>
-      <p><code>FCP</code> 常見的故障訊號類型：斷路（open circuit）、短路、接地故障（ground fault）、迴路通訊中斷（loop communication fault）、電源異常（市電中斷／備用電池故障）。</p>
-      <ul class="steps alpha">
-        <li>先讀取 <code>FCP</code> 面板顯示的故障內容與位址（哪個迴路、哪個裝置位址、哪個模組）</li>
-        <li>依故障類型現場檢查對應迴路配線或裝置：斷路／短路通常是配線鬆脫或裝置本體損壞</li>
-        <li>接地故障需用絕緣電阻計分段量測，逐段隔離找出接地點，不要盲目整條迴路重測</li>
-        <li>電源類故障先檢查充電器與備用電池狀況，電池老化是最常見原因</li>
-        <li>修復後確認 <code>FCP</code> 故障訊號清除，並執行迴路測試（walk test）確認裝置恢復正常通訊</li>
-      </ul>
-
-      <h3>VESDA 高／低氣流查修</h3>
-      <p><code>VESDA</code> 會持續監控取樣管路的氣流流量，流量異常會觸發「低氣流（Low Flow）」或「高氣流（High Flow）」故障：</p>
-      <div class="two-col">
-        <div class="col-card">
-          <h4>低氣流常見原因</h4>
-          <p style="margin:0;">取樣孔或管路積塵阻塞、集塵過濾網堵塞、抽氣風扇（aspirator）老化衰退</p>
-        </div>
-        <div class="col-card">
-          <h4>高氣流常見原因</h4>
-          <p style="margin:0;">取樣管破裂、接頭鬆脫、端蓋脫落，造成額外空氣被吸入稀釋樣本</p>
-        </div>
-      </div>
-      <ul class="steps alpha">
-        <li>從 <code>VESDA</code> 主機面板確認故障類型與對應的取樣管路分區</li>
-        <li>目視檢查該分區管路：接頭是否鬆脫、端蓋是否脫落、取樣孔是否有異物阻塞</li>
-        <li>檢查、清潔或更換集塵過濾網（低氣流最常見的原因）</li>
-        <li>用煙氣測試或流量測試工具逐點驗證取樣孔反應是否正常</li>
-        <li>修復後務必重新執行「氣流基準學習（re-learn／re-baseline）」，讓系統重新記錄正常氣流基準值，避免之後誤判</li>
-      </ul>
-    </div>
-
-    <!-- s14 -->
-    <div class="section" id="s14">
-      <div class="section-header">
-        <div class="section-num danger">14</div>
+        <div class="section-num danger">13</div>
         <h2>緊急應變基本動作</h2>
       </div>
       <p>不管你負責什麼職務，聽到火警警報時，記住這個順序：</p>
@@ -2857,10 +2935,10 @@
       </div>
     </div>
 
-    <!-- s15 -->
-    <div class="section" id="s15">
+    <!-- s14 -->
+    <div class="section" id="s14">
       <div class="section-header">
-        <div class="section-num yellow">15</div>
+        <div class="section-num yellow">14</div>
         <h2>常見迷思澄清</h2>
       </div>
       <table class="clause-table">
@@ -2878,10 +2956,10 @@
       </table>
     </div>
 
-    <!-- s16 -->
-    <div class="section" id="s16">
+    <!-- s15 -->
+    <div class="section" id="s15">
       <div class="section-header">
-        <div class="section-num muted">16</div>
+        <div class="section-num muted">15</div>
         <h2>名詞速查表</h2>
       </div>
       <table class="clause-table">
@@ -2917,10 +2995,10 @@
       </table>
     </div>
 
-    <!-- s17 -->
-    <div class="section" id="s17">
+    <!-- s16 -->
+    <div class="section" id="s16">
       <div class="section-header">
-        <div class="section-num muted">17</div>
+        <div class="section-num muted">16</div>
         <h2>想更深入？延伸閱讀</h2>
       </div>
       <p>這份速成班只涵蓋觀念，若想了解實際法規條文、設計準則與計算依據，可參考同系列的深入整理：</p>
@@ -2953,6 +3031,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V8.0</b></td><td>2026-07-13</td><td>移除「現場常見故障排除」章節（章節重新編號）；泡沫／水霧互動圖修正：手動啟動與電磁閥觸發時感知撒水頭不再連動反應，FCP 偵測器 D1／D2 改為需兩顆同時動作（交叉確認）才會啟動電磁閥；新增排煙與正壓系統動作示意圖（點擊模擬火警，看排煙風機、AHU 連動停止、疏散梯間正壓送風同步動作）</td></tr>
           <tr><td><b>V7.0</b></td><td>2026-07-13</td><td>警報應變說明改以第一線工程師的初步應對為主，新增 ERC／ERT 名詞區分；火警偵測系統新增火災成長曲線示意圖；警報系統與 FCP 架構新增互動示意圖（點擊手動報警機／偵煙探測器模擬連動）；Deluge 系統修正為僅用於 H₂O₂ 桶槽降溫、非滅火；Stocker K8 淨空示意圖改為撒水頭正下方窄幅淨空＋補強鋼梁情境；泡沫／水霧系統新增互動示意圖（手動啟動閥、FCP 偵測器 D1／D2 皆可點擊模擬觸發）；修正 Fire Shutter 偵測器訊號線未連接的問題；ACV／逆止閥／水鐘／水流開關／末端查驗閥等名詞統一修正；修正無塵室簡體字誤植</td></tr>
           <tr><td><b>V6.0</b></td><td>2026-07-11</td><td>Stocker K8 撒水頭獨立成專節「Stocker：K8 撒水頭與 45 公分淨空間」，新增正確 vs. 錯誤對照示意圖；撒水頭類型表與相關文字同步調整，移除重複敘述</td></tr>
           <tr><td>V5.10</td><td>2026-07-11</td><td>泡沫、水霧系統動畫的感知撒水頭觸發時新增向上噴水的噴灑動畫（原本只有玻璃球消失，沒有噴水效果）</td></tr>
@@ -3043,14 +3122,17 @@
     dg2: { head: false, manual: false, d1: false, d2: false },
     dg3: { head: false, manual: false, d1: false, d2: false }
   };
-  function trigActive(dg) { var s = trig[dg]; return s.head || s.manual || s.d1 || s.d2; }
+  function trigActive(dg) { var s = trig[dg]; return s.head || s.manual || (s.d1 && s.d2); }
   function trigStatusText(dg) {
     var s = trig[dg], label = (dg === 'dg2' ? '泡沫' : '細水霧');
-    if (!trigActive(dg)) return '🟢 待機中：點擊感知撒水頭／手動啟動閥／偵測器模擬觸發';
+    if (!trigActive(dg)) {
+      if (s.d1 || s.d2) return '🟡 已有 1 顆偵測器動作，需兩顆同時動作（交叉確認）電磁閥才會啟動';
+      return '🟢 待機中：點擊感知撒水頭／手動啟動閥／偵測器模擬觸發';
+    }
     var srcs = [];
     if (s.head) srcs.push('感知撒水頭洩壓');
     if (s.manual) srcs.push('手動啟動');
-    if (s.d1 || s.d2) srcs.push('偵測器觸發電磁閥');
+    if (s.d1 && s.d2) srcs.push('兩顆偵測器同時動作觸發電磁閥');
     return '🔴 觸發來源：' + srcs.join('、') + ' → 一齊開放閥開 → ' + label + '放射！';
   }
   function trigToggle(dg, which, btn) {
