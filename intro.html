@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.2</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.3</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -2775,23 +2775,23 @@
             #dg12 .flow{stroke:var(--accent);stroke-width:2.5;fill:none;opacity:0.75;}
             #dg12 .flow-head{fill:var(--accent);opacity:0.75;}
             #dg12 .duct{stroke:var(--muted);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            /* 共用：FFU 連動停止＋下吹氣流減弱（上排氣／下排氣任一觸發都會啟動） */
+            /* FFU 連動停止＋下吹氣流減弱：僅火警（上排氣）觸發；氣體洩漏（下排氣）時 FFU 持續運轉 */
             #dg12 .e-ffu{transition:opacity .3s;}
-            #dg12.fire-exh .e-ffu,#dg12.gas-exh .e-ffu{opacity:0.3;transition:opacity .4s .3s;}
+            #dg12.fire-exh .e-ffu{opacity:0.3;transition:opacity .4s .3s;}
             #dg12 .e-ffu-x{opacity:0;transition:opacity .3s;}
-            #dg12.fire-exh .e-ffu-x,#dg12.gas-exh .e-ffu-x{opacity:1;transition:opacity .4s .5s;}
+            #dg12.fire-exh .e-ffu-x{opacity:1;transition:opacity .4s .5s;}
             #dg12 .e-downflow{transition:opacity .3s;}
-            #dg12.fire-exh .e-downflow,#dg12.gas-exh .e-downflow{opacity:0.15;transition:opacity .4s .5s;}
+            #dg12.fire-exh .e-downflow{opacity:0.15;transition:opacity .4s .5s;}
             /* 共用排煙風機：任一路徑觸發都會啟動 */
             #dg12 .e-fan{transition:fill .3s,stroke .3s;}
             #dg12.fire-exh .e-fan,#dg12.gas-exh .e-fan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .8s,stroke .4s .8s;}
-            #dg12 .e-outduct{transition:stroke .4s;}
-            #dg12.fire-exh .e-outduct,#dg12.gas-exh .e-outduct{stroke:var(--green);transition:stroke .5s .8s;}
+            #dg12 .e-outduct{transition:stroke .4s,fill .4s;}
+            #dg12.fire-exh .e-outduct,#dg12.gas-exh .e-outduct{stroke:var(--green);fill:var(--green);transition:stroke .5s .8s,fill .5s .8s;}
             /* 上排氣（火警）：機台起火 → 天花板 → FFU 間排煙口 → 共用風機 */
             #dg12 .e-flame{opacity:0;transition:opacity .3s;transform-box:fill-box;transform-origin:center bottom;}
             #dg12.fire-exh .e-flame{opacity:1;animation:e12flick .5s ease-in-out infinite alternate;}
             @keyframes e12flick{from{transform:scale(1);}to{transform:scale(1.18);}}
-            #dg12 .smoke-up{opacity:0;offset-rotate:0deg;offset-path:path('M 355 240 Q 500 195 640 178 L 650 175 L 650 140 L 650 70 L 700 70 L 750 68 L 750 50 L 750 20 L 750 5 L 820 5');}
+            #dg12 .smoke-up{opacity:0;offset-rotate:0deg;offset-path:path('M 355 240 Q 500 195 640 178 L 650 175 L 650 140 L 650 34 L 737 34 L 750 21 L 750 12 L 940 12');}
             #dg12.fire-exh .smoke-up{animation:e12smokeup 3s linear infinite;}
             #dg12.fire-exh .smoke-up.s2{animation-delay:.6s;}
             #dg12.fire-exh .smoke-up.s3{animation-delay:1.2s;}
@@ -2804,7 +2804,7 @@
             #dg12 .e-gasleak{opacity:0;transition:opacity .3s;}
             #dg12.gas-exh .e-gasleak{animation:e12gasflash 1s ease-in-out infinite;}
             @keyframes e12gasflash{0%,100%{opacity:0.45;}50%{opacity:0.95;}}
-            #dg12 .gas-cloud{opacity:0;offset-rotate:0deg;offset-path:path('M 390 300 C 430 315 462 330 478 355 C 488 375 478 392 505 405 L 750 418 C 792 421 812 405 815 372 L 818 235 L 818 160 L 818 70 L 800 70 L 750 68 L 750 50 L 750 20 L 750 5 L 820 5');}
+            #dg12 .gas-cloud{opacity:0;offset-rotate:0deg;offset-path:path('M 390 300 C 430 315 462 330 478 355 C 488 375 478 392 505 405 L 750 418 C 792 421 812 405 815 372 L 818 235 L 818 160 L 818 34 L 763 34 L 750 21 L 750 12 L 940 12');}
             #dg12.gas-exh .gas-cloud{animation:e12gascloud 6s linear infinite;}
             #dg12.gas-exh .gas-cloud.s2{animation-delay:1.2s;}
             #dg12.gas-exh .gas-cloud.s3{animation-delay:2.4s;}
@@ -2852,9 +2852,6 @@
           <line x1="640" y1="144" x2="670" y2="152" class="thin"/>
           <text x="650" y="130" text-anchor="middle" class="lbl" font-size="10">上排氣口</text>
           <g class="marker"><circle cx="690" cy="150" r="11"/><text x="690" y="151">4</text></g>
-
-          <!-- 上排氣支管：排氣口 → 匯入共用風機 -->
-          <line x1="650" y1="140" x2="650" y2="70" class="duct e-upduct"/>
 
           <!-- 潔淨室：機台起火（上排氣）／機台氣體洩漏（下排氣） -->
           <text x="590" y="225" class="zone">潔淨室</text>
@@ -2920,32 +2917,35 @@
           <line x1="790" y1="75" x2="500" y2="75" class="flow e-recirc"/>
           <polygon points="500,69 500,81 486,75" class="flow-head e-recirc"/>
 
-          <!-- 下排氣支管：豎井頂部 → 匯入共用風機，氣體洩漏時改道啟用 -->
-          <line x1="818" y1="160" x2="818" y2="70" class="duct e-duct"/>
-          <line x1="818" y1="70" x2="800" y2="70" class="duct e-duct"/>
+          <!-- MAU Room：設於頂樓（屋頂機房）。先畫房間本體，管路／風機才會疊加在房間上方顯示，不被牆面蓋住 -->
+          <rect x="610" y="8" width="280" height="52" rx="4" class="wall"/>
 
-          <!-- MAU Room：共用排煙風機所在機房，上排氣／下排氣兩條支管由此穿牆進入、匯流到同一顆風機 -->
-          <rect x="700" y="18" width="100" height="90" rx="4" class="wall"/>
-          <text x="750" y="33" text-anchor="middle" class="lbl-strong" font-size="11">MAU Room</text>
-          <line x1="650" y1="70" x2="700" y2="70" class="duct e-upduct"/>
-          <line x1="700" y1="70" x2="750" y2="70" class="duct e-outduct"/>
-          <line x1="750" y1="70" x2="750" y2="55" class="duct e-outduct"/>
-          <circle cx="750" cy="68" r="18" class="comp e-fan"/>
-          <path d="M 750 56 a 10 10 0 0 1 8.5 15 M 750 56 a 10 10 0 0 0 -8.5 15 M 750 76 a 10 10 0 0 0 8.5 -15" stroke="var(--accent2)" stroke-width="1.8" fill="none"/>
-          <text x="750" y="93" text-anchor="middle" class="lbl" font-size="10">排煙風機（共用）</text>
-          <g class="marker"><circle cx="722" cy="52" r="11"/><text x="722" y="53">8</text></g>
-          <path d="M 750 50 L 750 5 L 820 5" class="duct e-outduct"/>
-          <text x="835" y="9" text-anchor="middle" class="lbl-strong" font-size="11">排至戶外</text>
+          <!-- 上排氣支管：排氣口 → 穿透屋頂 → 匯入 MAU Room 內共用風機 -->
+          <line x1="650" y1="140" x2="650" y2="30" class="duct e-upduct"/>
+          <line x1="650" y1="30" x2="737" y2="30" class="duct e-upduct"/>
+
+          <!-- 下排氣支管：豎井頂部 → 穿透屋頂 → 匯入 MAU Room 內共用風機，氣體洩漏時改道啟用 -->
+          <line x1="818" y1="160" x2="818" y2="30" class="duct e-duct"/>
+          <line x1="818" y1="30" x2="763" y2="30" class="duct e-duct"/>
+
+          <!-- 共用排煙風機：任一路徑觸發都會啟動 -->
+          <circle cx="750" cy="30" r="12" class="comp e-fan"/>
+          <path d="M 750 21 a 7.5 7.5 0 0 1 6.5 11 M 750 21 a 7.5 7.5 0 0 0 -6.5 11 M 756.5 36.5 a 7.5 7.5 0 0 0 0 -12.5" stroke="var(--accent2)" stroke-width="1.6" fill="none"/>
+          <g class="marker"><circle cx="632" cy="30" r="11"/><text x="632" y="31">8</text></g>
+          <text x="750" y="53" text-anchor="middle" class="lbl-strong" font-size="11">MAU Room（頂樓機房）</text>
+          <path d="M 750 18 L 750 12 L 940 12" class="duct e-outduct"/>
+          <polygon points="934,6 934,18 946,12" class="e-outduct" fill="var(--muted)"/>
+          <text x="880" y="26" text-anchor="middle" class="lbl-strong" font-size="11">排至戶外</text>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>機台：上排氣情境＝機台起火；下排氣情境＝機台氣體洩漏（黃色警示）</span></li>
-          <li><span class="dnum">2</span><span>FFU（風機過濾機組）：兩種觸發皆連動停止，避免持續下吹擴散煙／氣體</span></li>
+          <li><span class="dnum">2</span><span>FFU（風機過濾機組）：<b>僅火警（上排氣）</b>時連動停止，避免持續下吹把煙帶到其他區域；<b>氣體洩漏（下排氣）時 FFU 持續運轉</b>，下吹氣流有助於把較空氣重的氣體壓向地板、送入下排氣路徑</span></li>
           <li><span class="dnum">3</span><span>潔淨室：機台所在位置</span></li>
           <li><span class="dnum">4</span><span>上排氣口：設在 <b>FFU 排列之間</b>，火警時就近把聚積在天花板附近的煙抽離，反應最快，不經過下方的迴風系統</span></li>
           <li><span class="dnum">5</span><span>高架地板（開孔）：氣體洩漏時，較空氣重的氣體穿過地板沉降進入下迴風層</span></li>
           <li><span class="dnum">6</span><span>下迴風層：氣體洩漏後第一個被帶到的地方，往迴風豎井方向流動</span></li>
           <li><span class="dnum">7</span><span>迴風豎井：平時是「下迴風層→豎井→上迴風層」的循環通路，<b>氣體洩漏</b>時排煙閘門切換，不再送回上迴風層</span></li>
-          <li><span class="dnum">8</span><span>排煙風機（上／下排氣共用）：上排氣口與迴風豎井兩條支管都接到同一顆風機，任一路徑觸發即啟動、排至戶外</span></li>
+          <li><span class="dnum">8</span><span>排煙風機（上／下排氣共用）：設於 <b><code>MAU Room</code>（頂樓機房）</b>內，上排氣口與迴風豎井兩條支管都穿透屋頂接到同一顆風機，任一路徑觸發即啟動、排至戶外</span></li>
         </ol>
         <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：分別點擊「模擬火警觸發（上排氣）」與「模擬氣體洩漏（下排氣）」，比較兩條完全不同的排煙路徑如何共用同一顆風機；藍色箭頭＝平時迴風循環路徑，觸發後淡出；綠色＝上排氣（火警）路徑與風機運轉，黃色＝下排氣（氣體洩漏）路徑，皆非警報異常</div>
       </div>
@@ -3092,6 +3092,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V10.3</b></td><td>2026-07-13</td><td><code>MAU Room</code> 改設於頂樓（屋頂機房），不再與上迴風層同層；修正下排氣支管被機房牆面蓋住、視覺上斷開的問題（機房牆面繪製順序移到管路之前）；氣體洩漏（下排氣）情境下 FFU 改為持續運轉、不再連動停止，僅火警（上排氣）才會停止 FFU</td></tr>
           <tr><td><b>V10.2</b></td><td>2026-07-13</td><td>修正排煙系統示意圖：新增排煙風機所在的 <code>MAU Room</code>；修正「排至戶外」管路斷開的問題；火警煙的動畫改為先飄到排煙口正下方、再垂直被吸走；修正氣體洩漏警示圖示因缺少 transform-box 而跳動跑位的問題，改為透明度閃爍</td></tr>
           <tr><td><b>V10.1</b></td><td>2026-07-13</td><td>排煙系統示意圖移除疏散梯間正壓部分，聚焦在排煙路徑；上排氣（FFU 間排煙口）與下排氣（迴風豎井）兩條支管改為<b>共用同一顆排煙風機</b>，匯流後統一排至戶外</td></tr>
           <tr><td><b>V10.0</b></td><td>2026-07-13</td><td>排煙與正壓系統示意圖修正為<b>上排氣／下排氣兩套獨立系統</b>：上排氣設在 FFU 排列之間，火警時就近抽離天花板附近的煙、走最短路徑排至戶外；下排氣沿用高架地板→下迴風層→迴風豎井路徑，改為<b>氣體洩漏（Gas Leak）</b>觸發，因應比空氣重的特殊氣體從地板附近排除；兩套系統各自獨立按鈕模擬，皆可連動 FFU 停止與疏散梯間正壓</td></tr>
@@ -3276,7 +3277,7 @@
     }
     var parts = [];
     if (fire) parts.push('🔔 上排氣：FFU 停止、排煙口就近抽離、風機啟動');
-    if (gas) parts.push('⚠ 下排氣：FFU 停止、迴風豎井改道排煙、風機啟動');
+    if (gas) parts.push('⚠ 下排氣：FFU 持續運轉、迴風豎井改道排煙、風機啟動');
     st.textContent = parts.join('／');
     st.setAttribute('fill', fire ? 'var(--green)' : 'var(--yellow)');
   }
