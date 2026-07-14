@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.3</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.4</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -1074,6 +1074,8 @@
             #dg11 .comp{fill:var(--surface2);stroke:var(--accent2);stroke-width:2;}
             #dg11 .lbl{fill:var(--muted);font-size:12.5px;font-family:inherit;}
             #dg11 .lbl-strong{fill:var(--text);font-size:13px;font-weight:700;font-family:inherit;}
+            #dg11 .marker circle{fill:var(--accent);}
+            #dg11 .marker text{fill:#fff;font-size:12px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;}
             #dg11 .inst-txt{fill:var(--text);font-size:11px;font-weight:700;text-anchor:middle;dominant-baseline:central;font-family:inherit;pointer-events:none;}
             #dg11 .fcp-box{fill:var(--surface);stroke:var(--accent3);stroke-width:2;}
             /* 可點擊輸入裝置 */
@@ -3092,6 +3094,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V10.4</b></td><td>2026-07-13</td><td>修正警報系統與 FCP 連動互動示意圖：編號標記缺少樣式定義，導致全部顯示成黑色實心圓點（看起來像破洞）且數字不可見，補上 <code>.marker</code> 樣式後正確顯示藍底白字編號</td></tr>
           <tr><td><b>V10.3</b></td><td>2026-07-13</td><td><code>MAU Room</code> 改設於頂樓（屋頂機房），不再與上迴風層同層；修正下排氣支管被機房牆面蓋住、視覺上斷開的問題（機房牆面繪製順序移到管路之前）；氣體洩漏（下排氣）情境下 FFU 改為持續運轉、不再連動停止，僅火警（上排氣）才會停止 FFU</td></tr>
           <tr><td><b>V10.2</b></td><td>2026-07-13</td><td>修正排煙系統示意圖：新增排煙風機所在的 <code>MAU Room</code>；修正「排至戶外」管路斷開的問題；火警煙的動畫改為先飄到排煙口正下方、再垂直被吸走；修正氣體洩漏警示圖示因缺少 transform-box 而跳動跑位的問題，改為透明度閃爍</td></tr>
           <tr><td><b>V10.1</b></td><td>2026-07-13</td><td>排煙系統示意圖移除疏散梯間正壓部分，聚焦在排煙路徑；上排氣（FFU 間排煙口）與下排氣（迴風豎井）兩條支管改為<b>共用同一顆排煙風機</b>，匯流後統一排至戶外</td></tr>
