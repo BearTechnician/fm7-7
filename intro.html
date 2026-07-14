@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.0</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.1</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -2758,11 +2758,11 @@
       </ul>
       <p>這些動作幾乎都是火警訊號一觸發就自動執行，不需要人員操作，但了解原理有助於理解「為什麼火警時某些門會突然關起來、某些風扇會突然啟動」。</p>
 
-      <h3>排煙與正壓系統動作示意圖（潔淨室剖面）</h3>
-      <p>本廠潔淨室排煙分成<b>兩套獨立系統</b>，都以潔淨室剖面（跟前面 <code>VESDA</code> 採樣管配置示意圖同一個剖面）為範本，但走的路徑完全不同：<b>上排氣</b>設在 <b>FFU 排列之間</b>，火警時直接把聚積在天花板附近的煙<b>就近抽離</b>、排至戶外，反應最快；<b>下排氣</b>沿用高架地板→下迴風層→迴風豎井這條既有的迴風路徑，用於<b>氣體洩漏（Gas Leak）</b>——特殊氣體多半比空氣重，會沉降到地板附近，所以改由迴風豎井的排煙閘門切換，把氣體從下方抽離排至戶外。兩者觸發時機不同，可分別點擊下方按鈕模擬：</p>
+      <h3>排煙系統動作示意圖（潔淨室剖面）</h3>
+      <p>本廠潔淨室排煙分成<b>兩條路徑</b>，都以潔淨室剖面（跟前面 <code>VESDA</code> 採樣管配置示意圖同一個剖面）為範本，<b>共用同一顆排煙風機</b>，但進氣路徑完全不同：<b>上排氣</b>設在 <b>FFU 排列之間</b>，火警時直接把聚積在天花板附近的煙<b>就近抽離</b>，反應最快；<b>下排氣</b>沿用高架地板→下迴風層→迴風豎井這條既有的迴風路徑，用於<b>氣體洩漏（Gas Leak）</b>——特殊氣體多半比空氣重，會沉降到地板附近，所以改由迴風豎井的排煙閘門切換，把氣體從下方抽離、送進同一顆風機排至戶外。兩者觸發時機不同，可分別點擊下方按鈕模擬：</p>
       <div class="diagram-wrap">
-        <div class="diagram-title">排煙與正壓系統動作示意圖（潔淨室剖面：上排氣／下排氣）</div>
-        <svg id="dg12" viewBox="0 0 1220 560" xmlns="http://www.w3.org/2000/svg">
+        <div class="diagram-title">排煙系統動作示意圖（潔淨室剖面：上排氣／下排氣共用風機）</div>
+        <svg id="dg12" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
           <style>
             #dg12 .thin{stroke:var(--muted);stroke-width:2;fill:none;}
             #dg12 .wall{fill:var(--surface2);stroke:var(--border);stroke-width:2;}
@@ -2775,25 +2775,23 @@
             #dg12 .flow{stroke:var(--accent);stroke-width:2.5;fill:none;opacity:0.75;}
             #dg12 .flow-head{fill:var(--accent);opacity:0.75;}
             #dg12 .duct{stroke:var(--muted);stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-            /* 共用：FFU 連動停止＋下吹氣流減弱、疏散梯間正壓（上排氣／下排氣任一觸發都會啟動） */
+            /* 共用：FFU 連動停止＋下吹氣流減弱（上排氣／下排氣任一觸發都會啟動） */
             #dg12 .e-ffu{transition:opacity .3s;}
             #dg12.fire-exh .e-ffu,#dg12.gas-exh .e-ffu{opacity:0.3;transition:opacity .4s .3s;}
             #dg12 .e-ffu-x{opacity:0;transition:opacity .3s;}
             #dg12.fire-exh .e-ffu-x,#dg12.gas-exh .e-ffu-x{opacity:1;transition:opacity .4s .5s;}
             #dg12 .e-downflow{transition:opacity .3s;}
             #dg12.fire-exh .e-downflow,#dg12.gas-exh .e-downflow{opacity:0.15;transition:opacity .4s .5s;}
-            #dg12 .e-pfan{transition:fill .3s,stroke .3s;}
-            #dg12.fire-exh .e-pfan,#dg12.gas-exh .e-pfan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .8s,stroke .4s .8s;}
-            #dg12 .e-pflow{transition:stroke .4s;}
-            #dg12.fire-exh .e-pflow,#dg12.gas-exh .e-pflow{stroke:var(--green);transition:stroke .5s 1s;}
-            #dg12 .e-door{opacity:0;}
-            #dg12.fire-exh .e-door,#dg12.gas-exh .e-door{animation:e12door 1s ease-in-out infinite 1.2s;}
-            @keyframes e12door{0%,100%{opacity:.25;}50%{opacity:1;}}
-            /* 上排氣（火警）：機台起火 → 天花板 → FFU 間排煙口 → 上排氣風機 → 戶外 */
+            /* 共用排煙風機：任一路徑觸發都會啟動 */
+            #dg12 .e-fan{transition:fill .3s,stroke .3s;}
+            #dg12.fire-exh .e-fan,#dg12.gas-exh .e-fan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .8s,stroke .4s .8s;}
+            #dg12 .e-outduct{transition:stroke .4s;}
+            #dg12.fire-exh .e-outduct,#dg12.gas-exh .e-outduct{stroke:var(--green);transition:stroke .5s .8s;}
+            /* 上排氣（火警）：機台起火 → 天花板 → FFU 間排煙口 → 共用風機 */
             #dg12 .e-flame{opacity:0;transition:opacity .3s;transform-box:fill-box;transform-origin:center bottom;}
             #dg12.fire-exh .e-flame{opacity:1;animation:e12flick .5s ease-in-out infinite alternate;}
             @keyframes e12flick{from{transform:scale(1);}to{transform:scale(1.18);}}
-            #dg12 .smoke-up{opacity:0;offset-rotate:0deg;offset-path:path('M 355 240 C 355 195 390 165 460 152 L 650 143 L 650 55 L 650 15');}
+            #dg12 .smoke-up{opacity:0;offset-rotate:0deg;offset-path:path('M 355 240 C 355 195 390 165 460 152 L 650 143 L 650 70 L 750 70 L 750 20');}
             #dg12.fire-exh .smoke-up{animation:e12smokeup 3s linear infinite;}
             #dg12.fire-exh .smoke-up.s2{animation-delay:.6s;}
             #dg12.fire-exh .smoke-up.s3{animation-delay:1.2s;}
@@ -2802,12 +2800,10 @@
             #dg12.fire-exh .e-updexh{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .4s,stroke .4s .4s;}
             #dg12 .e-upduct{transition:stroke .4s;}
             #dg12.fire-exh .e-upduct{stroke:var(--green);transition:stroke .5s .5s;}
-            #dg12 .e-upfan{transition:fill .3s,stroke .3s;}
-            #dg12.fire-exh .e-upfan{fill:rgba(74,222,128,0.35);stroke:var(--green);transition:fill .4s .7s,stroke .4s .7s;}
-            /* 下排氣（氣體洩漏）：機台氣體洩漏 → 高架地板 → 下迴風層 → 迴風豎井 → 下排氣風機 → 戶外 */
+            /* 下排氣（氣體洩漏）：機台氣體洩漏 → 高架地板 → 下迴風層 → 迴風豎井 → 共用風機 */
             #dg12 .e-gasleak{opacity:0;transition:opacity .3s;}
             #dg12.gas-exh .e-gasleak{opacity:0.85;animation:e12flick .6s ease-in-out infinite alternate;}
-            #dg12 .gas-cloud{opacity:0;offset-rotate:0deg;offset-path:path('M 390 300 C 430 315 462 330 478 355 C 488 375 478 392 505 405 L 750 418 C 792 421 812 405 815 372 L 818 235 L 818 160 L 900 50 L 970 40');}
+            #dg12 .gas-cloud{opacity:0;offset-rotate:0deg;offset-path:path('M 390 300 C 430 315 462 330 478 355 C 488 375 478 392 505 405 L 750 418 C 792 421 812 405 815 372 L 818 235 L 818 160 L 818 70 L 750 70 L 750 20');}
             #dg12.gas-exh .gas-cloud{animation:e12gascloud 6s linear infinite;}
             #dg12.gas-exh .gas-cloud.s2{animation-delay:1.2s;}
             #dg12.gas-exh .gas-cloud.s3{animation-delay:2.4s;}
@@ -2816,8 +2812,6 @@
             #dg12.gas-exh .e-recirc{opacity:0.1;transition:opacity .4s 1s;}
             #dg12 .e-duct{transition:stroke .4s;}
             #dg12.gas-exh .e-duct{stroke:var(--yellow);transition:stroke .5s 1.2s;}
-            #dg12 .e-fan{transition:fill .3s,stroke .3s;}
-            #dg12.gas-exh .e-fan{fill:rgba(224,196,94,0.35);stroke:var(--yellow);transition:fill .4s 1.4s,stroke .4s 1.4s;}
           </style>
 
           <!-- 兩種觸發模擬按鈕＋狀態文字（狀態文字內容由 dg12Status() 動態組合，避免兩者皆觸發時重疊） -->
@@ -2858,14 +2852,8 @@
           <text x="650" y="130" text-anchor="middle" class="lbl" font-size="10">上排氣口</text>
           <g class="marker"><circle cx="690" cy="150" r="11"/><text x="690" y="151">4</text></g>
 
-          <!-- 上排氣管路：排氣口 → 上排氣風機 → 排至戶外 -->
-          <line x1="650" y1="140" x2="650" y2="55" class="duct e-upduct"/>
-          <circle cx="650" cy="42" r="18" class="comp e-upfan"/>
-          <path d="M 650 30 a 10 10 0 0 1 8.5 15 M 650 30 a 10 10 0 0 0 -8.5 15 M 650 50 a 10 10 0 0 0 8.5 -15" stroke="var(--accent2)" stroke-width="1.8" fill="none"/>
-          <g class="marker"><circle cx="680" cy="30" r="11"/><text x="680" y="31">5</text></g>
-          <text x="720" y="46" class="lbl" font-size="10">上排氣風機</text>
-          <line x1="650" y1="24" x2="650" y2="8" class="duct e-upduct"/>
-          <text x="658" y="12" class="lbl-strong" font-size="10.5">排至戶外</text>
+          <!-- 上排氣支管：排氣口 → 匯入共用風機 -->
+          <line x1="650" y1="140" x2="650" y2="70" class="duct e-upduct"/>
 
           <!-- 潔淨室：機台起火（上排氣）／機台氣體洩漏（下排氣） -->
           <text x="590" y="225" class="zone">潔淨室</text>
@@ -2909,17 +2897,17 @@
             <line x1="680" y1="327" x2="680" y2="337" class="thin"/>
             <line x1="760" y1="327" x2="760" y2="337" class="thin"/>
           </g>
-          <g class="marker"><circle cx="620" cy="350" r="11"/><text x="620" y="351">6</text></g>
+          <g class="marker"><circle cx="620" cy="350" r="11"/><text x="620" y="351">5</text></g>
 
           <!-- 下迴風層 -->
           <text x="200" y="367" class="zone">下迴風層</text>
-          <g class="marker"><circle cx="700" cy="400" r="11"/><text x="700" y="401">7</text></g>
+          <g class="marker"><circle cx="700" cy="400" r="11"/><text x="700" y="401">6</text></g>
 
           <!-- 迴風豎井 -->
           <line x1="780" y1="160" x2="780" y2="350" class="thin"/>
           <line x1="880" y1="50" x2="880" y2="460" class="thin"/>
           <text x="830" y="75" text-anchor="middle" class="zone">迴風豎井</text>
-          <g class="marker"><circle cx="800" cy="180" r="11"/><text x="800" y="181">8</text></g>
+          <g class="marker"><circle cx="800" cy="180" r="11"/><text x="800" y="181">7</text></g>
 
           <!-- 平時循環氣流：下迴風層 → 豎井 → 上迴風層（氣體洩漏時排煙閘門切換，這段循環淡出） -->
           <line x1="250" y1="430" x2="770" y2="430" class="flow e-recirc"/>
@@ -2931,58 +2919,31 @@
           <line x1="790" y1="75" x2="500" y2="75" class="flow e-recirc"/>
           <polygon points="500,69 500,81 486,75" class="flow-head e-recirc"/>
 
-          <!-- 下排氣管路：豎井頂部 → 下排氣風機 → 排至戶外，氣體洩漏時改道啟用 -->
-          <line x1="830" y1="160" x2="830" y2="60" class="duct e-duct"/>
-          <line x1="830" y1="60" x2="900" y2="50" class="duct e-duct"/>
-          <circle cx="900" cy="50" r="22" class="comp e-fan"/>
-          <path d="M 900 38 a 12 12 0 0 1 10 18 M 900 38 a 12 12 0 0 0 -10 18 M 900 62 a 12 12 0 0 0 10 -18" stroke="var(--accent2)" stroke-width="2" fill="none"/>
-          <text x="900" y="80" text-anchor="middle" class="lbl" font-size="10">下排氣風機</text>
-          <g class="marker"><circle cx="860" cy="42" r="11"/><text x="860" y="43">9</text></g>
-          <line x1="922" y1="50" x2="965" y2="40" class="duct e-duct"/>
-          <text x="972" y="36" class="lbl-strong" font-size="11">排至戶外</text>
+          <!-- 下排氣支管：豎井頂部 → 匯入共用風機，氣體洩漏時改道啟用 -->
+          <line x1="818" y1="160" x2="818" y2="70" class="duct e-duct"/>
 
-          <!-- 走廊／逃生動線＋梯間門 -->
-          <text x="910" y="140" text-anchor="middle" class="lbl" font-size="11">走廊</text>
-          <rect x="898" y="280" width="16" height="100" rx="2" class="comp"/>
-          <g stroke="var(--green)" stroke-width="2" fill="none" class="e-door">
-            <path d="M 898 305 L 878 305"/>
-            <polygon points="882,300 882,310 872,305" fill="var(--green)"/>
-            <path d="M 898 330 L 878 330"/>
-            <polygon points="882,325 882,335 872,330" fill="var(--green)"/>
-            <path d="M 898 355 L 878 355"/>
-            <polygon points="882,350 882,360 872,355" fill="var(--green)"/>
-          </g>
-          <text x="906" y="400" text-anchor="middle" class="lbl" font-size="10.5">梯間門</text>
-          <text x="855" y="345" text-anchor="middle" font-size="18">🚶</text>
-
-          <!-- 疏散梯間（正壓） -->
-          <rect x="940" y="120" width="180" height="280" rx="4" class="wall"/>
-          <text x="1030" y="140" text-anchor="middle" class="lbl-strong">疏散梯間（正壓）</text>
-          <g class="marker"><circle cx="1080" cy="140" r="11"/><text x="1080" y="141">10</text></g>
-
-          <!-- 正壓送風機：從戶外新鮮空氣送入梯間 -->
-          <circle cx="1160" cy="250" r="22" class="comp e-pfan"/>
-          <path d="M 1160 234 a 12 12 0 0 1 10 18 M 1160 234 a 12 12 0 0 0 -10 18 M 1160 266 a 12 12 0 0 0 10 -18" stroke="var(--accent2)" stroke-width="2" fill="none"/>
-          <text x="1160" y="285" text-anchor="middle" class="lbl" font-size="10.5">正壓送風機</text>
-          <text x="1160" y="300" text-anchor="middle" class="lbl" font-size="10">（戶外新鮮空氣）</text>
-          <line x1="1138" y1="250" x2="1090" y2="250" class="thin e-pflow"/>
-          <polygon points="1094,244 1094,256 1084,250" fill="var(--muted)" class="e-pflow"/>
-          <g class="marker"><circle cx="1160" cy="220" r="11"/><text x="1160" y="221">11</text></g>
+          <!-- 共用排煙風機：上排氣／下排氣兩條支管在此匯流，任一路徑觸發都會啟動 -->
+          <line x1="650" y1="70" x2="818" y2="70" class="duct e-outduct"/>
+          <line x1="750" y1="70" x2="750" y2="55" class="duct e-outduct"/>
+          <circle cx="750" cy="42" r="20" class="comp e-fan"/>
+          <path d="M 750 29 a 11 11 0 0 1 9.5 17 M 750 29 a 11 11 0 0 0 -9.5 17 M 750 51 a 11 11 0 0 0 9.5 -17" stroke="var(--accent2)" stroke-width="2" fill="none"/>
+          <text x="750" y="17" text-anchor="middle" class="lbl" font-size="10">排煙風機（共用）</text>
+          <g class="marker"><circle cx="720" cy="30" r="11"/><text x="720" y="31">8</text></g>
+          <line x1="750" y1="22" x2="750" y2="8" class="duct e-outduct"/>
+          <text x="855" y="30" text-anchor="middle" class="lbl-strong" font-size="11">排至戶外</text>
+          <path d="M 800 20 L 850 12" class="duct e-outduct"/>
         </svg>
         <ol class="diagram-legend">
           <li><span class="dnum">1</span><span>機台：上排氣情境＝機台起火；下排氣情境＝機台氣體洩漏（黃色警示）</span></li>
           <li><span class="dnum">2</span><span>FFU（風機過濾機組）：兩種觸發皆連動停止，避免持續下吹擴散煙／氣體</span></li>
           <li><span class="dnum">3</span><span>潔淨室：機台所在位置</span></li>
-          <li><span class="dnum">4</span><span>上排氣口：設在 <b>FFU 排列之間</b>，火警時就近把聚積在天花板附近的煙抽離，反應最快</span></li>
-          <li><span class="dnum">5</span><span>上排氣風機：啟動後將煙直接排至戶外，走最短路徑，不經過下方的迴風系統</span></li>
-          <li><span class="dnum">6</span><span>高架地板（開孔）：氣體洩漏時，較空氣重的氣體穿過地板沉降進入下迴風層</span></li>
-          <li><span class="dnum">7</span><span>下迴風層：氣體洩漏後第一個被帶到的地方，往迴風豎井方向流動</span></li>
-          <li><span class="dnum">8</span><span>迴風豎井：平時是「下迴風層→豎井→上迴風層」的循環通路，<b>氣體洩漏</b>時排煙閘門切換，不再送回上迴風層</span></li>
-          <li><span class="dnum">9</span><span>下排氣風機：切換後啟動，將豎井內的氣體抽離、排至戶外</span></li>
-          <li><span class="dnum">10</span><span>疏散梯間：人員經走廊、通過梯間門進入；加壓後維持正壓，外部濃煙不易侵入</span></li>
-          <li><span class="dnum">11</span><span>正壓送風機：兩種觸發皆會啟動，對疏散梯間持續灌入戶外新鮮空氣加壓，門縫呈現「出風」狀態</span></li>
+          <li><span class="dnum">4</span><span>上排氣口：設在 <b>FFU 排列之間</b>，火警時就近把聚積在天花板附近的煙抽離，反應最快，不經過下方的迴風系統</span></li>
+          <li><span class="dnum">5</span><span>高架地板（開孔）：氣體洩漏時，較空氣重的氣體穿過地板沉降進入下迴風層</span></li>
+          <li><span class="dnum">6</span><span>下迴風層：氣體洩漏後第一個被帶到的地方，往迴風豎井方向流動</span></li>
+          <li><span class="dnum">7</span><span>迴風豎井：平時是「下迴風層→豎井→上迴風層」的循環通路，<b>氣體洩漏</b>時排煙閘門切換，不再送回上迴風層</span></li>
+          <li><span class="dnum">8</span><span>排煙風機（上／下排氣共用）：上排氣口與迴風豎井兩條支管都接到同一顆風機，任一路徑觸發即啟動、排至戶外</span></li>
         </ol>
-        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：分別點擊「模擬火警觸發（上排氣）」與「模擬氣體洩漏（下排氣）」，比較兩條完全不同的排煙路徑；藍色箭頭＝平時迴風循環路徑，觸發後淡出；綠色＝上排氣／正壓防護動作，黃色＝下排氣（氣體洩漏）動作，皆非警報異常</div>
+        <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">👆 互動：分別點擊「模擬火警觸發（上排氣）」與「模擬氣體洩漏（下排氣）」，比較兩條完全不同的排煙路徑如何共用同一顆風機；藍色箭頭＝平時迴風循環路徑，觸發後淡出；綠色＝上排氣（火警）路徑與風機運轉，黃色＝下排氣（氣體洩漏）路徑，皆非警報異常</div>
       </div>
     </div>
 
@@ -3127,6 +3088,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V10.1</b></td><td>2026-07-13</td><td>排煙系統示意圖移除疏散梯間正壓部分，聚焦在排煙路徑；上排氣（FFU 間排煙口）與下排氣（迴風豎井）兩條支管改為<b>共用同一顆排煙風機</b>，匯流後統一排至戶外</td></tr>
           <tr><td><b>V10.0</b></td><td>2026-07-13</td><td>排煙與正壓系統示意圖修正為<b>上排氣／下排氣兩套獨立系統</b>：上排氣設在 FFU 排列之間，火警時就近抽離天花板附近的煙、走最短路徑排至戶外；下排氣沿用高架地板→下迴風層→迴風豎井路徑，改為<b>氣體洩漏（Gas Leak）</b>觸發，因應比空氣重的特殊氣體從地板附近排除；兩套系統各自獨立按鈕模擬，皆可連動 FFU 停止與疏散梯間正壓</td></tr>
           <tr><td><b>V9.0</b></td><td>2026-07-13</td><td>排煙與正壓系統示意圖改以潔淨室剖面為範本重繪（比照 VESDA 採樣管配置示意圖的上迴風層／FFU／潔淨室／高架地板／下迴風層／迴風豎井架構）：火警時 FFU 連動停止、迴風豎井排煙閘門切換改道排至戶外，不再送回上迴風層循環；疏散梯間正壓送風機同步動作</td></tr>
           <tr><td><b>V8.0</b></td><td>2026-07-13</td><td>移除「現場常見故障排除」章節（章節重新編號）；泡沫／水霧互動圖修正：手動啟動與電磁閥觸發時感知撒水頭不再連動反應，FCP 偵測器 D1／D2 改為需兩顆同時動作（交叉確認）才會啟動電磁閥；新增排煙與正壓系統動作示意圖（點擊模擬火警，看排煙風機、AHU 連動停止、疏散梯間正壓送風同步動作）</td></tr>
@@ -3308,8 +3270,8 @@
       return;
     }
     var parts = [];
-    if (fire) parts.push('🔔 上排氣：FFU 停止、排煙口就近抽離、梯間正壓');
-    if (gas) parts.push('⚠ 下排氣：FFU 停止、迴風豎井改道排煙、梯間正壓');
+    if (fire) parts.push('🔔 上排氣：FFU 停止、排煙口就近抽離、風機啟動');
+    if (gas) parts.push('⚠ 下排氣：FFU 停止、迴風豎井改道排煙、風機啟動');
     st.textContent = parts.join('／');
     st.setAttribute('fill', fire ? 'var(--green)' : 'var(--yellow)');
   }
