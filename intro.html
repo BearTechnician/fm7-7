@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.4</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.5</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -738,7 +738,7 @@
       <h3>典型的動作順序</h3>
       <ul class="steps alpha">
         <li>偵測器（煙、火焰、溫度或氣體）偵測到異常，送訊號給火警受信總機（<code>FCP</code>）</li>
-        <li>受信總機顯示發生區域（Zone），現場警報器（蜂鳴器＋閃燈）動作，廣播系統啟動</li>
+        <li>受信總機顯示發生區域（Zone），火警警鈴（蜂鳴器＋閃燈）動作，廣播系統啟動</li>
         <li>若確認為真實火警，相關撒水區域或氣體滅火區域啟動抑制動作；製程端可能連動緊急關斷（EMO）關閉氣體／電力供應</li>
         <li>防火門、防火閘門等被動防火設施發揮作用，把火煙侷限在單一防火區劃內</li>
         <li>人員依疏散路線撤離至集合點，消防隊或緊急應變小組（ERT）到場處理</li>
@@ -1047,7 +1047,7 @@
       </div>
       <ul class="steps">
         <li><strong>火警受信總機（<code>FCP</code>, Fire Control Panel）</strong>：所有偵測器與手動報警機的訊號匯集處，會顯示異常發生的位置</li>
-        <li><strong>現場警報器</strong>：蜂鳴器＋閃光燈（horn/strobe），讓在場人員第一時間知道要注意</li>
+        <li><strong>火警警鈴</strong>：蜂鳴器＋閃光燈（horn/strobe），讓在場人員第一時間知道要注意</li>
         <li><strong>廣播系統</strong>：播放疏散指示或現況說明，避免恐慌或誤判</li>
         <li><strong>手動報警機／緊急電話</strong>：走廊上常見的紅色按鈕，任何人發現火災都可以直接按下通報，不需要等偵測器動作</li>
         <li><strong>與廠務系統連動</strong>：<code>FCP</code> 常會連動 BMS／EMCS，自動執行停送風、關閉防火閘門等動作</li>
@@ -1143,7 +1143,7 @@
           <text x="495" y="240" text-anchor="middle" class="lbl">火警受信總機</text>
           <g class="marker"><circle cx="495" cy="167" r="11"/><text x="495" y="168">3</text></g>
 
-          <!-- 基本輸出：現場警報器（horn/strobe） -->
+          <!-- 基本輸出：火警警鈴（horn/strobe） -->
           <line x1="570" y1="210" x2="740" y2="130" class="wire-basic"/>
           <circle cx="760" cy="115" r="22" class="comp out-basic"/>
           <text x="760" y="117" text-anchor="middle" dominant-baseline="central" font-size="20" style="pointer-events:none;">🔔</text>
@@ -1151,7 +1151,7 @@
             <path d="M 792 105 a 12 12 0 0 1 0 20"/>
             <path d="M 800 99 a 20 20 0 0 1 0 32"/>
           </g>
-          <text x="760" y="150" text-anchor="middle" class="lbl">現場警報器</text>
+          <text x="760" y="150" text-anchor="middle" class="lbl">火警警鈴</text>
           <g class="marker"><circle cx="705" cy="105" r="11"/><text x="705" y="106">4</text></g>
 
           <!-- 基本輸出：廣播喇叭 -->
@@ -1190,7 +1190,7 @@
           <li><span class="dnum">1</span><span>手動報警機：任何人發現異常都能按下，觸發訊號屬於「人工通報」</span></li>
           <li><span class="dnum">2</span><span>偵煙探測器：系統自動偵測到煙，觸發訊號屬於「自動偵測」，代表異常已被系統確認</span></li>
           <li><span class="dnum">3</span><span><code>FCP</code> 火警受信總機：接收所有輸入訊號，判斷後對外下達動作指令</span></li>
-          <li><span class="dnum">4</span><span>現場警報器：蜂鳴器＋閃光燈，手動或偵煙任一觸發即動作</span></li>
+          <li><span class="dnum">4</span><span>火警警鈴：蜂鳴器＋閃光燈，手動或偵煙任一觸發即動作</span></li>
           <li><span class="dnum">5</span><span>廣播喇叭：播放疏散指示，手動或偵煙任一觸發即動作</span></li>
           <li><span class="dnum">6</span><span>防火閘門關閉：<b>僅偵煙探測器動作</b>會連動，封住風管阻止煙擴散</span></li>
           <li><span class="dnum">7</span><span>空調（AHU）停止：<b>僅偵煙探測器動作</b>會連動，避免空調把煙帶到其他區域</span></li>
@@ -1206,22 +1206,30 @@
         <div class="section-num green">5</div>
         <h2>自動撒水系統</h2>
       </div>
-      <p>撒水系統是最常見的滅火手段，但半導體廠因為怕水損，會依區域特性選用不同類型：</p>
+      <p>撒水系統是最常見的滅火手段，但半導體廠因為怕水損，會依區域特性選用不同設計。這裡要先分清楚兩個不同層次的概念：<b>系統形式</b>（管路平常有沒有水、用什麼方式觸發放水）跟<b>撒水頭種類</b>（撒水頭本身的設計型式），兩者是分開挑選、搭配使用的，不要混為一談：</p>
+      <h4 style="margin:16px 0 8px;font-size:14px;color:var(--text);">① 撒水系統形式</h4>
       <table class="clause-table">
-        <thead><tr><th>類型</th><th>原理</th><th>常見位置</th><th>為什麼選這個</th></tr></thead>
+        <thead><tr><th>系統形式</th><th>原理</th><th>常見位置</th><th>為什麼選這個</th></tr></thead>
         <tbody>
           <tr><td>濕式（Wet Pipe）</td><td>管路平常就充滿水，撒水頭本身有感溫元件，受熱破裂即出水</td><td>辦公室、一般廠房區域</td><td>結構最簡單、反應最快、成本最低</td></tr>
           <tr><td>開放式（Deluge）</td><td>撒水頭本身<b>沒有感溫元件</b>（平時開放），管路平常無水；由獨立的偵測系統觸發「一齊開放閥（Deluge Valve）」，閥一開，水同時流向該區<b>所有</b>撒水頭，形成全區一齊放射</td><td>本廠僅用於 <code>H₂O₂</code>（過氧化氫）桶槽區</td><td><b>作用是降溫，不是滅火</b>：大量放水為桶槽降溫，避免溫度升高造成分解反應失控，跟其他撒水系統「滅火」的目的不同</td></tr>
+        </tbody>
+      </table>
+      <h4 style="margin:16px 0 8px;font-size:14px;color:var(--text);">② 撒水頭種類</h4>
+      <table class="clause-table">
+        <thead><tr><th>撒水頭種類</th><th>原理／特性</th><th>常見位置</th><th>為什麼選這個</th></tr></thead>
+        <tbody>
           <tr><td><code>ESFR</code>／貨架撒水頭（In-Rack）</td><td>早期抑制快速反應型撒水頭，高架儲存另加貨架撒水頭</td><td>貨架儲存、ASRS（自動倉儲）區域</td><td>因應堆疊儲存火載量高、火勢向上延燒快的特性</td></tr>
+          <tr><td><code>K8</code></td><td>K 因數（K-factor）為 8 的標準反應型撒水頭，代表出水口流量特性；<b>不是</b> ESFR</td><td>本廠 <b>Stocker（自動化儲存／搬運倉儲區）</b></td><td>詳見下方「Stocker：K8 撒水頭與 45 公分淨空間」專節說明</td></tr>
         </tbody>
       </table>
       <div class="callout green">
         <div class="callout-icon">✅</div>
-        <div>常見迷思先破解：撒水頭是<b>個別動作</b>的——濕式與 ESFR 系統的撒水頭各自有感溫元件，只有真的被高溫觸發的那一顆才會出水；只有<b>開放式（Deluge）</b>系統例外，它的撒水頭本身沒有感溫元件，是靠獨立偵測系統觸發一齊開放閥後，全區撒水頭才會同時放射。</div>
+        <div>常見迷思先破解：撒水頭是<b>個別動作</b>的——濕式系統無論搭配哪種撒水頭（一般型、ESFR、K8），各自都有感溫元件，只有真的被高溫觸發的那一顆才會出水；只有<b>開放式（Deluge）</b>系統例外，它的撒水頭本身沒有感溫元件，是靠獨立偵測系統觸發一齊開放閥後，全區撒水頭才會同時放射。</div>
       </div>
 
       <h3>Stocker：K8 撒水頭與 45 公分淨空間</h3>
-      <p>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>，不是 ESFR。除了撒水頭型式，同仁最需要注意的是<b>撒水頭正下方必須保持至少 45 公分的淨空</b>——指的是撒水頭正下方那一小段空間，不是整個貨架區域都要淨空。現場最容易被忽略的違規來源，往往不是貨架本身，而是 <b>Stocker 結構的補強鋼梁</b>：後續施工補強時，鋼梁如果剛好從撒水頭正下方通過、距離不足 45 公分，一樣會擋住噴灑角度。這種情況<b>不是自己搬開東西就能處理</b>，要通報設備／土建工程單位評估調整：</p>
+      <p>本廠 <b>Stocker（自動化儲存／搬運倉儲區）採用 <code>K8</code> 撒水頭</b>，不是 ESFR。除了撒水頭型式，同仁最需要注意的是<b>撒水頭正下方必須保持至少 45 公分的淨空</b>——指的是撒水頭正下方那一小段空間，不是整個貨架區域都要淨空。現場最容易被忽略的違規來源，往往不是貨架本身，而是 <b>Stocker 結構的補強鋼梁</b>：鋼梁如果剛好從撒水頭正下方通過、距離不足 45 公分，一樣會擋住噴灑角度。因此原則上要<b>等 Stocker 設備（含補強鋼梁等結構）架設完成後，確認淨空無鋼梁干涉，才能安裝或修改成 K8 撒水頭</b>；如果撒水頭先裝好、鋼梁後補強侵入淨空，<b>不是自己搬開東西就能處理</b>，要通報設備／土建工程單位評估調整：</p>
       <div class="diagram-wrap">
         <div class="diagram-title">Stocker K8 撒水頭淨空示意圖：正確 vs. 錯誤</div>
         <svg id="dg9" viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg">
@@ -1303,7 +1311,7 @@
           <li><span class="dnum">1</span><span>撒水頭（K8）：本廠 Stocker 統一採用 K8 撒水頭</span></li>
           <li><span class="dnum">2</span><span>45 cm 淨空：僅指撒水頭<b>正下方</b>那一小段空間，不是整個貨架區域範圍</span></li>
           <li><span class="dnum">3</span><span>正確：Stocker 補強鋼梁位於淨空之下方，撒水噴灑角度不受阻擋</span></li>
-          <li><span class="dnum">4</span><span>錯誤：補強鋼梁貼著撒水頭正下方通過，侵入淨空，擋住噴灑角度；這是結構問題，需通報設備／土建工程單位調整，不是現場人員能自行處理</span></li>
+          <li><span class="dnum">4</span><span>錯誤：撒水頭若在 Stocker 設備（含補強鋼梁）架設完成<b>前</b>就先裝好，後續鋼梁補強可能貼著撒水頭正下方通過、侵入淨空，擋住噴灑角度；正確原則是<b>等 Stocker 設備架設完成、確認淨空無鋼梁干涉後，才安裝或修改成 K8 撒水頭</b>，已裝好才發現干涉則需通報設備／土建工程單位調整，不是現場人員能自行處理</span></li>
         </ol>
         <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">黃色虛線＝撒水頭正下方 45 公分淨空範圍；紅色鋼梁＝侵入淨空的補強鋼梁。看到結構鋼梁貼近撒水頭正下方，要通報工程單位評估，不是自行處理。</div>
       </div>
@@ -2118,7 +2126,7 @@
       </div>
       <h3>動作流程：偵測 → 預警延遲 → 放射</h3>
       <ul class="steps alpha">
-        <li>該區偵測器（通常是雙偵測器連動，如兩組煙偵測器或煙＋熱偵測器都動作）確認火警，送訊號給氣體滅火控制盤</li>
+        <li>該區採<b>探測器雙迴路動作（Cross Zone）</b>：兩個獨立迴路的偵測器都動作（如兩組煙偵測器或煙＋熱偵測器分屬不同迴路）才確認火警，送訊號給氣體滅火控制盤，避免單一偵測器誤報就啟動放射</li>
         <li>控制盤啟動<b>預警警報</b>（警示燈＋警報聲），同時開始放電延遲倒數（<b>本廠固定設 30 秒</b>），讓區域內人員有時間撤離</li>
         <li>若有人員仍在區內、確認是誤報或需要更多時間，可按下<b>延遲／中止按鈕（Abort Switch）</b>暫停倒數，放開後才會繼續倒數；<b>Abort Switch 不能防止放電，只能爭取多一點撤離時間</b></li>
         <li>倒數結束、確認人員已撤離後，鋼瓶閥自動開啟，藥劑經管路與噴頭放射入防護區域</li>
@@ -3094,6 +3102,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V10.5</b></td><td>2026-07-13</td><td>「現場警報器」正名為「火警警鈴」（全文與互動示意圖同步修正）；自動撒水系統表格拆分為「撒水系統形式」（濕式／開放式）與「撒水頭種類」（ESFR／K8）兩張表，避免混淆；Stocker K8 章節修正為需等 Stocker 設備架設完成後才能安裝或修改成 K8 撒水頭；氣體滅火系統動作流程 A 改為「探測器雙迴路動作（Cross Zone）」</td></tr>
           <tr><td><b>V10.4</b></td><td>2026-07-13</td><td>修正警報系統與 FCP 連動互動示意圖：編號標記缺少樣式定義，導致全部顯示成黑色實心圓點（看起來像破洞）且數字不可見，補上 <code>.marker</code> 樣式後正確顯示藍底白字編號</td></tr>
           <tr><td><b>V10.3</b></td><td>2026-07-13</td><td><code>MAU Room</code> 改設於頂樓（屋頂機房），不再與上迴風層同層；修正下排氣支管被機房牆面蓋住、視覺上斷開的問題（機房牆面繪製順序移到管路之前）；氣體洩漏（下排氣）情境下 FFU 改為持續運轉、不再連動停止，僅火警（上排氣）才會停止 FFU</td></tr>
           <tr><td><b>V10.2</b></td><td>2026-07-13</td><td>修正排煙系統示意圖：新增排煙風機所在的 <code>MAU Room</code>；修正「排至戶外」管路斷開的問題；火警煙的動畫改為先飄到排煙口正下方、再垂直被吸走；修正氣體洩漏警示圖示因缺少 transform-box 而跳動跑位的問題，改為透明度閃爍</td></tr>
