@@ -618,7 +618,7 @@
 
 <div class="header">
   <div class="header-badge">Fire Safety 101 · 消防新手包</div>
-  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V10.7</span></h1>
+  <h1>半導體廠消防系統 <span>速成班</span> <span class="ver-badge">V11.0</span></h1>
   <div class="header-sub">給不熟悉消防系統的同仁｜15 分鐘搞懂廠內消防系統在做什麼、為什麼要這樣設計</div>
   <div class="header-meta">
     <div class="meta-item">🎯 <strong>適用對象</strong>：非消防背景同仁、新人教育訓練</div>
@@ -2374,6 +2374,27 @@
         <div class="callout-icon">🔗</div>
         <div>想了解製程氣體／化學品的完整危害邏輯，可以參考文末連結的 FM Global DS 7-7 深入版整理。</div>
       </div>
+
+      <h3>製程各機台安全裝置比較表（草稿框架）</h3>
+      <div class="callout warn">
+        <div class="callout-icon">🚧</div>
+        <div>下表為<b>草稿框架</b>，機台分類依 FM Global DS 7-7／SEMI S2 等規範常見分法先行列出，各欄內容也只是依一般半導體廠慣例先行帶入，<b>尚未對照本廠實際配置確認</b>。待補上實際安全裝置清單後，再逐一核對修正各機台列的內容，正式版本前請勿直接引用。</div>
+      </div>
+      <table class="clause-table">
+        <thead><tr><th>機台類型</th><th>主要危害</th><th>氣體／化學品偵測與自動遮斷</th><th>滅火／抑制方式</th><th>排氣連鎖</th><th>EMO／其他連鎖</th></tr></thead>
+        <tbody>
+          <tr><td>濕式化學機台（Wet Bench）</td><td>腐蝕性／氧化性化學品，液體洩漏、化學反應放熱</td><td>液體洩漏偵測盤（漏液感知線）＋化學品供應自動遮斷閥</td><td>依化學品特性選用（本廠 <code>H₂O₂</code> 桶槽區為 Deluge 降溫，詳見自動撒水系統章節）</td><td>排氣風量異常（Low Flow）連鎖停機或警報</td><td>Bay 緊急關斷按鈕；二次防溢堤收集洩漏液體</td></tr>
+          <tr><td>爐管／CVD（擴散爐管、化學氣相沉積）</td><td>高溫、可燃／毒性製程氣體、矽甲烷等自燃性氣體</td><td>可燃／毒性氣體偵測器＋氣體供應自動遮斷閥（excess flow valve）</td><td>氣體滅火系統（<code>IG-541</code> 或 <code>CO₂</code>，視機台內部空間設計）</td><td>排氣連鎖，異常時連動關閉製程氣體供應</td><td>EMO 切斷氣體／電力；高溫連鎖保護</td></tr>
+          <tr><td>離子植入機（Ion Implanter）</td><td>毒性氣體（如磷化氫、砷化氫）、高壓電</td><td>毒性氣體偵測器＋氣體櫃自動遮斷閥</td><td>依氣體特性選用氣體滅火或惰化系統</td><td>排氣連鎖，異常時自動遮斷氣體供應</td><td>EMO；高壓電連鎖停機</td></tr>
+          <tr><td>乾式蝕刻機（Etcher）</td><td>可燃／腐蝕性製程氣體、電漿高溫</td><td>可燃氣體偵測器＋自動遮斷閥</td><td>依氣體特性選用氣體滅火系統</td><td>排氣連鎖</td><td>EMO；製程異常連動停機</td></tr>
+          <tr><td>黃光／微影機台（Photo/Litho）</td><td>易燃溶劑（光阻、顯影液）蒸氣</td><td>可燃氣體（溶劑蒸氣）偵測器</td><td>濕式撒水系統為主；視配置可能加裝氣體滅火</td><td>排氣連鎖，維持蒸氣濃度低於 <code>LEL</code></td><td>EMO；接地／靜電消除裝置</td></tr>
+          <tr><td>化學機械研磨（CMP）</td><td>研磨漿料（Slurry）、化學品洩漏</td><td>液體洩漏偵測＋化學品供應自動遮斷</td><td>濕式撒水系統為主</td><td>排氣連鎖</td><td>EMO；二次防溢堤</td></tr>
+          <tr><td>氣體鋼瓶櫃／氣體房（Gas Cabinet／VMB）</td><td>高壓可燃／毒性氣體鋼瓶洩漏</td><td>獨立可燃／毒性氣體偵測＋自動遮斷閥（<code>Excess Flow Valve</code>），異常自動切斷供應</td><td>依氣體特性選用，鋼瓶櫃本身常設局部滅火或水霧</td><td>櫃體獨立排氣，異常連鎖警報並遮斷氣體</td><td>EMO；鋼瓶逆止閥，防止回流</td></tr>
+          <tr><td>化學品供應系統（CDS／Bulk Chemical）</td><td>大量腐蝕性／易燃化學品儲存與輸送</td><td>液體洩漏偵測＋供應自動遮斷閥</td><td>依化學品特性選用，常搭配二次防溢堤</td><td>排氣連鎖（揮發性化學品）</td><td>EMO；防溢堤容量需大於單一儲槽容積</td></tr>
+          <tr><td>局部排氣／洗滌塔（Local Scrubber）</td><td>可燃氣體殘留物在風管內堆積</td><td>管路內部可燃氣體偵測</td><td>管路內建撒水，防止殘留物起火延燒</td><td>風量異常（Low Flow）連鎖警報</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <div class="diagram-caption" style="text-align:center;color:var(--muted);font-size:11px;margin-top:6px;">本表為通用框架草稿，實際機台分類、偵測器型式、連鎖邏輯與滅火系統配置，請以廠內 SOP 及各機台原廠規格為準。</div>
     </div>
 
     <!-- s9 -->
@@ -3101,6 +3122,7 @@
       <table class="clause-table">
         <thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead>
         <tbody>
+          <tr><td><b>V11.0</b></td><td>2026-10-14</td><td>特殊氣體／化學品防護章節新增「製程各機台安全裝置比較表」草稿框架（濕式化學機台、爐管／CVD、離子植入機、蝕刻機、黃光、CMP、氣體鋼瓶櫃、化學品供應系統、局部排氣洗滌塔共 9 類），比較氣體／化學品偵測與自動遮斷、滅火／抑制方式、排氣連鎖、EMO 等安全裝置；明確標示為待核對本廠實際配置的草稿，正式版本前不可直接引用</td></tr>
           <tr><td><b>V10.7</b></td><td>2026-07-13</td><td>排煙系統示意圖修正：火警時 FFU 改為<b>降速運轉</b>（原本誤植為全關），視覺上以「↓ 降速」取代原本的停止 X 標記；移除上排氣口「設在 FFU 排列之間」的敘述強調，該位置僅為繪圖標示，非需要特別說明的設計重點</td></tr>
           <tr><td><b>V10.6</b></td><td>2026-07-13</td><td>Stocker K8 章節修正：淨空遭鋼梁干涉時應通報「設備工程單位」，與土建無關，移除相關敘述中的「土建」字樣</td></tr>
           <tr><td><b>V10.5</b></td><td>2026-07-13</td><td>「現場警報器」正名為「火警警鈴」（全文與互動示意圖同步修正）；自動撒水系統表格拆分為「撒水系統形式」（濕式／開放式）與「撒水頭種類」（ESFR／K8）兩張表，避免混淆；Stocker K8 章節修正為需等 Stocker 設備架設完成後才能安裝或修改成 K8 撒水頭；氣體滅火系統動作流程 A 改為「探測器雙迴路動作（Cross Zone）」</td></tr>
