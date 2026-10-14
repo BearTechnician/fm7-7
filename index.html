@@ -577,6 +577,7 @@
   <a href="#s25">2.5 設施</a>
   <a href="#s26">2.6 工具</a>
   <a href="#s26cmp">比較表</a>
+  <a href="#s26nfpa">NFPA318</a>
   <a href="#s27">2.7 AMHS</a>
   <a href="#s28">2.8 氣體</a>
   <a href="#s29">2.9 液體</a>
@@ -603,6 +604,7 @@
     <a href="#s25" class="sub">2.5.8 廢棄物處理</a>
     <a href="#s26">2.6 生產工具</a>
     <a href="#s26cmp" class="sub">★ 製程工具安全規定比較表</a>
+    <a href="#s26nfpa" class="sub">🚧 NFPA 318 vs FM 7-7（架構版）</a>
     <a href="#s27">2.7 AMHS 與 Stocker</a>
     <a href="#s28">2.8 製程氣體儲存與處理</a>
     <a href="#s29">2.9 製程液體儲存與處理</a>
@@ -1355,6 +1357,129 @@
             <li>使用易燃氣體／蒸氣的工具，電氣設備等級與斷電連鎖門檻多半設在 <strong>LFL／LEL 25%</strong></li>
           </ul>
         </div>
+      </div>
+    </div>
+
+    <!-- NFPA 318 vs FM 7-7 -->
+    <div class="section" id="s26nfpa">
+      <div class="section-header">
+        <div class="section-num danger">草稿</div>
+        <h2>NFPA 318 第 8 章 vs FM 7-7 第 2.6 節 對照表（架構版）</h2>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">🚧</div>
+        <div>NFPA 318《半導體製造廠防護標準》是受版權保護的付費標準，網路上搜尋不到逐條內文，目前只能確認<b>第 8 章「Production and Support Equipment」的章節標題與編號</b>（來源：NFPA 官方標準目錄／ANSI webstore 列表，可信度高）。下表「NFPA 318 內容」欄暫時留白待補——待你對照手上的原文補上各節實際規定後，我再逐條核對並補齊比較內容。FM 7-7 欄位內容已依原文確認過，可直接參考。</div>
+      </div>
+
+      <table class="clause-table wide-table">
+        <thead>
+          <tr>
+            <th>NFPA 318</th>
+            <th>章節標題</th>
+            <th>對應 FM 7-7 章節</th>
+            <th>FM 7-7 既有規定摘要</th>
+            <th>NFPA 318 內容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>8.1</code></td>
+            <td>General</td>
+            <td><span class="clause-ref">2.6.1</span></td>
+            <td>不燃/FM 4910 材料限制（非認證塑膠 ≤1 lb/ft² 或塑膠總重 1%）；超量時替換材料或加裝消防偵測抑制</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.2</code></td>
+            <td>Materials of Construction</td>
+            <td><span class="clause-ref">2.6.1</span></td>
+            <td>同上（構造材料限制併入總則）</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.3</code></td>
+            <td>Equipment Safety Systems and Interlocks</td>
+            <td>分散於 <span class="clause-ref">2.6.2–2.6.9</span></td>
+            <td>FM 7-7 未獨立設「連鎖總則」節，各工具（離子植入機、爐管、濕製程等）各自訂定連鎖要求，見比較表「消防抑制／電氣連鎖」欄</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.4</code></td>
+            <td>Electrical Design</td>
+            <td><span class="clause-ref">2.6.2.4</span>／<span class="clause-ref">2.6.6</span>／<span class="clause-ref">2.6.8</span></td>
+            <td>晶圓軌道依通風狀況採 Class I Div 1/2；離子植入機限流保險絲／故障能量限制；爐管製程控制迴路 UPS</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.5</code></td>
+            <td>Process Liquid Heating</td>
+            <td><span class="clause-ref">2.6.4.1</span></td>
+            <td>不燃加熱工作台、禁用電氣浸入式加熱器、低液位＋備援高溫連鎖（獨立於製程控制）、季度／半年維護測試</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.6</code></td>
+            <td>Flammable or Combustible Liquid Tools</td>
+            <td><span class="clause-ref">2.6.2.4</span>／<span class="clause-ref">2.6.4</span></td>
+            <td>自燃性液體分注容器不鏽鋼化、二次圍堵、液體洩漏／蒸氣偵測連鎖</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.7</code></td>
+            <td>Photolithography</td>
+            <td><span class="clause-ref">2.6.2</span></td>
+            <td>步進機/掃描機空調濾網、EUV 氫氣／VEWFD／吊車規定、晶圓軌道防護、微影設備撒水／預作動系統</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.8</code></td>
+            <td>Ion Implanters</td>
+            <td><span class="clause-ref">2.6.6</span></td>
+            <td>優先非充油變壓器；充油變壓器限流保險絲限制故障能量（≤250,000／500,000 A²s）；溫度監控＋煙偵連鎖斷高壓電</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.9</code></td>
+            <td>Wet Process and Wet Etch</td>
+            <td><span class="clause-ref">2.6.4</span></td>
+            <td>加熱板限制、消防抑制（CO₂／水霧，依附錄 C）、地板下方區域防護條件、製程排氣降至 LFL 25% 以下</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.10</code></td>
+            <td>CVD and Furnace Tools</td>
+            <td><span class="clause-ref">2.6.8</span>／<span class="clause-ref">2.6.9</span></td>
+            <td>製程控制迴路 UPS；石英舟暴露濾網連鎖；立式爐管耐震約束；真空泵油品／存油槽；磊晶反應爐氫氣偵測＋削減系統連鎖</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.11</code></td>
+            <td>Automated Materials Handling</td>
+            <td><span class="clause-ref">2.7</span>（獨立章節，非 2.6）</td>
+            <td>AMHS／Stocker 構造、撒水＋VEWFD、多層防火門、備援伺服器</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.12</code></td>
+            <td>Support Equipment</td>
+            <td><span class="clause-ref">2.6.5</span>／<span class="clause-ref">2.6.7</span>／<span class="clause-ref">2.6.3</span></td>
+            <td>IPA 蒸氣乾燥機蒸氣偵測連鎖；RTA 充油電容器防護；E-Beam 斷路室＋VEWFD</td>
+            <td>待補</td>
+          </tr>
+          <tr>
+            <td><code>8.13</code></td>
+            <td>Production Equipment Fire Protection</td>
+            <td><span class="clause-ref">2.6.4.3</span>／附錄 C</td>
+            <td>消防抑制系統選用邏輯（CO₂／水霧）、偵測器型式與位置、區劃防護決策樹</td>
+            <td>待補</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <div class="callout-icon">📌</div>
+        <div>章節架構來源：NFPA 318-2022／2025 版官方目錄（ANSI webstore、Intertek 標準資料庫列表）。FM 7-7 對應欄位為粗略主題比對，非逐條一對一映射——例如 NFPA 318 可能將「連鎖」集中在 8.3 一節規範所有工具共通邏輯，FM 7-7 則是把連鎖要求拆散寫進各工具自己的小節，兩者規範「顆粒度」不同，實際比對內文時要留意這點，不能只看章節編號對應就直接劃等號。</div>
       </div>
     </div>
 
