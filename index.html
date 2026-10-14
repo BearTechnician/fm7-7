@@ -251,6 +251,17 @@
     }
     .clause-table td:first-child:nth-last-child(2) { width: 92px; }
 
+    /* Dense multi-column comparison tables: CJK text has no natural word
+       boundaries, so an auto-layout table will happily crush columns down
+       to one character wide instead of overflowing. Force a fixed layout
+       with real column widths so it scrolls horizontally instead. */
+    .wide-table {
+      table-layout: fixed;
+      min-width: 880px;
+    }
+    .wide-table th:first-child, .wide-table td:first-child { width: 130px; }
+    .wide-table th:not(:first-child), .wide-table td:not(:first-child) { width: 150px; }
+
     /* ── Highlight Boxes ── */
     .callout {
       border-radius: 8px;
@@ -565,6 +576,7 @@
   <a href="#s24">2.4 建築</a>
   <a href="#s25">2.5 設施</a>
   <a href="#s26">2.6 工具</a>
+  <a href="#s26cmp">比較表</a>
   <a href="#s27">2.7 AMHS</a>
   <a href="#s28">2.8 氣體</a>
   <a href="#s29">2.9 液體</a>
@@ -590,6 +602,7 @@
     <a href="#s25" class="sub">2.5.1–2.5.7 總則／電力／空調／水／氮氣</a>
     <a href="#s25" class="sub">2.5.8 廢棄物處理</a>
     <a href="#s26">2.6 生產工具</a>
+    <a href="#s26cmp" class="sub">★ 製程工具安全規定比較表</a>
     <a href="#s27">2.7 AMHS 與 Stocker</a>
     <a href="#s28">2.8 製程氣體儲存與處理</a>
     <a href="#s29">2.9 製程液體儲存與處理</a>
@@ -1210,6 +1223,139 @@
         <li>提供點源式削減系統處理廢氣（依 2.5.8.2），並提供連鎖確保削減系統於預吹掃步驟前已運作</li>
         <li>使用不燃風管或 FM 4922 認證的潔淨室排氣/排煙風管系統</li>
       </ul>
+    </div>
+
+    <!-- 2.6 比較表 -->
+    <div class="section" id="s26cmp">
+      <div class="section-header">
+        <div class="section-num purple">★</div>
+        <h2>製程工具安全規定比較表（依 2.6 節彙整）</h2>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">📊</div>
+        <div>將 2.6 節各類製程工具的安全規定，依<b>構造材料、消防偵測、消防抑制／電氣連鎖、洩漏與排氣防護、特殊規定</b>五個面向整理成對照表，方便快速比較不同工具之間的差異。儲存格內容為原文要求的精簡摘要，完整條文請回對應章節查閱；「—」表示該節未對此面向另訂特別規定（適用 2.6.1 總則等一般規定）。</div>
+      </div>
+
+      <table class="clause-table wide-table">
+        <thead>
+          <tr>
+            <th>製程工具</th>
+            <th>構造材料</th>
+            <th>消防偵測</th>
+            <th>消防抑制／電氣連鎖</th>
+            <th>洩漏／排氣防護</th>
+            <th>特殊規定</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>步進機／掃描機</strong><br><span class="clause-ref">2.6.2.1</span></td>
+            <td>空調風管依 2.5.3.4／2.4.3.5</td>
+            <td>—（適用 2.4.4 一般撒水）</td>
+            <td>—</td>
+            <td>FM 4920 認證 HEPA/ULPA 濾網</td>
+            <td>空調機組通常位於 Sub-fab</td>
+          </tr>
+          <tr>
+            <td><strong>EUV（極紫外光）</strong><br><span class="clause-ref">2.6.2.2</span></td>
+            <td>風管：硬管 FM 4910、軟管不燃或 FM 4924</td>
+            <td>VEWFD（本地＋常駐警報）</td>
+            <td>廢氣削減系統連鎖（預吹掃前須運作）</td>
+            <td>氫氣偵測（洩漏點）；冷卻水洩漏偵測</td>
+            <td>氫氣系統依 DS 7-91／NFPA 2；吊車作業需 SOP＋合格人員（DS 1-62）</td>
+          </tr>
+          <tr>
+            <td><strong>微影設備（濕式管路）</strong><br><span class="clause-ref">2.6.2.3</span></td>
+            <td>—</td>
+            <td>專用 FM 認證高感度煙霧偵測（預作動系統時）</td>
+            <td>一般濕式撒水；水損風險高區域可用 VEWFD 啟動之預作動系統</td>
+            <td>—</td>
+            <td>預作動系統需：防蝕管路、依 DS 2-81 測試、最遠端 60 秒出水、加裝排水接頭</td>
+          </tr>
+          <tr>
+            <td><strong>晶圓軌道</strong><br><span class="clause-ref">2.6.2.4</span></td>
+            <td>排氣岐管：不燃或 FM 4922；分注容器：不鏽鋼</td>
+            <td>液體洩漏／蒸氣偵測</td>
+            <td>偵測連鎖關閉液體流動；濃度超 LFL 25% 連鎖斷電</td>
+            <td>無不鏽鋼容器時須二次圍堵；電氣設備依通風狀況採 Class I Div 1／Div 2</td>
+            <td>HPM 液體存量降到製程所需最低</td>
+          </tr>
+          <tr>
+            <td><strong>E-Beam（電子束曝光）</strong><br><span class="clause-ref">2.6.3</span></td>
+            <td>斷路室／專用封閉空間，牆面不燃</td>
+            <td>排氣風管 VEWFD（連鎖安全關機）</td>
+            <td>連鎖安全關閉工具電源</td>
+            <td>冷卻水洩漏偵測系統</td>
+            <td>多套系統各自獨立斷路室／空調系統</td>
+          </tr>
+          <tr>
+            <td><strong>濕製程工具</strong><br><span class="clause-ref">2.6.4</span></td>
+            <td>加熱工作台／工具採不燃（金屬）；加熱板限不燃工具或加不鏽鋼內襯</td>
+            <td>依附錄 C（視工具構造／危害而定）</td>
+            <td>含自燃性液體者需 CO₂ 或水霧；低液位＋備援高溫限制開關（獨立於製程控制）</td>
+            <td>製程排氣降至 LFL 25% 以下；地板下方區域視條件須額外防護</td>
+            <td>禁用電氣浸入式加熱器；工具內不得存放化學品／自燃性液體</td>
+          </tr>
+          <tr>
+            <td><strong>IPA 蒸氣乾燥機</strong><br><span class="clause-ref">2.6.5</span></td>
+            <td>分注容器依晶圓軌道規定（2.6.2.4）</td>
+            <td>控制櫃＋排氣夾層蒸氣偵測器</td>
+            <td>濃度達 LEL 25% 或偵測器故障均連鎖警報；加熱器異常連鎖斷電</td>
+            <td>過電流／過溫保護；高低液位感測器</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>離子植入機</strong><br><span class="clause-ref">2.6.6</span></td>
+            <td>優先非充油式變壓器（樹脂澆封乾式或 MG 組）</td>
+            <td>光學／空氣採樣煙霧偵測</td>
+            <td>煙偵連鎖斷高壓電＋切斷 gas box；充油變壓器需限流保險絲（限制故障能量 ≤250,000／500,000 A²s）</td>
+            <td>溫度監控連鎖斷電（電源供應過溫時）</td>
+            <td>摻雜氣體來源依 2.8.9（優先 SAGS）</td>
+          </tr>
+          <tr>
+            <td><strong>快速熱退火（RTA）</strong><br><span class="clause-ref">2.6.7</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>充油電容器依 DS 5-30 防護</td>
+            <td>—</td>
+            <td>其餘比照 2.6.1 總則</td>
+          </tr>
+          <tr>
+            <td><strong>爐管</strong><br><span class="clause-ref">2.6.8</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>製程控制迴路（120V）提供 UPS；通風／控制連鎖或風機 UPS 防止石英舟暴露濾網組</td>
+            <td>油潤滑真空泵用惰性油＋除霧器／聚結過濾器＋存油槽；易燃廢氣超 LEL 25% 需廢氣處理系統</td>
+            <td>立式爐管耐震約束（2.4.3.8.5(E)）；優先乾式真空泵</td>
+          </tr>
+          <tr>
+            <td><strong>磊晶反應爐</strong><br><span class="clause-ref">2.6.9</span></td>
+            <td>不燃風管或 FM 4922 認證排氣系統</td>
+            <td>氫氣偵測（洩漏點）</td>
+            <td>點源式削減系統連鎖（預吹掃前須運作）</td>
+            <td>排氣經削減系統處理</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>🔥 消防偵測／抑制共通點</h4>
+          <ul class="steps">
+            <li>含自燃性液體或高價值元件（EUV、E-Beam）的工具，幾乎都要求 <strong>VEWFD 極早期預警偵測</strong>，而非一般偵測器</li>
+            <li>濕製程工具的消防抑制是否需要「主動式」（CO₂／水霧），取決於構造材料是否達 FM 4910／不燃標準——達標可降低防護等級要求</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>⚡ 電氣連鎖共通點</h4>
+          <ul class="steps">
+            <li>液體加熱類工具（濕製程、IPA 乾燥機）普遍要求<strong>獨立於製程控制之外</strong>的備援高溫／液位連鎖，避免單一控制系統故障同時失去保護</li>
+            <li>使用易燃氣體／蒸氣的工具，電氣設備等級與斷電連鎖門檻多半設在 <strong>LFL／LEL 25%</strong></li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- 2.7 AMHS -->
